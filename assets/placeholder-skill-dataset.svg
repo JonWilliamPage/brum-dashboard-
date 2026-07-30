@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Dataset dashboard skill placeholder">
+  <rect width="640" height="360" fill="#0e1f4a"/>
+  <rect x="32" y="32" width="576" height="296" fill="#f5f3ee" rx="0"/>
+  <rect x="48" y="48" width="160" height="12" fill="#efb700"/>
+  <text x="48" y="90" font-family="Georgia, serif" font-size="22" fill="#0e0f11">Dataset → dashboard</text>
+  <text x="48" y="118" font-family="system-ui,sans-serif" font-size="13" fill="#5c5a54">Discover · validate · propose · human Accept</text>
+  <rect x="48" y="150" width="200" height="140" fill="#e8e4dc" stroke="#0e1f4a" stroke-width="2"/>
+  <text x="60" y="178" font-family="system-ui,sans-serif" font-size="11" fill="#0e1f4a">TABLE</text>
+  <rect x="60" y="190" width="160" height="8" fill="#0e1f4a" opacity=".25"/>
+  <rect x="60" y="208" width="140" height="8" fill="#0e1f4a" opacity=".2"/>
+  <rect x="60" y="226" width="150" height="8" fill="#0e1f4a" opacity=".15"/>
+  <rect x="268" y="150" width="200" height="140" fill="#1c3f94"/>
+  <path d="M280 260 L320 200 L360 230 L400 170 L440 220" fill="none" stroke="#efb700" stroke-width="3"/>
+  <text x="280" y="178" font-family="system-ui,sans-serif" font-size="11" fill="#f5f3ee">MAP</text>
+  <rect x="488" y="150" width="104" height="140" fill="#0e1f4a"/>
+  <text x="500" y="200" font-family="system-ui,sans-serif" font-size="11" fill="#efb700">REVIEW</text>
+  <text x="500" y="220" font-family="system-ui,sans-serif" font-size="10" fill="#f5f3ee">Accept</text>
+  <text x="500" y="238" font-family="system-ui,sans-serif" font-size="10" fill="#f5f3ee">wall</text>
+</svg>

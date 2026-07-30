@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Provenance skill placeholder">
+  <rect width="640" height="360" fill="#0e1f4a"/>
+  <rect x="32" y="32" width="576" height="296" fill="#f5f3ee"/>
+  <rect x="48" y="48" width="160" height="12" fill="#efb700"/>
+  <text x="48" y="90" font-family="Georgia, serif" font-size="22" fill="#0e0f11">Provenance wall</text>
+  <text x="48" y="118" font-family="system-ui,sans-serif" font-size="13" fill="#5c5a54">Publisher · as-of date · licence · fetch script</text>
+  <rect x="48" y="150" width="544" height="48" fill="#fff" stroke="#0e1f4a" stroke-width="1.5"/>
+  <text x="64" y="180" font-family="ui-monospace,monospace" font-size="13" fill="#0e1f4a">DWP · Stat-Xplore · UC_Monthly · as-of 2026-05 · OGL v3</text>
+  <rect x="48" y="214" width="544" height="48" fill="#fff" stroke="#0e1f4a" stroke-width="1.5"/>
+  <text x="64" y="244" font-family="ui-monospace,monospace" font-size="13" fill="#0e1f4a">ONS · mid-year population · 69 wards · checksum OK</text>
+  <rect x="48" y="278" width="544" height="36" fill="#1c3f94"/>
+  <text x="64" y="302" font-family="system-ui,sans-serif" font-size="13" fill="#efb700">No source → no number on screen</text>
+</svg>
