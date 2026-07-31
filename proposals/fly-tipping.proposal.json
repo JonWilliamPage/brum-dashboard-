@@ -1,0 +1,336 @@
+{
+  "id": "fly-tipping",
+  "status": "pending",
+  "title": "Fly-tipping — incidents per 1,000 people",
+  "metric": "Fly-tipping incidents per 1,000 people",
+  "unit": "incidents per 1,000 residents",
+  "geography": "local-authority",
+  "generated": "2026-07-30T19:34:05.078Z",
+  "sources": [
+    {
+      "id": "flyTipping",
+      "label": "Fly-tipping incidents per 1,000 people",
+      "publisher": "Defra · via Birmingham City Observatory",
+      "dataset": "fly-tipping-incidents-per-1000-people-wmca",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/fly-tipping-incidents-per-1000-people-wmca/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?limit=100"
+    }
+  ],
+  "source": {
+    "id": "flyTipping",
+    "label": "Fly-tipping incidents per 1,000 people",
+    "publisher": "Defra · via Birmingham City Observatory",
+    "dataset": "fly-tipping-incidents-per-1000-people-wmca",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/fly-tipping-incidents-per-1000-people-wmca/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?limit=100"
+  },
+  "validation": {
+    "geography_level": "local-authority",
+    "ward_breakdown_available": false,
+    "areas_found": 7,
+    "areas_expected": 7,
+    "complete": true,
+    "skipped": [],
+    "years_span": 10,
+    "series_from": "2015/16",
+    "series_to": "2024/25",
+    "birmingham_value": 20.8,
+    "birmingham_rank": 3,
+    "birmingham_change": 9.7,
+    "birmingham_peak": 20.8,
+    "birmingham_peak_year": "2024/25",
+    "wmca_benchmark": 19.7,
+    "england_benchmark": 18.7
+  },
+  "as_of": "2024/25",
+  "years": [
+    "2015/16",
+    "2016/17",
+    "2017/18",
+    "2018/19",
+    "2019/20",
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25"
+  ],
+  "areas": [
+    {
+      "area_code": "E08000028",
+      "area_name": "Sandwell",
+      "value": 35.4,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        12.7,
+        16,
+        14.1,
+        17.2,
+        17.6,
+        30.3,
+        33.8,
+        34.3,
+        35.5,
+        35.4
+      ],
+      "first_value": 12.7,
+      "change_pp": 22.7,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000028%22&limit=20"
+        }
+      },
+      "rank": 1
+    },
+    {
+      "area_code": "E08000030",
+      "area_name": "Walsall",
+      "value": 22.3,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        16.7,
+        16.4,
+        15.5,
+        15.1,
+        12.1,
+        12.7,
+        15,
+        14.2,
+        15.8,
+        22.3
+      ],
+      "first_value": 16.7,
+      "change_pp": 5.6,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000030%22&limit=20"
+        }
+      },
+      "rank": 2
+    },
+    {
+      "area_code": "E08000025",
+      "area_name": "Birmingham",
+      "value": 20.8,
+      "is_birmingham": true,
+      "period": "2024/25",
+      "series": [
+        11.1,
+        13.1,
+        14,
+        15.3,
+        18.9,
+        19.8,
+        20.3,
+        13.7,
+        15.2,
+        20.8
+      ],
+      "first_value": 11.1,
+      "change_pp": 9.7,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000025%22&limit=20"
+        }
+      },
+      "rank": 3
+    },
+    {
+      "area_code": "E08000026",
+      "area_name": "Coventry",
+      "value": 19.5,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        7,
+        9.9,
+        13.8,
+        20.2,
+        20.2,
+        31.1,
+        24.6,
+        19.5,
+        16.4,
+        19.5
+      ],
+      "first_value": 7,
+      "change_pp": 12.5,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000026%22&limit=20"
+        }
+      },
+      "rank": 4
+    },
+    {
+      "area_code": "E08000029",
+      "area_name": "Solihull",
+      "value": 18.1,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        6,
+        7.4,
+        5.2,
+        10.3,
+        11.8,
+        18.9,
+        16.3,
+        16.3,
+        16.5,
+        18.1
+      ],
+      "first_value": 6,
+      "change_pp": 12.1,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000029%22&limit=20"
+        }
+      },
+      "rank": 5
+    },
+    {
+      "area_code": "E08000031",
+      "area_name": "Wolverhampton",
+      "value": 11.9,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        13.5,
+        10.3,
+        9.1,
+        9.3,
+        9.3,
+        11.6,
+        11.6,
+        10.9,
+        9.8,
+        11.9
+      ],
+      "first_value": 13.5,
+      "change_pp": -1.6,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000031%22&limit=20"
+        }
+      },
+      "rank": 6
+    },
+    {
+      "area_code": "E08000027",
+      "area_name": "Dudley",
+      "value": 10,
+      "is_birmingham": false,
+      "period": "2024/25",
+      "series": [
+        2.6,
+        3.4,
+        2.6,
+        2.9,
+        3.8,
+        5.7,
+        5.4,
+        6.1,
+        8.8,
+        10
+      ],
+      "first_value": 2.6,
+      "change_pp": 7.4,
+      "provenance": {
+        "value": {
+          "source": "Defra WasteDataFlow · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?where=areaidentifier%3D%22E08000027%22&limit=20"
+        }
+      },
+      "rank": 7
+    }
+  ],
+  "benchmarks": {
+    "wmca": 19.7,
+    "england": 18.7
+  },
+  "bench_series": {
+    "wmca": [
+      9.9,
+      10.9,
+      10.6,
+      12.9,
+      13.4,
+      18.6,
+      18.2,
+      16.4,
+      16.9,
+      19.7
+    ],
+    "england": [
+      13.6,
+      15.2,
+      14.5,
+      14.9,
+      15.2,
+      18.6,
+      17.5,
+      17.2,
+      17.7,
+      18.7
+    ]
+  },
+  "city": {
+    "series": [
+      11.1,
+      13.1,
+      14,
+      15.3,
+      18.9,
+      19.8,
+      20.3,
+      13.7,
+      15.2,
+      20.8
+    ],
+    "latest": 20.8,
+    "first": 11.1,
+    "change": 9.7,
+    "peak": 20.8,
+    "peak_year": "2024/25",
+    "rank": 3
+  },
+  "raw_sample": [
+    {
+      "value": 20.8,
+      "date": "2025",
+      "periodlabel": "2024/25"
+    },
+    {
+      "value": 19.7,
+      "date": "2025",
+      "periodlabel": "2024/25"
+    },
+    {
+      "value": 18.7,
+      "date": "2025",
+      "periodlabel": "2024/25"
+    }
+  ]
+}

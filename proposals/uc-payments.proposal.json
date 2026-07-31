@@ -1,0 +1,424 @@
+{
+  "id": "uc-payments",
+  "status": "pending",
+  "title": "UC Payments — household award intensity in Birmingham",
+  "metric": "Households on UC; mean Payment Amount (£); award-size bands; family-type split",
+  "unit": "households / £ per household (assessment period)",
+  "geography": "local-authority",
+  "la_code": "E08000025",
+  "la_name": "Birmingham",
+  "generated": "2026-07-18T13:54:58.322Z",
+  "as_of": "February 2026",
+  "year": "February 2026",
+  "source": {
+    "as_of": "February 2026",
+    "label": "Stat-Xplore Households on Universal Credit",
+    "publisher": "Department for Work & Pensions"
+  },
+  "sources": [
+    {
+      "id": "statxploreUcHouseholds",
+      "label": "Households on Universal Credit — Stat-Xplore",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "UC_Households / Households on Universal Credit",
+      "method": "administrative — Open Data API; COUNT of households; MEAN of Payment Amount; award bands; family type",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "February 2026",
+      "catalogueUrl": "https://stat-xplore.dwp.gov.uk/",
+      "apiUrl": "https://stat-xplore.dwp.gov.uk/webapi/rest/v1"
+    },
+    {
+      "id": "benefitsBillUc",
+      "label": "Birmingham UC expenditure £m (LA accounts) — context only",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "benefit-expenditure-by-local-authority (via benefits-bill proposal)",
+      "method": "annual accounting outturn — NOT mean monthly Payment Amount",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+    }
+  ],
+  "months": [
+    "March 2024",
+    "April 2024",
+    "May 2024",
+    "June 2024",
+    "July 2024",
+    "August 2024",
+    "September 2024",
+    "October 2024",
+    "November 2024",
+    "December 2024",
+    "January 2025",
+    "February 2025",
+    "March 2025",
+    "April 2025",
+    "May 2025",
+    "June 2025",
+    "July 2025",
+    "August 2025",
+    "September 2025",
+    "October 2025",
+    "November 2025",
+    "December 2025",
+    "January 2026",
+    "February 2026"
+  ],
+  "month_keys": [
+    "202403",
+    "202404",
+    "202405",
+    "202406",
+    "202407",
+    "202408",
+    "202409",
+    "202410",
+    "202411",
+    "202412",
+    "202501",
+    "202502",
+    "202503",
+    "202504",
+    "202505",
+    "202506",
+    "202507",
+    "202508",
+    "202509",
+    "202510",
+    "202511",
+    "202512",
+    "202601",
+    "202602"
+  ],
+  "city": {
+    "series": [
+      {
+        "month": "March 2024",
+        "month_key": "202403",
+        "households": 157834,
+        "mean_payment_gbp": 739.69
+      },
+      {
+        "month": "April 2024",
+        "month_key": "202404",
+        "households": 160235,
+        "mean_payment_gbp": 754.86
+      },
+      {
+        "month": "May 2024",
+        "month_key": "202405",
+        "households": 168390,
+        "mean_payment_gbp": 810.53
+      },
+      {
+        "month": "June 2024",
+        "month_key": "202406",
+        "households": 172153,
+        "mean_payment_gbp": 813.15
+      },
+      {
+        "month": "July 2024",
+        "month_key": "202407",
+        "households": 174306,
+        "mean_payment_gbp": 820.36
+      },
+      {
+        "month": "August 2024",
+        "month_key": "202408",
+        "households": 176720,
+        "mean_payment_gbp": 827.22
+      },
+      {
+        "month": "September 2024",
+        "month_key": "202409",
+        "households": 180109,
+        "mean_payment_gbp": 821.83
+      },
+      {
+        "month": "October 2024",
+        "month_key": "202410",
+        "households": 181919,
+        "mean_payment_gbp": 820.93
+      },
+      {
+        "month": "November 2024",
+        "month_key": "202411",
+        "households": 184240,
+        "mean_payment_gbp": 825.39
+      },
+      {
+        "month": "December 2024",
+        "month_key": "202412",
+        "households": 186301,
+        "mean_payment_gbp": 823.37
+      },
+      {
+        "month": "January 2025",
+        "month_key": "202501",
+        "households": 187858,
+        "mean_payment_gbp": 827.34
+      },
+      {
+        "month": "February 2025",
+        "month_key": "202502",
+        "households": 190791,
+        "mean_payment_gbp": 839.7
+      },
+      {
+        "month": "March 2025",
+        "month_key": "202503",
+        "households": 192347,
+        "mean_payment_gbp": 839.77
+      },
+      {
+        "month": "April 2025",
+        "month_key": "202504",
+        "households": 194158,
+        "mean_payment_gbp": 845.95
+      },
+      {
+        "month": "May 2025",
+        "month_key": "202505",
+        "households": 195750,
+        "mean_payment_gbp": 859.23
+      },
+      {
+        "month": "June 2025",
+        "month_key": "202506",
+        "households": 198244,
+        "mean_payment_gbp": 862.48
+      },
+      {
+        "month": "July 2025",
+        "month_key": "202507",
+        "households": 200564,
+        "mean_payment_gbp": 858.64
+      },
+      {
+        "month": "August 2025",
+        "month_key": "202508",
+        "households": 203043,
+        "mean_payment_gbp": 854.15
+      },
+      {
+        "month": "September 2025",
+        "month_key": "202509",
+        "households": 205375,
+        "mean_payment_gbp": 850.34
+      },
+      {
+        "month": "October 2025",
+        "month_key": "202510",
+        "households": 207564,
+        "mean_payment_gbp": 849.46
+      },
+      {
+        "month": "November 2025",
+        "month_key": "202511",
+        "households": 209743,
+        "mean_payment_gbp": 850.11
+      },
+      {
+        "month": "December 2025",
+        "month_key": "202512",
+        "households": 210821,
+        "mean_payment_gbp": 850.05
+      },
+      {
+        "month": "January 2026",
+        "month_key": "202601",
+        "households": 210669,
+        "mean_payment_gbp": 849.55
+      },
+      {
+        "month": "February 2026",
+        "month_key": "202602",
+        "households": 210687,
+        "mean_payment_gbp": 859.22
+      }
+    ],
+    "latest_households": 210687,
+    "latest_mean_payment_gbp": 859.22,
+    "first_month": "March 2024",
+    "first_households": 157834,
+    "first_mean_payment_gbp": 739.69,
+    "households_delta": 52853,
+    "households_pct_change": 33.5,
+    "bill_uc_context": {
+      "year": "2024/25",
+      "uc_m": 1809,
+      "total_m": 5414.4,
+      "note": "Annual accounting outturn — not the same metric as mean monthly Payment Amount"
+    }
+  },
+  "award_bands": [
+    {
+      "band": "No payment",
+      "households": 13243
+    },
+    {
+      "band": "£0.01 to £100.00",
+      "households": 4225
+    },
+    {
+      "band": "£100.01 to £200.00",
+      "households": 6067
+    },
+    {
+      "band": "£200.01 to £300.00",
+      "households": 10063
+    },
+    {
+      "band": "£300.01 to £400.00",
+      "households": 25325
+    },
+    {
+      "band": "£400.01 to £500.00",
+      "households": 13447
+    },
+    {
+      "band": "£500.01 to £600.00",
+      "households": 7054
+    },
+    {
+      "band": "£600.01 to £700.00",
+      "households": 9688
+    },
+    {
+      "band": "£700.01 to £800.00",
+      "households": 17963
+    },
+    {
+      "band": "£800.01 to £900.00",
+      "households": 18956
+    },
+    {
+      "band": "£900.01 to £1000.00",
+      "households": 8447
+    },
+    {
+      "band": "£1000.01 to £1100.00",
+      "households": 9580
+    },
+    {
+      "band": "£1100.01 to £1200.00",
+      "households": 8782
+    },
+    {
+      "band": "£1200.01 to £1300.00",
+      "households": 9886
+    },
+    {
+      "band": "£1300.01 to £1400.00",
+      "households": 8556
+    },
+    {
+      "band": "£1400.01 to £1500.00",
+      "households": 9179
+    },
+    {
+      "band": "£1500.01 or over",
+      "households": 0
+    },
+    {
+      "band": "£1500.01 to £1600.00",
+      "households": 7386
+    },
+    {
+      "band": "£1600.01 to £1700.00",
+      "households": 4938
+    },
+    {
+      "band": "£1700.01 to £1800.00",
+      "households": 3383
+    },
+    {
+      "band": "£1800.01 to £1900.00",
+      "households": 2934
+    },
+    {
+      "band": "£1900.01 to £2000.00",
+      "households": 2219
+    },
+    {
+      "band": "£2000.01 to £2100.00",
+      "households": 1765
+    },
+    {
+      "band": "£2100.01 to £2200.00",
+      "households": 1539
+    },
+    {
+      "band": "£2200.01 to £2300.00",
+      "households": 1379
+    },
+    {
+      "band": "£2300.01 to £2400.00",
+      "households": 976
+    },
+    {
+      "band": "£2400.01 to £2500.00",
+      "households": 798
+    },
+    {
+      "band": "£2500.01 or over",
+      "households": 2915
+    }
+  ],
+  "family_types": [
+    {
+      "family_type": "Single, no children",
+      "households": 115785,
+      "mean_payment_gbp": 605.53
+    },
+    {
+      "family_type": "Single, with children",
+      "households": 59359,
+      "mean_payment_gbp": 1203.48
+    },
+    {
+      "family_type": "Couple, no children",
+      "households": 7116,
+      "mean_payment_gbp": 818.34
+    },
+    {
+      "family_type": "Couple, with children",
+      "households": 28359,
+      "mean_payment_gbp": 1183.84
+    },
+    {
+      "family_type": "Unknown or missing family type",
+      "households": 67,
+      "mean_payment_gbp": 1195.23
+    }
+  ],
+  "wards": [],
+  "validation": {
+    "geography_level": "local-authority",
+    "la_code": "E08000025",
+    "complete": true,
+    "months_span": 24,
+    "series_from": "March 2024",
+    "series_to": "February 2026",
+    "latest_households": 210687,
+    "latest_mean_payment_gbp": 859.22,
+    "award_bands_count": 28,
+    "award_bands_sum": 210693,
+    "award_bands_drift_pct": 0,
+    "award_bands_checksum_ok": true,
+    "family_types_count": 5,
+    "family_types_sum": 210686,
+    "family_types_drift_pct": 0,
+    "family_types_checksum_ok": true,
+    "wards_found": 0,
+    "note": "LA-level only. Households ≠ people on UC. Mean Payment Amount ≠ annual Benefits Bill UC £. Band/family sums may drift slightly from total due to DWP rounding. No ward-level £ outturn published as accounts."
+  },
+  "method_notes": [
+    "Unit of analysis is the UC household claim, not each adult on the claim.",
+    "Payment Amount is the mean £ paid in the assessment period (monthly-ish), not annual expenditure.",
+    "Benefits Bill UC line (if present) is annual DWP accounting outturn for Birmingham LA — different metric; shown as context only.",
+    "Ward-level mean payment is available in Stat-Xplore but not included until code↔label join is validated — no broken sample shipped.",
+    "Aggregate band \"£1500.01 or over\" dropped when finer £100 bands exist to avoid double-counting."
+  ]
+}

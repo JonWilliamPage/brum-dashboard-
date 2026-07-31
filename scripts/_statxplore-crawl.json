@@ -1,0 +1,2842 @@
+[
+  {
+    "folder": "Alternative Claimant Count",
+    "database": "Alternative Claimant Count",
+    "id": "str:database:ACC",
+    "fieldCount": 5,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Gender",
+      "Benefit Group",
+      "Employment Indicator"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Alternative Claimant Count",
+    "database": "Alternative Claimant Count Off Flows",
+    "id": "str:database:ACC_OFFS",
+    "fieldCount": 5,
+    "fields": [
+      "Month of Off Flow",
+      "Age (bands and single year)",
+      "Gender",
+      "Benefit Group",
+      "Employment Indicator"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Alternative Claimant Count",
+    "database": "Alternative Claimant Count On Flows",
+    "id": "str:database:ACC_ONS",
+    "fieldCount": 5,
+    "fields": [
+      "Month of On Flow",
+      "Age (bands and single year)",
+      "Benefit Group",
+      "Employment Indicator",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Attendance Allowance",
+    "database": "AA: Cases in Payment - Data from May 2018",
+    "id": "str:database:AA_In_Payment_New",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "AA Award Type",
+      "Age (bands and single year)",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "AA Award Type"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "AA Award Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Attendance Allowance",
+    "database": "AA: Cases in Payment - Data to February 2018",
+    "id": "str:database:AA_In_Payment",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "AA Award Type",
+      "Age (bands and single year)",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "AA Award Type"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "AA Award Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Attendance Allowance",
+    "database": "AA: Cases with entitlement - Data from May 2018",
+    "id": "str:database:AA_Entitled_New",
+    "fieldCount": 6,
+    "fields": [
+      "Quarter",
+      "AA Award Type",
+      "Age (bands and single year)",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "AA Award Type"
+    ],
+    "money": [
+      "AA Award Type"
+    ],
+    "levelSample": [
+      "VALUESET:Award Type"
+    ]
+  },
+  {
+    "folder": "Attendance Allowance",
+    "database": "AA: Cases with entitlement - Data to February 2018",
+    "id": "str:database:AA_Entitled",
+    "fieldCount": 6,
+    "fields": [
+      "Quarter",
+      "AA Award Type",
+      "Age (bands and single year)",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "AA Award Type"
+    ],
+    "money": [
+      "AA Award Type"
+    ],
+    "levelSample": [
+      "VALUESET:Award Type"
+    ]
+  },
+  {
+    "folder": "Benefit Cap",
+    "database": "HB Cumulative Caseload",
+    "id": "str:database:BC_HB_Flows",
+    "fieldCount": 13,
+    "fields": [
+      "Amount of Benefit Capped",
+      "Housing Benefit Amount",
+      "Onflow Month",
+      "Off-flow Month",
+      "Age",
+      "Gender (single claimants)",
+      "Family Type",
+      "Number of Children",
+      "Private or Social Rented",
+      "Detailed Housing Type",
+      "Outcome at Off-flow",
+      "Amount of Benefit Capped (in bands)",
+      "Housing Benefit Amount (in bands)"
+    ],
+    "geo": [],
+    "money": [
+      "Amount of Benefit Capped",
+      "Housing Benefit Amount",
+      "Amount of Benefit Capped (in bands)",
+      "Housing Benefit Amount (in bands)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Cap",
+    "database": "HB Point in Time Caseload",
+    "id": "str:database:BC_HB_Monthly",
+    "fieldCount": 11,
+    "fields": [
+      "Amount of Benefit Capped",
+      "Housing Benefit Amount",
+      "Month",
+      "Age",
+      "Gender (single claimants)",
+      "Family Type",
+      "Number of Children",
+      "Private or Social Rented",
+      "Detailed Housing Type",
+      "Amount of Benefit Capped (in bands)",
+      "Housing Benefit Amount (in bands)"
+    ],
+    "geo": [],
+    "money": [
+      "Amount of Benefit Capped",
+      "Housing Benefit Amount",
+      "Amount of Benefit Capped (in bands)",
+      "Housing Benefit Amount (in bands)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Cap",
+    "database": "UC Cumulative Caseload",
+    "id": "str:database:BC_UC_Flows",
+    "fieldCount": 8,
+    "fields": [
+      "Amount of Benefit Capped",
+      "Onflow Month",
+      "Off-flow Month",
+      "Family Type",
+      "Number of Children",
+      "Assessment Period amount of benefit capped",
+      "Weekly Amount of Benefit Capped (in bands)",
+      "Housing Entitlement - Tenure"
+    ],
+    "geo": [],
+    "money": [
+      "Amount of Benefit Capped",
+      "Assessment Period amount of benefit capped",
+      "Weekly Amount of Benefit Capped (in bands)",
+      "Housing Entitlement - Tenure"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Cap",
+    "database": "UC Point in Time Caseload",
+    "id": "str:database:BC_UC_Monthly",
+    "fieldCount": 8,
+    "fields": [
+      "Amount of Benefit Capped",
+      "Month",
+      "Family Type",
+      "Number of Children",
+      "Age of Youngest Child (bands and single year)",
+      "Assessment Period amount of benefit capped",
+      "Weekly Amount of Benefit Capped (in bands)",
+      "Housing Entitlement - Tenure"
+    ],
+    "geo": [],
+    "money": [
+      "Amount of Benefit Capped",
+      "Assessment Period amount of benefit capped",
+      "Weekly Amount of Benefit Capped (in bands)",
+      "Housing Entitlement - Tenure"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Combinations",
+    "database": "Benefit Combinations - Data from May 2019 for England and Wales",
+    "id": "str:database:Ben_Com_New",
+    "fieldCount": 5,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Gender",
+      "Number of Benefits",
+      "Working or Pension Age Group"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Combinations",
+    "database": "Benefit Combinations - Data from May 2019 for Scotland",
+    "id": "str:database:Ben_Com_Scot",
+    "fieldCount": 5,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Gender",
+      "Number of Benefits",
+      "Working or Pension Age Group"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Benefit Combinations",
+    "database": "Benefit Combinations - Data to February 2019",
+    "id": "str:database:Ben_Com",
+    "fieldCount": 5,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Gender",
+      "Number of Benefits",
+      "Working or Pension Age Group"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Bereavement Benefits",
+    "database": "Bereavement Benefits - Data from May 2018",
+    "id": "str:database:BB_New",
+    "fieldCount": 8,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Dependency Increase",
+      "Duration of Claim",
+      "Gender",
+      "Grouped Amount of Benefit",
+      "Type of Bereavement Benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Bereavement Benefits",
+    "database": "Bereavement Benefits - Data to February 2018",
+    "id": "str:database:BB",
+    "fieldCount": 8,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Dependency Increase",
+      "Duration of Claim",
+      "Gender",
+      "Grouped Amount of Benefit",
+      "Type of Bereavement Benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Bereavement Support Payment",
+    "database": "BSP: Claims in Payment",
+    "id": "str:database:BSP_Payment",
+    "fieldCount": 4,
+    "fields": [
+      "Month",
+      "Age (years and bands)",
+      "Gender",
+      "Payment Rate"
+    ],
+    "geo": [],
+    "money": [
+      "Payment Rate"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Bereavement Support Payment",
+    "database": "BSP: Claims Received",
+    "id": "str:database:BSP_Claims",
+    "fieldCount": 4,
+    "fields": [
+      "Month",
+      "Age (years and bands)",
+      "Gender",
+      "Decision"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Carers Allowance",
+    "database": "CA: Cases in Payment - Data from May 2018",
+    "id": "str:database:CA_In_Payment_New",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Client type",
+      "Duration of Claim",
+      "Gender",
+      "Grouped amount of benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped amount of benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Carers Allowance",
+    "database": "CA: Cases in Payment - Data to February 2018",
+    "id": "str:database:CA_In_Payment",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Client type",
+      "Duration of Claim",
+      "Gender",
+      "Grouped amount of benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped amount of benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Carers Allowance",
+    "database": "CA: Cases with entitlement - Data from May 2018",
+    "id": "str:database:CA_Entitled_New",
+    "fieldCount": 7,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Client type",
+      "Duration of Claim",
+      "Gender",
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "geo": [],
+    "money": [
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Carers Allowance",
+    "database": "CA: Cases with entitlement - Data to February 2018",
+    "id": "str:database:CA_Entitled",
+    "fieldCount": 7,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Client type",
+      "Duration of Claim",
+      "Gender",
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "geo": [],
+    "money": [
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Child Maintenance Service",
+    "database": "CMS Arrangements - Data from March 2025",
+    "id": "str:database:CMS_NEW",
+    "fieldCount": 6,
+    "fields": [
+      "Quarter",
+      "Age band of Paying Parent",
+      "Age band of Receiving Parent",
+      "Gender of Paying Parent",
+      "Service Type & Paying Status",
+      "Shared Care Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Child Maintenance Service",
+    "database": "CMS Arrangements - Data to December 2024",
+    "id": "str:database:CMS",
+    "fieldCount": 6,
+    "fields": [
+      "Quarter",
+      "Age band of Paying Parent",
+      "Age band of Receiving Parent",
+      "Gender of Paying Parent",
+      "Service Type & Paying Status",
+      "Shared Care Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Child Maintenance Service",
+    "database": "CMS Children - Data from March 2025",
+    "id": "str:database:CMS_CHILD_NEW",
+    "fieldCount": 7,
+    "fields": [
+      "Quarter",
+      "Age of Child",
+      "Age band of Paying Parent",
+      "Age band of Receiving Parent",
+      "Gender of Paying Parent",
+      "Service Type & Paying Status",
+      "Shared Care Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Child Maintenance Service",
+    "database": "CMS Children - Data to December 2024",
+    "id": "str:database:CMS_CHILD",
+    "fieldCount": 7,
+    "fields": [
+      "Quarter",
+      "Age of Child",
+      "Age band of Paying Parent",
+      "Age band of Receiving Parent",
+      "Gender of Paying Parent",
+      "Service Type & Paying Status",
+      "Shared Care Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Child Maintenance Service",
+    "database": "CMS Paying Parents",
+    "id": "str:database:CMS_PARENT",
+    "fieldCount": 10,
+    "fields": [
+      "Quarter",
+      "Age Band",
+      "Gender",
+      "Compliance (Collect & Pay)",
+      "Maintenance due (Collect & Pay)",
+      "Maintenance due (Direct Pay)",
+      "Method of Payment",
+      "Number of Arrangements",
+      "Number of Children Covered",
+      "Universal Credit Status"
+    ],
+    "geo": [],
+    "money": [
+      "Method of Payment"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Children in Low Income Families",
+    "database": "AHC - Relative Low Income",
+    "id": "str:database:CILIF_AHC",
+    "fieldCount": 5,
+    "fields": [
+      "Year",
+      "Age of Child (years and bands)",
+      "Gender of Child",
+      "Family Type",
+      "Work Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Children in Low Income Families",
+    "database": "BHC - Absolute Low Income",
+    "id": "str:database:CILIF_ABS",
+    "fieldCount": 5,
+    "fields": [
+      "Year",
+      "Age of Child (years and bands)",
+      "Gender of Child",
+      "Family Type",
+      "Work Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Children in Low Income Families",
+    "database": "BHC - Relative Low Income",
+    "id": "str:database:CILIF_REL",
+    "fieldCount": 5,
+    "fields": [
+      "Year",
+      "Age of Child (years and bands)",
+      "Gender of Child",
+      "Family Type",
+      "Work Status"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Employment First Earnings from Connect to Work",
+    "id": "str:database:CTW_First_Earnings",
+    "fieldCount": 8,
+    "fields": [
+      "First Earnings from Employment Month",
+      "Referral Month",
+      "Start Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Higher Threshold Job Outcomes from Connect to Work",
+    "id": "str:database:CTW_High_Payment",
+    "fieldCount": 8,
+    "fields": [
+      "Higher Threshold Job Outcome Month",
+      "Referral Month",
+      "Start Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Lower Threshold Job Outcomes from Connect to Work",
+    "id": "str:database:CTW_Low_Payment",
+    "fieldCount": 8,
+    "fields": [
+      "Lower Threshold Job Outcome Month",
+      "Referral Month",
+      "Start Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Referrals to Connect to Work",
+    "id": "str:database:CTW_Referrals",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Referrals to Connect to Work - Individuals",
+    "id": "str:database:CTW_Ind_Refs",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Connect To Work",
+    "database": "Starts to Connect to Work",
+    "id": "str:database:CTW_Starts",
+    "fieldCount": 7,
+    "fields": [
+      "Start Month",
+      "Referral Month",
+      "Age (bands and single year)",
+      "Delivery Area",
+      "Participant Journey",
+      "Sex",
+      "Supported Employment Model"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Disability Living Allowance",
+    "database": "DLA: Cases in Payment - Data from May 2018",
+    "id": "str:database:DLA_In_Payment_New",
+    "fieldCount": 9,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Care Award Type",
+      "Mobility Award Type",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Disability Living Allowance",
+    "database": "DLA: Cases in Payment - Data to February 2018",
+    "id": "str:database:DLA_In_Payment",
+    "fieldCount": 9,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Care Award Type",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition",
+      "Mobility Award Type"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Disability Living Allowance",
+    "database": "DLA: Cases with entitlement - Data from May 2018",
+    "id": "str:database:DLA_Entitled_New",
+    "fieldCount": 8,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Care Award Type",
+      "Mobility Award Type",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition"
+    ],
+    "geo": [
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "money": [
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "levelSample": [
+      "VALUESET:Care Award Type"
+    ]
+  },
+  {
+    "folder": "Disability Living Allowance",
+    "database": "DLA: Cases with entitlement - Data to February 2018",
+    "id": "str:database:DLA_Entitled",
+    "fieldCount": 8,
+    "fields": [
+      "Quarter",
+      "Age (bands and single year)",
+      "Care Award Type",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender",
+      "Main Disabling Condition",
+      "Mobility Award Type"
+    ],
+    "geo": [
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "money": [
+      "Care Award Type",
+      "Mobility Award Type"
+    ],
+    "levelSample": [
+      "VALUESET:Care Award Type"
+    ]
+  },
+  {
+    "folder": "Employment and Support Allowance",
+    "database": "ESA - Data from May 2018",
+    "id": "str:database:ESA_Caseload_new",
+    "fieldCount": 12,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Duration of current claim",
+      "Ethnicity (detailed and summary)",
+      "Gender of claimant",
+      "Grouped amount of benefit",
+      "IB reassessment indicator",
+      "Medical condition",
+      "Partner indicator",
+      "Payment type",
+      "Phase of ESA claim"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Employment and Support Allowance",
+    "database": "ESA - Data to February 2018",
+    "id": "str:database:ESA_Caseload",
+    "fieldCount": 12,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Duration of current claim",
+      "Ethnicity (detailed and summary)",
+      "Gender of claimant",
+      "Grouped amount of benefit",
+      "IB reassessment indicator",
+      "Medical condition",
+      "Partner indicator",
+      "Payment type",
+      "Phase of ESA claim"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped amount of benefit",
+      "Payment type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "Appeal Outcomes by Claim Start",
+    "id": "str:database:ESA_WCA_APPEAL",
+    "fieldCount": 6,
+    "fields": [
+      "Claim Start Date",
+      "Type of Assessment",
+      "Outcome",
+      "Appeal Outcome",
+      "ESA Group Allocation (and Reasons)",
+      "Medical Condition"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "Clearance Times for Initial Claims",
+    "id": "str:database:ESA_WCA_Clearance",
+    "fieldCount": 1,
+    "fields": [
+      "Completed Assessment Date"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "ESA WCA by Claim Start",
+    "id": "str:database:ESA_WCA_CS",
+    "fieldCount": 5,
+    "fields": [
+      "Claim Start Date",
+      "Type of Assessment",
+      "Outcome",
+      "ESA Group Allocation (and Reasons)",
+      "Medical Condition"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "ESA WCA by Date of Decision",
+    "id": "str:database:ESA_WCA_JR",
+    "fieldCount": 5,
+    "fields": [
+      "Date of DWP Decision",
+      "Type of Assessment",
+      "Outcome",
+      "ESA Group Allocation (and Reasons)",
+      "Medical Condition"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "Mandatory Reconsiderations - Clearances",
+    "id": "str:database:ESA_WCA_MR_Clear",
+    "fieldCount": 4,
+    "fields": [
+      "Clearance Times",
+      "Date of Decision",
+      "Reason",
+      "Decision"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "ESA Work Capability Assessments",
+    "database": "Mandatory Reconsiderations - Registrations",
+    "id": "str:database:ESA_WCA_Registration",
+    "fieldCount": 2,
+    "fields": [
+      "Date of Registration",
+      "Reason"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Adult Dataset",
+    "id": "str:database:FRSAD",
+    "fieldCount": 5,
+    "fields": [
+      "Financial Year",
+      "Age band of the Adult",
+      "Gender of the Adult",
+      "Tenure type of the Household",
+      "Type of Adult"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Child Dataset",
+    "id": "str:database:FRSCH",
+    "fieldCount": 5,
+    "fields": [
+      "Financial Year",
+      "Age band of the Child",
+      "Gender of the Child",
+      "Main source of Household's total, gross Income",
+      "Tenure type of the Household"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Family (Benefit Unit) Dataset",
+    "id": "str:database:FRSBU",
+    "fieldCount": 5,
+    "fields": [
+      "Financial Year",
+      "Age band of the Head of the Family (Benefit Unit)",
+      "Age band of the Youngest Child in the Family (Benefit Unit)",
+      "Disability Status of the Family (Benefit Unit)",
+      "Tenure type of the Household"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Household Dataset",
+    "id": "str:database:FRSHH",
+    "fieldCount": 5,
+    "fields": [
+      "Financial Year",
+      "Age band of the Head of the Household",
+      "Type of Adult of the Head of the Household",
+      "Tenure type of the Household",
+      "Length of residency in property of the Head of the Household"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Household Food Security Dataset",
+    "id": "str:database:FRSHFS",
+    "fieldCount": 5,
+    "fields": [
+      "Financial Year",
+      "Age band of the Head of the Household",
+      "Educational attainment of the Head of the Household",
+      "Tenure type of the Household",
+      "Type of Adult of the Head of the Household"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Family Resources Survey",
+    "database": "Individual Dataset",
+    "id": "str:database:FRSPP",
+    "fieldCount": 4,
+    "fields": [
+      "Financial Year",
+      "Age band of the Individual",
+      "Gender of the Individual",
+      "Tenure type of the Household"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Fraud and Error in the Benefit System",
+    "databases": [],
+    "note": "empty folder via API"
+  },
+  {
+    "folder": "Households Below Average Income",
+    "database": "HBAI - Data from 2021/22 (admin-linked)",
+    "id": "str:database:HBAI_ADMIN",
+    "fieldCount": 27,
+    "fields": [
+      "Net 2024-25 Absolute Median Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2024-25 Absolute Median Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net 2024-25 Absolute Median Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2024-25 Absolute Median Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Housing Costs in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Housing Costs in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Financial Year",
+      "Age-band of the Individual",
+      "Type of Individual by Age Category",
+      "Gender of the Individual",
+      "Disability Status of the Individual",
+      "Educational Attainment of the Individual",
+      "Deep Material Poverty group of the Individual",
+      "Universal Credit (UC) Applicable Family for the Individual",
+      "Marital Status of Adults and Type of Couple in the Family of the Individual",
+      "Savings and Investments of Adults in the Family of the Individual",
+      "Number of Children in the Family of the Individual",
+      "Age of the Youngest Child in the Family of the Individual",
+      "Location in the United Kingdom of the Household of the Individual (please calculate three-year averages - click on i for the correct method)",
+      "Tenure Type of the Household of the Individual",
+      "Council Tax Band of the Household of the Individual",
+      "Household Status (conventional or shared) of the Household of the Individual",
+      "Household Food Security Status for the Household of the Individual (please exclude shared households from analysis - click on i for the correct method)"
+    ],
+    "geo": [],
+    "money": [
+      "Net 2024-25 Absolute Median Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2024-25 Absolute Median Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net 2024-25 Absolute Median Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2024-25 Absolute Median Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Housing Costs in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Housing Costs in year prices (weekly, equivalised, SPI-adjusted in nominal terms)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Households Below Average Income",
+    "database": "HBAI - Data to 2021/22 (unlinked)",
+    "id": "str:database:HBAI_SURVEY",
+    "fieldCount": 26,
+    "fields": [
+      "Net 2010-11 Absolute Median Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2010-11 Absolute Median Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net 2010-11 Absolute Median Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2010-11 Absolute Median Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Housing Costs in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Housing Costs in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Financial Year",
+      "Age-band of the Individual",
+      "Type of Individual by Age Category",
+      "Gender of the Individual",
+      "Disability Status of the Individual",
+      "Educational Attainment of the Individual",
+      "Universal Credit (UC) Applicable Family for the Individual",
+      "Marital Status of Adults and Type of Couple in the Family of the Individual",
+      "Savings and Investments of Adults in the Family of the Individual",
+      "Number of Children in the Family of the Individual",
+      "Age of the Youngest Child in the Family of the Individual",
+      "Location in the United Kingdom of the Household of the Individual (please calculate three-year averages - click on i for the correct method)",
+      "Tenure Type of the Household of the Individual",
+      "Council Tax Band of the Household of the Individual",
+      "Household Status (conventional or shared) of the Household of the Individual",
+      "Household Food Security Status for the Household of the Individual (please exclude shared households from analysis - click on i for the correct method)"
+    ],
+    "geo": [],
+    "money": [
+      "Net 2010-11 Absolute Median Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2010-11 Absolute Median Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net 2010-11 Absolute Median Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net 2010-11 Absolute Median Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (BHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (BHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Income (AHC) in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Income (AHC) in year prices (weekly, equivalised, SPI-adjusted in nominal terms)",
+      "Net Household Housing Costs in latest prices (weekly, equivalised, SPI-adjusted in CPI-adjusted real terms)",
+      "Net Household Housing Costs in year prices (weekly, equivalised, SPI-adjusted in nominal terms)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Housing Benefit",
+    "database": "Housing Benefit - Data from April 2018",
+    "id": "str:database:hb_new",
+    "fieldCount": 19,
+    "fields": [
+      "Weekly Award Amount",
+      "Weekly Spare Room Reduction Amount",
+      "Month",
+      "Age of Claimant (years and bands)",
+      "Age of Claimant (bands only)",
+      "Client Type",
+      "Family Type",
+      "Number of Child-Dependants",
+      "Number of Non-Dependants",
+      "Gender (single claimants only)",
+      "Private or Social Rented",
+      "Detailed Housing Type",
+      "Entitled Bedrooms (LHA only)",
+      "Passported Benefit Status",
+      "Employment Status",
+      "Weekly Award Amount (bands)",
+      "Pay Destination",
+      "Gap between HB and Rent",
+      "Accommodation Type"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "Weekly Award Amount (bands)"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Weekly Spare Room Reduction Amount",
+      "Weekly Award Amount (bands)"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Housing Benefit",
+    "database": "Housing Benefit - Data to March 2018",
+    "id": "str:database:hb_full",
+    "fieldCount": 16,
+    "fields": [
+      "Weekly Award Amount",
+      "Weekly Spare Room Reduction Amount",
+      "Month",
+      "Age of Claimant (years and bands)",
+      "Age of Claimant (bands only)",
+      "Family Type",
+      "Number of Child-Dependants",
+      "Number of Non-Dependants",
+      "Gender (single claimants only)",
+      "Private or Social Rented",
+      "Detailed Housing Type",
+      "Entitled Bedrooms (LHA only)",
+      "Passported Benefit Status",
+      "Employment Status",
+      "Weekly Award Amount (bands)",
+      "Payment Destination"
+    ],
+    "geo": [
+      "Weekly Award Amount",
+      "Weekly Award Amount (bands)"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Weekly Spare Room Reduction Amount",
+      "Weekly Award Amount (bands)",
+      "Payment Destination"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Housing Benefit",
+    "database": "Housing Benefit - Flows",
+    "id": "str:database:hb_flows",
+    "fieldCount": 16,
+    "fields": [
+      "Type of Flow",
+      "Month",
+      "Age of Claimant (years and bands)",
+      "Age of Claimant (bands only)",
+      "Client Type",
+      "Family Type",
+      "Number of Child-Dependants",
+      "Number of Non-Dependants",
+      "Gender (single claimants only)",
+      "Private or Social Rented",
+      "Detailed Housing Type",
+      "Entitled Bedrooms (LHA only)",
+      "Passported Benefit Status",
+      "Employment Status",
+      "Weekly Award Amount (bands)",
+      "Pay Destination"
+    ],
+    "geo": [
+      "Weekly Award Amount (bands)"
+    ],
+    "money": [
+      "Weekly Award Amount (bands)"
+    ],
+    "levelSample": [
+      "VALUESET:Weekly Award Amount (Ã‚Â£25 bands)"
+    ]
+  },
+  {
+    "folder": "Incapacity Benefit and Severe Disablement Allowance",
+    "database": "IBSDA - Data from May 2018",
+    "id": "str:database:IBSDA_NEW",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Benefit Combination",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender of claimant",
+      "Grouped Amount of Benefit",
+      "Medical condition",
+      "Payment Type"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit",
+      "Payment Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Incapacity Benefit and Severe Disablement Allowance",
+    "database": "IBSDA - Data to February 2018",
+    "id": "str:database:IBSDA",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Benefit Combination",
+      "Client Type",
+      "Duration of Current Claim",
+      "Gender of claimant",
+      "Grouped Amount of Benefit",
+      "Medical condition",
+      "Payment Type"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit",
+      "Payment Type"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Incapacity Benefit Reassessment",
+    "database": "IB Reassessment by Decision Date",
+    "id": "str:database:IBR_DEC",
+    "fieldCount": 2,
+    "fields": [
+      "Month",
+      "Outcome"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Incapacity Benefit Reassessment",
+    "database": "IB Reassessment by Referral Date",
+    "id": "str:database:IBR_REF",
+    "fieldCount": 2,
+    "fields": [
+      "Month",
+      "Outcome"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Income Support",
+    "database": "Income Support",
+    "id": "str:database:IS",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Duration of Current Claim",
+      "Gender of claimant",
+      "Grouped Amount of Benefit",
+      "Minimum Income Guarantee",
+      "Number of child dependants",
+      "Partner indicator",
+      "Statistical group"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "IIDB Assessments",
+    "id": "str:database:IIDB_Assessments",
+    "fieldCount": 13,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Working or Pension age",
+      "Gender",
+      "Cause of accident",
+      "Prescribed disease",
+      "Type of claim",
+      "Decision type",
+      "Decision time",
+      "Degree of disablement",
+      "Attributable agent",
+      "Standard Industrial Classification",
+      "Standard Occupational Classification"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "IIDB Assessments in payment",
+    "id": "str:database:IIDB_IICS",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Working or Pension age",
+      "Gender",
+      "Type of assessment",
+      "Average weekly amount (bands)"
+    ],
+    "geo": [],
+    "money": [
+      "Weekly Amount",
+      "Average weekly amount (bands)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "IIDB Claims",
+    "id": "str:database:IIDB_Claims",
+    "fieldCount": 7,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Working or Pension age",
+      "Gender",
+      "Cause of accident",
+      "Prescribed disease",
+      "Type of claim"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "IIDB Reassessments",
+    "id": "str:database:IIDB_Reassessments",
+    "fieldCount": 11,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Working or Pension age",
+      "Gender",
+      "Cause of accident",
+      "Prescribed disease",
+      "Type of claim",
+      "Degree of disablement",
+      "Action type",
+      "Outcome",
+      "Standard Industrial Classification"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "Payments made for Pneumoconiosis Workers' Compensation Act and Mesothelioma Scheme",
+    "id": "str:database:IIDB_Meso_Pay",
+    "fieldCount": 4,
+    "fields": [
+      "Total Payments made",
+      "Month",
+      "Scheme",
+      "Type of claimant"
+    ],
+    "geo": [],
+    "money": [
+      "Total Payments made"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Industrial Injuries Disablement Benefit (IIDB)",
+    "database": "Pneumoconiosis Workers' Compensation Act 1979 and 2008 Mesothelioma Scheme",
+    "id": "str:database:IIDB_Meso",
+    "fieldCount": 8,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Working or Pension age",
+      "Gender (of sufferer)",
+      "Scheme",
+      "Medical condition",
+      "Type of claimant",
+      "Amount of compensation paid (bands)"
+    ],
+    "geo": [],
+    "money": [
+      "Amount of compensation paid (bands)"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Jobseekers Allowance",
+    "database": "JSA - Data from May 2018",
+    "id": "str:database:JSA_NEW",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Age of youngest child",
+      "Duration of Current Claim",
+      "Ethnicity (detailed and summary)",
+      "Gender of claimant",
+      "Grouped Amount of Benefit",
+      "Number of child dependants",
+      "Partner indicator"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Jobseekers Allowance",
+    "database": "JSA - Data to February 2018",
+    "id": "str:database:JSA",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Age of youngest child",
+      "Duration of Current Claim",
+      "Ethnicity (detailed and summary)",
+      "Gender of claimant",
+      "Grouped Amount of Benefit",
+      "Number of child dependants",
+      "Partner indicator"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Move to Universal Credit",
+    "database": "Households invited to Move to Universal Credit",
+    "id": "str:database:MtUC_Households",
+    "fieldCount": 9,
+    "fields": [
+      "Month Migration Notice Sent",
+      "Household Type",
+      "Legacy Benefit",
+      "Move Status",
+      "Reminder Sent",
+      "Claimed Before Deadline",
+      "Extension to Original Deadline",
+      "Transitional Protection Awarded",
+      "Universal Credit Statement Issued"
+    ],
+    "geo": [
+      "Transitional Protection Awarded"
+    ],
+    "money": [
+      "Transitional Protection Awarded"
+    ],
+    "levelSample": [
+      "VALUESET:Transitional Protection Awarded"
+    ]
+  },
+  {
+    "folder": "Move to Universal Credit",
+    "database": "People invited to Move to Universal Credit",
+    "id": "str:database:MtUC_Individuals",
+    "fieldCount": 9,
+    "fields": [
+      "Month Migration Notice Sent",
+      "Age (in bands and single years)",
+      "Gender",
+      "Household Type",
+      "Legacy Benefit",
+      "Move Status",
+      "Reminder Sent",
+      "Claimed Before Deadline",
+      "Extension To Original Deadline"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "NINO Registrations",
+    "databases": [],
+    "note": "empty folder via API"
+  },
+  {
+    "folder": "NINO Registrations",
+    "database": "NINO Registrations To Adult Overseas Nationals Entering The UK",
+    "id": "str:database:Ninos",
+    "fieldCount": 5,
+    "fields": [
+      "Quarter of Registration",
+      "Rolling year end March",
+      "Nationality",
+      "Age at Registration",
+      "Gender"
+    ],
+    "geo": [
+      "Nationality"
+    ],
+    "money": [],
+    "levelSample": [
+      "VALUESET:Nationality",
+      "VALUESET:Sub Group",
+      "VALUESET:World Area"
+    ]
+  },
+  {
+    "folder": "Pension Credit",
+    "database": "Pension Credit - Data from May 2018",
+    "id": "str:database:PC_New",
+    "fieldCount": 8,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Duration of Claim",
+      "Gender",
+      "Grouped Amount of Benefit",
+      "Partner indicator",
+      "Type of Pension Credit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Pension Credit",
+    "database": "Pension Credit - Data to February 2018",
+    "id": "str:database:PC",
+    "fieldCount": 8,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Duration of Claim",
+      "Gender",
+      "Grouped Amount of Benefit",
+      "Partner indicator",
+      "Type of Pension Credit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Pensioners' Incomes",
+    "database": "PI - Data from 2021/22 (admin-linked)",
+    "id": "str:database:PI_ADMIN",
+    "fieldCount": 30,
+    "fields": [
+      "Gross income",
+      "Benefit income",
+      "State Pension income",
+      "Income-related benefits income",
+      "Disability benefit income",
+      "Occupational pension income",
+      "Personal pension income",
+      "Investment income",
+      "Earnings income",
+      "Other income",
+      "Net income before housing costs",
+      "Net income after housing costs",
+      "Geographical Region (please calculate three-year averages)",
+      "Financial year",
+      "Age of head of pensioner unit",
+      "Sex of head of pensioner unit",
+      "Family type",
+      "Quintile of the BHC pensioner couples income distribution",
+      "Quintile of the BHC pensioner singles income distribution",
+      "Quintile of the AHC pensioner couples income distribution",
+      "Quintile of the AHC pensioner singles income distribution",
+      "In receipt of benefit income",
+      "In receipt of state pension income",
+      "In receipt of income-related benefits income",
+      "In receipt of disability benefit income",
+      "In receipt of occupational pension income",
+      "In receipt of personal pension income",
+      "In receipt of investment income",
+      "In receipt of earnings income",
+      "Ethnicity (please calculate three-year averages)"
+    ],
+    "geo": [
+      "Geographical Region (please calculate three-year averages)"
+    ],
+    "money": [
+      "Net income before housing costs",
+      "Net income after housing costs"
+    ],
+    "levelSample": [
+      "VALUESET:Geographical Region"
+    ]
+  },
+  {
+    "folder": "Pensioners' Incomes",
+    "database": "PI - Data to 2021/22 (unlinked)",
+    "id": "str:database:PI_SURVEY",
+    "fieldCount": 30,
+    "fields": [
+      "Gross income",
+      "Benefit income",
+      "State Pension income",
+      "Income-related benefits income",
+      "Disability benefit income",
+      "Occupational pension income",
+      "Personal pension income",
+      "Investment income",
+      "Earnings income",
+      "Other income",
+      "Net income before housing costs",
+      "Net income after housing costs",
+      "Geographical Region (please calculate three-year averages)",
+      "Financial year",
+      "Age of head of pensioner unit",
+      "Sex of head of pensioner unit",
+      "Family type",
+      "Quintile of the BHC pensioner couples income distribution",
+      "Quintile of the BHC pensioner singles income distribution",
+      "Quintile of the AHC pensioner couples income distribution",
+      "Quintile of the AHC pensioner singles income distribution",
+      "In receipt of benefit income",
+      "In receipt of state pension income",
+      "In receipt of income-related benefits income",
+      "In receipt of disability benefit income",
+      "In receipt of occupational pension income",
+      "In receipt of personal pension income",
+      "In receipt of investment income",
+      "In receipt of earnings income",
+      "Ethnicity (please calculate three-year averages)"
+    ],
+    "geo": [
+      "Geographical Region (please calculate three-year averages)"
+    ],
+    "money": [
+      "Net income before housing costs",
+      "Net income after housing costs"
+    ],
+    "levelSample": [
+      "VALUESET:Geographical Region"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "Child DLA to PIP Reassessments",
+    "id": "str:database:PIP_DLA_Reassessment_R16",
+    "fieldCount": 6,
+    "fields": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)",
+      "Month",
+      "PIP Reassessment Outcome",
+      "Number of Clearances",
+      "Time between first and latest clearance"
+    ],
+    "geo": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)"
+    ],
+    "money": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Financial Award (DLA)"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "DLA to PIP Reassessments",
+    "id": "str:database:PIP_DLA_Reassessment",
+    "fieldCount": 6,
+    "fields": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)",
+      "Month",
+      "PIP Reassessment Outcome",
+      "Number of Clearances",
+      "Time between first and latest clearance"
+    ],
+    "geo": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)"
+    ],
+    "money": [
+      "Financial Award (DLA)",
+      "Financial Award (PIP)"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Financial Award (DLA)"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Award Review Clearances from 2016",
+    "id": "str:database:PIP_AR_COC_Clearances_post2016",
+    "fieldCount": 11,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Award After",
+      "Award Before",
+      "Disability",
+      "Gender",
+      "ICD Summary Code",
+      "Intervention Indicator",
+      "Outcome",
+      "Re-assessment Indicator",
+      "State Pension Age"
+    ],
+    "geo": [
+      "Award After",
+      "Award Before"
+    ],
+    "money": [
+      "Award After",
+      "Award Before"
+    ],
+    "levelSample": [
+      "VALUESET:Award After"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Award Review Clearances to 2016",
+    "id": "str:database:PIP_AR_COC_Clearances_pre2016",
+    "fieldCount": 9,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Disability",
+      "Gender",
+      "ICD Summary Code",
+      "Intervention Indicator",
+      "Outcome",
+      "Re-assessment Indicator",
+      "State Pension Age"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Award Review Registrations",
+    "id": "str:database:PIP_AR_COC_Registrations",
+    "fieldCount": 6,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Gender",
+      "Intervention Indicator",
+      "Re-assessment Indicator",
+      "State Pension Age"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Cases with Entitlement from 2019",
+    "id": "str:database:PIP_Monthly_new",
+    "fieldCount": 12,
+    "fields": [
+      "Financial Award",
+      "Month",
+      "Age (bands and single year)",
+      "Daily Living Award Status",
+      "Disability",
+      "Duration of Claim",
+      "Gender",
+      "ICD Summary Code",
+      "Mobility Award Status",
+      "Re-assessment Indicator",
+      "End of Life Rules Indicator",
+      "State Pension Age"
+    ],
+    "geo": [
+      "Financial Award",
+      "Daily Living Award Status",
+      "Mobility Award Status"
+    ],
+    "money": [
+      "Financial Award",
+      "Daily Living Award Status",
+      "Mobility Award Status"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Financial Award"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Cases with Entitlement to 2019",
+    "id": "str:database:PIP_Monthly",
+    "fieldCount": 12,
+    "fields": [
+      "Financial Award",
+      "Month",
+      "Age (bands and single year)",
+      "Daily Living Award Status",
+      "Disability",
+      "Duration of Claim",
+      "Gender",
+      "ICD Summary Code",
+      "Mobility Award Status",
+      "Re-assessment Indicator",
+      "End of Life Rules Indicator",
+      "State Pension Age"
+    ],
+    "geo": [
+      "Financial Award",
+      "Daily Living Award Status",
+      "Mobility Award Status"
+    ],
+    "money": [
+      "Financial Award",
+      "Daily Living Award Status",
+      "Mobility Award Status"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Financial Award"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Clearances",
+    "id": "str:database:PIP_Clearances",
+    "fieldCount": 13,
+    "fields": [
+      "Financial Award",
+      "Month",
+      "Age (bands and single year)",
+      "Award Type",
+      "Clearance Type Detail",
+      "Daily Living Award Level",
+      "Disability",
+      "Gender",
+      "ICD Summary Code",
+      "Mobility Award Status",
+      "Re-assessment Indicator",
+      "End of Life Rules Indicator",
+      "State Pension Age"
+    ],
+    "geo": [
+      "Financial Award",
+      "Award Type",
+      "Daily Living Award Level",
+      "Mobility Award Status"
+    ],
+    "money": [
+      "Financial Award",
+      "Award Type",
+      "Daily Living Award Level",
+      "Mobility Award Status"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Financial Award"
+    ]
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP MR Clearances",
+    "id": "str:database:PIP_MR_Clearances",
+    "fieldCount": 8,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "MR Decision",
+      "Disability",
+      "Gender",
+      "ICD Summary Code",
+      "Re-assessment Indicator",
+      "State Pension Age"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP MR Registrations",
+    "id": "str:database:PIP_MR_Registrations",
+    "fieldCount": 7,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Disability",
+      "Gender",
+      "ICD Summary Code",
+      "Re-assessment Indicator",
+      "State Pension Age"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Personal Independence Payment",
+    "database": "PIP Registrations",
+    "id": "str:database:PIP_Registrations",
+    "fieldCount": 6,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Gender",
+      "Re-assessment Indicator",
+      "End of Life Rules Indicator",
+      "State Pension Age"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Population Estimates",
+    "databases": [],
+    "note": "empty folder via API"
+  },
+  {
+    "folder": "Sanctions",
+    "database": "ESA Sanctions Decisions - all decisions made",
+    "id": "str:database:ESA_sanc_dec",
+    "fieldCount": 10,
+    "fields": [
+      "Pre and Post 3 Dec 2012 Sanctions Regime",
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Decision Outcome",
+      "Decision Type",
+      "Disability",
+      "Ethnic Group",
+      "Gender",
+      "Referral Reason",
+      "Medical Condition"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "ESA Sanctions Decisions - decisions on individuals",
+    "id": "str:database:ESA_sanc_ind",
+    "fieldCount": 10,
+    "fields": [
+      "Pre and Post 3 Dec 2012 Sanctions Regime",
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Decision Outcome",
+      "Decision Type",
+      "Disability",
+      "Ethnic Group",
+      "Gender",
+      "Referral Reason",
+      "Medical Condition"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "IS Sanctions Decisions - all decisions made",
+    "id": "str:database:IS_sanc_dec",
+    "fieldCount": 9,
+    "fields": [
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Decision Outcome",
+      "Decision Type",
+      "Disability",
+      "Ethnic Group",
+      "Gender",
+      "Lone Parent Indicator",
+      "Referral Reason"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "IS Sanctions Decisions - decisions on individuals",
+    "id": "str:database:IS_sanc_ind",
+    "fieldCount": 9,
+    "fields": [
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Decision Outcome",
+      "Decision Type",
+      "Disability",
+      "Ethnic Group",
+      "Gender",
+      "Lone Parent Indicator",
+      "Referral Reason"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "JSA Sanctions Decisions - all decisions made",
+    "id": "str:database:JSA_sanc_dec",
+    "fieldCount": 12,
+    "fields": [
+      "Pre and Post 22 Oct 2012 Sanctions Regime",
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Gender",
+      "Ethnic Group",
+      "Disability",
+      "Lone Parent",
+      "Decision Type",
+      "Decision Outcome",
+      "Sanction Level - New Regime",
+      "Decision Group - Old Regime",
+      "Referral Reason"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "JSA Sanctions Decisions - decisions on individuals",
+    "id": "str:database:JSA_sanc_ind",
+    "fieldCount": 12,
+    "fields": [
+      "Pre and Post 22 Oct 2012 Sanctions Regime",
+      "Month Decision Made",
+      "Age of Claimant (years and bands)",
+      "Gender",
+      "Ethnic Group",
+      "Disability",
+      "Lone Parent",
+      "Decision Type",
+      "Decision Outcome",
+      "Sanction Level - New Regime",
+      "Decision Group - Old Regime",
+      "Referral Reason"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "UC Full Service Sanction Decisions",
+    "id": "str:database:UCFS_sanc_dec",
+    "fieldCount": 5,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Gender",
+      "Referral Reason",
+      "Sanction Level"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "UC Live Service Sanctions Decisions - all decisions made",
+    "id": "str:database:UC_sanc_dec",
+    "fieldCount": 7,
+    "fields": [
+      "Month Decision Made",
+      "Age (bands and single year)",
+      "Decision Outcome",
+      "Decision Type",
+      "Gender",
+      "Referral Reason",
+      "Sanction Level"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "UC Live Service Sanctions Decisions - decisions on individuals",
+    "id": "str:database:UC_sanc_ind",
+    "fieldCount": 7,
+    "fields": [
+      "Month Decision Made",
+      "Age (bands and single year)",
+      "Decision Outcome",
+      "Decision Type",
+      "Gender",
+      "Referral Reason",
+      "Sanction Level"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Sanctions",
+    "database": "UC Sanction Rates",
+    "id": "str:database:UC_sancrates",
+    "fieldCount": 5,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Conditionality Regime",
+      "Gender",
+      "Sanction Indicator"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "State Pension",
+    "database": "State Pension - Data from May 2018",
+    "id": "str:database:SP_New",
+    "fieldCount": 13,
+    "fields": [
+      "Weekly Amount of Benefit",
+      "nSP Protected Payment",
+      "Total Extra State Pension",
+      "Quarter",
+      "Age (bands and single year)",
+      "Category of Pension",
+      "Dependency Increase",
+      "Extra State Pension (ESP)",
+      "Gender",
+      "Grouped Amount of Benefit",
+      "Proportion of the full rate of Basic State Pension",
+      "Proportion of the full rate of New State Pension",
+      "Protected Payment"
+    ],
+    "geo": [],
+    "money": [
+      "Weekly Amount of Benefit",
+      "nSP Protected Payment",
+      "Grouped Amount of Benefit",
+      "Protected Payment"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "State Pension",
+    "database": "State Pension - Data to February 2018",
+    "id": "str:database:SP",
+    "fieldCount": 10,
+    "fields": [
+      "Weekly Amount of Benefit",
+      "nSP Protected Payment",
+      "Quarter",
+      "Age (bands and single year)",
+      "Category of Pension",
+      "Country code for abroad cases",
+      "Country summary",
+      "Dependency Increase",
+      "Gender",
+      "Grouped Amount of Benefit"
+    ],
+    "geo": [
+      "Country code for abroad cases",
+      "Country summary"
+    ],
+    "money": [
+      "Weekly Amount of Benefit",
+      "nSP Protected Payment",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "VALUESET:Country code for abroad cases"
+    ]
+  },
+  {
+    "folder": "Support for Mortgage Interest",
+    "database": "SMI Loan Cumulative Caseload",
+    "id": "str:database:SMI_CUM",
+    "fieldCount": 1,
+    "fields": [
+      "Quarter"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Support for Mortgage Interest",
+    "database": "SMI Loans in Payment",
+    "id": "str:database:SMI_CASELOAD",
+    "fieldCount": 3,
+    "fields": [
+      "Support for Mortgage Loan Weekly Amount",
+      "Quarter",
+      "Qualifying Benefit"
+    ],
+    "geo": [],
+    "money": [
+      "Support for Mortgage Loan Weekly Amount"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Universal Credit",
+    "database": "Claims made to Universal Credit",
+    "id": "str:database:UC_Claims",
+    "fieldCount": 1,
+    "fields": [
+      "Time Period"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Universal Credit",
+    "database": "Households on Universal Credit",
+    "id": "str:database:UC_Households",
+    "fieldCount": 6,
+    "fields": [
+      "Payment Amount",
+      "RSRS reduction",
+      "Month",
+      "Family Type",
+      "Payment Indicator",
+      "Monthly Award Amount (bands)"
+    ],
+    "geo": [
+      "Monthly Award Amount (bands)"
+    ],
+    "money": [
+      "Payment Amount",
+      "Payment Indicator",
+      "Monthly Award Amount (bands)"
+    ],
+    "levelSample": [
+      "VALUESET:Monthly Award Amount (bands)"
+    ]
+  },
+  {
+    "folder": "Universal Credit",
+    "database": "People on Universal Credit",
+    "id": "str:database:UC_Monthly",
+    "fieldCount": 7,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Conditionality Regime",
+      "Duration",
+      "Employment Indicator",
+      "Gender",
+      "Move to UC Indicator - Legacy Benefit"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Universal Credit",
+    "database": "Starts to Universal Credit",
+    "id": "str:database:UC_Starts",
+    "fieldCount": 3,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Universal Credit Work Capability Assessments",
+    "database": "UC Health Caseload",
+    "id": "str:database:UC_WCA_CASE",
+    "fieldCount": 6,
+    "fields": [
+      "Month",
+      "Age (bands and single year)",
+      "ESA Transition",
+      "Gender",
+      "Stage of UC Health",
+      "Terminally Ill"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Universal Credit Work Capability Assessments",
+    "database": "UC WCA Decision Outcomes",
+    "id": "str:database:UC_WCA_DEC",
+    "fieldCount": 6,
+    "fields": [
+      "Decision Month",
+      "Age (bands and single year)",
+      "ESA Transition",
+      "Gender",
+      "Type of Assessment",
+      "UC WCA decision outcomes"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Widow's Benefit",
+    "database": "Widow's Benefit - Data from May 2018",
+    "id": "str:database:WB_New",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Dependency Increase",
+      "Duration of Claim",
+      "Grouped Amount of Benefit",
+      "Type of Widow's Benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Widow's Benefit",
+    "database": "Widow's Benefit - Data to February 2018",
+    "id": "str:database:WB",
+    "fieldCount": 7,
+    "fields": [
+      "Weekly Award Amount",
+      "Quarter",
+      "Age (bands and single year)",
+      "Dependency Increase",
+      "Duration of Claim",
+      "Grouped Amount of Benefit",
+      "Type of Widow's Benefit"
+    ],
+    "geo": [
+      "Weekly Award Amount"
+    ],
+    "money": [
+      "Weekly Award Amount",
+      "Grouped Amount of Benefit"
+    ],
+    "levelSample": [
+      "STAT_FUNCTION:Mean of Weekly Award Amount"
+    ]
+  },
+  {
+    "folder": "Winter Fuel Payment",
+    "database": "Winter Fuel Payment - data from winter 2024",
+    "id": "str:database:WFP",
+    "fieldCount": 6,
+    "fields": [
+      "Year",
+      "Age (bands and single year)",
+      "Amount",
+      "European Economic Area",
+      "Gender",
+      "Partner"
+    ],
+    "geo": [],
+    "money": [
+      "Amount"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Winter Fuel Payment",
+    "database": "Winter Fuel Payment - data to winter 2023",
+    "id": "str:database:WFP23",
+    "fieldCount": 5,
+    "fields": [
+      "Year",
+      "Age (bands and single year)",
+      "Amount",
+      "European Economic Area",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [
+      "Amount"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Employment First Earnings from WHP",
+    "id": "str:database:WHP_First_Earnings",
+    "fieldCount": 7,
+    "fields": [
+      "First Earnings from Employment Month",
+      "Start Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Job Outcomes from WHP",
+    "id": "str:database:WHP_Outcomes",
+    "fieldCount": 7,
+    "fields": [
+      "Start Month",
+      "Job Outcome Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Referrals to WHP",
+    "id": "str:database:WHP_Refs",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Referrals to WHP - Individuals",
+    "id": "str:database:WHP_Ind_Refs",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Starts to WHP",
+    "id": "str:database:WHP_Starts",
+    "fieldCount": 7,
+    "fields": [
+      "Start Month",
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Employment First Earnings from WHP Pioneer",
+    "id": "str:database:WHP_P_First_Earnings",
+    "fieldCount": 7,
+    "fields": [
+      "First Earnings from Employment Month",
+      "Start Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Job Outcomes from WHP Pioneer",
+    "id": "str:database:WHP_P_Outcomes",
+    "fieldCount": 7,
+    "fields": [
+      "Start Month",
+      "Job Outcome Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Referrals to WHP Pioneer",
+    "id": "str:database:WHP_P_Refs",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Referrals to WHP Pioneer - Individuals",
+    "id": "str:database:WHP_P_Ind_Refs",
+    "fieldCount": 6,
+    "fields": [
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work and Health Programme (WHP)",
+    "database": "Starts to WHP Pioneer",
+    "id": "str:database:WHP_P_Starts",
+    "fieldCount": 7,
+    "fields": [
+      "Start Month",
+      "Referral Month",
+      "Age (bands and single year)",
+      "Area",
+      "Devolved Deal Area",
+      "Eligibility Group",
+      "Gender"
+    ],
+    "geo": [],
+    "money": [],
+    "levelSample": []
+  },
+  {
+    "folder": "Work Programme",
+    "database": "Work Programme Attachments",
+    "id": "str:database:WP_Attachments",
+    "fieldCount": 8,
+    "fields": [
+      "Month",
+      "Age Band",
+      "Contract Package Area and Contract",
+      "Disability Indicator",
+      "Ethnicity (summary and detailed)",
+      "Gender",
+      "Mandatory or Voluntary Indicator",
+      "Payment Group"
+    ],
+    "geo": [],
+    "money": [
+      "Payment Group"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Work Programme",
+    "database": "Work Programme Job Outcomes",
+    "id": "str:database:WP_Job_Outcomes",
+    "fieldCount": 9,
+    "fields": [
+      "Month",
+      "Age Band",
+      "Contract Package Area and Contract",
+      "Disability Indicator",
+      "Ethnicity (summary and detailed)",
+      "Gender",
+      "Length of Job Outcome",
+      "Mandatory or Voluntary Indicator",
+      "Payment Group"
+    ],
+    "geo": [],
+    "money": [
+      "Payment Group"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Work Programme",
+    "database": "Work Programme Referrals",
+    "id": "str:database:WP_Referrals",
+    "fieldCount": 8,
+    "fields": [
+      "Month",
+      "Age Band",
+      "Contract Package Area and Contract",
+      "Disability Indicator",
+      "Ethnicity (summary and detailed)",
+      "Gender",
+      "Mandatory or Voluntary Indicator",
+      "Payment Group"
+    ],
+    "geo": [],
+    "money": [
+      "Payment Group"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Work Programme",
+    "database": "Work Programme Sustainment Payments (all payments)",
+    "id": "str:database:WP_Sustainment",
+    "fieldCount": 5,
+    "fields": [
+      "Month",
+      "Contract Package Area and Contract",
+      "First Sustainment Payment Indicator",
+      "Length of Job Outcome",
+      "Payment Group"
+    ],
+    "geo": [],
+    "money": [
+      "First Sustainment Payment Indicator",
+      "Payment Group"
+    ],
+    "levelSample": []
+  },
+  {
+    "folder": "Work Programme",
+    "database": "Work Programme Sustainment Payments (individuals)",
+    "id": "str:database:WP_Sustainment_Ind",
+    "fieldCount": 9,
+    "fields": [
+      "Age Band",
+      "Contract Package Area and Contract",
+      "Disability Indicator",
+      "Ethnicity (summary and detailed)",
+      "Gender",
+      "Length of Job Outcome",
+      "Mandatory or Voluntary Indicator",
+      "Number of Sustainment Payments",
+      "Payment Group"
+    ],
+    "geo": [],
+    "money": [
+      "Number of Sustainment Payments",
+      "Payment Group"
+    ],
+    "levelSample": []
+  }
+]

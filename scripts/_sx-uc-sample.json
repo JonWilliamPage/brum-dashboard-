@@ -1,0 +1,193 @@
+{
+  "query": {
+    "database": "str:database:UC_Monthly",
+    "measures": [
+      "str:count:UC_Monthly:V_F_UC_CASELOAD_FULL"
+    ],
+    "recodes": {
+      "str:field:UC_Monthly:F_UC_DATE:DATE_NAME": {
+        "map": [
+          [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202602"
+          ],
+          [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202601"
+          ],
+          [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202502"
+          ],
+          [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202402"
+          ],
+          [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202302"
+          ]
+        ],
+        "total": false
+      },
+      "str:field:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE": {
+        "map": [
+          [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011118"
+          ],
+          [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011153"
+          ],
+          [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011145"
+          ]
+        ],
+        "total": false
+      }
+    },
+    "dimensions": [
+      [
+        "str:field:UC_Monthly:F_UC_DATE:DATE_NAME"
+      ],
+      [
+        "str:field:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE"
+      ]
+    ]
+  },
+  "database": {
+    "id": "UC_Monthly",
+    "uri": "str:database:UC_Monthly",
+    "label": "People on Universal Credit",
+    "annotationKeys": [
+      "I",
+      "II",
+      "z"
+    ]
+  },
+  "measures": [
+    {
+      "uri": "str:count:UC_Monthly:V_F_UC_CASELOAD_FULL",
+      "label": "People on Universal Credit",
+      "measure": "str:count:UC_Monthly:V_F_UC_CASELOAD_FULL",
+      "function": "COUNT"
+    }
+  ],
+  "fields": [
+    {
+      "uri": "str:field:UC_Monthly:F_UC_DATE:DATE_NAME",
+      "label": "Month",
+      "items": [
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202602"
+          ],
+          "labels": [
+            "February 2026"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202601"
+          ],
+          "labels": [
+            "January 2026"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202502"
+          ],
+          "labels": [
+            "February 2025"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202402"
+          ],
+          "labels": [
+            "February 2024"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:F_UC_DATE:DATE_NAME:C_UC_DATE:202302"
+          ],
+          "labels": [
+            "February 2023"
+          ]
+        }
+      ]
+    },
+    {
+      "uri": "str:field:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE",
+      "label": "National - Regional - LA - Ward",
+      "items": [
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011118"
+          ],
+          "labels": [
+            "Acocks Green"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011153"
+          ],
+          "labels": [
+            "Lozells"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:UC_Monthly:V_F_UC_CASELOAD_FULL:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011145"
+          ],
+          "labels": [
+            "Heartlands"
+          ]
+        }
+      ]
+    }
+  ],
+  "cubes": {
+    "str:count:UC_Monthly:V_F_UC_CASELOAD_FULL": {
+      "values": [
+        [
+          5841,
+          3964,
+          3691
+        ],
+        [
+          5834,
+          3981,
+          3684
+        ],
+        [
+          5236,
+          3804,
+          3401
+        ],
+        [
+          4169,
+          2778,
+          2355
+        ],
+        [
+          3823,
+          2517,
+          2208
+        ]
+      ],
+      "precision": 0
+    }
+  },
+  "annotationMap": {
+    "I": "Figures are a count of the number of people on Universal Credit on the second Thursday of each month.",
+    "II": "Figures provided for starts show the Jobcentre Plus office recorded at the start of the claim, whereas the figures for the number of people on Universal Credit are representative of the current Jobcentre Plus office that the claimant is attending.  It is possible for people to have started on Universal Credit in one office and have moved to another office during their claim, and for this reason, the number of people on Universal Credit can be higher than the starts figure for any particular office, however it is more noticeable when numbers are low.",
+    "z": "\"..\" denotes a nil or negligible number of claimants or award amount based on a nil or negligible number of claimants."
+  }
+}

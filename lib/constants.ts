@@ -38,6 +38,28 @@ export const CRIME_CATS: Record<string, string> = {
 
 export const CRIME_RAMP = ['#7a8270','#7a7a5e','#7d6e4e','#7e5e40','#7d4e36','#73402e','#683428','#5b2a23','#4d211d','#3a1a1a'];
 
+// City Observatory `west-midlands-police-crime` returns sentence-case crime_type
+// names (not the slugs above). Display labels + a stable band colour for the trend
+// streamgraph. Validated against the categorical 8-slot palette in the dataviz skill.
+export const CRIME_OBS_CATS: Record<string, { label: string; color: string }> = {
+  'Violence and sexual offences': { label: 'Violence & sexual offences', color: '#b01225' },
+  'Anti-social behaviour':        { label: 'Anti-social behaviour', color: '#eb6834' },
+  'Criminal damage and arson':    { label: 'Criminal damage & arson', color: '#e34948' },
+  'Shoplifting':                  { label: 'Shoplifting', color: '#eda100' },
+  'Vehicle crime':                { label: 'Vehicle crime', color: '#2a78d6' },
+  'Public order':                 { label: 'Public order', color: '#4a3aa7' },
+  'Other theft':                  { label: 'Other theft', color: '#1baf7a' },
+  'Burglary':                     { label: 'Burglary', color: '#008300' },
+  'Drugs':                        { label: 'Drugs', color: '#e87ba4' },
+  'Possession of weapons':        { label: 'Possession of weapons', color: '#7d4e36' },
+  'Robbery':                      { label: 'Robbery', color: '#1a2a3a' },
+  'Theft from the person':        { label: 'Theft from the person', color: '#2a1a3a' },
+  'Bicycle theft':                { label: 'Bicycle theft', color: '#7a8270' },
+  'Other crime':                  { label: 'Other crime', color: '#8a8f99' },
+};
+export const crimeObsLabel = (name: string) => CRIME_OBS_CATS[name]?.label ?? name;
+export const crimeObsColor = (name: string) => CRIME_OBS_CATS[name]?.color ?? '#8a8f99';
+
 export function dc(d: number): string {
   return RAMP[Math.max(0, Math.min(9, (d || 1) - 1))];
 }

@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import BenefitsDashboard from '../benefits/components/BenefitsDashboard';
 import UcEmpDashboard from '../uc-employment/components/UcEmpDashboard';
 import HousingBenefitView from '../housing-benefit/components/HousingBenefitView';
+import FlyTippingView from '../fly-tipping/components/FlyTippingView';
 import ClaimantDashboard from '../claimant-count/components/ClaimantDashboard';
 import UcCombinedDashboard from '../uc-combined/components/UcCombinedDashboard';
 import BenefitsBillView from '../benefits-bill/components/BenefitsBillView';
@@ -12,6 +13,15 @@ import TwoChildView from '../two-child/components/TwoChildView';
 import ChildPovertyDashboard from '../child-poverty/components/ChildPovertyDashboard';
 import ConMoneyDashboard from '../constituency-money/components/ConMoneyDashboard';
 import PipDashboard from '../pip/components/PipDashboard';
+import WrongPaymentsView from '../wrong-payments/components/WrongPaymentsView';
+import UcWeatherView from '../uc-weather/components/UcWeatherView';
+import PipPlaceView from '../pip-place/components/PipPlaceView';
+import UcStageView from '../uc-stage/components/UcStageView';
+import PipStageView from '../pip-stage/components/PipStageView';
+import OzzyStageView from '../ozzy-stage/components/OzzyStageView';
+import UcPaymentsView from '../uc-payments/components/UcPaymentsView';
+import FamilySupportView from '../family-model/components/FamilySupportView';
+import CrimeObsView from '../crime-observatory/components/CrimeObsView';
 
 // ── Review ────────────────────────────────────────────────────────────────────
 // Renders the SAME dashboard component the Dashboards tab uses, fed the candidate
@@ -19,10 +29,20 @@ import PipDashboard from '../pip/components/PipDashboard';
 // in Dashboards. Accept promotes it (writes public/data/<id>.json); no rebuild.
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Proposal = { id: string; status: 'pending' | 'accepted' | 'rejected'; title: string; rejected_reason?: string; source: { as_of: string }; sources?: any[]; validation: any; wards: any[]; areas?: any[]; benchmarks?: any; geography?: string; metric?: string; months?: string[]; years?: string[]; city?: any; lines?: any[]; constituencies?: any[]; year?: string; total_m?: number; per_head?: number | null; population?: number | null; child_element_month?: number; history?: any[]; benefit_labels?: any; uc_years?: string[]; categories?: any[]; conditions?: any[]; gb_total_real_latest?: number; gb_total_nominal_latest?: number; birmingham_pip_m?: number | null };
+type Proposal = { id: string; status: 'pending' | 'accepted' | 'rejected'; title: string; rejected_reason?: string; source: { as_of: string }; sources?: any[]; validation: any; wards: any[]; areas?: any[]; benchmarks?: any; geography?: string; metric?: string; months?: string[]; years?: string[]; city?: any; lines?: any[]; constituencies?: any[]; year?: string; total_m?: number; per_head?: number | null; population?: number | null; child_element_month?: number; history?: any[]; benefit_labels?: any; uc_years?: string[]; categories?: any[]; conditions?: any[]; gb_total_real_latest?: number; gb_total_nominal_latest?: number; birmingham_pip_m?: number | null; national?: any; uc_reasons?: any[]; method_notes?: string[]; as_of?: string; month_keys?: string[]; category_mix?: any; gb_conditions?: any; uc?: any; pip?: any; presentation?: string; award_bands?: any[]; family_types?: any[]; rates_year?: string; framing?: any; observed?: any; bill_context?: any; catalogue?: any[]; scenarios?: any[]; comparisons?: any; bench_series?: any };
 
 // One entry per dataset — maps a proposal to its dashboard component + a summary line.
 const REGISTRY: Record<string, { label: string; summary: (p: Proposal) => string; render: (p: Proposal) => ReactNode }> = {
+  'crime-observatory': {
+    label: 'Crime — Deep Dive',
+    summary: p => `${p.validation.wards_found}/69 wards · ${p.validation.months_in_series}-mo series · ${p.validation.latest_total?.toLocaleString()} offences ${p.validation.series_to} · ${p.validation.category_checksum_ok && p.validation.ward_checksum_latest_ok ? 'checksums OK' : 'CHECKSUM DRIFT'}`,
+    render: p => <CrimeObsView data={{
+      as_of: p.as_of ?? p.source.as_of, months: p.months ?? [],
+      categories: p.categories ?? [],
+      city: p.city ?? { monthly_totals: {}, category_by_month: {}, outcomes_by_month: {}, latest_total: 0 },
+      sources: p.sources ?? [], wards: p.wards,
+    }} />,
+  },
   'uc-wards': {
     label: 'Universal Credit',
     summary: p => `${p.validation.wards_found}/69 wards · ${p.validation.city_pct}% city-wide · ${p.validation.total_claimants?.toLocaleString()} claimants`,
@@ -69,11 +89,90 @@ const REGISTRY: Record<string, { label: string; summary: (p: Proposal) => string
   },
   'benefits-bill': {
     label: 'Benefits Bill (£)',
-    summary: p => `LA-level · £${((p.total_m ?? 0) / 1000).toFixed(2)}bn total · £${p.per_head?.toLocaleString()}/resident · ${p.year}`,
+    summary: p => {
+      const h = p.history ?? [];
+      const first = h[0];
+      const last = h[h.length - 1];
+      const mult = first?.total_m && last?.total_m ? (last.total_m / first.total_m).toFixed(1) : null;
+      return `Story · LA-level · £${((p.total_m ?? 0) / 1000).toFixed(2)}bn ${p.year}${mult ? ` · ${mult}× since ${first.year}` : ''} · £${p.per_head?.toLocaleString()}/resident`;
+    },
     render: p => <BenefitsBillView data={{
       year: p.year ?? '', total_m: p.total_m ?? 0, per_head: p.per_head ?? null,
       population: p.population ?? null, sources: p.sources ?? [], lines: p.lines ?? [],
       history: p.history ?? [],
+    }} />,
+  },
+  'uc-payments': {
+    label: 'UC Payments',
+    summary: p => {
+      const hh = p.city?.latest_households ?? p.validation?.latest_households;
+      const mean = p.city?.latest_mean_payment_gbp ?? p.validation?.latest_mean_payment_gbp;
+      const pct = p.city?.households_pct_change;
+      return `Story · LA · ${hh?.toLocaleString?.() ?? '—'} households · mean £${mean ?? '—'} · ${p.validation?.months_span ?? '—'} mo${pct != null ? ` · ${pct > 0 ? '+' : ''}${pct}%` : ''}`;
+    },
+    render: p => <UcPaymentsView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      months: p.months ?? [],
+      month_keys: p.month_keys,
+      city: p.city ?? {
+        series: [],
+        latest_households: 0,
+        latest_mean_payment_gbp: 0,
+        first_month: '',
+        first_households: 0,
+        first_mean_payment_gbp: null,
+        households_delta: 0,
+        households_pct_change: null,
+        bill_uc_context: null,
+      },
+      award_bands: p.award_bands ?? [],
+      family_types: p.family_types ?? [],
+      method_notes: p.method_notes,
+    }} />,
+  },
+  'family-model': {
+    label: 'Family Model',
+    summary: p => {
+      const obs = p.observed?.couple_with_children_mean_gbp;
+      const high = p.comparisons?.high_total ?? p.validation?.high_total;
+      return `Illustrative · rates ${p.rates_year ?? '—'} · observed couple+kids £${obs ?? '—'} · high stack £${high ?? '—'}/mo`;
+    },
+    render: p => <FamilySupportView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      rates_year: p.rates_year ?? '2026/27',
+      rates_explainer: (p as { rates_explainer?: import('../family-model/components/FamilySupportView').FamilyModelData['rates_explainer'] }).rates_explainer,
+      sources: p.sources ?? [],
+      framing: p.framing ?? {
+        what_this_is: 'Illustrative entitlement model.',
+        what_this_is_not: 'Not a real household.',
+        key_rule: 'One UC claim per couple.',
+      },
+      observed: p.observed ?? {
+        as_of: '',
+        city_mean_payment_gbp: 0,
+        city_households: 0,
+        by_family_type: [],
+        couple_with_children_mean_gbp: null,
+        couple_with_children_households: null,
+        source: '',
+      },
+      bill_context: p.bill_context ?? null,
+      catalogue: p.catalogue ?? [],
+      scenarios: p.scenarios ?? [],
+      comparisons: p.comparisons ?? {
+        observed_vs_core_uc: {
+          formula: '',
+          observed_mean: null,
+          statutory_uc_only: 0,
+          difference: null,
+          note: '',
+        },
+        high_total: 0,
+        high_with_naive_ca: 0,
+        naive_ca_warning: '',
+      },
+      method_notes: p.method_notes,
     }} />,
   },
   'two-child': {
@@ -108,6 +207,102 @@ const REGISTRY: Record<string, { label: string; summary: (p: Proposal) => string
       birmingham_value: p.validation.birmingham_value ?? null,
       birmingham_rank: p.validation.birmingham_rank ?? null,
       sources: p.sources ?? [],
+    }} />,
+  },
+  'fly-tipping': {
+    label: 'Fly-tipping',
+    summary: p => `LA-level · ${p.validation.birmingham_value} / 1,000 (#${p.validation.birmingham_rank} of ${p.validation.areas_found}) · ${p.validation.series_from}→${p.validation.series_to} · no ward breakdown`,
+    render: p => <FlyTippingView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      metric: p.metric ?? 'Fly-tipping incidents per 1,000 people',
+      geography: p.geography ?? 'local-authority',
+      years: p.years ?? [],
+      areas: p.areas ?? [],
+      benchmarks: p.benchmarks ?? { wmca: null, england: null },
+      bench_series: p.bench_series ?? { wmca: [], england: [] },
+      city: p.city ?? {
+        series: [], latest: null, first: null, change: null, peak: null, peak_year: null, rank: null,
+      },
+      birmingham_value: p.validation?.birmingham_value ?? p.city?.latest ?? null,
+      birmingham_rank: p.validation?.birmingham_rank ?? p.city?.rank ?? null,
+      sources: p.sources ?? [],
+    }} />,
+  },
+  'wrong-payments': {
+    label: 'Wrong Payments',
+    summary: p => `Illustrative · £${(p.validation.overpaid_m ?? p.city?.overpaid_m ?? 0).toFixed(0)}m overpaid · 1 in ${p.validation.one_in ?? p.city?.one_in ?? '—'} · national rates × city spend`,
+    render: p => <WrongPaymentsView data={{
+      year: p.year ?? '',
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      national: p.national,
+      city: p.city,
+      uc_reasons: p.uc_reasons ?? [],
+      lines: p.lines ?? [],
+      method_notes: p.method_notes,
+    }} />,
+  },
+  'uc-weather': {
+    label: 'UC Money Weather',
+    summary: p => `69 wards · ${p.validation.months_span} months · city ${p.validation.city_latest?.toLocaleString?.() ?? p.city?.latest} on UC · ${p.validation.series_from}→${p.validation.series_to}`,
+    render: p => <UcWeatherView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      months: p.months ?? [],
+      month_keys: p.month_keys,
+      city: p.city,
+      wards: p.wards ?? [],
+    }} />,
+  },
+  'pip-place': {
+    label: 'PIP Place',
+    summary: p => `69 wards · ${p.validation.months_span} snapshots · ${p.validation.city_latest_caseload?.toLocaleString?.() ?? p.city?.latest} cases · GB conditions + Bham mix`,
+    render: p => <PipPlaceView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      months: p.months ?? [],
+      month_keys: p.month_keys,
+      city: p.city,
+      wards: p.wards ?? [],
+      category_mix: p.category_mix ?? { early_month: null, latest_month: null, early: [], latest: [] },
+      gb_conditions: p.gb_conditions ?? null,
+    }} />,
+  },
+  'uc-stage': {
+    label: 'UC Stage (3D)',
+    summary: p => `Three.js · 69 extruded wards · ${p.months?.length ?? p.validation?.months_span} months · city ${p.city?.latest?.toLocaleString?.() ?? '—'} on UC`,
+    render: p => <UcStageView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      months: p.months ?? [],
+      month_keys: p.month_keys,
+      city: p.city,
+      wards: p.wards ?? [],
+    }} />,
+  },
+  'pip-stage': {
+    label: 'PIP Stage (3D)',
+    summary: p => `Three.js · 69 extruded wards · ${p.months?.length ?? p.validation?.months_span} frames · ${p.city?.latest?.toLocaleString?.() ?? p.validation?.city_latest_caseload} cases`,
+    render: p => <PipStageView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      months: p.months ?? [],
+      month_keys: p.month_keys,
+      city: p.city,
+      wards: p.wards ?? [],
+      category_mix: p.category_mix ?? { early_month: null, latest_month: null, early: [], latest: [] },
+      gb_conditions: p.gb_conditions ?? null,
+    }} />,
+  },
+  'ozzy-stage': {
+    label: 'Ozzy Stage',
+    summary: p => `Theatre · UC ${p.validation?.uc_months ?? '—'} mo + PIP ${p.validation?.pip_months ?? '—'} frames · dual extrusion`,
+    render: p => <OzzyStageView data={{
+      as_of: p.as_of ?? p.source?.as_of ?? '',
+      sources: p.sources ?? [],
+      uc: p.uc,
+      pip: p.pip,
+      wards: p.wards ?? [],
     }} />,
   },
 };

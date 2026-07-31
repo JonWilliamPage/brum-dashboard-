@@ -34,7 +34,10 @@ async function sx(path) {
     headers: { APIKey: KEY, 'Content-Type': 'application/json' },
     signal: AbortSignal.timeout(60000),
   });
-  if (!r.ok) throw new Error(`HTTP ${r.status} ${r.statusText} for ${path}`);
+  if (!r.ok) {
+    const body = (await r.text().catch(() => '')).slice(0, 300);
+    throw new Error(`HTTP ${r.status} ${r.statusText} for ${path}${body ? ` — ${body}` : ''}`);
+  }
   return r.json();
 }
 
@@ -84,13 +87,24 @@ async function geographyOf(dbId) {
 async function main() {
   console.log('Probing Stat-Xplore (key loaded, not shown)…\n');
 
-  // 1. Auth + rate-limit sanity check.
+  // 1. Auth + rate-limit sanity check. NOTE: the endpoint is /rate_limit with an
+  // UNDERSCORE — an earlier version of this script used /rate-limit (hyphen), which
+  // 404s and made VALID keys look broken.
   try {
-    const info = await sx('/rate-limit');
+    const info = await sx('/rate_limit');
     console.log('AUTH OK — rate limit:', JSON.stringify(info));
   } catch (e) {
-    console.error('AUTH FAILED:', e.message);
-    console.error('Check the key in .env.local. Stat-Xplore wants it in the APIKey header.');
+    console.error('AUTH CHECK FAILED:', e.message);
+    console.error('');
+    console.error('How to read this:');
+    console.error('  HTTP 401/403 → the key itself is rejected. Fixes: (1) log into');
+    console.error('    stat-xplore.dwp.gov.uk in a browser first (accepts any new T&Cs),');
+    console.error('    (2) Account menu → Open Data API Access → copy the WHOLE key');
+    console.error('    (they are long) or Reset to mint a fresh one, (3) make sure');
+    console.error('    .env.local has no quotes/spaces around it.');
+    console.error('  HTTP 404 → wrong URL/endpoint (this script now uses the correct ones).');
+    console.error('  HTTP 429 → rate-limited; wait for the reset.');
+    console.error('  timeout/ENOTFOUND → network/TLS to stat-xplore.dwp.gov.uk blocked.');
     process.exit(1);
   }
   console.log('');

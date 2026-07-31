@@ -1,265 +1,116 @@
 # Local government insight agent
 
-**Agent skills for official public data — find it, check it, visualise it honestly, brief the place.**
+**Agent skills for official public data** — connect it, check it, visualise it, analyse it, brief the place.
 
-Ozzy (Birmingham) is the first full **spin-out**: a city product built on this agent.
-
-[Skills](#-skills) · [How it works](#-how-it-works) · [Ozzy](#-ozzy--birmingham-spin-out) · [Use for your council](#-use-it-for-your-council) · [Hard rules](#-hard-rules) · [Name ideas](#-project-name-ideas-repo-name-unchanged-for-now)
+**Ozzy** is Birmingham’s spin-out: a live city product built with these skills. Any council (or civic team) can use the same agent on **their** open data.
 
 <p align="center">
-  <img src="assets/diagram-mental-model.svg" alt="Mental model: insight agent powers Ozzy and other council spin-outs" width="900" />
+  <img src="assets/diagram-mental-model.svg" alt="Insight agent powers Ozzy and other place spin-outs" width="720" />
 </p>
 
-| Who you are | What you use | What you get |
-|-------------|--------------|--------------|
-| **Insight / intelligence team** (council or central) | Agent skills + optional app shell | Ward packs, money stories, evidence for members |
-| **Civic tech / AI builder** | Skills + playbooks in this repo | Ship another place without starting from zero |
-| **Resident / journalist** | [Ozzy](#-ozzy--birmingham-spin-out) (or a local spin-out) | Readable truth, not a raw CSV dump |
-| **Member / politician** | Briefings and dashboards *produced by* the agent | Clear evidence — you don’t run the agent yourself |
-
-This is the **AI counterpart of a local government insight analyst**: the people who turn public numbers into something decision-makers and residents can actually use.
-
----
-
-## What this is
-
-A **local government insight agent** — a library of agent skills (and a reference city app) that:
-
-1. **Connects** to official open data (not scraped rumours)
-2. **Validates** geography, periods, and checksums
-3. **Proposes** views behind a **human Accept wall**
-4. **Visualises** only what is sourced — gaps stay gaps
-5. **Briefs** the place: maps, tables, money stories, ward panels
-
-**Ozzy** is Birmingham’s fruit of that agent: brand, voice, 69 wards, and a live Next.js suite. Other councils (and community groups) can use the **same agent skills** for their own open data.
-
-> Repo folder name is still `brum-dashboard` / GitHub `brum-dashboard-` for now. The **product story** is the insight agent + Ozzy spin-out. Name options are listed [below](#-project-name-ideas-repo-name-unchanged-for-now).
+| You are… | You use… | You get… |
+|----------|----------|----------|
+| Insight / intelligence team | Skills + optional app | Evidence packs, peer charts, briefings |
+| Builder (incl. with AI) | Skills in this repo | A repeatable pipeline for any LA |
+| Resident / journalist | [Ozzy](#ozzy) or a local spin-out | Readable truth, not raw CSV |
 
 ---
 
 ## How it works
 
-### Mental model
-
 ```
-┌──────────────────────────────────────────────────────────────┐
-│  LOCAL GOVERNMENT INSIGHT AGENT                              │
-│  Skills + hard rules + provenance patterns                    │
-│  Portable across places with open public data                │
-└────────────────────────────┬─────────────────────────────────┘
-                             │ powers
-              ┌──────────────┴──────────────┐
-              ▼                             ▼
-┌─────────────────────────┐   ┌─────────────────────────────┐
-│  OZZY (reference)       │   │  YOUR SPIN-OUT              │
-│  Birmingham AI agent    │   │  Your council / place       │
-│  Voice · brand · app    │   │  Same skills · your data    │
-│  69 wards · DWP · WMP   │   │  Your wards · your brand    │
-└─────────────────────────┘   └─────────────────────────────┘
+Official data  →  validate  →  proposal  →  human Accept  →  live views
+                      ↓
+              ask why · research · evidence report
 ```
 
-### Pipeline (every dataset)
+1. **Agent skills** teach a coding agent the jobs of a local insight analyst.  
+2. **Ozzy** (or your spin-out) is the branded app that shows the results.  
+3. **Hard rule:** no invented numbers. Missing stays missing. Provenance on every metric.
 
-```
-Official source  →  fetch + validate  →  proposals/  →  human Accept in /review
-                                                              ↓
-                                                    public data + live view
-                                                              ↓
-                                              dashboards · stage · (chat/newsletter)
-```
-
-Nothing that looks like a fact reaches the public UI without a **named source**, an **as-of date**, and (for new place data) a pass through the **review wall**.
-
-### Architecture sketch
-
-| Layer | Role | In this repo |
-|-------|------|--------------|
-| **Agent skills** | Teach any coding agent how to do insight work | `skills/` (and `.claude/skills/` for Claude) |
-| **Hard rules** | Integrity that overrides convenience | `AGENTS.md`, `CLAUDE.md` |
-| **Provenance registry** | One source of truth per metric | `lib/sources.ts` |
-| **Proposal wall** | Human Accept before publish | `proposals/` → `/review` → `public/data/` |
-| **Spin-out app** | Place brand + UI | Next.js app (Ozzy = Birmingham) |
-| **Evidence views** | Tables, maps, money stories, 3D stages | `app/**`, dashboards |
+<p align="center">
+  <img src="assets/demo-ozzy-stage.png" alt="Ozzy stage demo" width="640" />
+</p>
 
 ---
 
 ## Skills
 
-Install or clone this repo and point your coding agent (Claude Code, Codex, Grok Build, etc.) at the skill files. Each skill is a focused playbook.
-
-| Skill | Job | Source |
-|-------|-----|--------|
-| **dataset-dashboard** | Discover official open data → validate geography → derive honest rates → stage a proposal → human Accept → live dashboard | [`skills/dataset-dashboard`](skills/dataset-dashboard/SKILL.md) |
-| **dataviz** | Choose the right chart for the data’s job; palettes; gaps; geography banners; clone proven components | [`skills/dataviz`](skills/dataviz/SKILL.md) |
-| **provenance** | Every metric has publisher, as-of, licence, script; no source → no UI | [`skills/provenance`](skills/provenance/SKILL.md) |
-
-<p align="center">
-  <img src="assets/placeholder-skill-dataset.svg" alt="Dataset dashboard skill" width="280" />
-  &nbsp;
-  <img src="assets/placeholder-skill-dataviz.svg" alt="Dataviz skill" width="280" />
-  &nbsp;
-  <img src="assets/placeholder-skill-provenance.svg" alt="Provenance skill" width="280" />
-</p>
-
-### Coming next (roadmap skills)
+Point Claude / Codex / Grok / etc. at `skills/`. Portable across places — swap the place pack (LA codes, catalogue, brand), keep the method.
 
 | Skill | Job |
 |-------|-----|
-| **place-config** | Swap ONS LA / ward codes, boundaries, brand for another council |
-| **money-story** | DWP / benefits expenditure narrative — hard-separated from council tax/budget |
-| **briefing** | Daily/weekly insight pack from accepted data |
-| **agentic-chat** | Q&A grounded only in accepted evidence |
+| **[dataset-dashboard](skills/dataset-dashboard/SKILL.md)** | Discover official data → validate → proposal → human Accept → dashboard |
+| **[dataviz](skills/dataviz/SKILL.md)** | Right chart for the data’s job; honest gaps & geography |
+| **[provenance](skills/provenance/SKILL.md)** | Publisher, as-of, licence, script — no source → no UI |
+| **[insight-analysis](skills/insight-analysis/SKILL.md)** | What the data says · why-questions · research · evidence report |
+
+<p align="center">
+  <img src="assets/placeholder-skill-dataset.svg" alt="Dataset skill" width="200" />
+  <img src="assets/placeholder-skill-dataviz.svg" alt="Dataviz skill" width="200" />
+  <img src="assets/placeholder-skill-provenance.svg" alt="Provenance skill" width="200" />
+</p>
+
+**Coming:** place-config · money-story · briefing/newsletter · agentic chat  
 
 ---
 
-## Ozzy — Birmingham spin-out
+## Ozzy
 
-**Ozzy** is Birmingham’s AI agent: open-source voice + evidence locker for the city.
-
-<p align="center">
-  <img src="assets/demo-ozzy-stage.png" alt="Ozzy stage — Birmingham ward caseload theatre" width="720" />
-</p>
-
-<p align="center">
-  <img src="assets/demo-ward-panel.png" alt="Ward detail panel" width="360" />
-  &nbsp;
-  <img src="assets/demo-uc-stage.png" alt="Universal Credit stage" width="360" />
-</p>
-
-| | |
-|--|--|
-| **What it is** | Live Next.js product: dashboards, review wall, 3D stages, sources registry |
-| **Who for** | Brummies, officers, analysts, anyone who wants the public numbers plain |
-| **Geography** | 69 official Birmingham wards (`E05011118`–`E05011186`) |
-| **Data** | City Observatory, DWP (Stat-Xplore + expenditure tables), ONS, West Midlands Police, and more — see `/sources` in the app |
-| **Integrity** | Official sources only. No fabricated numbers. Human Accept before publish. |
-
-Run the spin-out locally:
+Birmingham reference deployment — 69 wards, review wall, dashboards (benefits, crime, fly-tipping + “why” analysis, etc.).
 
 ```bash
-cd brum-dashboard   # or your clone path
 npm install
 npm run dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000) (About / Ozzy home), [http://localhost:3000/dashboard](http://localhost:3000/dashboard), [http://localhost:3000/review](http://localhost:3000/review).
+→ http://localhost:3000 · `/dashboard` · `/review` · `/sources`
 
-> **Ozzy is the fruit of the agent**, not the whole agent. The skills are what you take to another place.
+<p align="center">
+  <img src="assets/demo-ward-panel.png" alt="Ward panel" width="320" />
+  <img src="assets/demo-uc-stage.png" alt="UC stage" width="320" />
+</p>
 
 ---
 
-## Use it for your council
+## Use for another council
 
-You do **not** need to be Birmingham to benefit.
+1. Clone this repo / load `skills/`.  
+2. Point the agent at **your** open data catalogue and geography codes.  
+3. Run **dataset-dashboard** → **dataviz** → **provenance**.  
+4. Use **insight-analysis** when someone asks *why* (outliers, peers, briefing).  
+5. Brand your spin-out; keep the Accept wall.
 
-### Path A — Run Ozzy as a pattern (fastest learning)
-
-1. Clone this repo and run the app (see above).
-2. Read `AGENTS.md` and the three skills under `skills/`.
-3. Walk one accepted proposal (`proposals/`) and one live view to see the wall end-to-end.
-
-### Path B — Build a spin-out for *your* place
-
-1. **Point the agent at the skills** in this repo (or copy `skills/` into your project).
-2. **Configure place** (today: follow the skill notes and swap):
-   - Local authority ONS code  
-   - Ward (or other) geography + boundary GeoJSON  
-   - Your open-data catalogue (City Observatory equivalent, data.gov.uk, local portal)  
-   - Brand / voice name (your “Ozzy”)
-3. **Use `dataset-dashboard`** to land the first metric behind `/review`.
-4. **Use `dataviz`** so charts match the data’s job, not a default template.
-5. **Register provenance** for every metric (`provenance` skill + a sources registry).
-6. **Ship** only after a human Accept.
-
-Place-specific wiring in the Birmingham app (ward lists, City Observatory IDs, Ozzy brand) is the **reference pack**. A dedicated **place-config** skill is on the roadmap to make multi-council setup mechanical.
-
-### Path C — Insight team workflow (no full fork)
-
-Use the skills inside your existing stack: the agent fetches and validates; you keep your own BI tool. The hard rules and provenance pattern still apply.
+Details: [docs/for-councils.md](docs/for-councils.md) · [docs/for-builders.md](docs/for-builders.md) · [docs/architecture.md](docs/architecture.md)
 
 ---
 
 ## Hard rules
 
-These override convenience. Full detail: [`AGENTS.md`](AGENTS.md) · [`CLAUDE.md`](CLAUDE.md).
+- Official sources only · never fabricate · missing → `—`  
+- Derived values labelled · human Accept before live data  
+- No API keys in the browser  
 
-1. **Official sources only** — a value may render only if traceable to a named source for that place and period.
-2. **Never fabricate** — no invented, modelled-as-fact, or hash-generated numbers in the UI.
-3. **Missing stays missing** — show `—` / “no data”, never a silent estimate.
-4. **Derived must be labelled** — e.g. rate = count ÷ population, with both inputs cited.
-5. **Human Accept wall** — fetch scripts write to `proposals/`; live `public/data/` only after Accept.
-6. **Provenance is mandatory** — publisher, as-of, licence, script path for every metric.
-7. **No API keys in the browser** — keyed APIs stay server-side.
+Full agent rules: [AGENTS.md](AGENTS.md)
 
 ---
 
 ## Repo map
 
-| Path | Purpose |
-|------|---------|
-| `skills/` | **Portable agent skills** (the product surface for other places) |
-| `.claude/skills/` | Same playbooks for Claude Code discovery |
-| `AGENTS.md` | Rules for any coding agent working in this repo |
-| `CLAUDE.md` | Project context + integrity (Ozzy / Birmingham) |
-| `app/` | Ozzy Next.js spin-out (UI) |
+| Path | Role |
+|------|------|
+| `skills/` | **Portable agent product** |
+| `app/` | Ozzy (Birmingham UI) |
+| `proposals/` → `/review` | Accept wall |
 | `lib/sources.ts` | Provenance registry |
-| `proposals/` | Candidate datasets awaiting Accept |
-| `public/data/` | Accepted, shippable snapshots |
-| `scripts/` | Fetch / validate generators |
-| `docs/` | Extra explainers for councils and builders |
-| `assets/` | README diagrams and demo stills |
+| `assets/` | README demos |
 
 ---
 
-## Docs
+## Contribute
 
-- [For councils & insight teams](docs/for-councils.md)
-- [For builders](docs/for-builders.md)
-- [Architecture & mental model](docs/architecture.md)
+Email [westmidlands@lookingforgrowth.uk](mailto:westmidlands@lookingforgrowth.uk) · [GitHub](https://github.com/willspensley/brum-dashboard-)
 
----
+Repo path remains `brum-dashboard-` for now; product name: **local government insight agent** · city brand: **Ozzy**.
 
-## Contributing
-
-We need people who care about public truth — officers, researchers, residents, and people who **build with AI**.
-
-- **Know a dataset?** Open an issue or email with the official link.
-- **Help us build?** Fork, use the skills, open a PR — traditional coding optional if you can ship with AI.
-- **Shape the questions?** Tell us what members and communities need to see.
-
-**Contact:** [westmidlands@lookingforgrowth.uk](mailto:westmidlands@lookingforgrowth.uk)  
-**GitHub:** [willspensley/brum-dashboard-](https://github.com/willspensley/brum-dashboard-)
-
----
-
-## Project name ideas (repo name unchanged for now)
-
-The GitHub path can stay `brum-dashboard-` until a rename is deliberate. Public-facing name options:
-
-| Name | Why it works | Caveat |
-|------|----------------|--------|
-| **Local Government Insight Agent** | Exact job title energy; clear for officers | Long |
-| **Gov Insight Agent** | Short, scannable | Slightly vague |
-| **Civic Insight Agent** | Residents + councils | Less “gov” |
-| **Place Insight Agent** | Any geography (LA, combined authority) | Less familiar |
-| **Open Insight Agent** | Open data + open source | Soft on “government” |
-| **Council Insight Skills** | Skills-library framing (like “CAD Skills”) | Underplays agent |
-| **Ozzy Agent** (skills) + **Ozzy** (cities) | Brand-led | Birmingham-coded |
-| **Forward Agent** | Birmingham motto; civic | Local reference |
-
-**Working recommendation:** call the product **Local Government Insight Agent** (or **Gov Insight Agent** for short); keep **Ozzy** as the Birmingham spin-out name only.
-
----
-
-## Licence & data
-
-- Code: see repository licence / GitHub defaults for this fork path.
-- Data: almost always **Open Government Licence** (or as stated on each source). Metrics must retain publisher attribution via the provenance registry.
-
----
-
-<p align="center">
-  <img src="assets/ozzy-mark.png" alt="Ozzy mark" width="72" />
-</p>
-
-<p align="center"><em>Agent for the place. Ozzy for Birmingham. Your spin-out next.</em></p>
+<p align="center"><em>Agent for the place. Ozzy for Birmingham. Your data, same skills.</em></p>

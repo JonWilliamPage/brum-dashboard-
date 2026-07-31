@@ -54,6 +54,8 @@ export interface UcWard {
 export interface UcSource {
   label: string; publisher: string; dataset: string; licence: string;
   as_of: string; catalogueUrl: string; apiUrl: string;
+  method?: string;
+  id?: string;
 }
 export interface BenefitsData {
   as_of: string;
@@ -98,6 +100,33 @@ export interface UcCombinedData {
   city: { total: number; in_work: number; not_in_work: number; pct_pop: number | null; pct_not_in_work: number | null };
   sources: UcSource[];
   wards: UcCombinedWard[];
+}
+
+// Crime Deep-Dive (City Observatory) — recorded offences per ward with a 36-month
+// trend, category mix and outcomes. Shared shape rendered identically by the Review
+// preview (from a proposal) and the published Dashboards view (public/data/crime-observatory.json).
+export interface CrimeObsWard {
+  ward_code: string;
+  ward_name: string;
+  population: number | null;
+  latest_count: number | null;         // recorded offences, latest month
+  rate_per_1000: number | null;        // derived: latest_count ÷ population × 1000
+  categories: Record<string, number>;  // latest-month breakdown
+  trend: (number | null)[];            // raw monthly counts, oldest → latest
+  rank: number;
+}
+export interface CrimeObsData {
+  as_of: string;                        // latest month YYYY-MM
+  months: string[];                     // full series, oldest → latest
+  categories: { name: string; latest_count: number }[]; // city vocabulary, latest first
+  city: {
+    monthly_totals: Record<string, number>;
+    category_by_month: Record<string, Record<string, number>>;
+    outcomes_by_month: Record<string, Record<string, number>>;
+    latest_total: number;
+  };
+  sources: UcSource[];
+  wards: CrimeObsWard[];
 }
 
 // Benefits Bill — DWP's actual £ expenditure in Birmingham by benefit (LA-level only;
@@ -272,6 +301,40 @@ export interface HousingBenefitData {
   sources: UcSource[];
 }
 
+// Fly-tipping incidents per 1,000 people — LA-level only (Defra WasteDataFlow via Observatory).
+// 7 WM metro boroughs + WMCA/England means + full annual series. No ward breakdown.
+export interface FlyTipArea {
+  area_code: string;
+  area_name: string;
+  value: number;                 // latest year rate per 1,000
+  is_birmingham: boolean;
+  rank: number;                  // 1 = highest rate among boroughs
+  series: (number | null)[];     // aligned to FlyTipData.years
+  first_value: number | null;
+  change_pp: number | null;      // latest − first (rate points)
+}
+export interface FlyTipData {
+  as_of: string;
+  metric: string;
+  geography: string;             // 'local-authority'
+  years: string[];               // e.g. '2015/16' … '2024/25'
+  areas: FlyTipArea[];
+  benchmarks: { wmca: number | null; england: number | null };
+  bench_series: { wmca: (number | null)[]; england: (number | null)[] };
+  city: {
+    series: (number | null)[];
+    latest: number | null;
+    first: number | null;
+    change: number | null;
+    peak: number | null;
+    peak_year: string | null;
+    rank: number | null;
+  };
+  birmingham_value: number | null;
+  birmingham_rank: number | null;
+  sources: UcSource[];
+}
+
 export interface DataSources {
   nomis: 'live' | 'cached';
   imd: 'live' | 'cached';
@@ -368,4 +431,339 @@ export interface HousingWard {
   earnings: number;
   claimant_rate: number;
   imd_employment_score: number;
+}
+
+// Wrong Payments — illustrative fraud & error leakage on Birmingham's DWP bill.
+// National overpayment rates (Fraud & Error FYE 2025) × Birmingham LA spend.
+// Derived figures are labelled; not a Birmingham audit.
+export interface WrongPaymentLine {
+  id: string;
+  label: string;
+  group: 'working-age' | 'pensioner' | 'mixed';
+  note?: string;
+  spend_m: number;
+  rate_pct: number;
+  fraud_rate_pct: number | null;
+  claimant_rate_pct: number | null;
+  official_rate_pct: number | null;
+  overpaid_m: number;
+  fraud_m: number | null;
+  claimant_error_m: number | null;
+  official_error_m: number | null;
+  correctly_paid_m: number;
+  rate_method: 'benefit-specific' | 'all-benefit-rate';
+  last_measured: string | null;
+  share_of_leak_pct: number;
+}
+export interface WrongPaymentReason {
+  id: string;
+  label: string;
+  rate_pct: number;
+  note?: string;
+  bham_illustrative_m: number | null;
+}
+export interface WrongPaymentsNational {
+  year: string;
+  expenditure_bn: number;
+  overpaid_bn: number;
+  overpaid_rate_pct: number;
+  fraud_bn: number;
+  fraud_rate_pct: number;
+  claimant_error_bn: number;
+  claimant_error_rate_pct: number;
+  official_error_bn: number;
+  official_error_rate_pct: number;
+  underpaid_bn: number;
+  underpaid_rate_pct: number;
+  net_loss_bn: number;
+  net_loss_rate_pct: number;
+  recovered_bn: number;
+  prior: {
+    year: string;
+    overpaid_bn: number;
+    overpaid_rate_pct: number;
+    uc_overpaid_rate_pct: number;
+  };
+  uc_overpaid_rate_pct: number;
+  source_url: string;
+  tables_url: string;
+}
+export interface WrongPaymentsData {
+  year: string;
+  as_of: string;
+  sources: UcSource[];
+  national: WrongPaymentsNational;
+  city: {
+    bill_m: number;
+    population: number | null;
+    overpaid_m: number;
+    implied_rate_pct: number;
+    one_in: number | null;
+    per_resident: number | null;
+    per_day_m: number;
+    per_minute: number;
+    correctly_paid_m: number;
+    measured_spend_m: number;
+    unmeasured_spend_m: number;
+    fraud_m: number;
+    claimant_error_m: number;
+    official_error_m: number;
+    untyped_m: number;
+    uc_overpaid_m: number | null;
+    uc_spend_m: number | null;
+    uc_rate_pct: number | null;
+    top_leak_id: string | null;
+    top_leak_label: string | null;
+    top_leak_m: number | null;
+  };
+  uc_reasons: WrongPaymentReason[];
+  lines: WrongPaymentLine[];
+  method_notes?: string[];
+}
+
+// Wrong Payments — illustrative fraud & error leakage on Birmingham's DWP bill.
+// National overpayment rates (Fraud & Error FYE 2025) × Birmingham LA spend.
+// Derived figures are labelled; not a Birmingham audit.
+export interface WrongPaymentLine {
+  id: string;
+  label: string;
+  group: 'working-age' | 'pensioner' | 'mixed';
+  note?: string;
+  spend_m: number;
+  rate_pct: number;
+  fraud_rate_pct: number | null;
+  claimant_rate_pct: number | null;
+  official_rate_pct: number | null;
+  overpaid_m: number;
+  fraud_m: number | null;
+  claimant_error_m: number | null;
+  official_error_m: number | null;
+  correctly_paid_m: number;
+  rate_method: 'benefit-specific' | 'all-benefit-rate';
+  last_measured: string | null;
+  share_of_leak_pct: number;
+}
+export interface WrongPaymentReason {
+  id: string;
+  label: string;
+  rate_pct: number;
+  note?: string;
+  bham_illustrative_m: number | null;
+}
+export interface WrongPaymentsNational {
+  year: string;
+  expenditure_bn: number;
+  overpaid_bn: number;
+  overpaid_rate_pct: number;
+  fraud_bn: number;
+  fraud_rate_pct: number;
+  claimant_error_bn: number;
+  claimant_error_rate_pct: number;
+  official_error_bn: number;
+  official_error_rate_pct: number;
+  underpaid_bn: number;
+  underpaid_rate_pct: number;
+  net_loss_bn: number;
+  net_loss_rate_pct: number;
+  recovered_bn: number;
+  prior: {
+    year: string;
+    overpaid_bn: number;
+    overpaid_rate_pct: number;
+    uc_overpaid_rate_pct: number;
+  };
+  uc_overpaid_rate_pct: number;
+  source_url: string;
+  tables_url: string;
+}
+export interface WrongPaymentsData {
+  year: string;
+  as_of: string;
+  sources: UcSource[];
+  national: WrongPaymentsNational;
+  city: {
+    bill_m: number;
+    population: number | null;
+    overpaid_m: number;
+    implied_rate_pct: number;
+    one_in: number | null;
+    per_resident: number | null;
+    per_day_m: number;
+    per_minute: number;
+    correctly_paid_m: number;
+    measured_spend_m: number;
+    unmeasured_spend_m: number;
+    fraud_m: number;
+    claimant_error_m: number;
+    official_error_m: number;
+    untyped_m: number;
+    uc_overpaid_m: number | null;
+    uc_spend_m: number | null;
+    uc_rate_pct: number | null;
+    top_leak_id: string | null;
+    top_leak_label: string | null;
+    top_leak_m: number | null;
+  };
+  uc_reasons: WrongPaymentReason[];
+  lines: WrongPaymentLine[];
+  method_notes?: string[];
+}
+
+// UC Money Weather � ward caseload over months (Stat-Xplore) + city UC � (LA accounts)
+export interface UcWeatherWard {
+  ward_code: string;
+  ward_name: string;
+  population: number | null;
+  series: (number | null)[];
+  latest: number | null;
+  first: number | null;
+  first_month: string | null;
+  delta: number | null;
+  per_1000: number | null;
+}
+export interface UcWeatherData {
+  as_of: string;
+  sources: UcSource[];
+  months: string[];
+  month_keys?: string[];
+  city: {
+    series: (number | null)[];
+    latest: number;
+    first: number | null;
+    delta: number | null;
+    bill_uc: { year: string; uc_m: number; total_m: number }[];
+  };
+  wards: UcWeatherWard[];
+}
+
+// UC Payments — LA-level household award intensity (Stat-Xplore UC_Households).
+// Households ≠ people. Mean Payment Amount ≠ annual Benefits Bill UC £.
+export interface UcPaymentMonth {
+  month: string;
+  month_key: string | null;
+  households: number | null;
+  mean_payment_gbp: number | null;
+}
+export interface UcPaymentBand {
+  band: string;
+  households: number | null;
+}
+export interface UcPaymentFamily {
+  family_type: string;
+  households: number | null;
+  mean_payment_gbp: number | null;
+}
+export interface UcPaymentsData {
+  as_of: string;
+  sources: UcSource[];
+  months: string[];
+  month_keys?: (string | null)[];
+  city: {
+    series: UcPaymentMonth[];
+    latest_households: number;
+    latest_mean_payment_gbp: number;
+    first_month: string;
+    first_households: number;
+    first_mean_payment_gbp: number | null;
+    households_delta: number;
+    households_pct_change: number | null;
+    bill_uc_context: {
+      year: string | null;
+      uc_m: number | null;
+      total_m: number | null;
+      note: string;
+    } | null;
+  };
+  award_bands: UcPaymentBand[];
+  family_types: UcPaymentFamily[];
+  method_notes?: string[];
+}
+
+// PIP Place � ward caseload play + city PIP � + GB conditions + Bham category mix
+export interface PipPlaceWard {
+  ward_code: string;
+  ward_name: string;
+  population: number | null;
+  series: (number | null)[];
+  latest: number | null;
+  first: number | null;
+  first_month: string | null;
+  delta: number | null;
+  per_1000: number | null;
+}
+export interface PipPlaceData {
+  as_of: string;
+  sources: UcSource[];
+  months: string[];
+  month_keys?: string[];
+  city: {
+    series: (number | null)[];
+    latest: number;
+    first: number | null;
+    delta: number | null;
+    bill_pip: { year: string; pip_m: number; total_m: number }[];
+  };
+  wards: PipPlaceWard[];
+  category_mix: {
+    early_month: string | null;
+    latest_month: string | null;
+    early: { name: string; count: number | null }[];
+    latest: { name: string; count: number | null }[];
+  };
+  gb_conditions: {
+    years: string[];
+    categories: PipCategory[];
+    conditions: PipCondition[];
+    gb_total_real_latest: number;
+    gb_total_nominal_latest: number;
+  } | null;
+}
+
+// 3D stage dashboards (Three.js presentation of caseload series)
+export interface OzzyStageWard {
+  ward_code: string;
+  ward_name: string;
+  population: number | null;
+  uc_series: (number | null)[] | null;
+  uc_latest: number | null;
+  uc_delta: number | null;
+  pip_series: (number | null)[] | null;
+  pip_latest: number | null;
+  pip_delta: number | null;
+}
+export interface OzzyStageData {
+  as_of: string;
+  sources: UcSource[];
+  uc: {
+    months: string[];
+    city: {
+      series: (number | null)[];
+      latest: number;
+      first: number | null;
+      delta: number | null;
+      bill_uc: { year: string; uc_m: number; total_m: number }[];
+    };
+  };
+  pip: {
+    months: string[];
+    city: {
+      series: (number | null)[];
+      latest: number;
+      first: number | null;
+      delta: number | null;
+      bill_pip: { year: string; pip_m: number; total_m: number }[];
+    };
+    category_mix: {
+      early_month: string | null;
+      latest_month: string | null;
+      early: { name: string; count: number | null }[];
+      latest: { name: string; count: number | null }[];
+    } | null;
+    gb_conditions: {
+      years?: string[];
+      top_categories: { name: string; latest_real: number | null }[];
+      gb_total_real_latest: number;
+    } | null;
+  };
+  wards: OzzyStageWard[];
 }

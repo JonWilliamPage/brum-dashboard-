@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import dynamic from 'next/dynamic';
-import type { Ward, DataSources, DataMeta, EducationWard, EduDataMeta, NeetCityData, CrimeWard, BenefitsData, UcEmpData, HousingBenefitData, ClaimantData, UcCombinedData, BenefitsBillData, TwoChildData, ChildPovertyData, ConMoneyData, PipData } from '@/lib/types';
+import type { Ward, DataSources, DataMeta, EducationWard, EduDataMeta, NeetCityData, CrimeWard, BenefitsData, UcEmpData, HousingBenefitData, ClaimantData, UcCombinedData, BenefitsBillData, TwoChildData, ChildPovertyData, ConMoneyData, PipData, WrongPaymentsData, UcWeatherData, PipPlaceData, OzzyStageData, UcPaymentsData, CrimeObsData, FlyTipData } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import GridView from './tabs/GridView';
 import TableView from './tabs/TableView';
@@ -29,6 +29,7 @@ import FiscalDetailPanel from '../fiscal/components/FiscalDetailPanel';
 import BenefitsDashboard from '../benefits/components/BenefitsDashboard';
 import UcEmpDashboard from '../uc-employment/components/UcEmpDashboard';
 import HousingBenefitView from '../housing-benefit/components/HousingBenefitView';
+import FlyTippingView from '../fly-tipping/components/FlyTippingView';
 import ClaimantDashboard from '../claimant-count/components/ClaimantDashboard';
 import UcCombinedDashboard from '../uc-combined/components/UcCombinedDashboard';
 import BenefitsBillView from '../benefits-bill/components/BenefitsBillView';
@@ -36,6 +37,14 @@ import TwoChildView from '../two-child/components/TwoChildView';
 import ChildPovertyDashboard from '../child-poverty/components/ChildPovertyDashboard';
 import ConMoneyDashboard from '../constituency-money/components/ConMoneyDashboard';
 import PipDashboard from '../pip/components/PipDashboard';
+import WrongPaymentsView from '../wrong-payments/components/WrongPaymentsView';
+import UcPaymentsView from '../uc-payments/components/UcPaymentsView';
+import UcWeatherView from '../uc-weather/components/UcWeatherView';
+import PipPlaceView from '../pip-place/components/PipPlaceView';
+import UcStageView from '../uc-stage/components/UcStageView';
+import PipStageView from '../pip-stage/components/PipStageView';
+import OzzyStageView from '../ozzy-stage/components/OzzyStageView';
+import CrimeObsView from '../crime-observatory/components/CrimeObsView';
 import ScoringNote from './brand/ScoringNote';
 
 const EduMap = dynamic(() => import('../education/components/EduMap'), { ssr: false });
@@ -43,7 +52,7 @@ const EduMap = dynamic(() => import('../education/components/EduMap'), { ssr: fa
 const MapView = dynamic(() => import('./tabs/MapView'), { ssr: false });
 const CrimeMap = dynamic(() => import('./tabs/crime/CrimeMap'), { ssr: false });
 
-type View = 'employment' | 'crime' | 'education' | 'youth' | 'housing' | 'fiscal' | 'benefits' | 'ucemp' | 'hbenefit' | 'claimant' | 'bill' | 'twochild' | 'childpov' | 'conmoney' | 'pip';
+type View = 'employment' | 'crime' | 'education' | 'youth' | 'housing' | 'fiscal' | 'benefits' | 'ucemp' | 'hbenefit' | 'flytip' | 'claimant' | 'bill' | 'twochild' | 'childpov' | 'conmoney' | 'pip' | 'wrongpay' | 'ucpayments' | 'ucweather' | 'pipplace' | 'ucstage' | 'pipstage' | 'ozzystage' | 'crimeobs';
 type EmpSub = 'grid' | 'list' | 'scatter' | 'matrix' | 'map' | 'compare';
 type CrimeSub = 'crime-table' | 'crime-grid' | 'crime-map';
 type EduSub = 'edu-grid' | 'edu-table' | 'edu-chart' | 'edu-map';
@@ -102,6 +111,7 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
   const [benefitsData, setBenefitsData] = useState<BenefitsData | null>(null);
   const [ucEmpData, setUcEmpData] = useState<UcEmpData | null>(null);
   const [hbData, setHbData] = useState<HousingBenefitData | null>(null);
+  const [flyTipData, setFlyTipData] = useState<FlyTipData | null>(null);
   const [claimantData, setClaimantData] = useState<ClaimantData | null>(null);
   const [ucCombinedData, setUcCombinedData] = useState<UcCombinedData | null>(null);
   const [billData, setBillData] = useState<BenefitsBillData | null>(null);
@@ -109,6 +119,14 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
   const [childPovData, setChildPovData] = useState<ChildPovertyData | null>(null);
   const [conMoneyData, setConMoneyData] = useState<ConMoneyData | null>(null);
   const [pipData, setPipData] = useState<PipData | null>(null);
+  const [wrongPayData, setWrongPayData] = useState<WrongPaymentsData | null>(null);
+  const [ucPaymentsData, setUcPaymentsData] = useState<UcPaymentsData | null>(null);
+  const [ucWeatherData, setUcWeatherData] = useState<UcWeatherData | null>(null);
+  const [pipPlaceData, setPipPlaceData] = useState<PipPlaceData | null>(null);
+  const [crimeObsData, setCrimeObsData] = useState<CrimeObsData | null>(null);
+  const [ucStageData, setUcStageData] = useState<UcWeatherData | null>(null);
+  const [pipStageData, setPipStageData] = useState<PipPlaceData | null>(null);
+  const [ozzyStageData, setOzzyStageData] = useState<OzzyStageData | null>(null);
 
   // Load PUBLISHED dashboards at runtime. Each is present only once its proposal has
   // been accepted in /review (which writes public/data/<id>.json). Client-side fetch →
@@ -220,6 +238,123 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
         });
       })
       .catch(() => { /* not published yet */ });
+
+    fetch('/data/fly-tipping.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.areas && j?.years) setFlyTipData({
+          as_of: j.as_of ?? j.source?.as_of ?? '',
+          metric: j.metric ?? 'Fly-tipping incidents per 1,000 people',
+          geography: j.geography ?? 'local-authority',
+          years: j.years,
+          areas: j.areas,
+          benchmarks: j.benchmarks ?? { wmca: null, england: null },
+          bench_series: j.bench_series ?? { wmca: [], england: [] },
+          city: j.city ?? { series: [], latest: null, first: null, change: null, peak: null, peak_year: null, rank: null },
+          birmingham_value: j.birmingham_value ?? j.city?.latest ?? j.validation?.birmingham_value ?? null,
+          birmingham_rank: j.birmingham_rank ?? j.city?.rank ?? j.validation?.birmingham_rank ?? null,
+          sources: j.sources ?? (j.source ? [j.source] : []),
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/wrong-payments.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.lines && j?.city && j?.national) setWrongPayData({
+          year: j.year ?? '', as_of: j.as_of ?? '',
+          sources: j.sources ?? (j.source ? [j.source] : []),
+          national: j.national, city: j.city,
+          uc_reasons: j.uc_reasons ?? [], lines: j.lines,
+          method_notes: j.method_notes,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/uc-payments.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.city?.series && j?.award_bands && j?.family_types) setUcPaymentsData({
+          as_of: j.as_of ?? '',
+          sources: j.sources ?? (j.source ? [j.source] : []),
+          months: j.months ?? [],
+          month_keys: j.month_keys,
+          city: j.city,
+          award_bands: j.award_bands,
+          family_types: j.family_types,
+          method_notes: j.method_notes,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/uc-weather.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.months && j?.city) setUcWeatherData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          months: j.months, month_keys: j.month_keys,
+          city: j.city, wards: j.wards,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/crime-observatory.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.months && j?.city) setCrimeObsData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          months: j.months, categories: j.categories ?? [],
+          city: j.city, wards: j.wards,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/pip-place.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.months && j?.city) setPipPlaceData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          months: j.months, month_keys: j.month_keys,
+          city: j.city, wards: j.wards,
+          category_mix: j.category_mix ?? { early_month: null, latest_month: null, early: [], latest: [] },
+          gb_conditions: j.gb_conditions ?? null,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/uc-stage.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.months && j?.city) setUcStageData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          months: j.months, month_keys: j.month_keys,
+          city: j.city, wards: j.wards,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/pip-stage.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.months && j?.city) setPipStageData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          months: j.months, month_keys: j.month_keys,
+          city: j.city, wards: j.wards,
+          category_mix: j.category_mix ?? { early_month: null, latest_month: null, early: [], latest: [] },
+          gb_conditions: j.gb_conditions ?? null,
+        });
+      })
+      .catch(() => { /* not published yet */ });
+
+    fetch('/data/ozzy-stage.json', { cache: 'no-store' })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => {
+        if (j?.wards && j?.uc && j?.pip) setOzzyStageData({
+          as_of: j.as_of ?? '', sources: j.sources ?? [],
+          uc: j.uc, pip: j.pip, wards: j.wards,
+        });
+      })
+      .catch(() => { /* not published yet */ });
   }, []);
 
   useEffect(() => {
@@ -280,12 +415,21 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
   const isBenefits = view === 'benefits';
   const isUcEmp = view === 'ucemp';
   const isHBenefit = view === 'hbenefit';
+  const isFlyTip = view === 'flytip';
   const isClaimant = view === 'claimant';
   const isBill = view === 'bill';
   const isTwoChild = view === 'twochild';
   const isChildPov = view === 'childpov';
   const isConMoney = view === 'conmoney';
   const isPip = view === 'pip';
+  const isWrongPay = view === 'wrongpay';
+  const isUcPayments = view === 'ucpayments';
+  const isUcWeather = view === 'ucweather';
+  const isPipPlace = view === 'pipplace';
+  const isUcStage = view === 'ucstage';
+  const isPipStage = view === 'pipstage';
+  const isOzzyStage = view === 'ozzystage';
+  const isCrimeObs = view === 'crimeobs';
 
   const housingWards: HousingWard[] = useMemo(() => buildHousingWards(wards), [wards]);
   const fiscalWards: FiscalWard[] = useMemo(() => buildFiscalWards(wards), [wards]);
@@ -377,6 +521,12 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
                 <span className="dash-live-dot">●</span>
               </button>
             )}
+            {flyTipData && (
+              <button className={`dash-nav-btn${isFlyTip ? ' active' : ''}`} onClick={() => setView('flytip')}>
+                <span className="dash-nav-glyph">⚠</span> Fly-tipping
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
             {claimantData && (
               <button className={`dash-nav-btn${isClaimant ? ' active' : ''}`} onClick={() => setView('claimant')}>
                 <span className="dash-nav-glyph">▥</span> Claimant Count
@@ -410,6 +560,54 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
             {pipData && (
               <button className={`dash-nav-btn${isPip ? ' active' : ''}`} onClick={() => setView('pip')}>
                 <span className="dash-nav-glyph">✚</span> PIP Deep Dive
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {wrongPayData && (
+              <button className={`dash-nav-btn${isWrongPay ? ' active' : ''}`} onClick={() => setView('wrongpay')}>
+                <span className="dash-nav-glyph">⚠</span> Wrong Payments
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {ucPaymentsData && (
+              <button className={`dash-nav-btn${isUcPayments ? ' active' : ''}`} onClick={() => setView('ucpayments')}>
+                <span className="dash-nav-glyph">£</span> UC Payments
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {ucWeatherData && (
+              <button className={`dash-nav-btn${isUcWeather ? ' active' : ''}`} onClick={() => setView('ucweather')}>
+                <span className="dash-nav-glyph">☁</span> UC Weather
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {pipPlaceData && (
+              <button className={`dash-nav-btn${isPipPlace ? ' active' : ''}`} onClick={() => setView('pipplace')}>
+                <span className="dash-nav-glyph">✚</span> PIP Place
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {ucStageData && (
+              <button className={`dash-nav-btn${isUcStage ? ' active' : ''}`} onClick={() => setView('ucstage')}>
+                <span className="dash-nav-glyph">▣</span> UC Stage 3D
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {pipStageData && (
+              <button className={`dash-nav-btn${isPipStage ? ' active' : ''}`} onClick={() => setView('pipstage')}>
+                <span className="dash-nav-glyph">▣</span> PIP Stage 3D
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {ozzyStageData && (
+              <button className={`dash-nav-btn${isOzzyStage ? ' active' : ''}`} onClick={() => setView('ozzystage')}>
+                <span className="dash-nav-glyph">◉</span> Ozzy Stage
+                <span className="dash-live-dot">●</span>
+              </button>
+            )}
+            {crimeObsData && (
+              <button className={`dash-nav-btn${isCrimeObs ? ' active' : ''}`} onClick={() => setView('crimeobs')}>
+                <span className="dash-nav-glyph">✚</span> Crime Deep Dive
                 <span className="dash-live-dot">●</span>
               </button>
             )}
@@ -455,15 +653,24 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
               </button>
               <div>
                 <div className="hdr-title">
-                  {isPip ? 'PIP: Where the Money Goes' : isConMoney ? 'The Constituency Money Map' : isChildPov ? 'Child Poverty' : isBill ? 'The Benefits Bill' : isTwoChild ? 'Two-Child Limit' : isClaimant ? 'Claimant Count' : isHBenefit ? 'Housing Benefit' : isUcEmp ? 'UC Claimants in Work' : isBenefits ? 'Universal Credit' : isEdu ? 'Education & Skills' : isYouth ? 'Youth & NEET Risk' : isCrime ? 'Crime Dashboard' : isHousing ? 'Housing Affordability' : isFiscal ? 'Ward Net Fiscal Balance' : 'Employment & Benefits'}
+                  {isCrimeObs ? 'Crime — Deep Dive' : isOzzyStage ? 'Ozzy Stage' : isPipStage ? 'PIP Stage 3D' : isUcStage ? 'UC Stage 3D' : isPipPlace ? 'PIP Place' : isUcWeather ? 'UC Money Weather' : isUcPayments ? 'UC Payments' : isWrongPay ? 'Wrong Payments' : isPip ? 'PIP: Where the Money Goes' : isConMoney ? 'The Constituency Money Map' : isChildPov ? 'Child Poverty' : isBill ? 'The Benefits Bill' : isTwoChild ? 'Two-Child Limit' : isClaimant ? 'Claimant Count' : isFlyTip ? 'Fly-tipping' : isHBenefit ? 'Housing Benefit' : isUcEmp ? 'UC Claimants in Work' : isBenefits ? 'Universal Credit' : isEdu ? 'Education & Skills' : isYouth ? 'Youth & NEET Risk' : isCrime ? 'Crime Dashboard' : isHousing ? 'Housing Affordability' : isFiscal ? 'Ward Net Fiscal Balance' : 'Employment & Benefits'}
                 </div>
                 <div className="hdr-sub">
-                  {isPip ? `Great Britain · by medical condition · 2013/14–${pipData?.years.at(-1) ?? ''} · £${((pipData?.gb_total_real_latest ?? 0) / 1000).toFixed(1)}bn real`
+                  {isCrimeObs ? `69 wards · offences / 1,000 · 36-month trend · outcomes · ${crimeObsData?.months[0] ?? ''}→${crimeObsData?.as_of ?? ''} · ${crimeObsData?.city.latest_total?.toLocaleString() ?? ''} offences latest`
+                    : isOzzyStage ? `Three.js theatre · UC + PIP dual extrusions · drag · play`
+                    : isPipStage ? `Three.js · PIP caseload extrusions · ${pipStageData?.months[0] ?? ''}→${pipStageData?.months.at(-1) ?? ''}`
+                    : isUcStage ? `Three.js · UC caseload extrusions · ${ucStageData?.months[0] ?? ''}→${ucStageData?.months.at(-1) ?? ''}`
+                    : isPipPlace ? `69 wards · PIP caseload play · city £ · GB conditions · ${pipPlaceData?.months[0] ?? ''}→${pipPlaceData?.months.at(-1) ?? ''}`
+                    : isUcWeather ? `69 wards · UC caseload play · city £ · ${ucWeatherData?.months[0] ?? ''}→${ucWeatherData?.months.at(-1) ?? ''} · ${ucWeatherData?.city.latest?.toLocaleString() ?? ''} latest`
+                    : isUcPayments ? `LA · households · mean award £ · ${ucPaymentsData?.as_of ?? ''} · ${ucPaymentsData?.city.latest_households?.toLocaleString() ?? ''} hh · mean £${ucPaymentsData?.city.latest_mean_payment_gbp ?? '—'}`
+                    : isWrongPay ? `Illustrative leakage · national fraud/error rates × city spend · £${((wrongPayData?.city.overpaid_m ?? 0)).toFixed(0)}m · 1 in ${wrongPayData?.city.one_in ?? '—'}`
+                    : isPip ? `Great Britain · by medical condition · 2013/14–${pipData?.years.at(-1) ?? ''} · £${((pipData?.gb_total_real_latest ?? 0) / 1000).toFixed(1)}bn real`
                     : isConMoney ? `9 constituencies · actual DWP £ by benefit · ${conMoneyData?.year ?? ''} · £${(((conMoneyData?.city.sum_m ?? 0)) / 1000).toFixed(2)}bn`
                     : isChildPov ? `69 wards · % of children 0–15 in absolute low income · ${childPovData?.as_of ?? ''} · DWP/HMRC`
                     : isBill ? `Local authority · actual DWP expenditure · ${billData?.year ?? ''} · £${((billData?.total_m ?? 0) / 1000).toFixed(2)}bn`
                     : isTwoChild ? `Constituencies · policy abolished 6 Apr 2026 · ${twoChildData?.as_of ?? ''} · DWP`
                     : isClaimant ? `69 wards · % of 16–64 residents claiming · ${claimantData?.as_of ?? ''} · DWP`
+                    : isFlyTip ? `Local authority · no ward breakdown · incidents / 1,000 · ${flyTipData?.years[0] ?? ''}→${flyTipData?.as_of ?? ''} · Defra`
                     : isHBenefit ? `Local authority · no ward breakdown · % of households · ${hbData?.as_of ?? ''} · DWP`
                     : isUcEmp ? `69 wards · % of claimants in employment · ${ucEmpData?.as_of ?? ''} · DWP`
                     : isBenefits && ucCombinedData ? `69 wards · total / in work / not in work · ${ucCombinedData.as_of} · DWP`
@@ -485,7 +692,23 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
         </div>
         <div className="hdr-dancetty" aria-hidden="true" />
 
-        {isPip && pipData ? (
+        {isOzzyStage && ozzyStageData ? (
+          <OzzyStageView data={ozzyStageData} />
+        ) : isPipStage && pipStageData ? (
+          <PipStageView data={pipStageData} />
+        ) : isUcStage && ucStageData ? (
+          <UcStageView data={ucStageData} />
+        ) : isPipPlace && pipPlaceData ? (
+          <PipPlaceView data={pipPlaceData} />
+        ) : isCrimeObs && crimeObsData ? (
+          <CrimeObsView data={crimeObsData} />
+        ) : isUcWeather && ucWeatherData ? (
+          <UcWeatherView data={ucWeatherData} />
+        ) : isUcPayments && ucPaymentsData ? (
+          <UcPaymentsView data={ucPaymentsData} />
+        ) : isWrongPay && wrongPayData ? (
+          <WrongPaymentsView data={wrongPayData} />
+        ) : isPip && pipData ? (
           <PipDashboard data={pipData} />
         ) : isConMoney && conMoneyData ? (
           <ConMoneyDashboard data={conMoneyData} />
@@ -499,6 +722,8 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
           <ClaimantDashboard data={claimantData} />
         ) : isHBenefit && hbData ? (
           <HousingBenefitView data={hbData} />
+        ) : isFlyTip && flyTipData ? (
+          <FlyTippingView data={flyTipData} />
         ) : isBenefits && ucCombinedData ? (
           <UcCombinedDashboard data={ucCombinedData} />
         ) : isBenefits && benefitsData ? (

@@ -35,6 +35,8 @@ Before inventing a new pipeline, open the matching skill:
 - `skills/dataset-dashboard/SKILL.md` — new dataset → reviewable dashboard  
 - `skills/dataviz/SKILL.md` — chart form, colour, honesty conventions  
 - `skills/provenance/SKILL.md` — sources registry and source tags  
+- `skills/insight-analysis/SKILL.md` — what the data says · why-questions · research · evidence report  
+
 
 If a task is Birmingham-specific (City Observatory slug, Ozzy chrome), say so in the change. Prefer extracting portable steps into `skills/` over baking LA names into generic docs.
 

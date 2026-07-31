@@ -1,0 +1,131 @@
+{
+  "query": {
+    "database": "str:database:PIP_Monthly_new",
+    "measures": [
+      "str:count:PIP_Monthly_new:V_F_PIP_MONTHLY"
+    ],
+    "recodes": {
+      "str:field:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE": {
+        "map": [
+          [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011118"
+          ],
+          [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011153"
+          ],
+          [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011145"
+          ]
+        ],
+        "total": false
+      },
+      "str:field:PIP_Monthly_new:F_PIP_DATE:DATE2": {
+        "map": [
+          [
+            "str:value:PIP_Monthly_new:F_PIP_DATE:DATE2:C_PIP_DATE:202604"
+          ]
+        ],
+        "total": false
+      }
+    },
+    "dimensions": [
+      [
+        "str:field:PIP_Monthly_new:F_PIP_DATE:DATE2"
+      ],
+      [
+        "str:field:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE"
+      ]
+    ]
+  },
+  "database": {
+    "id": "PIP_Monthly_new",
+    "uri": "str:database:PIP_Monthly_new",
+    "label": "PIP Cases with Entitlement from 2019",
+    "annotationKeys": [
+      "I",
+      "II",
+      "III",
+      "IV"
+    ]
+  },
+  "measures": [
+    {
+      "uri": "str:count:PIP_Monthly_new:V_F_PIP_MONTHLY",
+      "label": "PIP Cases with Entitlement from 2019",
+      "measure": "str:count:PIP_Monthly_new:V_F_PIP_MONTHLY",
+      "function": "COUNT"
+    }
+  ],
+  "fields": [
+    {
+      "uri": "str:field:PIP_Monthly_new:F_PIP_DATE:DATE2",
+      "label": "Month",
+      "items": [
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:PIP_Monthly_new:F_PIP_DATE:DATE2:C_PIP_DATE:202604"
+          ],
+          "labels": [
+            "Apr-26"
+          ]
+        }
+      ]
+    },
+    {
+      "uri": "str:field:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE",
+      "label": "National - Regional - LA - Ward",
+      "annotationKeys": [
+        "V"
+      ],
+      "items": [
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011118"
+          ],
+          "labels": [
+            "Acocks Green"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011153"
+          ],
+          "labels": [
+            "Lozells"
+          ]
+        },
+        {
+          "type": "RecodeItem",
+          "uris": [
+            "str:value:PIP_Monthly_new:V_F_PIP_MONTHLY:WARD_CODE:V_C_MASTERGEOG21_WARD_TO_LA:E05011145"
+          ],
+          "labels": [
+            "Heartlands"
+          ]
+        }
+      ]
+    }
+  ],
+  "cubes": {
+    "str:count:PIP_Monthly_new:V_F_PIP_MONTHLY": {
+      "values": [
+        [
+          2390,
+          964,
+          1131
+        ]
+      ],
+      "precision": 0
+    }
+  },
+  "annotationMap": {
+    "I": "\"..\" denotes a nil or negligible number of claimants or award amount based on a nil or negligible number of claimants.",
+    "II": "From March 2022, a new benefit called Adult Disability Payment (ADP) began to be introduced in Scotland. All Scottish applications for support because of disability or long term ill-health should be made to ADP from 29th August 2022. Social Security Scotland began to move clients to ADP from September 2022, and completed this case transfer process for those who were in receipt of PIP in Scotland by the end of June 2025.",
+    "III": "Retrieving \"DWP Policy Ownership\" returns claims administered by DWP in England, Wales and Abroad. Retrieving \"Policy Devolved to Scotland\" returns claims DWP still administer in Scotland. From July 2025 onwards, any data appearing in Stat-Xplore for PIP activity in Scotland may relate to cases where a person moves to Scotland from England or Wales while in receipt of PIP and is in the process of having their benefit transferred.",
+    "IV": "Please note: If you retrieve all data within this benefit, this will return PIP claims administered by DWP. Datapoints from March 2022 will no longer reflect a full total for Great Britain because of the introduction of Adult Disability Payment in Scotland.",
+    "V": "Geographies are based on the claimants latest recorded address.  In some cases this may not be in the same geographical area as their initial claim."
+  }
+}

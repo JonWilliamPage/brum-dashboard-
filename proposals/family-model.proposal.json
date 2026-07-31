@@ -1,0 +1,514 @@
+{
+  "id": "family-model",
+  "status": "pending",
+  "title": "Family Support Model — illustrative rates + Birmingham UC means",
+  "metric": "Statutory monthly entitlement stack + observed UC mean by family type",
+  "unit": "£ per month (illustrative) / £ mean payment (observed)",
+  "geography": "rates=national; observed means=Birmingham LA",
+  "generated": "2026-07-18T14:50:51.420Z",
+  "as_of": "February 2026",
+  "rates_year": "2026/27",
+  "source": {
+    "as_of": "February 2026",
+    "label": "DWP/HMRC rates + Stat-Xplore UC households",
+    "publisher": "Department for Work & Pensions / HMRC"
+  },
+  "rates_explainer": {
+    "uc_child_element_month": 303.94,
+    "child_benefit_first_week": 27.05,
+    "child_benefit_other_week": 17.9,
+    "two_child_limit": "The two-child limit restricted the UC child element to (usually) two children. It was abolished on 6 April 2026. It never limited Child Benefit.",
+    "derived_means": "“4 × £303.94” is official rate × number of children (arithmetic). The £303.94 figure itself is the published statutory monthly child element — not an estimate.",
+    "benefit_cap_couple_month": 1835,
+    "pip_and_cap": "PIP is not in the list of benefits that count toward the cap. If you, your partner or a child under 18 gets PIP, the household is not affected by the cap."
+  },
+  "sources": [
+    {
+      "id": "dwpUcWhatYoullGet",
+      "label": "Universal Credit — what you’ll get (incl. £303.94 child element)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "GOV.UK UC guide",
+      "method": "statutory monthly rates",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get",
+      "apiUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+    },
+    {
+      "id": "dwpRatesTable",
+      "label": "Benefit and pension rates 2026/27",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Benefit and pension rates 2026 to 2027",
+      "method": "statutory rates table",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-and-pension-rates-2026-to-2027",
+      "apiUrl": "https://www.gov.uk/government/publications/benefit-and-pension-rates-2026-to-2027"
+    },
+    {
+      "id": "hmrcChildBenefit",
+      "label": "Child Benefit — what you’ll get",
+      "publisher": "HM Revenue & Customs",
+      "dataset": "GOV.UK Child Benefit rates",
+      "method": "statutory weekly rates",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/child-benefit/what-youll-get",
+      "apiUrl": "https://www.gov.uk/government/publications/rates-and-allowances-tax-credits-child-benefit-and-guardians-allowance/tax-credits-child-benefit-and-guardians-allowance"
+    },
+    {
+      "id": "twoChildLimit",
+      "label": "Two-child limit ended 6 April 2026 (UC child element)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "UC families with more than 2 children",
+      "method": "policy guidance",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "April 2026",
+      "catalogueUrl": "https://www.gov.uk/guidance/universal-credit-and-families-with-more-than-2-children-information-for-claimants",
+      "apiUrl": "https://www.gov.uk/guidance/universal-credit-and-families-with-more-than-2-children-information-for-claimants"
+    },
+    {
+      "id": "benefitCap",
+      "label": "Benefit cap amounts (Rest of GB couple £1,835/mo)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Benefit cap",
+      "method": "statutory cap",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/benefit-cap/benefit-cap-amounts",
+      "apiUrl": "https://www.gov.uk/benefit-cap/benefits-that-are-capped"
+    },
+    {
+      "id": "benefitCapExempt",
+      "label": "When you’re not affected by the benefit cap (incl. PIP)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Benefit cap exemptions",
+      "method": "statutory rules",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/benefit-cap/when-youre-not-affected",
+      "apiUrl": "https://www.gov.uk/benefit-cap/when-youre-not-affected"
+    },
+    {
+      "id": "pipRates",
+      "label": "PIP — how much you’ll get",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "PIP rates",
+      "method": "statutory weekly rates",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026/27",
+      "catalogueUrl": "https://www.gov.uk/pip/how-much-youll-get",
+      "apiUrl": "https://www.gov.uk/pip/how-much-youll-get"
+    },
+    {
+      "id": "statxploreUcHouseholds",
+      "label": "Birmingham UC household means by family type",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "UC_Households via uc-payments proposal",
+      "method": "administrative MEAN Payment Amount",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "February 2026",
+      "catalogueUrl": "https://stat-xplore.dwp.gov.uk/",
+      "apiUrl": "https://stat-xplore.dwp.gov.uk/webapi/rest/v1"
+    },
+    {
+      "id": "benefitsBillContext",
+      "label": "Birmingham benefit expenditure (context)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "benefit-expenditure-by-local-authority",
+      "method": "annual accounts — city totals not household",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+    }
+  ],
+  "framing": {
+    "what_this_is": "An illustrative model of which state payments can accrue to a family, using official rates and Birmingham observed UC means.",
+    "what_this_is_not": "Not a real household. Not linked microdata. Not advice. Not “what every couple with four children gets.”",
+    "key_rule": "A couple has ONE Universal Credit claim — mother and father do not each receive a full separate UC standard allowance."
+  },
+  "observed": {
+    "as_of": "February 2026",
+    "city_mean_payment_gbp": 859.22,
+    "city_households": 210687,
+    "by_family_type": [
+      {
+        "family_type": "Single, no children",
+        "households": 115785,
+        "mean_payment_gbp": 605.53
+      },
+      {
+        "family_type": "Single, with children",
+        "households": 59359,
+        "mean_payment_gbp": 1203.48
+      },
+      {
+        "family_type": "Couple, no children",
+        "households": 7116,
+        "mean_payment_gbp": 818.34
+      },
+      {
+        "family_type": "Couple, with children",
+        "households": 28359,
+        "mean_payment_gbp": 1183.84
+      },
+      {
+        "family_type": "Unknown or missing family type",
+        "households": 67,
+        "mean_payment_gbp": 1195.23
+      }
+    ],
+    "couple_with_children_mean_gbp": 1183.84,
+    "couple_with_children_households": 28359,
+    "source": "Stat-Xplore UC_Households · MEAN Payment Amount · Birmingham LA"
+  },
+  "bill_context": {
+    "year": "2024/25",
+    "lines": [
+      {
+        "id": "uc",
+        "label": "Universal Credit",
+        "amount_m": 1809
+      },
+      {
+        "id": "hb",
+        "label": "Housing Benefit",
+        "amount_m": 634.8
+      },
+      {
+        "id": "pip",
+        "label": "Personal Independence Payment",
+        "amount_m": 619.1
+      },
+      {
+        "id": "esa",
+        "label": "Employment & Support Allowance",
+        "amount_m": 246.4
+      },
+      {
+        "id": "dla",
+        "label": "Disability Living Allowance",
+        "amount_m": 158.8
+      },
+      {
+        "id": "ca",
+        "label": "Carer's Allowance",
+        "amount_m": 132.5
+      }
+    ],
+    "note": "City-wide annual accounts — not per household"
+  },
+  "catalogue": [
+    {
+      "id": "uc",
+      "name": "Universal Credit",
+      "person_or_household": "household",
+      "stacks": "One claim per couple",
+      "bham_data": "Stat-Xplore means + Benefits Bill £"
+    },
+    {
+      "id": "pip",
+      "name": "PIP",
+      "person_or_household": "person",
+      "stacks": "Usually ignored as UC income",
+      "bham_data": "Bill £; caseload by ward; mean awards via Stat-Xplore"
+    },
+    {
+      "id": "ca",
+      "name": "Carer's Allowance",
+      "person_or_household": "person",
+      "stacks": "Interacts with UC carer element",
+      "bham_data": "Benefits Bill £"
+    },
+    {
+      "id": "cb",
+      "name": "Child Benefit",
+      "person_or_household": "household",
+      "stacks": "HMRC separate",
+      "bham_data": "Rates only (not in DWP Bill)"
+    },
+    {
+      "id": "hb",
+      "name": "Housing Benefit / UC housing",
+      "person_or_household": "household",
+      "stacks": "Rent-specific",
+      "bham_data": "Bill HB £; not fixed per family"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "observed-couple-children",
+      "title": "Observed: Birmingham couples with children (UC only)",
+      "kind": "observed_mean",
+      "description": "Real Stat-Xplore mean Payment Amount for family type “Couple, with children” in Birmingham LA. Mix of family sizes, housing, disability — not specifically 4 children.",
+      "monthly_total": 1183.84,
+      "households": 28359,
+      "lines": [
+        {
+          "id": "uc_mean",
+          "label": "Mean UC payment (all elements combined)",
+          "kind": "observed",
+          "monthly": 1183.84,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "Households recorded as Couple, with children on UC",
+          "source": "Stat-Xplore UC_Households · MEAN Payment Amount · Birmingham LA",
+          "note": "28,359 households · February 2026"
+        }
+      ],
+      "total_excludes": [
+        "PIP",
+        "Child Benefit",
+        "Housing split",
+        "Any non-UC benefit"
+      ]
+    },
+    {
+      "id": "statutory-core-couple-4",
+      "title": "Statutory core: couple 25+ · 4 children · UC + Child Benefit",
+      "kind": "statutory_core",
+      "description": "What you can claim if eligible: one UC couple standard + official child element for each of 4 children + HMRC Child Benefit. No disability, no carer, no housing. Rates are statutory; total is sum of those rates.",
+      "lines": [
+        {
+          "id": "uc_standard",
+          "label": "UC standard allowance (couple, one or both 25+)",
+          "kind": "uc_element",
+          "monthly": 666.97,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "One joint UC claim — mother and father do not each get a full separate UC award",
+          "source": "DWP · GOV.UK What you'll get · 2026/27",
+          "note": "Official monthly rate for couple where one or both are 25+",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "uc_children",
+          "label": "UC child element × 4 (4 × £303.94)",
+          "kind": "uc_element",
+          "monthly": 1215.76,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "Official rate £303.94/child/month × 4 children. Two-child limit abolished 6 Apr 2026 — every child can attract this element.",
+          "source": "DWP · GOV.UK · 2026/27 · arithmetic 4 × £303.94",
+          "note": "Rate is real (£303.94/mo). “4×” is just count × official rate = £1215.76. Not the same as Child Benefit.",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "cb",
+          "label": "Child Benefit (4 children) — HMRC, not UC",
+          "kind": "child_benefit",
+          "monthly": 349.92,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "Separate HMRC benefit. Weekly: £27.05 eldest + £17.9 each other child. Never limited by the two-child UC rule.",
+          "source": "HMRC · (£27.05+3×£17.9)/wk × 52/12 = £349.92/mo",
+          "note": "Child Benefit ≠ UC child element. You can claim both (subject to High Income Child Benefit Charge rules).",
+          "catalogueUrl": "https://www.gov.uk/child-benefit/what-youll-get"
+        },
+        {
+          "id": "housing",
+          "label": "Housing (UC housing element / rent)",
+          "kind": "housing",
+          "monthly": null,
+          "included": false,
+          "attaches_to": "household",
+          "eligibility": "Case-specific rent / LHA — not a fixed national rate",
+          "source": "—",
+          "note": "Omitted from totals so the stack stays comparable",
+          "catalogueUrl": "https://www.gov.uk/housing-and-universal-credit"
+        }
+      ],
+      "total_monthly": 2232.65,
+      "uc_only_monthly": 1882.73,
+      "monthly_total": 2232.65,
+      "assumptions": [
+        "Joint UC claim (one household award)",
+        "Both 25+",
+        "4 children each attract the official UC child element of £303.94/mo",
+        "HMRC Child Benefit for 4 (separate from UC)",
+        "No LCWRA / carer / PIP / disabled child",
+        "Housing omitted (rent is case-specific)"
+      ],
+      "total_excludes": [
+        "Rent/housing element",
+        "PIP",
+        "Carer",
+        "Childcare costs element"
+      ],
+      "benefit_cap_monthly": 1835,
+      "benefit_cap_note": "Rest of GB couple/with-children cap is £1835/mo. This core stack’s UC+Child Benefit can hit the cap if the household is not exempt. PIP is not in this scenario — without a disability/carer exemption the cap can reduce UC.",
+      "cap_applies_if_no_exemption": true,
+      "cap_exempt_reason": null
+    },
+    {
+      "id": "statutory-high-couple-4",
+      "title": "Statutory high-support stack (eligibility assumed)",
+      "kind": "statutory_high",
+      "description": "Ceiling if many eligibility rules are met at once: core UC + disabled-child addition + LCWRA + carer element + max PIP on both adults + Child Benefit. Rare — not a typical family. Housing omitted. Carer’s Allowance not double-counted.",
+      "lines": [
+        {
+          "id": "uc_standard",
+          "label": "UC standard allowance (couple, one or both 25+)",
+          "kind": "uc_element",
+          "monthly": 666.97,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "One joint UC claim — mother and father do not each get a full separate UC award",
+          "source": "DWP · GOV.UK What you'll get · 2026/27",
+          "note": "Official monthly rate for couple where one or both are 25+",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "uc_children",
+          "label": "UC child element × 4 (4 × £303.94)",
+          "kind": "uc_element",
+          "monthly": 1215.76,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "Official rate £303.94/child/month × 4 children. Two-child limit abolished 6 Apr 2026 — every child can attract this element.",
+          "source": "DWP · GOV.UK · 2026/27 · arithmetic 4 × £303.94",
+          "note": "Rate is real (£303.94/mo). “4×” is just count × official rate = £1215.76. Not the same as Child Benefit.",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "uc_disabled_child",
+          "label": "UC disabled child addition (higher)",
+          "kind": "uc_element",
+          "monthly": 514.71,
+          "included": true,
+          "attaches_to": "child",
+          "eligibility": "One child meets higher disabled child rules (e.g. higher-rate DLA/PIP daily living)",
+          "source": "DWP · GOV.UK · 2026/27",
+          "note": "Extra on top of the basic child element for that child",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "uc_lcwra",
+          "label": "UC LCWRA (one adult)",
+          "kind": "uc_element",
+          "monthly": 429.8,
+          "included": true,
+          "attaches_to": "adult_1",
+          "eligibility": "Limited capability for work and work-related activity",
+          "source": "DWP · GOV.UK · 2026/27",
+          "note": "Also an exemption route from the benefit cap when UC is paid for LCWRA",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "uc_carer",
+          "label": "UC carer element",
+          "kind": "uc_element",
+          "monthly": 209.34,
+          "included": true,
+          "attaches_to": "adult_2",
+          "eligibility": "35+ hours/week care for someone on a qualifying disability benefit",
+          "source": "DWP · GOV.UK · 2026/27",
+          "note": "Do not naively add full Carer’s Allowance on top as free extra cash",
+          "catalogueUrl": "https://www.gov.uk/universal-credit/what-youll-get"
+        },
+        {
+          "id": "pip1",
+          "label": "PIP adult 1 (enhanced daily living + enhanced mobility)",
+          "kind": "disability",
+          "monthly": 843.27,
+          "included": true,
+          "attaches_to": "adult_1",
+          "eligibility": "Non-means-tested personal award — not part of the UC calculation as income in the usual way",
+          "source": "DWP PIP rates · (£114.60+£80)/wk × 52/12",
+          "note": "PIP is outside the benefit-cap “capped benefits” list; a household with PIP is also exempt from the cap",
+          "catalogueUrl": "https://www.gov.uk/pip/how-much-youll-get"
+        },
+        {
+          "id": "pip2",
+          "label": "PIP adult 2 (enhanced daily living + enhanced mobility)",
+          "kind": "disability",
+          "monthly": 843.27,
+          "included": true,
+          "attaches_to": "adult_2",
+          "eligibility": "Second adult also on max PIP — rare dual-max case; used as a ceiling",
+          "source": "DWP PIP rates · 2026/27",
+          "note": "Confirms high stack can still be a legal package when disability awards exist",
+          "catalogueUrl": "https://www.gov.uk/pip/how-much-youll-get"
+        },
+        {
+          "id": "cb",
+          "label": "Child Benefit (4 children) — HMRC, not UC",
+          "kind": "child_benefit",
+          "monthly": 349.92,
+          "included": true,
+          "attaches_to": "household",
+          "eligibility": "Separate HMRC benefit. Weekly: £27.05 eldest + £17.9 each other child. Never limited by the two-child UC rule.",
+          "source": "HMRC · (£27.05+3×£17.9)/wk × 52/12 = £349.92/mo",
+          "note": "Child Benefit ≠ UC child element. You can claim both (subject to High Income Child Benefit Charge rules).",
+          "catalogueUrl": "https://www.gov.uk/child-benefit/what-youll-get"
+        },
+        {
+          "id": "housing",
+          "label": "Housing (UC housing element / rent)",
+          "kind": "housing",
+          "monthly": null,
+          "included": false,
+          "attaches_to": "household",
+          "eligibility": "Case-specific rent / LHA — not a fixed national rate",
+          "source": "—",
+          "note": "Omitted from totals so the stack stays comparable",
+          "catalogueUrl": "https://www.gov.uk/housing-and-universal-credit"
+        }
+      ],
+      "total_monthly": 5073.04,
+      "uc_only_monthly": 3036.58,
+      "monthly_total": 5073.04,
+      "assumptions": [
+        "All high-support eligibility conditions met",
+        "Both adults on enhanced PIP daily living + mobility",
+        "One adult LCWRA; one adult carer on UC carer element",
+        "One child higher disabled child addition",
+        "CA not added on top (would usually offset UC)",
+        "Because someone gets PIP, the household is exempt from the benefit cap (GOV.UK)"
+      ],
+      "total_excludes": [
+        "Housing",
+        "Childcare costs",
+        "CA double-count"
+      ],
+      "benefit_cap_monthly": 1835,
+      "benefit_cap_note": "Possible stack: PIP is not counted toward the cap, and a household where you/partner/child gets PIP is not affected by the cap at all. So this high stack can legally exceed £1835/mo without the cap cutting UC — provided the PIP (and other) awards are real.",
+      "cap_applies_if_no_exemption": false,
+      "cap_exempt_reason": "PIP in the household (also LCWRA / carer element are separate exemption routes)"
+    }
+  ],
+  "comparisons": {
+    "observed_vs_core_uc": {
+      "formula": "statutory UC-only (core without CB) − observed couple-with-children mean",
+      "observed_mean": 1183.84,
+      "statutory_uc_only": 1882.73,
+      "difference": 698.89,
+      "note": "Core UC-only is for exactly 4 children; observed mean averages all couple-with-children households (1+ children, mixed housing/disability). Not like-for-like."
+    },
+    "high_total": 5073.04,
+    "high_with_naive_ca": 5447.66,
+    "naive_ca_warning": "Adding full Carer’s Allowance on top of UC carer element overstates cash — CA usually reduces UC."
+  },
+  "method_notes": [
+    "Weekly benefits converted to monthly as × 52 / 12.",
+    "UC child element £303.94/mo is the official published rate; 4× is arithmetic for a 4-child household.",
+    "Child Benefit is a separate HMRC payment (weekly rates) — not the UC child element.",
+    "Two-child limit (abolished 6 Apr 2026) only limited UC child elements, not Child Benefit.",
+    "Benefit cap: Rest of GB couple/with children £1,835/mo. PIP does not count toward the cap; a household with PIP is exempt from the cap entirely.",
+    "High stack with dual max PIP is therefore a possible legal package without cap cut — rare eligibility, not typical.",
+    "UC housing element omitted — depends on actual rent.",
+    "Carer’s Allowance + UC carer element must not be naively summed as extra cash.",
+    "Observed couple-with-children mean is not conditioned on exactly four children."
+  ],
+  "validation": {
+    "complete": true,
+    "rates_year": "2026/27",
+    "observed_as_of": "February 2026",
+    "scenarios": 3,
+    "core_total": 2232.65,
+    "high_total": 5073.04,
+    "observed_couple_children_mean": 1183.84,
+    "note": "Illustrative model. Checksums are arithmetic on published rates, not admin reconciliation of a real claim."
+  }
+}

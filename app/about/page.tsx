@@ -6,17 +6,18 @@ import DashboardCards from '@/app/components/DashboardCards';
 import SiteFooter from '@/app/components/SiteFooter';
 
 const ROADMAP = [
-  { status: 'live',    label: 'Employment deprivation', detail: 'IMD 2025 + NOMIS claimant count, 68 wards' },
-  { status: 'live',    label: 'Crime rates',            detail: 'WMP recorded offences, ward-level choropleth' },
-  { status: 'live',    label: 'Education & skills',     detail: 'Census 2021 qualifications + IMD education domain' },
-  { status: 'live',    label: 'Economic output',        detail: 'GVA per head, 2022, all industries' },
-  { status: 'live',    label: 'Youth & NEET risk',      detail: 'Modelled composite index across 68 wards' },
-  { status: 'soon',    label: 'Housing affordability',  detail: 'Land Registry price paid + ONS income data' },
-  { status: 'soon',    label: 'School performance',     detail: 'DfE Ofsted + attainment data by ward' },
-  { status: 'soon',    label: 'Health inequality',      detail: 'OHID / NHS fingertips — life expectancy gap' },
-  { status: 'soon',    label: 'Transport connectivity', detail: 'TfWM journey times to key employment centres' },
-  { status: 'planned', label: 'Full agentic chat',      detail: 'Ask Ozzy anything. Get a data-backed answer.' },
-  { status: 'planned', label: 'Ozzy daily newsletter',  detail: 'Automated weekly briefing — subscribe by ward' },
+  { status: 'live',    label: 'Employment & claimants',   detail: 'IMD employment domain, claimant count and Universal Credit by ward' },
+  { status: 'live',    label: 'Crime by ward',            detail: 'West Midlands Police recorded offences — rates, trends and category mix' },
+  { status: 'live',    label: 'Education & skills',       detail: 'Census 2021 qualifications + IMD education domain' },
+  { status: 'live',    label: 'Youth & NEET risk',        detail: 'Composite picture of the 16–24 cohort across 69 wards' },
+  { status: 'live',    label: 'Economic matrix',          detail: 'GVA per head against deprivation — the city in four quadrants' },
+  { status: 'live',    label: 'The Benefits Bill',        detail: 'DWP expenditure in Birmingham — history, composition and per head' },
+  { status: 'live',    label: 'Money Map & PIP',          detail: 'DWP £ by constituency, PIP place and condition, child poverty and more' },
+  { status: 'soon',    label: 'Tax & local finance',      detail: 'Council budget, tax and service outturn — separate from the DWP benefits bill' },
+  { status: 'soon',    label: 'UC payment intensity',     detail: 'Household award bands and means from Stat-Xplore for Birmingham' },
+  { status: 'soon',    label: 'Care & demand pressure',   detail: 'Children’s social care and related outturn — peers and trajectories' },
+  { status: 'planned', label: 'Full agentic chat',        detail: 'Ask Ozzy anything. Get a data-backed answer from the evidence base.' },
+  { status: 'planned', label: 'Ozzy daily newsletter',    detail: 'Automated briefing — subscribe by ward, city-wide or theme' },
 ];
 
 const STATUS_STYLE: Record<string, { label: string; color: string; bg: string; border: string }> = {
@@ -28,10 +29,10 @@ const STATUS_STYLE: Record<string, { label: string; color: string; bg: string; b
 type Stat = { val: string; lbl: string; note?: string; link?: { href: string; text: string } };
 
 const STATS: Stat[] = [
-  { val: '8',     lbl: 'live datasets connected', note: '(so far)' },
-  { val: '68',    lbl: 'Birmingham wards covered' },
-  { val: '1,000s',lbl: 'data points monitored' },
-  { val: '5',     lbl: 'contributors', link: { href: '#contribute', text: 'Become a contributor →' } },
+  { val: '20+', lbl: 'official sources connected' },
+  { val: '69',  lbl: 'Birmingham wards' },
+  { val: '19',  lbl: 'data views in the pipeline' },
+  { val: '5',   lbl: 'contributors', link: { href: '#contribute', text: 'Become a contributor →' } },
 ];
 
 export default function AboutPage() {
@@ -81,27 +82,14 @@ export default function AboutPage() {
           </div>
 
           <div style={{ ...fade(200), fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 600, letterSpacing: '.24em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginTop: 14 }}>
-            Birmingham · AI Intelligence
+            Birmingham&apos;s AI agent
           </div>
 
-          <div style={{ ...fade(300), fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 22, color: 'rgba(245,243,238,.92)', marginTop: 24, maxWidth: 620, marginInline: 'auto', lineHeight: 1.4 }}>
-            &ldquo;Every city deserves to understand itself. Birmingham now has a voice that won&apos;t look away.&rdquo;
-          </div>
-
-          <div style={{ ...fade(420), marginTop: 36, display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
-            <a href="/ozzy" style={{
-              fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 600,
-              padding: '12px 26px',
-              background: 'var(--herald-gold)', color: 'var(--herald-navy)',
-              textDecoration: 'none', letterSpacing: '.04em',
-            }}>
-              Ask Ozzy →
-            </a>
+          <div style={{ ...fade(360), marginTop: 40, display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
             <a href="/dashboard" style={{
               fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 600,
               padding: '12px 26px',
-              background: 'transparent', color: '#f5f3ee',
-              border: '1px solid rgba(245,243,238,.4)',
+              background: 'var(--herald-gold)', color: 'var(--herald-navy)',
               textDecoration: 'none', letterSpacing: '.04em',
             }}>
               View dashboards →
@@ -109,7 +97,7 @@ export default function AboutPage() {
           </div>
 
           {/* Stats strip */}
-          <div style={{ ...fade(540), marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, maxWidth: 760, marginInline: 'auto' }}>
+          <div style={{ ...fade(480), marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, maxWidth: 760, marginInline: 'auto' }}>
             {STATS.map(s => (
               <div key={s.lbl} style={{
                 borderTop: '2px solid var(--herald-gold)',
@@ -142,65 +130,33 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* WHAT IS OZZY — Truth-telling intro */}
+      {/* WHAT IS OZZY — full width */}
       <section style={{ background: 'var(--paper)', padding: '88px 32px 72px' }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: 80, alignItems: 'start' }} className="about-two-col">
-            <div>
-              <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 18 }}>
-                What is Ozzy?
-              </div>
-              <h2 style={{ fontFamily: 'var(--serif)', fontSize: 50, color: 'var(--ink)', lineHeight: 1.12, margin: '0 0 24px', fontWeight: 400, letterSpacing: '-.01em' }}>
-                An AI agent that wants to save Birmingham.
-              </h2>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-                Ozzy is an open-source project with one purpose: to read every publicly available dataset about Birmingham and tell the city the truth about itself. Council releases, ONS, NOMIS, DLUHC, West Midlands Police, NHS fingertips. He reads them all. He cross-references them. And then he presents what they actually say.
-              </p>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-                There are <strong style={{ color: 'var(--ink)' }}>thousands of data points</strong> about this city in the public domain. Some are quietly published. Some are released in a way that obscures the reality. Some are buried under jargon. Ozzy&apos;s job is to cut through all that and make the truth easy to see.
-              </p>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-                Not a dashboard. Not a report. Not another PowerPoint. <strong style={{ color: 'var(--ink)' }}>A voice.</strong> One that tells you where Birmingham is doing well, where it isn&apos;t, and what needs to happen next.
-              </p>
-              <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
-                And it&apos;s built in the open, with AI, by people who care about this city. The more Brummies who bring datasets, questions and code, the more Ozzy can see. This is a tool for the whole city to build together.
-              </p>
-              <a href="#contribute" style={{
-                display: 'inline-block',
-                fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 600,
-                padding: '12px 26px',
-                background: 'var(--herald-navy)', color: '#f5f3ee',
-                textDecoration: 'none', letterSpacing: '.04em',
-              }}>
-                Contribute →
-              </a>
-            </div>
-
-            {/* Quote panel — navy field */}
-            <div style={{
-              position: 'relative',
-              background: 'var(--herald-navy)',
-              padding: '36px 36px 32px',
-              overflow: 'hidden',
-            }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-                position: 'absolute', bottom: -30, right: -30,
-                width: 220, opacity: 0.08, pointerEvents: 'none',
-              }} />
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--herald-gold)', letterSpacing: '.12em', marginBottom: 14 }}>
-                  ━━ OZZY&apos;S PROMISE
-                </div>
-                <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 22, color: '#f5f3ee', lineHeight: 1.4, margin: '0 0 18px', fontWeight: 400 }}>
-                  &ldquo;I&apos;m a true Brummie. I&apos;m not here to spin the numbers, I&apos;m not here to make anyone look good. I just want the truth to be told.&rdquo;
-                </p>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'rgba(239,183,0,.85)', letterSpacing: '.08em', textTransform: 'uppercase', fontWeight: 600 }}>
-                  Named after Ozzy Osbourne — working class, blunt, globally Brummie, never what the establishment expected.
-                </div>
-              </div>
-            </div>
+        <div style={{ maxWidth: 720, margin: '0 auto' }}>
+          <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 18 }}>
+            What is Ozzy?
           </div>
+          <h2 style={{ fontFamily: 'var(--serif)', fontSize: 50, color: 'var(--ink)', lineHeight: 1.12, margin: '0 0 24px', fontWeight: 400, letterSpacing: '-.01em' }}>
+            An AI agent that wants to save Birmingham.
+          </h2>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
+            Ozzy is an open-source project with one purpose: to read every publicly available dataset about Birmingham and tell the city the truth about itself. Birmingham City Council releases and the City Observatory, the Office for National Statistics, the Department for Work and Pensions — including Stat-Xplore and published expenditure tables — HM Revenue and Customs, West Midlands Police, and the Home Office&apos;s data.police.uk. He reads them all. He cross-references them. And then he presents what they actually say.
+          </p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
+            There are <strong style={{ color: 'var(--ink)' }}>thousands of data points</strong> about this city in the public domain. Some are quietly published. Some are released in a way that obscures the reality. Some are buried under jargon. Ozzy&apos;s job is to cut through all that and make the truth easy to see.
+          </p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
+            And it&apos;s built in the open, with AI, by people who care about this city. The more Brummies who bring datasets, questions and build effort, the more Ozzy can see. This is a tool for the whole city to build together.
+          </p>
+          <a href="#contribute" style={{
+            display: 'inline-block',
+            fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 600,
+            padding: '12px 26px',
+            background: 'var(--herald-navy)', color: '#f5f3ee',
+            textDecoration: 'none', letterSpacing: '.04em',
+          }}>
+            Contribute →
+          </a>
         </div>
       </section>
 
@@ -213,18 +169,18 @@ export default function AboutPage() {
         opacity: 0.8,
       }} />
 
-      {/* EXPLORE THE DASHBOARDS */}
+      {/* WHAT'S LIVE */}
       <section style={{ background: 'var(--surface)', padding: '80px 32px 80px', borderBottom: '1px solid var(--border)' }}>
         <div style={{ maxWidth: 1180, margin: '0 auto' }}>
           <div style={{ marginBottom: 36, textAlign: 'center' }}>
             <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 14 }}>
-              The Evidence Locker
+              What&apos;s live
             </div>
             <h2 style={{ fontFamily: 'var(--serif)', fontSize: 40, color: 'var(--ink)', lineHeight: 1.15, margin: '0 0 14px', fontWeight: 400, letterSpacing: '-.01em' }}>
-              Five dashboards. One city. No spin.
+              Birmingham in data — so far.
             </h2>
-            <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 620, marginInline: 'auto' }}>
-              Each dashboard sits behind Ozzy as evidence. Real data, ward by ward, refreshed as the source publishes. Click any to explore.
+            <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 640, marginInline: 'auto' }}>
+              Every view is built on official sources, ward by ward where the data allows. From Universal Credit and the Benefits Bill to crime, skills and child poverty — the evidence behind Ozzy.
             </p>
           </div>
 
@@ -243,71 +199,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* WHAT OZZY SOUNDS LIKE — sample briefing */}
-      <section style={{ background: 'var(--paper)', padding: '80px 32px 72px' }}>
-        <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <div style={{ marginBottom: 36 }}>
-            <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 14 }}>
-              What Ozzy sounds like
-            </div>
-            <h2 style={{ fontFamily: 'var(--serif)', fontSize: 36, color: 'var(--ink)', lineHeight: 1.2, margin: 0, fontWeight: 400, letterSpacing: '-.01em' }}>
-              Plain talk about the data. Weekly. Daily. When it matters.
-            </h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 24 }} className="about-two-col">
-            <div style={{
-              position: 'relative',
-              background: 'var(--herald-navy)',
-              padding: '28px 32px',
-              overflow: 'hidden',
-            }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-                position: 'absolute', bottom: -20, right: -20,
-                width: 180, opacity: 0.07, pointerEvents: 'none',
-              }} />
-              <div style={{ position: 'relative', zIndex: 1 }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--herald-gold)', letterSpacing: '.12em', marginBottom: 14 }}>
-                  OZZY WEEKLY · BIRMINGHAM · 28 MAY 2026
-                </div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'rgba(239,183,0,.4)', marginBottom: 14 }}>━━━━━━━━━━━━━━━━━━━━━━━━━━━━</div>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'rgba(245,243,238,.88)', lineHeight: 1.75, margin: '0 0 16px' }}>
-                  Claimant rate holding at 7.4% city average. Ladywood still highest at 11.1%. Sutton Four Oaks still lowest at 2.3%. The gap between them hasn&apos;t meaningfully closed in 18 months. <strong style={{ color: '#f5f3ee' }}>That should bother everyone.</strong>
-                </p>
-                <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'rgba(245,243,238,.88)', lineHeight: 1.75, margin: '0 0 16px' }}>
-                  Bordesley Green at no-quals decile 9, fourth year running. 35.8% of residents aged 16+ have no qualifications at all. Birmingham average is 24.1%. <strong style={{ color: '#f5f3ee' }}>This is a structural problem, not a data blip.</strong>
-                </p>
-                <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 15, color: 'var(--herald-gold)', lineHeight: 1.7, margin: 0 }}>
-                  → What needs to happen: targeted skills investment in the Aston–Nechells–Bordesley corridor. The data has been saying this for years.
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ border: '1px solid var(--border-solid)', borderLeft: '3px solid var(--herald-blue)', padding: '18px 20px' }}>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, color: 'var(--herald-blue)', letterSpacing: '.12em', marginBottom: 8 }}>● NEW DATA DETECTED</div>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink)', lineHeight: 1.6 }}>
-                  IMD 2025 Education domain published. 23 Birmingham wards improved vs 2019. 11 got worse. Ozzy has updated all views.
-                </div>
-              </div>
-              <div style={{ border: '1px solid var(--border-solid)', borderLeft: '3px solid var(--herald-red)', padding: '18px 20px' }}>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, color: 'var(--herald-red)', letterSpacing: '.12em', marginBottom: 8 }}>▲ SIGNIFICANT SHIFT</div>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink)', lineHeight: 1.6 }}>
-                  Kingstanding claimant rate up 1.4pp this month. Fourth consecutive rise. Worth watching.
-                </div>
-              </div>
-              <div style={{ border: '1px solid var(--border-solid)', borderLeft: '3px solid var(--herald-gold)', padding: '18px 20px' }}>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, color: '#9a7a00', letterSpacing: '.12em', marginBottom: 8 }}>◈ CREDIT WHERE DUE</div>
-                <div style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--ink)', lineHeight: 1.6 }}>
-                  Moseley, Harborne, Edgbaston all holding below 5% claimant rate. Level 4+ qualifications above 50%. Genuinely good numbers.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* OPEN SOURCE / CONTRIBUTE — strong CTA section */}
+      {/* OPEN SOURCE / CONTRIBUTE */}
       <section id="contribute" style={{
         scrollMarginTop: 80,
         background: 'var(--surface)',
@@ -335,7 +227,7 @@ export default function AboutPage() {
                 Ozzy is built in the open. The code is on GitHub. The data sources are listed. The way Ozzy reaches every conclusion is traceable, end to end.
               </p>
               <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
-                We need <strong style={{ color: 'var(--ink)' }}>Brummies</strong> to help build this. You don&apos;t need to code. You just need to know the city, or know a dataset, or know a question that should be asked.
+                We need <strong style={{ color: 'var(--ink)' }}>Brummies</strong> to help build this. You don&apos;t need a traditional coding background. You just need to know the city, know a dataset, or be willing to build with AI.
               </p>
 
               <div style={{
@@ -383,14 +275,14 @@ export default function AboutPage() {
                 {
                   glyph: '◈',
                   ttl: 'Know a dataset?',
-                  body: 'Public dataset we&apos;re not using? Housing, health, schools, transport, environment. If it&apos;s public and it tells Birmingham&apos;s story, it belongs here.',
+                  body: 'Public dataset we&apos;re not using? Benefits, tax, housing, health, schools, transport, environment. If it&apos;s public and it tells Birmingham&apos;s story, it belongs here.',
                   who: 'Council officers · researchers · journalists · curious residents',
                 },
                 {
                   glyph: '▦',
-                  ttl: 'Can you code?',
-                  body: 'Next.js 14 + TypeScript + Chart.js + Leaflet. Build a new view, improve an existing one, write a new data fetcher. Pull requests welcome.',
-                  who: 'Devs of all levels · Brum tech scene · students',
+                  ttl: 'Can you help us build?',
+                  body: 'You don&apos;t need to be a traditional developer. If you can build with AI — or you&apos;re willing to learn by shipping — help us add a view, wire a dataset, or improve what already exists. Pull requests and prototypes both welcome.',
+                  who: 'Anyone who can ship · Brum tech scene · students · AI builders',
                 },
                 {
                   glyph: '◉',
@@ -439,10 +331,10 @@ export default function AboutPage() {
               What&apos;s in Ozzy
             </div>
             <h2 style={{ fontFamily: 'var(--serif)', fontSize: 36, color: 'var(--ink)', lineHeight: 1.2, margin: '0 0 12px', fontWeight: 400, letterSpacing: '-.01em' }}>
-              This is the start. Not the finished thing.
+              This is the start — not the finished city.
             </h2>
             <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, maxWidth: 620 }}>
-              What Ozzy can see today, what&apos;s coming next, and what the long-term vision looks like. Want to push one of these up the list? <a href="mailto:westmidlands@lookingforgrowth.uk" style={{ color: 'var(--herald-navy)', textDecoration: 'underline', textDecorationColor: 'var(--herald-gold)' }}>Tell us.</a>
+              What Ozzy can see today, what we&apos;re opening next — including tax and local finance as its own chapter — and the long-term agent vision. Want to push one of these up the list? <a href="mailto:westmidlands@lookingforgrowth.uk" style={{ color: 'var(--herald-navy)', textDecoration: 'underline', textDecorationColor: 'var(--herald-gold)' }}>Tell us.</a>
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }} className="about-two-col">

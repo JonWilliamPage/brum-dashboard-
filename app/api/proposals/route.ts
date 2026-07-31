@@ -76,6 +76,26 @@ export async function POST(req: Request) {
     gb_total_real_latest?: number;
     gb_total_nominal_latest?: number;
     birmingham_pip_m?: number | null;
+    national?: Record<string, unknown>; // wrong-payments GB rates panel
+    uc_reasons?: unknown[];             // wrong-payments UC fraud reasons
+    error_composition?: Record<string, unknown>;
+    method_notes?: unknown[];
+    as_of?: string;
+    month_keys?: unknown[];
+    category_mix?: Record<string, unknown>;
+    gb_conditions?: Record<string, unknown>;
+    uc?: Record<string, unknown>;
+    pip?: Record<string, unknown>;
+    presentation?: string;
+    award_bands?: unknown[];           // uc-payments
+    family_types?: unknown[];          // uc-payments
+    rates_year?: string;               // family-model
+    framing?: Record<string, unknown>;
+    observed?: Record<string, unknown>;
+    bill_context?: Record<string, unknown>;
+    catalogue?: unknown[];
+    scenarios?: unknown[];
+    comparisons?: Record<string, unknown>;
     source?: Record<string, unknown>;
     sources?: unknown[];
     metric?: string;
@@ -110,6 +130,7 @@ export async function POST(req: Request) {
       // this proposal has — undefined fields drop out of the JSON.
       ...(proposal.geography ? { geography: proposal.geography } : {}),
       ...(proposal.benchmarks ? { benchmarks: proposal.benchmarks } : {}),
+      ...(proposal.bench_series ? { bench_series: proposal.bench_series } : {}),
       ...(proposal.areas ? { areas: proposal.areas } : {}),
       ...(proposal.months ? { months: proposal.months } : {}),
       ...(proposal.years ? { years: proposal.years } : {}),
@@ -129,6 +150,26 @@ export async function POST(req: Request) {
       ...(proposal.gb_total_real_latest != null ? { gb_total_real_latest: proposal.gb_total_real_latest } : {}),
       ...(proposal.gb_total_nominal_latest != null ? { gb_total_nominal_latest: proposal.gb_total_nominal_latest } : {}),
       ...(proposal.birmingham_pip_m != null ? { birmingham_pip_m: proposal.birmingham_pip_m } : {}),
+      ...(proposal.national ? { national: proposal.national } : {}),
+      ...(proposal.uc_reasons ? { uc_reasons: proposal.uc_reasons } : {}),
+      ...(proposal.error_composition ? { error_composition: proposal.error_composition } : {}),
+      ...(proposal.method_notes ? { method_notes: proposal.method_notes } : {}),
+      ...(proposal.as_of ? { as_of: proposal.as_of } : {}),
+      ...(proposal.month_keys ? { month_keys: proposal.month_keys } : {}),
+      ...(proposal.category_mix ? { category_mix: proposal.category_mix } : {}),
+      ...(proposal.gb_conditions ? { gb_conditions: proposal.gb_conditions } : {}),
+      ...(proposal.uc ? { uc: proposal.uc } : {}),
+      ...(proposal.pip ? { pip: proposal.pip } : {}),
+      ...(proposal.presentation ? { presentation: proposal.presentation } : {}),
+      ...(proposal.award_bands ? { award_bands: proposal.award_bands } : {}),
+      ...(proposal.family_types ? { family_types: proposal.family_types } : {}),
+      ...(proposal.rates_year ? { rates_year: proposal.rates_year } : {}),
+      ...(proposal.framing ? { framing: proposal.framing } : {}),
+      ...(proposal.observed ? { observed: proposal.observed } : {}),
+      ...(proposal.bill_context ? { bill_context: proposal.bill_context } : {}),
+      ...(proposal.catalogue ? { catalogue: proposal.catalogue } : {}),
+      ...(proposal.scenarios ? { scenarios: proposal.scenarios } : {}),
+      ...(proposal.comparisons ? { comparisons: proposal.comparisons } : {}),
       wards: proposal.wards,
     };
     writeFileSync(join(PUBLISHED_DIR, `${id}.json`), JSON.stringify(published, null, 2));
