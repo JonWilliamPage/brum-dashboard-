@@ -1,5 +1,7 @@
 # Local government insight agent
 
+**New to GitHub, Node.js or localhost? Start with the [For N00bs guide](docs/for-n00b.md).**
+
 **Agent skills for official public data** — connect it, check it, visualise it, analyse it, brief the place.
 
 **Ozzy** is Birmingham’s spin-out: a live city product built with these skills. Any council (or civic team) can use the same agent on **their** open data.
