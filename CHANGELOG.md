@@ -31,11 +31,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   themselves — verified by re-running a clean `npm run build` (all 9 routes
   compiled) and hitting every route with a clean `next dev` server (all
   returned HTTP 200).
-
-### Known issues / deferred
-- 5 high-severity `npm audit` findings remain, all requiring a breaking
-  `npm audit fix --force` upgrade of Next.js 14.2.35 → 16.3.3 (which also
-  brings `eslint-config-next`, `glob`, and `postcss` current):
+- **2026-08-28** — Resolved the remaining 5 high-severity `npm audit`
+  vulnerabilities via `npm audit fix --force`, upgrading **Next.js
+  14.2.35 → 16.3.3** (also brings `eslint-config-next`, `glob`, and `postcss`
+  current). `npm audit` now reports **0 vulnerabilities**.
   - `glob` — command injection via CLI `-c/--cmd` in eslint tooling
     ([GHSA-5j98-mcp5-4vw2](https://github.com/advisories/GHSA-5j98-mcp5-4vw2))
   - `next` — multiple DoS, request smuggling, cache poisoning, XSS via CSP
@@ -47,5 +46,32 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     [GHSA-6g55-p6wh-862q](https://github.com/advisories/GHSA-6g55-p6wh-862q),
     [GHSA-fxqj-rqcc-2cmp](https://github.com/advisories/GHSA-fxqj-rqcc-2cmp),
     [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849))
-  - Deferred pending a decision on the Next.js 16 upgrade, since it's a
-    breaking change requiring its own testing pass.
+  - `package.json`/`package-lock.json` updated (`next` and `eslint-config-next`
+    to `^16.3.3`). `tsconfig.json` was auto-migrated by Next.js itself
+    (`jsx: react-jsx`, `target: ES2017`, added `.next/dev/types` to `include`).
+    Removed the now-obsolete `eslint.ignoreDuringBuilds` key from
+    `next.config.mjs` — Next 16 no longer runs ESLint during `next build`, so
+    it was a no-op producing a build warning.
+  - Verified with a clean `npm run build` (all 9 routes compiled, 0 warnings)
+    and a clean `next dev` run (Turbopack now default; ready in ~350–750ms vs
+    ~5s previously), plus a manual HTTP sweep of every route (all 200).
+  - The first upgrade attempt failed mid-install (`ECONNRESET` from a network
+    change, compounded by an `EPERM` file-lock error while the dev server was
+    still running) and left `node_modules` partially corrupted.
+    `package.json`/`package-lock.json` were untouched by the failure, so
+    recovery was: delete `node_modules`, reinstall from the existing lockfile
+    to confirm the pre-upgrade baseline still worked, then retry
+    `npm audit fix --force` (with the dev server stopped) successfully.
+  - `next dev`/`next build` now auto-appends an `<!-- BEGIN:nextjs-agent-rules -->`
+    block to `AGENTS.md` — a genuine Next.js 16 feature (see
+    `node_modules/next/dist/server/lib/generate-agent-files.js`) that tells AI
+    coding agents to consult the framework's bundled docs before making
+    Next-specific changes, since v16 differs from most training data. It's
+    regenerated on every run, so it's committed to keep the tree clean, per
+    its own instructions.
+
+### Known issues / deferred
+- `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
+  pins `eslint@^8`; `npm audit fix --force` installed past this peer-dependency
+  conflict. Doesn't affect `next dev`/`next build`, but `npm run lint` may
+  behave unpredictably until `eslint` itself is upgraded to v9+. Not yet fixed.
