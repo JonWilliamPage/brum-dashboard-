@@ -62,7 +62,6 @@ export default function AboutPage() {
         borderBottom: '3px solid var(--herald-gold)',
       }}>
         <BullAscii
-          animate={false}
           displayWidth={460}
           style={{
             position: 'absolute', bottom: -20, right: -64, margin: 0,
@@ -211,7 +210,6 @@ export default function AboutPage() {
         borderBottom: '3px solid var(--herald-gold)',
       }}>
         <BullAscii
-          animate={false}
           textColor="#15181e"
           displayWidth={380}
           style={{

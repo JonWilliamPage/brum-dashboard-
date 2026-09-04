@@ -17,7 +17,6 @@ export default function SourcesPage() {
       {/* Hero strip */}
       <section style={{ position: 'relative', background: 'var(--herald-navy)', padding: '52px 32px', overflow: 'hidden', borderBottom: '3px solid var(--herald-gold)' }}>
         <BullAscii
-          animate={false}
           displayWidth={200}
           style={{ position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', margin: 0, opacity: 0.07, pointerEvents: 'none' }}
         />

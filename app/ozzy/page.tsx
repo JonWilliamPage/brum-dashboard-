@@ -219,7 +219,6 @@ export default function OzzyPage() {
         borderBottom: '3px solid var(--herald-gold)',
       }}>
         <BullAscii
-          animate={false}
           displayWidth={220}
           style={{
             position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', margin: 0,
@@ -371,7 +370,6 @@ export default function OzzyPage() {
                               overflow: 'hidden',
                             }}>
                               <BullAscii
-                                animate={false}
                                 displayWidth={110}
                                 style={{
                                   position: 'absolute', bottom: -16, right: -16, margin: 0,

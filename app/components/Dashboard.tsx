@@ -46,6 +46,7 @@ import PipStageView from '../pip-stage/components/PipStageView';
 import OzzyStageView from '../ozzy-stage/components/OzzyStageView';
 import CrimeObsView from '../crime-observatory/components/CrimeObsView';
 import ScoringNote from './brand/ScoringNote';
+import BullAscii from './BullAscii';
 
 const EduMap = dynamic(() => import('../education/components/EduMap'), { ssr: false });
 
@@ -456,8 +457,15 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
       {/* Loading overlay */}
       <div id="overlay" className={ready ? 'fade' : ''}>
         <div className="splash">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/bull-logo.svg" alt="" aria-hidden="true" className="splash-crest" />
+          <BullAscii
+            animate={false}
+            textColor="#15181e"
+            cols={40}
+            rows={26}
+            minAlpha={0.5}
+            displayWidth={96}
+            style={{ margin: 0 }}
+          />
           <div className="splash-wordmark">BIRMINGHAM</div>
           <div className="splash-sub">City Dashboard · Ozzy Intelligence</div>
         </div>
@@ -472,8 +480,16 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
         <aside className="dash-sidebar">
           {/* Brand */}
           <div className="dash-brand">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/bull-logo.svg" alt="Ozzy bull" className="dash-crest" />
+            <BullAscii
+              animate={false}
+              textColor="#15181e"
+              cols={40}
+              rows={26}
+              minAlpha={0.5}
+              displayWidth={34}
+              displayHeight={42}
+              style={{ margin: 0, flexShrink: 0 }}
+            />
             <div>
               <div className="dash-brand-name">Birmingham</div>
               <div className="dash-brand-sub">City Dashboard</div>

@@ -11,7 +11,7 @@ interface CrestWatermarkProps {
 }
 
 /**
- * Faded ASCII watermark — the Ozzy bull, static-rendered as ASCII art, bled behind a panel.
+ * Faded ASCII watermark — the Ozzy bull, animated as shimmering ASCII art, bled behind a panel.
  * Part of the Ozzy brand chrome. Parent must be position:relative + overflow:hidden.
  */
 export default function CrestWatermark({
@@ -22,7 +22,6 @@ export default function CrestWatermark({
 }: CrestWatermarkProps) {
   return (
     <BullAscii
-      animate={false}
       textColor={textColor}
       displayWidth={width}
       style={{ position: 'absolute', pointerEvents: 'none', opacity, margin: 0, ...style }}

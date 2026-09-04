@@ -158,6 +158,38 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     itself has `ignoreBuildErrors: true`, so type errors don't fail it — ran
     TypeScript separately to be sure; the only error found is pre-existing
     and unrelated, in `app/fly-tipping/components/FlyTippingView.tsx`).
+- **2026-09-04** — Cosmetic pass: replaced the remaining plain-SVG bull logo
+  marks with the ASCII-rendered version, for visual consistency with the
+  animated hero logo and the watermarks fixed earlier.
+  - Converted the footer brand icon, dashboard sidebar icon, and
+    loading-splash icon (`SiteFooter.tsx`, `Dashboard.tsx`) from `<img
+    src="/bull-logo.svg">` to `<BullAscii>`, statically rendered at first
+    (coarser glyph grid than the hero version, tuned for legibility at
+    ~36–96px, dark ink colour to match their light backgrounds) —
+    following the same small-motif pattern already used in
+    `DashboardHeader.tsx`.
+  - Follow-up: the footer bull was then switched to **animated** (shimmer/
+    wave/scan-sweep, same as the main hero logo) per explicit request, since
+    static read as visually "dead" next to the animated instances elsewhere
+    on the page.
+  - Follow-up: all the large background **watermarks** were switched from
+    static to animated too — `CrestWatermark.tsx` (covering the Fiscal
+    dashboard panel and every dashboard header), and the direct watermark
+    instances on the About page (hero + contribute section), Ask Ozzy page
+    (hero + every chat-response panel), and Sources page (hero). Note: the
+    Ask Ozzy per-message watermark means a long conversation now runs one
+    small animated canvas per message — kept as requested, worth watching
+    for jank on very long conversations.
+  - Left the dashboard sidebar icon and loading-splash icon **static** —
+    those are logo marks, not watermarks, and weren't included in the
+    animate request.
+  - `bull-logo.svg` is now fully unreferenced (confirmed via repo-wide
+    search) — queued for deletion in a follow-up step, since every
+    remaining ASCII bull instance samples from `bull-logo.png` instead
+    (`BullAscii.tsx` — this file must **not** be deleted, it's the live
+    source image the ASCII renderer reads, not a leftover).
+  - Verified with a clean `npm run build` and a manual HTTP route sweep
+    (all 200) after each of the three changes above.
 
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
@@ -170,3 +202,19 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and `/api/proposals` to work at all (by design — fails closed). Not yet set
   anywhere outside local `.env.local`; needs doing before `/review` is used
   on a deployed environment.
+- **Next major job (queued, not started):** the ward count shown across the
+  site is inconsistent — 69 wards in most places (crime, UC, child poverty,
+  PIP — the correct, current official ONS ward set, codes
+  `E05011118`–`E05011186`, canonical list in `lib/wards.ts`), but **68** in
+  the footer, Education, Youth/NEET risk, Housing, Fiscal, and Ask Ozzy's
+  data context. Root cause confirmed: those five all trace back to a
+  hardcoded `FALLBACK` array in `lib/data.ts` — a legacy 68-ward dataset with
+  a *different, incorrect* ONS code series (`E05011082`–`E05011150`) and
+  some outdated ward names. `lib/wards.ts` already carries a comment flagging
+  this exact problem ("Do NOT use the legacy 68-ward set embedded in
+  lib/data.ts"), so it's known, pre-existing tech debt, not something
+  introduced by this fork. Real fix requires sourcing correct IMD/claimant/
+  inactivity figures for the right 69-ward geography and retiring
+  `FALLBACK` — not a text relabel — so it's scoped as its own job, planned
+  to start once the current cosmetic logo pass (this section, above) is
+  done.

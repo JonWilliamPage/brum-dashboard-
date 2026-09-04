@@ -1,3 +1,5 @@
+import BullAscii from './BullAscii';
+
 export default function SiteFooter() {
   return (
     <footer className="site-foot">
@@ -7,8 +9,15 @@ export default function SiteFooter() {
         <div className="site-foot-cols">
           <div className="site-foot-col">
             <div className="site-foot-brand">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/bull-logo.svg" alt="Ozzy bull" />
+              <BullAscii
+                textColor="#15181e"
+                cols={40}
+                rows={26}
+                minAlpha={0.5}
+                displayWidth={36}
+                displayHeight={44}
+                style={{ margin: 0, flexShrink: 0 }}
+              />
               <div>
                 <div className="site-foot-brand-name">Ozzy</div>
                 <div className="site-foot-brand-sub">Birmingham · AI Intelligence</div>
