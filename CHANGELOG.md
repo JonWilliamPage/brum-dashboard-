@@ -218,6 +218,17 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     dashboard view now renders `68 wards` — each honestly describing its
     own data — plus a clean `npm run build`/`tsc --noEmit` and a full route
     sweep (all 200).
+- **2026-09-04** — Deleted `public/bull-logo.svg`, now that nothing
+  references it (every remaining plain-SVG usage was converted to the
+  ASCII-rendered `BullAscii` component in the two entries above). Confirmed
+  by a repo-wide search before deleting; the only remaining mentions are in
+  this changelog's own history and an old design-handoff doc
+  (`BULL_LOGO_TRANSFER.md`), neither of which is live app code. Left
+  `public/bull-logo.png` untouched — it's the live source image
+  `BullAscii.tsx` samples pixel-by-pixel to generate every ASCII bull on
+  the site, not a leftover file. Verified: `bull-logo.png` still serves
+  (200), `bull-logo.svg` now correctly 404s, clean `npm run build`, full
+  route sweep (all 200).
 
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
