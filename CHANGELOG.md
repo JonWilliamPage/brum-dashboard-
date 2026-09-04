@@ -229,6 +229,13 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   the site, not a leftover file. Verified: `bull-logo.png` still serves
   (200), `bull-logo.svg` now correctly 404s, clean `npm run build`, full
   route sweep (all 200).
+- **2026-09-04** — Removed a stray hardcoded block-letter "OZZY" wordmark
+  (Unicode box-drawing characters, `app/ozzy/page.tsx`) that sat faintly
+  below "Select a question to begin" in the Ask Ozzy page's empty chat
+  state, alongside a "BIRMINGHAM · FORWARD" tagline next to it — flagged by
+  the user as an odd leftover logo. Both removed outright per request; the
+  "Select a question to begin" text itself is untouched. Verified with a
+  clean `npm run build` and a full route sweep (all 200).
 
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still

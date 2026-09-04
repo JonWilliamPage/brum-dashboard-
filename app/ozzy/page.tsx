@@ -307,16 +307,6 @@ export default function OzzyPage() {
                   <div style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.7, marginBottom: 24 }}>
                     ← Select a question to begin. Ozzy will decode his answer live.
                   </div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'rgba(14,15,17,0.07)', lineHeight: 1.4, whiteSpace: 'pre', userSelect: 'none' }}>
-{`  ██████  ███████ ███████ ██    ██
- ██    ██    ███     ███   ██  ██
- ██    ██   ███     ███     ████
- ██    ██  ███     ███       ██
-  ██████  ███████ ███████    ██`}
-                  </div>
-                  <div style={{ marginTop: 10, fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: '.2em', color: 'rgba(14,15,17,0.12)', textTransform: 'uppercase' }}>
-                    BIRMINGHAM · FORWARD
-                  </div>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
