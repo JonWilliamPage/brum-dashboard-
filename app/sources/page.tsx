@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import SiteFooter from '@/app/components/SiteFooter';
+import BullAscii from '@/app/components/BullAscii';
 import { SOURCES } from '@/lib/sources';
 
 export const metadata: Metadata = {
@@ -15,8 +16,11 @@ export default function SourcesPage() {
 
       {/* Hero strip */}
       <section style={{ position: 'relative', background: 'var(--herald-navy)', padding: '52px 32px', overflow: 'hidden', borderBottom: '3px solid var(--herald-gold)' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{ position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', width: 200, opacity: 0.07, pointerEvents: 'none' }} />
+        <BullAscii
+          animate={false}
+          displayWidth={200}
+          style={{ position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', margin: 0, opacity: 0.07, pointerEvents: 'none' }}
+        />
         <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 14 }}>
             Data Sources &amp; Provenance
@@ -24,8 +28,11 @@ export default function SourcesPage() {
           <h1 style={{ fontFamily: 'var(--serif)', fontSize: 46, color: '#f5f3ee', lineHeight: 1.1, margin: '0 0 14px', fontWeight: 400, letterSpacing: '-.015em' }}>
             Every number, traced to an official source.
           </h1>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'rgba(245,243,238,.78)', lineHeight: 1.65, maxWidth: 720, margin: 0 }}>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'rgba(245,243,238,.78)', lineHeight: 1.65, maxWidth: 720, margin: '0 0 16px' }}>
             Each dataset below lists its official source, the as-of date, and the committed script that pulled it — so anyone can reproduce it. Nothing is modelled or synthesised: if a value can&apos;t be sourced, it shows as &ldquo;—&rdquo; in the dashboard, never as an estimate.
+          </p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'rgba(245,243,238,.55)', lineHeight: 1.6, maxWidth: 720, margin: 0, fontStyle: 'italic' }}>
+            Ozzy is an independent, open-source project. Listing a source here credits its data provider — it does not imply that provider operates, endorses, or is affiliated with Ozzy.
           </p>
         </div>
       </section>

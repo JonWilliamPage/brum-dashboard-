@@ -8,7 +8,7 @@ export default function SiteFooter() {
           <div className="site-foot-col">
             <div className="site-foot-brand">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/birmingham-coat-of-arms.png" alt="Birmingham crest" />
+              <img src="/bull-logo.svg" alt="Ozzy bull" />
               <div>
                 <div className="site-foot-brand-name">Ozzy</div>
                 <div className="site-foot-brand-sub">Birmingham · AI Intelligence</div>
@@ -25,6 +25,7 @@ export default function SiteFooter() {
             <a href="/ozzy">Ask Ozzy</a>
             <a href="/dashboard">Dashboards</a>
             <a href="/sources">Data Sources</a>
+            <a href="/privacy">Privacy</a>
           </div>
 
           <div className="site-foot-col">
@@ -46,7 +47,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="site-foot-bottom">
-          <div>© Birmingham City Council · {new Date().getFullYear()} · Built on public data</div>
+          <div>© Ask Ozzy contributors · {new Date().getFullYear()} · Independent project — uses public Birmingham data. Not affiliated with Birmingham City Council.</div>
           <div className="site-foot-bottom-meta">
             Base geography: <strong>E08000025</strong> · 68 wards (Dec 2022) · Data: NOMIS · IMD 2025 · Census 2021 · WMP · City Observatory
           </div>

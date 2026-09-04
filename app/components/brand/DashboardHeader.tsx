@@ -9,8 +9,6 @@ interface DashboardHeaderProps {
   subtitle?: ReactNode;
   /** Brand motif on the right. 'bull' renders a small static ASCII bull. */
   motif?: 'bull' | 'none';
-  /** Watermark image (coat of arms by default; pass the flag for variety). */
-  watermarkSrc?: string;
   style?: CSSProperties;
 }
 
@@ -24,7 +22,6 @@ export default function DashboardHeader({
   title,
   subtitle,
   motif = 'bull',
-  watermarkSrc,
   style,
 }: DashboardHeaderProps) {
   return (
@@ -39,9 +36,9 @@ export default function DashboardHeader({
       }}
     >
       <CrestWatermark
-        src={watermarkSrc}
         width={260}
         opacity={0.05}
+        textColor="#15181e"
         style={{ top: '50%', right: -36, transform: 'translateY(-50%)' }}
       />
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 18 }}>

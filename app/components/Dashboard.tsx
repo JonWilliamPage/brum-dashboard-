@@ -457,7 +457,7 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
       <div id="overlay" className={ready ? 'fade' : ''}>
         <div className="splash">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" className="splash-crest" />
+          <img src="/bull-logo.svg" alt="" aria-hidden="true" className="splash-crest" />
           <div className="splash-wordmark">BIRMINGHAM</div>
           <div className="splash-sub">City Dashboard · Ozzy Intelligence</div>
         </div>
@@ -473,7 +473,7 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
           {/* Brand */}
           <div className="dash-brand">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/birmingham-coat-of-arms.png" alt="Birmingham crest" className="dash-crest" />
+            <img src="/bull-logo.svg" alt="Ozzy bull" className="dash-crest" />
             <div>
               <div className="dash-brand-name">Birmingham</div>
               <div className="dash-brand-sub">City Dashboard</div>

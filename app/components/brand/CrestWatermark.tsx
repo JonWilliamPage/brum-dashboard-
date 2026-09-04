@@ -1,31 +1,31 @@
 import type { CSSProperties } from 'react';
+import BullAscii from '../BullAscii';
 
 interface CrestWatermarkProps {
-  /** Image source. Defaults to the Birmingham coat of arms; pass the flag for variety. */
-  src?: string;
   width?: number;
   opacity?: number;
+  /** Glyph colour — must be a real colour, canvas can't read CSS vars. Defaults to light, for dark/navy panels. */
+  textColor?: string;
   /** Positioning overrides (top/right/bottom/left/transform). Parent must be position:relative. */
   style?: CSSProperties;
 }
 
 /**
- * Faded heraldic watermark — the coat of arms (or flag) bled behind a panel.
- * Part of the Birmingham brand chrome. Parent must be position:relative + overflow:hidden.
+ * Faded ASCII watermark — the Ozzy bull, static-rendered as ASCII art, bled behind a panel.
+ * Part of the Ozzy brand chrome. Parent must be position:relative + overflow:hidden.
  */
 export default function CrestWatermark({
-  src = '/assets/birmingham-coat-of-arms.png',
   width = 300,
   opacity = 0.05,
+  textColor = '#f5f3ee',
   style,
 }: CrestWatermarkProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={src}
-      alt=""
-      aria-hidden="true"
-      style={{ position: 'absolute', pointerEvents: 'none', width, opacity, ...style }}
+    <BullAscii
+      animate={false}
+      textColor={textColor}
+      displayWidth={width}
+      style={{ position: 'absolute', pointerEvents: 'none', opacity, margin: 0, ...style }}
     />
   );
 }

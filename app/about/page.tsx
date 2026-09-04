@@ -61,14 +61,12 @@ export default function AboutPage() {
         overflow: 'hidden',
         borderBottom: '3px solid var(--herald-gold)',
       }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/birmingham-coat-of-arms.png"
-          alt=""
-          aria-hidden="true"
+        <BullAscii
+          animate={false}
+          displayWidth={460}
           style={{
-            position: 'absolute', bottom: -20, right: -64,
-            width: 460, opacity: 0.06, pointerEvents: 'none',
+            position: 'absolute', bottom: -20, right: -64, margin: 0,
+            opacity: 0.06, pointerEvents: 'none',
           }}
         />
 
@@ -139,6 +137,9 @@ export default function AboutPage() {
           <h2 style={{ fontFamily: 'var(--serif)', fontSize: 50, color: 'var(--ink)', lineHeight: 1.12, margin: '0 0 24px', fontWeight: 400, letterSpacing: '-.01em' }}>
             An AI agent that wants to save Birmingham.
           </h2>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--muted)', lineHeight: 1.65, margin: '0 0 22px', fontStyle: 'italic' }}>
+            Ozzy is an independent, open-source project — not operated by, affiliated with, or endorsed by Birmingham City Council. It uses their publicly published data, credited in full on our <a href="/sources" style={{ color: 'var(--herald-navy)' }}>Sources page</a>.
+          </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
             Ozzy is an open-source project with one purpose: to read every publicly available dataset about Birmingham and tell the city the truth about itself. Birmingham City Council releases and the City Observatory, the Office for National Statistics, the Department for Work and Pensions — including Stat-Xplore and published expenditure tables — HM Revenue and Customs, West Midlands Police, and the Home Office&apos;s data.police.uk. He reads them all. He cross-references them. And then he presents what they actually say.
           </p>
@@ -209,11 +210,15 @@ export default function AboutPage() {
         borderTop: '1px solid var(--border)',
         borderBottom: '3px solid var(--herald-gold)',
       }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-          position: 'absolute', top: '50%', right: -60, transform: 'translateY(-50%)',
-          width: 380, opacity: 0.04, pointerEvents: 'none',
-        }} />
+        <BullAscii
+          animate={false}
+          textColor="#15181e"
+          displayWidth={380}
+          style={{
+            position: 'absolute', top: '50%', right: -60, transform: 'translateY(-50%)', margin: 0,
+            opacity: 0.04, pointerEvents: 'none',
+          }}
+        />
         <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'start' }} className="about-two-col">
             <div>

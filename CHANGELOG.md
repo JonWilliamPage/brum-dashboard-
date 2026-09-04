@@ -70,8 +70,103 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     regenerated on every run, so it's committed to keep the tree clean, per
     its own instructions.
 
+- **2026-08-28** — Fixed a false copyright/branding claim: the site-wide footer
+  read `© Birmingham City Council · {year} · Built on public data`, and the
+  official Birmingham coat of arms was used as decorative watermark/brand
+  chrome across the About, Ask Ozzy, Sources, and Dashboard pages — together
+  implying this is an official council product, which it is not.
+  - Footer now reads `© Ask Ozzy contributors · {year} · Independent project
+    — uses public Birmingham data. Not affiliated with Birmingham City
+    Council.`
+  - Added an explicit independence disclaimer on the About page (under the
+    hero) and the Sources page (under the source list intro), each stating
+    Ozzy is independent and not operated by, affiliated with, or endorsed by
+    Birmingham City Council.
+  - Deleted `public/assets/birmingham-coat-of-arms.png` and
+    `birmingham-flag.png`; confirmed no remaining references before deletion.
+  - Replaced the crest watermark with the project's own bull mascot
+    (`public/bull-logo.svg`/`.png`, pre-existing project asset) across all 9
+    usages, including the shared `CrestWatermark` component (auto-fixing its
+    two callers) — small logo marks (footer brand icon, dashboard sidebar
+    icon, splash icon) were left as clean SVG; only the large faded
+    background watermarks were swapped.
+  - Watermark was subsequently changed again to render the bull as **static
+    ASCII art** (via the existing `BullAscii` canvas component, `animate=false`
+    for a one-time paint, no ongoing render loop) rather than the plain SVG,
+    per follow-up request — glyph colour hardcoded per panel (canvas can't
+    read CSS vars) to match each background (light on navy panels, dark ink
+    on the two white/light panels).
+  - Verified with a clean `npm run build` (all routes, 0 warnings) and a
+    manual HTTP sweep of every route (all 200), plus confirming the old
+    crest URL now 404s.
+- **2026-09-04** — Broader copyright/GDPR audit (beyond the crest fix above),
+  ahead of showing the site to contributors, councillors, and council
+  officials. Map tile attribution, OGL data-source licensing, and
+  individual-level personal data in the datasets were all checked and found
+  compliant (no changes needed there). Four real gaps found and fixed:
+  - **No privacy/AI-disclosure notice anywhere.** Ask Ozzy sends every prompt
+    to Anthropic's API with zero on-page disclosure of that, and there was no
+    privacy or terms page at all. Added a new `/privacy` page (linked from
+    the footer) explaining what's sent to Anthropic, what's stored locally,
+    that there's no cookie/analytics tracking, and linking to the Sources
+    page for data licensing. Added an inline disclosure line under the Ask
+    Ozzy chat input itself, linking to `/privacy`
+    (`app/components/OzzyView.tsx`).
+  - **Chat history persisted forever in `localStorage` with no way to clear
+    it.** `OzzyView.tsx` saves every question/answer indefinitely, client-side
+    only — a real issue on a shared machine (e.g. a council kiosk), since the
+    next visitor would see the previous person's conversation. Added a
+    `clearConv()` function and a visible "Clear conversation" control next to
+    the new disclosure line.
+  - **Google Fonts loaded live from Google's CDN on every page view**
+    (`@import url('https://fonts.googleapis.com/...')` in `globals.css`),
+    sending every visitor's IP to Google just to render the page — the exact
+    pattern a German court held unlawful without consent in 2022; UK ICO
+    treats the same pattern as a live issue. Switched Baskervville, IBM Plex
+    Mono, and Public Sans to `next/font/google` in `app/layout.tsx`, which
+    self-hosts the font files at build time — same fonts, zero runtime
+    request to Google. `globals.css`'s `--serif`/`--mono`/`--sans` variables
+    now reference the `next/font`-generated CSS variables instead of hardcoded
+    family names; the old `@import` line was removed. Confirmed via a direct
+    HTML check that no `fonts.googleapis.com` reference remains, and that the
+    self-hosted `.woff2` files are actually served.
+  - **`/api/proposals` had no authentication.** Any anonymous request could
+    list, accept, or reject data proposals — writing directly to the
+    published dashboard data (`public/data/`). No personal data was involved,
+    but it's a content-integrity hole on an endpoint that's about to be
+    demoed publicly. Added a fail-closed shared-token check (`x-review-token`
+    header vs. `REVIEW_ADMIN_TOKEN` env var — refuses every request if the
+    var isn't set, rather than defaulting open) to both `GET` and `POST` in
+    `app/api/proposals/route.ts`. The `/review` page now prompts for the
+    token once per browser session (stored in `sessionStorage`, not
+    `localStorage`) and sends it on every request; a rejected/missing token
+    re-shows the prompt. Documented both required env vars
+    (`ANTHROPIC_API_KEY`, `REVIEW_ADMIN_TOKEN`) in a new `.env.example`.
+    Verified: unauthenticated and wrong-token requests both return 401,
+    correct token returns 200.
+  - **Repo-hygiene loose end (not a live-site risk):** old prototype files
+    under `reference/` (`birmingham_dashboard_v2.html`, `_v3.html`,
+    `Birmingham Employment Dashboard.html`, `HANDOFF.md`) still contain the
+    original "© Birmingham City Council" text and crest references fixed
+    above — confirmed not imported by the live app, so no runtime exposure,
+    but visible to anyone browsing the GitHub repo, sitting right next to the
+    corrected version. Added `reference/README.md` clarifying these are
+    archived design prototypes that predate the branding/legal fixes, not
+    the live app.
+  - Verified with a clean `npm run build` (11 routes now, including the new
+    `/privacy` page, 0 warnings) and a direct `tsc --noEmit` run (the build
+    itself has `ignoreBuildErrors: true`, so type errors don't fail it — ran
+    TypeScript separately to be sure; the only error found is pre-existing
+    and unrelated, in `app/fly-tipping/components/FlyTippingView.tsx`).
+
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
   pins `eslint@^8`; `npm audit fix --force` installed past this peer-dependency
   conflict. Doesn't affect `next dev`/`next build`, but `npm run lint` may
   behave unpredictably until `eslint` itself is upgraded to v9+. Not yet fixed.
+- Data-source licence is shown as plain text on the Sources page, not linked
+  to the actual OGL v3.0 licence text. Low priority, not yet fixed.
+- `REVIEW_ADMIN_TOKEN` must be set in the deployment environment for `/review`
+  and `/api/proposals` to work at all (by design — fails closed). Not yet set
+  anywhere outside local `.env.local`; needs doing before `/review` is used
+  on a deployed environment.

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import SiteFooter from '@/app/components/SiteFooter';
+import BullAscii from '@/app/components/BullAscii';
 
 const SC = '0123456789ABCDEFabcdef!@#$%^&*+-=<>|/\\{}[]?';
 
@@ -217,11 +218,14 @@ export default function OzzyPage() {
         overflow: 'hidden',
         borderBottom: '3px solid var(--herald-gold)',
       }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-          position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)',
-          width: 220, opacity: 0.07, pointerEvents: 'none',
-        }} />
+        <BullAscii
+          animate={false}
+          displayWidth={220}
+          style={{
+            position: 'absolute', right: 40, top: '50%', transform: 'translateY(-50%)', margin: 0,
+            opacity: 0.07, pointerEvents: 'none',
+          }}
+        />
         <div style={{ maxWidth: 920, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 14 }}>
             Ask Ozzy
@@ -366,11 +370,14 @@ export default function OzzyPage() {
                               marginBottom: 14,
                               overflow: 'hidden',
                             }}>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-                                position: 'absolute', bottom: -16, right: -16,
-                                width: 110, opacity: 0.06, pointerEvents: 'none',
-                              }} />
+                              <BullAscii
+                                animate={false}
+                                displayWidth={110}
+                                style={{
+                                  position: 'absolute', bottom: -16, right: -16, margin: 0,
+                                  opacity: 0.06, pointerEvents: 'none',
+                                }}
+                              />
                               <div style={{ position: 'relative', zIndex: 1 }}>
                                 <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--herald-gold)', letterSpacing: '.14em', marginBottom: 14 }}>
                                   ━━ OZZY · BIRMINGHAM INTELLIGENCE

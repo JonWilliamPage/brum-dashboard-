@@ -170,6 +170,11 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
     try { localStorage.setItem(CONV_KEY, JSON.stringify(c)); } catch { /* ignore */ }
   };
 
+  const clearConv = () => {
+    setConv([]);
+    try { localStorage.removeItem(CONV_KEY); } catch { /* ignore */ }
+  };
+
   const scrollToBottom = useCallback(() => {
     requestAnimationFrame(() => {
       if (canvasRef.current) canvasRef.current.scrollTop = canvasRef.current.scrollHeight;
@@ -308,6 +313,10 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
               {sending ? <>{spinChar} thinking</> : <>Ask Ozzy ↗</>}
             </button>
           </div>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--muted)', marginTop: 10, marginBottom: 0, lineHeight: 1.5 }}>
+            Questions are sent to Anthropic&apos;s Claude AI to generate answers — don&apos;t enter personal or sensitive information. Your conversation is saved only in this browser, not on our servers. <a href="/privacy" style={{ color: 'var(--herald-navy)' }}>Privacy details</a>.{' '}
+            {conv.length > 0 && <button onClick={clearConv} style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--herald-navy)', textDecoration: 'underline', textUnderlineOffset: 2, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Clear conversation</button>}
+          </p>
           {conv.length === 0 && (
             <div className="ozzy-suggestions">
               {SUGGESTIONS.map(s => (
