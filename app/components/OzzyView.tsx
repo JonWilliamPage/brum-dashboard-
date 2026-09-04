@@ -124,7 +124,7 @@ function buildDataBlock(wards: Ward[], dsrc: DataSources, neetData: NeetCityData
     `City-level summary:\n${JSON.stringify(summary, null, 2)}\n\n` +
     `Data source status:\n${JSON.stringify({ live, cached }, null, 2)}\n\n` +
     `Important caveats Ozzy must respect:\n${caveats.map(c => '• ' + c).join('\n')}\n\n` +
-    `Full ward dataset (68 wards):\n${wards.map(w =>
+    `Full ward dataset (${wards.length} wards):\n${wards.map(w =>
       `${w.ward_name} (${w.ward_code}): claimant ${w.claimant_rate}%, youth claimant ${w.youth_claimant_rate}%, IMD employment ${(w.imd_employment_score * 100).toFixed(1)}%, inactivity-sick ${w.inactivity_sick_pct}%, GVA £${w.gva.toFixed(1)}k/head, composite decile ${w.composite_decile}/10, NEET risk decile ${w.neet_risk_decile}/10, quadrant: ${w.quadrant}, crime ${w.crime_rate_per_1000}/1000 (rank #${w.crime_rank})`
     ).join('\n')}` +
     buildNeetBlock(wards, neetData);
@@ -394,7 +394,7 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
                 <div className="brf-loading">
                   <div className="brf-loading-spin">{spinChar}</div>
                   <div className="brf-loading-txt">Ozzy is reading the data…</div>
-                  <div className="brf-loading-sub">68 wards · synthesising</div>
+                  <div className="brf-loading-sub">{wards.length} wards · synthesising</div>
                 </div>
               )}
               {briefingError && (

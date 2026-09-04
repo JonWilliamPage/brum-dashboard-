@@ -1,4 +1,5 @@
 import BullAscii from './BullAscii';
+import { WARD_COUNT } from '@/lib/wards';
 
 export default function SiteFooter() {
   return (
@@ -58,7 +59,7 @@ export default function SiteFooter() {
         <div className="site-foot-bottom">
           <div>© Ask Ozzy contributors · {new Date().getFullYear()} · Independent project — uses public Birmingham data. Not affiliated with Birmingham City Council.</div>
           <div className="site-foot-bottom-meta">
-            Base geography: <strong>E08000025</strong> · 68 wards (Dec 2022) · Data: NOMIS · IMD 2025 · Census 2021 · WMP · City Observatory
+            Base geography: <strong>E08000025</strong> · {WARD_COUNT} wards (Dec 2022) · Data: NOMIS · IMD 2025 · Census 2021 · WMP · City Observatory
           </div>
         </div>
 

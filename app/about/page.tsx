@@ -9,7 +9,7 @@ const ROADMAP = [
   { status: 'live',    label: 'Employment & claimants',   detail: 'IMD employment domain, claimant count and Universal Credit by ward' },
   { status: 'live',    label: 'Crime by ward',            detail: 'West Midlands Police recorded offences — rates, trends and category mix' },
   { status: 'live',    label: 'Education & skills',       detail: 'Census 2021 qualifications + IMD education domain' },
-  { status: 'live',    label: 'Youth & NEET risk',        detail: 'Composite picture of the 16–24 cohort across 69 wards' },
+  { status: 'live',    label: 'Youth & NEET risk',        detail: 'Composite picture of the 16–24 cohort across 68 wards' },
   { status: 'live',    label: 'Economic matrix',          detail: 'GVA per head against deprivation — the city in four quadrants' },
   { status: 'live',    label: 'The Benefits Bill',        detail: 'DWP expenditure in Birmingham — history, composition and per head' },
   { status: 'live',    label: 'Money Map & PIP',          detail: 'DWP £ by constituency, PIP place and condition, child poverty and more' },

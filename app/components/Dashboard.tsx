@@ -672,31 +672,31 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
                   {isCrimeObs ? 'Crime — Deep Dive' : isOzzyStage ? 'Ozzy Stage' : isPipStage ? 'PIP Stage 3D' : isUcStage ? 'UC Stage 3D' : isPipPlace ? 'PIP Place' : isUcWeather ? 'UC Money Weather' : isUcPayments ? 'UC Payments' : isWrongPay ? 'Wrong Payments' : isPip ? 'PIP: Where the Money Goes' : isConMoney ? 'The Constituency Money Map' : isChildPov ? 'Child Poverty' : isBill ? 'The Benefits Bill' : isTwoChild ? 'Two-Child Limit' : isClaimant ? 'Claimant Count' : isFlyTip ? 'Fly-tipping' : isHBenefit ? 'Housing Benefit' : isUcEmp ? 'UC Claimants in Work' : isBenefits ? 'Universal Credit' : isEdu ? 'Education & Skills' : isYouth ? 'Youth & NEET Risk' : isCrime ? 'Crime Dashboard' : isHousing ? 'Housing Affordability' : isFiscal ? 'Ward Net Fiscal Balance' : 'Employment & Benefits'}
                 </div>
                 <div className="hdr-sub">
-                  {isCrimeObs ? `69 wards · offences / 1,000 · 36-month trend · outcomes · ${crimeObsData?.months[0] ?? ''}→${crimeObsData?.as_of ?? ''} · ${crimeObsData?.city.latest_total?.toLocaleString() ?? ''} offences latest`
+                  {isCrimeObs ? `${crimeObsData?.wards.length ?? '—'} wards · offences / 1,000 · 36-month trend · outcomes · ${crimeObsData?.months[0] ?? ''}→${crimeObsData?.as_of ?? ''} · ${crimeObsData?.city.latest_total?.toLocaleString() ?? ''} offences latest`
                     : isOzzyStage ? `Three.js theatre · UC + PIP dual extrusions · drag · play`
                     : isPipStage ? `Three.js · PIP caseload extrusions · ${pipStageData?.months[0] ?? ''}→${pipStageData?.months.at(-1) ?? ''}`
                     : isUcStage ? `Three.js · UC caseload extrusions · ${ucStageData?.months[0] ?? ''}→${ucStageData?.months.at(-1) ?? ''}`
-                    : isPipPlace ? `69 wards · PIP caseload play · city £ · GB conditions · ${pipPlaceData?.months[0] ?? ''}→${pipPlaceData?.months.at(-1) ?? ''}`
-                    : isUcWeather ? `69 wards · UC caseload play · city £ · ${ucWeatherData?.months[0] ?? ''}→${ucWeatherData?.months.at(-1) ?? ''} · ${ucWeatherData?.city.latest?.toLocaleString() ?? ''} latest`
+                    : isPipPlace ? `${pipPlaceData?.wards.length ?? '—'} wards · PIP caseload play · city £ · GB conditions · ${pipPlaceData?.months[0] ?? ''}→${pipPlaceData?.months.at(-1) ?? ''}`
+                    : isUcWeather ? `${ucWeatherData?.wards.length ?? '—'} wards · UC caseload play · city £ · ${ucWeatherData?.months[0] ?? ''}→${ucWeatherData?.months.at(-1) ?? ''} · ${ucWeatherData?.city.latest?.toLocaleString() ?? ''} latest`
                     : isUcPayments ? `LA · households · mean award £ · ${ucPaymentsData?.as_of ?? ''} · ${ucPaymentsData?.city.latest_households?.toLocaleString() ?? ''} hh · mean £${ucPaymentsData?.city.latest_mean_payment_gbp ?? '—'}`
                     : isWrongPay ? `Illustrative leakage · national fraud/error rates × city spend · £${((wrongPayData?.city.overpaid_m ?? 0)).toFixed(0)}m · 1 in ${wrongPayData?.city.one_in ?? '—'}`
                     : isPip ? `Great Britain · by medical condition · 2013/14–${pipData?.years.at(-1) ?? ''} · £${((pipData?.gb_total_real_latest ?? 0) / 1000).toFixed(1)}bn real`
                     : isConMoney ? `9 constituencies · actual DWP £ by benefit · ${conMoneyData?.year ?? ''} · £${(((conMoneyData?.city.sum_m ?? 0)) / 1000).toFixed(2)}bn`
-                    : isChildPov ? `69 wards · % of children 0–15 in absolute low income · ${childPovData?.as_of ?? ''} · DWP/HMRC`
+                    : isChildPov ? `${childPovData?.wards.length ?? '—'} wards · % of children 0–15 in absolute low income · ${childPovData?.as_of ?? ''} · DWP/HMRC`
                     : isBill ? `Local authority · actual DWP expenditure · ${billData?.year ?? ''} · £${((billData?.total_m ?? 0) / 1000).toFixed(2)}bn`
                     : isTwoChild ? `Constituencies · policy abolished 6 Apr 2026 · ${twoChildData?.as_of ?? ''} · DWP`
-                    : isClaimant ? `69 wards · % of 16–64 residents claiming · ${claimantData?.as_of ?? ''} · DWP`
+                    : isClaimant ? `${claimantData?.wards.length ?? '—'} wards · % of 16–64 residents claiming · ${claimantData?.as_of ?? ''} · DWP`
                     : isFlyTip ? `Local authority · no ward breakdown · incidents / 1,000 · ${flyTipData?.years[0] ?? ''}→${flyTipData?.as_of ?? ''} · Defra`
                     : isHBenefit ? `Local authority · no ward breakdown · % of households · ${hbData?.as_of ?? ''} · DWP`
-                    : isUcEmp ? `69 wards · % of claimants in employment · ${ucEmpData?.as_of ?? ''} · DWP`
-                    : isBenefits && ucCombinedData ? `69 wards · total / in work / not in work · ${ucCombinedData.as_of} · DWP`
-                    : isBenefits ? `69 wards · % of residents on UC · ${benefitsData?.as_of ?? ''} · DWP`
-                    : isEdu ? '68 wards · qualifications & skills'
-                    : isYouth ? '68 wards · 16–24 NEET risk'
-                    : isHousing ? '68 wards · affordability pressure · modelled'
-                    : isFiscal ? '68 wards · net fiscal balance per head · modelled'
+                    : isUcEmp ? `${ucEmpData?.wards.length ?? '—'} wards · % of claimants in employment · ${ucEmpData?.as_of ?? ''} · DWP`
+                    : isBenefits && ucCombinedData ? `${ucCombinedData.wards.length} wards · total / in work / not in work · ${ucCombinedData.as_of} · DWP`
+                    : isBenefits ? `${benefitsData?.wards.length ?? '—'} wards · % of residents on UC · ${benefitsData?.as_of ?? ''} · DWP`
+                    : isEdu ? `${eduWards.length} wards · qualifications & skills`
+                    : isYouth ? `${wards.length} wards · 16–24 NEET risk`
+                    : isHousing ? `${housingWards.length} wards · affordability pressure · modelled`
+                    : isFiscal ? `${fiscalWards.length} wards · net fiscal balance per head · modelled`
                     : isCrime ? `${crimeWards.length} wards · recorded crime · ${crimeMonth} · data.police.uk`
-                    : '68 wards · claimant rate & deprivation'}
+                    : `${wards.length} wards · claimant rate & deprivation`}
                 </div>
               </div>
             </div>

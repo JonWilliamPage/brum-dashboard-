@@ -190,6 +190,34 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     source image the ASCII renderer reads, not a leftover).
   - Verified with a clean `npm run build` and a manual HTTP route sweep
     (all 200) after each of the three changes above.
+- **2026-09-04** — Fixed the ward-count inconsistency the user spotted
+  between the site footer (68) and the live dashboards (69) — investigated,
+  found the root cause is bigger than a footer typo (see "known issues"
+  below), and applied the safe, no-data-risk fix: replaced every hardcoded
+  `"68 wards"` / `"69 wards"` text string with a value read from the actual
+  dataset it describes, so a number can never contradict the data next to it
+  again.
+  - `SiteFooter.tsx` now imports `WARD_COUNT` from `lib/wards.ts` (the
+    canonical, correct 69-ward source of truth) instead of hardcoding `68`.
+  - `Dashboard.tsx`'s per-view header label — previously several hardcoded
+    `69`s *and* the wrong `68`s — now reads `.wards.length` /
+    `eduWards.length` / `housingWards.length` / `fiscalWards.length` /
+    `wards.length` from whichever dataset that specific view is actually
+    showing (falls back to `—` rather than guessing a number, matching the
+    site's own stated principle on the Sources page: never show an
+    estimate where a real figure isn't available).
+  - `OzzyView.tsx`'s data-context header and briefing-loading label now read
+    `wards.length` instead of a hardcoded `68`.
+  - `DashboardCards.tsx` (the About page's static "what's live" teaser
+    cards) and the About page's roadmap list both incorrectly claimed `69`
+    for the Employment and Youth/NEET features, which are genuinely on the
+    68-ward legacy dataset — corrected the text to `68` (no live-data
+    plumbing exists for these static marketing cards, so this was a
+    fact-correction, not a dynamic-derivation change).
+  - Verified: footer now renders `69 wards`, the legacy claimant-rate
+    dashboard view now renders `68 wards` — each honestly describing its
+    own data — plus a clean `npm run build`/`tsc --noEmit` and a full route
+    sweep (all 200).
 
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
@@ -202,19 +230,34 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and `/api/proposals` to work at all (by design — fails closed). Not yet set
   anywhere outside local `.env.local`; needs doing before `/review` is used
   on a deployed environment.
-- **Next major job (queued, not started):** the ward count shown across the
-  site is inconsistent — 69 wards in most places (crime, UC, child poverty,
-  PIP — the correct, current official ONS ward set, codes
-  `E05011118`–`E05011186`, canonical list in `lib/wards.ts`), but **68** in
-  the footer, Education, Youth/NEET risk, Housing, Fiscal, and Ask Ozzy's
-  data context. Root cause confirmed: those five all trace back to a
-  hardcoded `FALLBACK` array in `lib/data.ts` — a legacy 68-ward dataset with
-  a *different, incorrect* ONS code series (`E05011082`–`E05011150`) and
-  some outdated ward names. `lib/wards.ts` already carries a comment flagging
-  this exact problem ("Do NOT use the legacy 68-ward set embedded in
-  lib/data.ts"), so it's known, pre-existing tech debt, not something
-  introduced by this fork. Real fix requires sourcing correct IMD/claimant/
-  inactivity figures for the right 69-ward geography and retiring
-  `FALLBACK` — not a text relabel — so it's scoped as its own job, planned
-  to start once the current cosmetic logo pass (this section, above) is
-  done.
+- **FYI / future fix — the underlying 68-ward legacy dataset itself is still
+  wrong,** even though the *displayed counts* are now honest (see the
+  2026-09-04 "Fixed" entry above). Root cause confirmed: Education, Youth/
+  NEET risk, Housing, Fiscal, and Ask Ozzy's data context all trace back to
+  a hardcoded `FALLBACK` array in `lib/data.ts` — a legacy 68-ward dataset
+  with a *different, incorrect* ONS ward-code series
+  (`E05011082`–`E05011150`) and some outdated ward names, versus the
+  correct, current official 69-ward set (codes `E05011118`–`E05011186`,
+  canonical list in `lib/wards.ts` — used by crime, UC, child poverty, PIP,
+  and most newer live-data dashboards). `lib/wards.ts` already carries a
+  comment flagging this exact problem ("Do NOT use the legacy 68-ward set
+  embedded in lib/data.ts"), so it's known, pre-existing tech debt, not
+  something introduced by this fork.
+  - Scoped this properly by diffing the two ward-name lists directly: only
+    ~8 of the ~21 differing entries are pure spelling/naming differences
+    that can be safely auto-mapped (e.g. `Aston` ↔ `Aston (Birmingham)`,
+    `Kings Norton North` ↔ `King's Norton North`, `Walmley & Minworth` ↔
+    `Sutton Walmley & Minworth`). The remaining ~13 wards on *each* side
+    don't match anything at all — e.g. `FALLBACK` has `Fox Hollies`,
+    `Tyburn`, `Washwood Heath`, `Hodge Hill` with no equivalent in the
+    correct list; the correct list has `Alum Rock`, `Ward End`,
+    `Bartley Green`, `Holyhead`, `Frankley Great Park` with no equivalent in
+    `FALLBACK`. This isn't typos — `FALLBACK` looks like it was built from
+    an earlier draft of Birmingham's ward boundaries, not the final adopted
+    ones.
+  - Real fix requires verifying the true current ward roster against an
+    authoritative source and sourcing seed values for the ~13 genuinely-new
+    wards, then retiring `FALLBACK` in favour of the canonical 69-ward list
+    — not a text relabel, and not something to hack together from the two
+    already-conflicting files alone. Scoped as its own dedicated future job;
+    deliberately not started as part of this cosmetic/consistency pass.
