@@ -1,7 +1,7 @@
 # Project context — Birmingham Ozzy
 
 ## What this is
-**Ozzy** — an AI-powered data voice for Birmingham City Council. A chat-first interface that reads every public dataset about the city and synthesises direct, opinionated commentary. Six data visualisation views sit behind Ozzy as the evidence locker.
+**Ozzy** — an open-source civic intelligence prototype for Birmingham. A chat-first interface that reads every public dataset about the city and synthesises direct, opinionated commentary. Six data visualisation views sit behind Ozzy as the evidence locker.
 
 Named after Ozzy Osbourne — working class, blunt, globally Brummie, not what the establishment expected.
 

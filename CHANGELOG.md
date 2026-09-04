@@ -236,6 +236,24 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   the user as an odd leftover logo. Both removed outright per request; the
   "Select a question to begin" text itself is untouched. Verified with a
   clean `npm run build` and a full route sweep (all 200).
+- **2026-09-04** — Unified the project's self-description. The site
+  described itself three different ways in different places — "AI agent,"
+  "AI Intelligence," "civic intelligence" — and one repo doc
+  (`CLAUDE.md`) still said Ozzy was **"for Birmingham City Council,"** the
+  same false-affiliation issue already fixed on the live site earlier this
+  session. Standardised everything on one descriptor, adapted per context
+  (page `<title>`/meta description, nav aria-label and visible subtitle,
+  About page hero eyebrow and headline, footer subtitle and blurb,
+  `CLAUDE.md`'s "What this is" line):
+  **"Ozzy — an open-source civic intelligence prototype for Birmingham."**
+  Left the Ask Ozzy page's hero subtitle ("Birmingham's data voice. Direct,
+  opinionated...") unchanged, at the user's direction — that line describes
+  how the *chat feature* talks, not what the *project* is, so it isn't the
+  same kind of "non-aligned" text as the rest.
+  Verified with a clean `npm run build`/`tsc --noEmit` (same pre-existing,
+  unrelated `FlyTippingView.tsx` error only), a full route sweep (all 200),
+  and confirmed the new page `<title>` and copy render, with no leftover
+  "AI agent" text on the About page.
 
 ### Known issues / deferred
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still

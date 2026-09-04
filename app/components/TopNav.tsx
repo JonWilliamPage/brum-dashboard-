@@ -24,7 +24,7 @@ export default function TopNav() {
   return (
     <header className="top-nav">
       <div className="top-nav-bar">
-        <a href="/about" className="top-nav-brand" aria-label="Ozzy — Birmingham's AI agent — Home">
+        <a href="/about" className="top-nav-brand" aria-label="Ozzy — an open-source civic intelligence prototype for Birmingham — Home">
           <BullAscii
             animate
             textColor="#0e0f11"
@@ -39,7 +39,7 @@ export default function TopNav() {
           />
           <div className="top-nav-brand-text">
             <div className="top-nav-brand-name">Ozzy</div>
-            <div className="top-nav-brand-sub">Birmingham&apos;s AI agent</div>
+            <div className="top-nav-brand-sub">Civic intelligence prototype</div>
           </div>
         </a>
 

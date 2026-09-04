@@ -21,11 +21,11 @@ export default function SiteFooter() {
               />
               <div>
                 <div className="site-foot-brand-name">Ozzy</div>
-                <div className="site-foot-brand-sub">Birmingham · AI Intelligence</div>
+                <div className="site-foot-brand-sub">Civic intelligence prototype</div>
               </div>
             </div>
             <p className="site-foot-blurb">
-              Open-source civic intelligence for Birmingham. Every line of code, every dataset, every methodology — public.
+              Ozzy is an open-source civic intelligence prototype for Birmingham. Every line of code, every dataset, every methodology — public.
             </p>
           </div>
 

@@ -29,8 +29,8 @@ const publicSans = Public_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Ozzy · Birmingham AI Intelligence',
-  description: 'Birmingham\'s open-source AI intelligence layer — every public dataset about the city, presented so the truth shines through.',
+  title: 'Ozzy · Civic Intelligence Prototype for Birmingham',
+  description: 'Ozzy — an open-source civic intelligence prototype for Birmingham. Every public dataset about the city, presented so the truth shines through.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

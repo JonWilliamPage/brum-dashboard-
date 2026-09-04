@@ -79,7 +79,7 @@ export default function AboutPage() {
           </div>
 
           <div style={{ ...fade(200), fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 600, letterSpacing: '.24em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginTop: 14 }}>
-            Birmingham&apos;s AI agent
+            An open-source civic intelligence prototype for Birmingham
           </div>
 
           <div style={{ ...fade(360), marginTop: 40, display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
@@ -134,7 +134,7 @@ export default function AboutPage() {
             What is Ozzy?
           </div>
           <h2 style={{ fontFamily: 'var(--serif)', fontSize: 50, color: 'var(--ink)', lineHeight: 1.12, margin: '0 0 24px', fontWeight: 400, letterSpacing: '-.01em' }}>
-            An AI agent that wants to save Birmingham.
+            Ozzy is an open-source civic intelligence prototype for Birmingham.
           </h2>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--muted)', lineHeight: 1.65, margin: '0 0 22px', fontStyle: 'italic' }}>
             Ozzy is an independent, open-source project — not operated by, affiliated with, or endorsed by Birmingham City Council. It uses their publicly published data, credited in full on our <a href="/sources" style={{ color: 'var(--herald-navy)' }}>Sources page</a>.
