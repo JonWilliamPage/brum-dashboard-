@@ -10,6 +10,18 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 - **2026-09-07** — Standardised current project descriptions as “Ozzy — civic intelligence prototype” across the README, contributor and AI guidance, playbooks, overview diagram, About page and site metadata. Clarified selected-data coverage, the role of visualisation and supporting analysis, and future database, reuse and agentic ambitions. Removed comprehensive-data claims from the commentary introduction.
+- **2026-09-07** — Accepted all 18 pending data proposals through `/review`,
+  so the dashboard suite shows its full dataset instead of sitting behind
+  the review wall (the goal: show off the full Ozzy dataset without the
+  security gap `/review` used to have). Checked each proposal's validation
+  summary first — `wards_found`/`wards_expected` matched exactly, all
+  checksums clean, `complete: true` across the board, no anomalies. Accepted
+  via the real `/api/proposals` endpoint (same path as clicking Accept in
+  the UI), publishing 18 new files to `public/data/`. `uc-employment` and
+  `uc-wards` were already accepted from a prior session. `/review` now
+  lists all 20 as accepted (read-only) rather than empty — it stays live
+  and will show a new item as pending whenever a future fetch script adds
+  one.
 
 ### Fixed
 - **2026-08-28** — Resolved 3 of 8 high-severity `npm audit` vulnerabilities via
