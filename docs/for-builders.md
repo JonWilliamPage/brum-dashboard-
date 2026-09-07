@@ -2,7 +2,7 @@
 
 ## Goal
 
-Stand up a **place spin-out** (or extend Ozzy) using the **local government insight agent** skills — without inventing numbers or skipping the review wall.
+Extend **Ask Ozzy, a civic intelligence prototype**, or explore adapting it to another place using its reusable playbooks. Visualise selected official data, explain what it shows and identify questions for further investigation. Keep sources and human review intact.
 
 ## Quick start
 
@@ -49,4 +49,4 @@ Until `place-config` exists as a dedicated skill, treat Birmingham files as **ex
 
 ## Stack notes
 
-Ozzy is Next.js 14 + TypeScript + Chart.js + Leaflet (+ Three.js for stages). Skills are **method**, not framework lock-in — you can re-home the pipeline in another app if the wall and provenance stay intact.
+Ozzy uses Next.js (see `package.json` for the current version) + TypeScript + Chart.js + Leaflet (+ Three.js for stages). Skills are **method**, not framework lock-in — you can re-home the pipeline in another app if the wall and provenance stay intact.

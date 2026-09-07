@@ -1,16 +1,16 @@
 ---
 name: dataset-dashboard
 description: >-
-  Add an official open dataset as a reviewable place dashboard for a local
-  government insight agent. Discover the source, fetch and validate to the
+  Add an official open dataset as a reviewable place dashboard for a civic
+  intelligence prototype. Discover the source, fetch and validate to the
   place's geography, derive honest rates, stage a proposal, require human
   Accept, then publish. Use when adding a new metric, ward/LA dashboard, or
-  "put this open data on the agent". Birmingham/Ozzy is the reference spin-out.
+  "put this open data on the prototype". Birmingham/Ozzy is the reference spin-out.
 ---
 
 # Dataset → reviewable dashboard
 
-Portable playbook for the **local government insight agent**.  
+Portable playbook for the **civic intelligence prototype**.
 **Reference implementation:** Birmingham (Ozzy) — City Observatory / DWP / ONS patterns in this repo.
 
 ## Goal
@@ -99,7 +99,7 @@ Add entries via the **provenance** skill (`lib/sources.ts` in this repo). User-f
 | LA code | `E08000025` | Your ONS LA |
 | Small areas | 69 wards `E05011118`–`E05011186` | Your wards / MSOAs as published |
 | Catalogue | cityobservatory.birmingham.gov.uk | Your portal / data.gov.uk |
-| Brand | Ozzy | Your agent name |
+| Brand | Ozzy | Your prototype name |
 
 ## Canonical templates in this repo
 

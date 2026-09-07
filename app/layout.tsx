@@ -30,7 +30,7 @@ const publicSans = Public_Sans({
 
 export const metadata: Metadata = {
   title: 'Ozzy · Civic Intelligence Prototype for Birmingham',
-  description: 'Ozzy — an open-source civic intelligence prototype for Birmingham. Every public dataset about the city, presented so the truth shines through.',
+  description: 'Ask Ozzy — an open-source civic intelligence prototype for Birmingham. Explore selected public data, see patterns and ask what they might mean.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

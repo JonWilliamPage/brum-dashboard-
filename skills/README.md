@@ -1,6 +1,6 @@
-# Skills — local government insight agent
+# Skills — Ask Ozzy civic intelligence prototype
 
-Portable playbooks for **any** place with official open data. Ozzy (Birmingham) is the reference spin-out only.
+Reusable playbooks supporting **Ask Ozzy, a civic intelligence prototype**: prepare selected official data, visualise it and investigate what it might mean. They guide people and coding agents; they are not an autonomous service inside the app. Birmingham provides the current examples, with adaptation to other places intended.
 
 | Skill | Job | File |
 |-------|-----|------|

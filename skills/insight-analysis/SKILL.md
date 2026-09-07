@@ -12,7 +12,7 @@ description: >-
 
 Use this skill when the data is **already sourced** (or being sourced with the other skills) and the job is to **interpret, question, and brief** — not just chart.
 
-This is the **analysis** layer of the local government insight agent:
+This is the **analysis** layer of the civic intelligence prototype:
 
 | Layer | Skill |
 |-------|--------|
@@ -25,7 +25,7 @@ Works for **any place** with official open data (council, combined authority, na
 
 ---
 
-## Hard rules (same as the agent)
+## Hard rules (project integrity)
 
 1. **No invented causes.** Policy X “explains” rate Y only if a **named public source** links them — and even then phrase as *evidence / claimed outcome*, not proof.
 2. **Separate three layers** in every report:

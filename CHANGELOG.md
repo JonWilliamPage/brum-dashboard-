@@ -8,6 +8,9 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+- **2026-09-07** — Standardised current project descriptions as “Ask Ozzy — civic intelligence prototype” across the README, contributor and AI guidance, playbooks, overview diagram, About page and site metadata. Clarified selected-data coverage, the role of visualisation and supporting analysis, and future database, reuse and agentic ambitions. Removed comprehensive-data claims from the commentary introduction.
+
 ### Fixed
 - **2026-08-28** — Resolved 3 of 8 high-severity `npm audit` vulnerabilities via
   `npm audit fix` (non-breaking, transitive dependency bumps only):

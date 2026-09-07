@@ -1,11 +1,13 @@
 # Project context — Birmingham Ozzy
 
 ## What this is
-**Ozzy** — an open-source civic intelligence prototype for Birmingham. A chat-first interface that reads every public dataset about the city and synthesises direct, opinionated commentary. Six data visualisation views sit behind Ozzy as the evidence locker.
+**Ask Ozzy** — an independent, open-source civic intelligence prototype for Birmingham. It visualises selected public datasets, demonstrates patterns and comparisons, and helps people explore “so what?” — what is happening, why it might matter and what evidence could explain it.
+
+Keep this descriptor consistent in public copy and contributor guidance. Data coverage is limited. Reusable playbooks support people building and analysing with AI; broader database integration and an agentic investigation loop are future ambitions. Do not describe the prototype as chat-first or claim it reads all council data.
 
 Named after Ozzy Osbourne — working class, blunt, globally Brummie, not what the establishment expected.
 
-Audience: council policy officers and analysts. Also WMCA board presentations.
+Audience: residents, councillors, council staff and potential contributors. Use plain language and distinguish observations, interpretations and hypotheses.
 
 ## Visual direction (signed off — preserve)
 - **Editorial paper aesthetic.** Warm paper background (`#f5f3ee`), serif headlines (Instrument Serif), monospace data (IBM Plex Mono), no rounded corners anywhere.
@@ -33,8 +35,8 @@ Audience: council policy officers and analysts. Also WMCA board presentations.
 - Print: landscape A4, ranked table view only (currently).
 
 ## Brand
-- Birmingham City Council. Motto is "Forward" — already used as a watermark.
-- A subtle BCC red badge sits in the header. Don't add a full BCC logo — the design predates the council's brand refresh and is intentionally neutral.
+- Ask Ozzy is independent of Birmingham City Council. Credit council data as a source without implying ownership, affiliation or endorsement.
+- Preserve the sanitised Ask Ozzy identity. Do not reintroduce council badges, coat of arms or ownership claims.
 
 ## Stack hints
 If porting to a framework, recommendation is Next.js 14 (App Router) + Tailwind. Chart.js and Leaflet should stay — they're tuned. See `README.md` in `design_handoff_birmingham_dashboard/` for the full porting plan.

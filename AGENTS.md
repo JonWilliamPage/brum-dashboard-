@@ -1,10 +1,10 @@
-# AGENTS.md — Local government insight agent
+# AGENTS.md — Ask Ozzy civic intelligence prototype
 
-This repository is a **workbench for agent skills** that do local-government insight work, plus **Ozzy**, the Birmingham reference spin-out.
+This repository contains **Ask Ozzy**, an independent, open-source civic intelligence prototype for Birmingham, and supporting development and analysis playbooks. It visualises selected public data and helps people explore patterns, context and “so what?” questions.
 
-Treat **`skills/` as the portable product**. Treat **`app/` as the reference city** (Ozzy), not the only way to use the agent.
+Describe the project consistently as a **civic intelligence prototype**. Treat **`skills/` as reusable playbooks** and **`app/` as the Birmingham prototype**. Distinguish coding agents that use the playbooks from planned AI capabilities inside the app. Broader data coverage, database integration and autonomous investigation are ambitions, not established current capabilities.
 
-## Product split
+## Repository structure
 
 | Layer | Path | Rule |
 |-------|------|------|
@@ -13,7 +13,7 @@ Treat **`skills/` as the portable product**. Treat **`app/` as the reference cit
 | Integrity | this file + `CLAUDE.md` | Hard rules override convenience |
 | Provenance | `lib/sources.ts` | One registry; UI reads from here |
 | Proposal wall | `proposals/` → `/review` → `public/data/` | Never skip Accept for place data |
-| Spin-out UI | `app/` | Birmingham brand and routes |
+| Prototype UI | `app/` | Birmingham brand and routes |
 
 ## Hard rules (non-negotiable)
 
@@ -42,7 +42,7 @@ If a task is Birmingham-specific (City Observatory slug, Ozzy chrome), say so in
 
 ## Repo map for agents
 
-- `skills/` — portable playbooks (product surface for other councils)
+- `skills/` — reusable playbooks intended to support adaptation to other councils
 - `app/` — Ozzy Next.js UI
 - `lib/` — types, sources, population, boundaries helpers
 - `scripts/` — fetch/validate generators (durable commands only)
@@ -53,7 +53,7 @@ If a task is Birmingham-specific (City Observatory slug, Ozzy chrome), say so in
 
 Do **not** dump one-off probes into `scripts/` permanently; use a temp path or name with `_` and clean up.
 
-## Birmingham spin-out notes
+## Birmingham prototype notes
 
 Ozzy-specific context (brand, visual system, legacy cleanup) lives in `CLAUDE.md`.  
 When generalising for another LA:

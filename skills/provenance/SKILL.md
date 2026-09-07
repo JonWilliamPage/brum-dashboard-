@@ -1,8 +1,8 @@
 ---
 name: provenance
 description: >-
-  Register and surface provenance for every metric in a local government
-  insight agent. Publisher, as-of date, licence, source URL, fetch script.
+  Register and surface provenance for every metric in a civic intelligence
+  prototype. Publisher, as-of date, licence, source URL, fetch script.
   No source → no number in the UI. Use when adding datasets, source tags, or
   a /sources page.
 ---
