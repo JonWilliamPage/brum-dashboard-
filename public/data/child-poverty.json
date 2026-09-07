@@ -1,10 +1,60 @@
 {
-  "id": "child-poverty",
-  "status": "accepted",
-  "title": "Children in low-income families by ward",
+  "generated": "2026-09-07T16:40:12.001Z",
   "metric": "% of children aged 0-15 in absolute low-income families",
   "unit": "% of children",
-  "generated": "2026-07-10T13:17:36.468Z",
+  "source": {
+    "id": "childPoverty",
+    "label": "Children in absolute low income families (0-15), %",
+    "publisher": "DWP/HMRC · via Birmingham City Observatory",
+    "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
+  },
+  "sources": [
+    {
+      "id": "childPoverty",
+      "label": "Children in absolute low income families (0-15), %",
+      "publisher": "DWP/HMRC · via Birmingham City Observatory",
+      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
+    },
+    {
+      "id": "childPovertyLA",
+      "label": "LA/England benchmark series",
+      "publisher": "DWP/HMRC · via Birmingham City Observatory",
+      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/exports/json"
+    }
+  ],
+  "as_of": "2024/25",
+  "wards_found": 69,
+  "wards_expected": 69,
+  "complete": true,
+  "skipped": [],
+  "years_span": 10,
+  "series_from": "2015/16",
+  "series_to": "2024/25",
+  "highest": {
+    "ward": "Heartlands",
+    "pct": 66.7
+  },
+  "lowest": {
+    "ward": "Sutton Roughley",
+    "pct": 6
+  },
+  "city_latest": 39.5,
+  "england_latest": 18,
   "years": [
     "2015/16",
     "2016/17",
@@ -45,86 +95,6 @@
     "city_latest": 39.5,
     "england_latest": 18
   },
-  "sources": [
-    {
-      "id": "childPoverty",
-      "label": "Children in absolute low income families (0-15), %",
-      "publisher": "DWP/HMRC · via Birmingham City Observatory",
-      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
-      "method": "administrative",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
-      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
-    },
-    {
-      "id": "childPovertyLA",
-      "label": "LA/England benchmark series",
-      "publisher": "DWP/HMRC · via Birmingham City Observatory",
-      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca",
-      "method": "administrative",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/",
-      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/exports/json"
-    }
-  ],
-  "source": {
-    "id": "childPoverty",
-    "label": "Children in absolute low income families (0-15), %",
-    "publisher": "DWP/HMRC · via Birmingham City Observatory",
-    "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
-    "method": "administrative",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2024/25",
-    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
-    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
-  },
-  "validation": {
-    "wards_found": 69,
-    "wards_expected": 69,
-    "complete": true,
-    "skipped": [],
-    "years_span": 10,
-    "series_from": "2015/16",
-    "series_to": "2024/25",
-    "highest": {
-      "ward": "Heartlands",
-      "pct": 66.7
-    },
-    "lowest": {
-      "ward": "Sutton Roughley",
-      "pct": 6
-    },
-    "city_latest": 39.5,
-    "england_latest": 18
-  },
-  "raw_sample": [
-    {
-      "areaidentifier": "E05011121",
-      "arealabel": "Aston",
-      "date": "2016",
-      "periodlabel": "2015/16",
-      "value": 32.1,
-      "format": "#,##0.0"
-    },
-    {
-      "areaidentifier": "E05011123",
-      "arealabel": "Bartley Green",
-      "date": "2016",
-      "periodlabel": "2015/16",
-      "value": 12.2,
-      "format": "#,##0.0"
-    },
-    {
-      "areaidentifier": "E05011125",
-      "arealabel": "Birchfield",
-      "date": "2016",
-      "periodlabel": "2015/16",
-      "value": 26.3,
-      "format": "#,##0.0"
-    }
-  ],
   "wards": [
     {
       "ward_code": "E05011145",
@@ -2058,6 +2028,5 @@
         }
       }
     }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.003Z"
+  ]
 }

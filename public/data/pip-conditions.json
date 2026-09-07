@@ -1,11 +1,54 @@
 {
-  "id": "pip-conditions",
-  "status": "accepted",
-  "title": "PIP: where the money goes — by medical condition (GB)",
+  "generated": "2026-09-07T16:40:12.091Z",
   "metric": "PIP expenditure by condition category, £m",
   "unit": "£ million / year",
+  "source": {
+    "id": "pipConditions",
+    "label": "PIP expenditure by reported medical condition workbook (ODS) — category + condition sheets, nominal & real, WA/PA",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "pip-expenditure-2024-to-2025.ods",
+    "method": "administrative — accounting outturn",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods"
+  },
+  "sources": [
+    {
+      "id": "pipConditions",
+      "label": "PIP expenditure by reported medical condition workbook (ODS) — category + condition sheets, nominal & real, WA/PA",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "pip-expenditure-2024-to-2025.ods",
+      "method": "administrative — accounting outturn",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods"
+    },
+    {
+      "id": "pipConditionsPage",
+      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Collection page",
+      "method": "reference",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
+    }
+  ],
+  "as_of": "2024/25",
+  "geography_level": "great-britain",
+  "ward_breakdown_available": false,
+  "categories_found": 20,
+  "conditions_kept": 30,
+  "years_span": 12,
+  "series_from": "2013/14",
+  "series_to": "2024/25",
+  "anchor_drift_pct": 0,
+  "condition_category_drift_pct": 0,
+  "total_row_present": true,
   "geography": "great-britain",
-  "generated": "2026-07-12T19:04:36.091Z",
   "years": [
     "2013/14",
     "2014/15",
@@ -1716,67 +1759,5 @@
   ],
   "gb_total_real_latest": 26637.7,
   "gb_total_nominal_latest": 25876.2,
-  "birmingham_pip_m": 619.1,
-  "sources": [
-    {
-      "id": "pipConditions",
-      "label": "PIP expenditure by reported medical condition workbook (ODS) — category + condition sheets, nominal & real, WA/PA",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "pip-expenditure-2024-to-2025.ods",
-      "method": "administrative — accounting outturn",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods",
-      "apiUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods"
-    },
-    {
-      "id": "pipConditionsPage",
-      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "Collection page",
-      "method": "reference",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
-      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
-    }
-  ],
-  "source": {
-    "id": "pipConditions",
-    "label": "PIP expenditure by reported medical condition workbook (ODS) — category + condition sheets, nominal & real, WA/PA",
-    "publisher": "Department for Work & Pensions",
-    "dataset": "pip-expenditure-2024-to-2025.ods",
-    "method": "administrative — accounting outturn",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2024/25",
-    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods",
-    "apiUrl": "https://assets.publishing.service.gov.uk/media/695b8ddfa2fb6c15f98d1954/pip-expenditure-2024-to-2025.ods"
-  },
-  "validation": {
-    "geography_level": "great-britain",
-    "ward_breakdown_available": false,
-    "categories_found": 20,
-    "conditions_kept": 30,
-    "years_span": 12,
-    "series_from": "2013/14",
-    "series_to": "2024/25",
-    "anchor_drift_pct": 0,
-    "condition_category_drift_pct": 0,
-    "total_row_present": true
-  },
-  "raw_sample": [
-    {
-      "name": "Anxiety and Depression",
-      "real_latest": 4426.13
-    },
-    {
-      "name": "Arthritis",
-      "real_latest": 3113.02
-    },
-    {
-      "name": "Other Conditions",
-      "real_latest": 2562.22
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.092Z"
+  "birmingham_pip_m": 619.1
 }

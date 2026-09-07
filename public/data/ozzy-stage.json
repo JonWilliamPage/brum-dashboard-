@@ -1,13 +1,7 @@
 {
-  "id": "ozzy-stage",
-  "status": "accepted",
-  "title": "Ozzy Stage — dual 3D city (UC + PIP caseload theatre)",
+  "generated": "2026-09-07T16:40:12.078Z",
   "metric": "Interactive Three.js dual-layer ward extrusions (UC people / PIP cases) + city £ context",
   "unit": "claimants / cases",
-  "geography": "ward (caseload presentation) + LA £ context",
-  "generated": "2026-07-18T10:37:50.450Z",
-  "presentation": "three-dual-stage",
-  "as_of": "February 2026 · PIP Jan-26",
   "source": {
     "as_of": "February 2026",
     "label": "Stat-Xplore UC + PIP caseload · LA expenditure context · Three.js stage",
@@ -81,6 +75,13 @@
       "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
     }
   ],
+  "as_of": "February 2026 · PIP Jan-26",
+  "presentation": "three-dual-stage",
+  "wards_found": 69,
+  "uc_months": 130,
+  "pip_months": 29,
+  "honesty": "3D heights are CASELOAD intensity (people/cases), not £. City £ panels use LA accounts. GB PIP conditions are national £ only.",
+  "geography": "ward (caseload presentation) + LA £ context",
   "uc": {
     "months": [
       "May 2015",
@@ -12674,13 +12675,5 @@
       "pip_latest": 289,
       "pip_delta": 104
     }
-  ],
-  "validation": {
-    "presentation": "three-js-dual-extrusion-stage",
-    "wards_found": 69,
-    "uc_months": 130,
-    "pip_months": 29,
-    "honesty": "3D heights are CASELOAD intensity (people/cases), not £. City £ panels use LA accounts. GB PIP conditions are national £ only."
-  },
-  "reviewed_at": "2026-09-07T16:40:12.081Z"
+  ]
 }

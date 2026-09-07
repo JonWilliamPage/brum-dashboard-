@@ -1,12 +1,42 @@
 {
-  "id": "two-child",
-  "status": "accepted",
-  "title": "Two-Child Limit — what abolition means for Birmingham",
+  "generated": "2026-09-07T16:40:12.123Z",
   "metric": "households/children affected + derived £ gain",
   "unit": "households · children · £m/year (derived)",
+  "source": {
+    "id": "twoChild",
+    "label": "Two-child limit statistics, April 2026 (final release)",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "UC statistics on the two child limit policy",
+    "method": "administrative — UC admin data",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "April 2026",
+    "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
+  },
+  "sources": [
+    {
+      "id": "twoChild",
+      "label": "Two-child limit statistics, April 2026 (final release)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "UC statistics on the two child limit policy",
+      "method": "administrative — UC admin data",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "April 2026",
+      "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
+    }
+  ],
+  "as_of": "April 2026",
+  "geography_level": "parliamentary-constituency",
+  "ward_breakdown_available": false,
+  "constituencies_found": 9,
+  "constituencies_expected": 9,
+  "complete": true,
+  "la_cross_check_drift_pct": 0.3,
+  "households_affected": 24090,
+  "children_affected": 25080,
+  "derived_annual_gain_m": 88.1,
   "geography": "constituency",
-  "generated": "2026-07-08T20:05:01.558Z",
-  "child_element_month": 292.81,
   "city": {
     "households_affected": 24090,
     "children_in_households": 67850,
@@ -80,50 +110,5 @@
       "derived_annual_gain_m": 5
     }
   ],
-  "sources": [
-    {
-      "id": "twoChild",
-      "label": "Two-child limit statistics, April 2026 (final release)",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "UC statistics on the two child limit policy",
-      "method": "administrative — UC admin data",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "April 2026",
-      "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
-      "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
-    }
-  ],
-  "source": {
-    "id": "twoChild",
-    "label": "Two-child limit statistics, April 2026 (final release)",
-    "publisher": "Department for Work & Pensions",
-    "dataset": "UC statistics on the two child limit policy",
-    "method": "administrative — UC admin data",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "April 2026",
-    "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
-    "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
-  },
-  "validation": {
-    "geography_level": "parliamentary-constituency",
-    "ward_breakdown_available": false,
-    "constituencies_found": 9,
-    "constituencies_expected": 9,
-    "complete": true,
-    "la_cross_check_drift_pct": 0.3,
-    "households_affected": 24090,
-    "children_affected": 25080,
-    "derived_annual_gain_m": 88.1
-  },
-  "raw_sample": [
-    {
-      "table": "12A",
-      "birmingham": 24090
-    },
-    {
-      "table": "13A",
-      "ladywood": 4250
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.124Z"
+  "child_element_month": 292.81
 }

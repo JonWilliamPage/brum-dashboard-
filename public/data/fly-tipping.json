@@ -1,11 +1,18 @@
 {
-  "id": "fly-tipping",
-  "status": "accepted",
-  "title": "Fly-tipping — incidents per 1,000 people",
+  "generated": "2026-09-07T16:40:12.058Z",
   "metric": "Fly-tipping incidents per 1,000 people",
   "unit": "incidents per 1,000 residents",
-  "geography": "local-authority",
-  "generated": "2026-07-30T19:34:05.078Z",
+  "source": {
+    "id": "flyTipping",
+    "label": "Fly-tipping incidents per 1,000 people",
+    "publisher": "Defra · via Birmingham City Observatory",
+    "dataset": "fly-tipping-incidents-per-1000-people-wmca",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/fly-tipping-incidents-per-1000-people-wmca/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?limit=100"
+  },
   "sources": [
     {
       "id": "flyTipping",
@@ -19,48 +26,54 @@
       "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?limit=100"
     }
   ],
-  "source": {
-    "id": "flyTipping",
-    "label": "Fly-tipping incidents per 1,000 people",
-    "publisher": "Defra · via Birmingham City Observatory",
-    "dataset": "fly-tipping-incidents-per-1000-people-wmca",
-    "method": "administrative",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2024/25",
-    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/fly-tipping-incidents-per-1000-people-wmca/",
-    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/fly-tipping-incidents-per-1000-people-wmca/records?limit=100"
-  },
-  "validation": {
-    "geography_level": "local-authority",
-    "ward_breakdown_available": false,
-    "areas_found": 7,
-    "areas_expected": 7,
-    "complete": true,
-    "skipped": [],
-    "years_span": 10,
-    "series_from": "2015/16",
-    "series_to": "2024/25",
-    "birmingham_value": 20.8,
-    "birmingham_rank": 3,
-    "birmingham_change": 9.7,
-    "birmingham_peak": 20.8,
-    "birmingham_peak_year": "2024/25",
-    "wmca_benchmark": 19.7,
-    "england_benchmark": 18.7
-  },
   "as_of": "2024/25",
-  "years": [
-    "2015/16",
-    "2016/17",
-    "2017/18",
-    "2018/19",
-    "2019/20",
-    "2020/21",
-    "2021/22",
-    "2022/23",
-    "2023/24",
-    "2024/25"
-  ],
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "areas_found": 7,
+  "areas_expected": 7,
+  "complete": true,
+  "skipped": [],
+  "years_span": 10,
+  "series_from": "2015/16",
+  "series_to": "2024/25",
+  "birmingham_value": 20.8,
+  "birmingham_rank": 3,
+  "birmingham_change": 9.7,
+  "birmingham_peak": 20.8,
+  "birmingham_peak_year": "2024/25",
+  "wmca_benchmark": 19.7,
+  "england_benchmark": 18.7,
+  "geography": "local-authority",
+  "benchmarks": {
+    "wmca": 19.7,
+    "england": 18.7
+  },
+  "bench_series": {
+    "wmca": [
+      9.9,
+      10.9,
+      10.6,
+      12.9,
+      13.4,
+      18.6,
+      18.2,
+      16.4,
+      16.9,
+      19.7
+    ],
+    "england": [
+      13.6,
+      15.2,
+      14.5,
+      14.9,
+      15.2,
+      18.6,
+      17.5,
+      17.2,
+      17.7,
+      18.7
+    ]
+  },
   "areas": [
     {
       "area_code": "E08000028",
@@ -266,36 +279,18 @@
       "rank": 7
     }
   ],
-  "benchmarks": {
-    "wmca": 19.7,
-    "england": 18.7
-  },
-  "bench_series": {
-    "wmca": [
-      9.9,
-      10.9,
-      10.6,
-      12.9,
-      13.4,
-      18.6,
-      18.2,
-      16.4,
-      16.9,
-      19.7
-    ],
-    "england": [
-      13.6,
-      15.2,
-      14.5,
-      14.9,
-      15.2,
-      18.6,
-      17.5,
-      17.2,
-      17.7,
-      18.7
-    ]
-  },
+  "years": [
+    "2015/16",
+    "2016/17",
+    "2017/18",
+    "2018/19",
+    "2019/20",
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25"
+  ],
   "city": {
     "series": [
       11.1,
@@ -315,23 +310,5 @@
     "peak": 20.8,
     "peak_year": "2024/25",
     "rank": 3
-  },
-  "raw_sample": [
-    {
-      "value": 20.8,
-      "date": "2025",
-      "periodlabel": "2024/25"
-    },
-    {
-      "value": 19.7,
-      "date": "2025",
-      "periodlabel": "2024/25"
-    },
-    {
-      "value": 18.7,
-      "date": "2025",
-      "periodlabel": "2024/25"
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.058Z"
+  }
 }

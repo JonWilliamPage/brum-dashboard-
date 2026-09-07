@@ -1,10 +1,52 @@
 {
-  "id": "claimant-count",
-  "status": "accepted",
-  "title": "Claimant count by ward",
+  "generated": "2026-09-07T16:40:12.013Z",
   "metric": "% of residents aged 16-64 claiming unemployment-related benefits",
   "unit": "% of 16-64 residents",
-  "generated": "2026-07-08T13:09:49.834Z",
+  "source": {
+    "id": "claimantCount",
+    "label": "Claimant count by sex (latest month)",
+    "publisher": "DWP · via Birmingham City Observatory",
+    "dataset": "claimant-count-by-sex-birmingham-wards-latest",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "Apr 2026",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-by-sex-birmingham-wards-latest/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-by-sex-birmingham-wards-latest/records?limit=100"
+  },
+  "sources": [
+    {
+      "id": "claimantCount",
+      "label": "Claimant count by sex (latest month)",
+      "publisher": "DWP · via Birmingham City Observatory",
+      "dataset": "claimant-count-by-sex-birmingham-wards-latest",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "Apr 2026",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-by-sex-birmingham-wards-latest/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-by-sex-birmingham-wards-latest/records?limit=100"
+    },
+    {
+      "id": "claimantCount5y",
+      "label": "Claimant count by sex & age (5-year series)",
+      "publisher": "DWP · via Birmingham City Observatory",
+      "dataset": "claimant-count-birmingham-wards-5years",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "May 2021 – Apr 2026",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-birmingham-wards-5years/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-birmingham-wards-5years/records?limit=100"
+    }
+  ],
+  "as_of": "Apr 2026",
+  "wards_found": 69,
+  "wards_expected": 69,
+  "complete": true,
+  "skipped": [],
+  "ward_mean_pct": 9.6,
+  "total_claimants": 77330,
+  "months_span": 60,
+  "series_from": "2021-05",
+  "series_to": "2026-04",
   "months": [
     "2021-05",
     "2021-06",
@@ -66,86 +108,6 @@
     "2026-02",
     "2026-03",
     "2026-04"
-  ],
-  "sources": [
-    {
-      "id": "claimantCount",
-      "label": "Claimant count by sex (latest month)",
-      "publisher": "DWP · via Birmingham City Observatory",
-      "dataset": "claimant-count-by-sex-birmingham-wards-latest",
-      "method": "administrative",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "Apr 2026",
-      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-by-sex-birmingham-wards-latest/",
-      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-by-sex-birmingham-wards-latest/records?limit=100"
-    },
-    {
-      "id": "claimantCount5y",
-      "label": "Claimant count by sex & age (5-year series)",
-      "publisher": "DWP · via Birmingham City Observatory",
-      "dataset": "claimant-count-birmingham-wards-5years",
-      "method": "administrative",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "May 2021 – Apr 2026",
-      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-birmingham-wards-5years/",
-      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-birmingham-wards-5years/records?limit=100"
-    }
-  ],
-  "source": {
-    "id": "claimantCount",
-    "label": "Claimant count by sex (latest month)",
-    "publisher": "DWP · via Birmingham City Observatory",
-    "dataset": "claimant-count-by-sex-birmingham-wards-latest",
-    "method": "administrative",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "Apr 2026",
-    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/claimant-count-by-sex-birmingham-wards-latest/",
-    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/claimant-count-by-sex-birmingham-wards-latest/records?limit=100"
-  },
-  "validation": {
-    "wards_found": 69,
-    "wards_expected": 69,
-    "complete": true,
-    "skipped": [],
-    "ward_mean_pct": 9.6,
-    "total_claimants": 77330,
-    "months_span": 60,
-    "series_from": "2021-05",
-    "series_to": "2026-04"
-  },
-  "raw_sample": [
-    {
-      "date": "2026-04",
-      "geography_name": "Acocks Green",
-      "geography_code": "E05011118",
-      "gender_name": "Total",
-      "measure_name": "Claimants as a proportion of residents aged 16-64",
-      "obs_value": 10.2
-    },
-    {
-      "date": "2026-04",
-      "geography_name": "Acocks Green",
-      "geography_code": "E05011118",
-      "gender_name": "Male",
-      "measure_name": "Claimant count",
-      "obs_value": 950
-    },
-    {
-      "date": "2026-04",
-      "geography_name": "Acocks Green",
-      "geography_code": "E05011118",
-      "gender_name": "Female",
-      "measure_name": "Claimants as a proportion of residents aged 16-64",
-      "obs_value": 8.6
-    },
-    {
-      "date": "2026-04",
-      "geography_name": "Allens Cross",
-      "geography_code": "E05011119",
-      "gender_name": "Total",
-      "measure_name": "Claimants as a proportion of residents aged 16-64",
-      "obs_value": 7.7
-    }
   ],
   "wards": [
     {
@@ -6358,6 +6320,5 @@
         }
       }
     }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.014Z"
+  ]
 }

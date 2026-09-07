@@ -1,6 +1,6 @@
 {
   "id": "pip-stage",
-  "status": "pending",
+  "status": "accepted",
   "title": "PIP Stage — 3D extruded ward caseload + condition context",
   "metric": "PIP caseload by ward over time; city PIP £m; GB £ by condition; Bham category counts · Three.js extrusion stage",
   "unit": "cases / £ million",
@@ -4930,5 +4930,6 @@
     "presentation": "three-js-extruded-wards",
     "parent_proposal": "pip-place"
   },
-  "presentation": "three-extrusion"
+  "presentation": "three-extrusion",
+  "reviewed_at": "2026-09-07T16:40:12.114Z"
 }

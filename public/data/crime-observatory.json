@@ -1,11 +1,65 @@
 {
-  "id": "crime-observatory",
-  "status": "accepted",
-  "title": "Recorded crime by ward — deep dive",
+  "generated": "2026-09-07T16:40:12.035Z",
   "metric": "Recorded offences per 1,000 residents (with 36-month trend, category mix and outcomes)",
   "unit": "offences / 1,000 residents",
-  "generated": "2026-07-18T16:24:31.123Z",
+  "source": {
+    "label": "Recorded crime (street-level)",
+    "publisher": "West Midlands Police · via Birmingham City Observatory",
+    "dataset": "west-midlands-police-crime",
+    "method": "administrative (recorded offences, not modelled)",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2026-05",
+    "catalogueUrl": "https://cityobservatory.birmingham.gov.uk/explore/dataset/west-midlands-police-crime/",
+    "apiUrl": "https://cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/west-midlands-police-crime/records?where=local_authority_code%3D%22E08000025%22&order_by=date%20DESC&limit=100"
+  },
+  "sources": [
+    {
+      "id": "crimeObservatory",
+      "label": "Recorded crime (street-level)",
+      "publisher": "West Midlands Police · via Birmingham City Observatory",
+      "dataset": "west-midlands-police-crime",
+      "method": "administrative (recorded offences, not modelled)",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2026-05",
+      "catalogueUrl": "https://cityobservatory.birmingham.gov.uk/explore/dataset/west-midlands-police-crime/",
+      "apiUrl": "https://cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/west-midlands-police-crime/records?where=local_authority_code%3D%22E08000025%22&order_by=date%20DESC&limit=100"
+    },
+    {
+      "id": "population",
+      "label": "Ward population (denominator for the rate)",
+      "publisher": "Office for National Statistics",
+      "dataset": "NOMIS NM_2014_1 (SAPE)",
+      "method": "official estimate",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "Mid-2024",
+      "catalogueUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala",
+      "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
+    }
+  ],
   "as_of": "2026-05",
+  "wards_found": 69,
+  "wards_expected": 69,
+  "complete": true,
+  "wards_with_data_latest": 69,
+  "months_in_series": 36,
+  "series_from": "2023-06",
+  "series_to": "2026-05",
+  "category_checksum_ok": true,
+  "ward_checksum_latest_ok": true,
+  "checksum_drift": [],
+  "latest_total": 13074,
+  "ward_sum_latest": 13074,
+  "highest": {
+    "ward": "Ladywood",
+    "rate": 33.84
+  },
+  "lowest": {
+    "ward": "Sutton Mere Green",
+    "rate": 2.78
+  },
+  "min_rate": 2.78,
+  "max_rate": 33.84,
+  "skipped": [],
   "geography": "Birmingham — 69 official wards",
   "months": [
     "2023-06",
@@ -44,64 +98,6 @@
     "2026-03",
     "2026-04",
     "2026-05"
-  ],
-  "categories": [
-    {
-      "name": "Violence and sexual offences",
-      "latest_count": 5742
-    },
-    {
-      "name": "Vehicle crime",
-      "latest_count": 1049
-    },
-    {
-      "name": "Shoplifting",
-      "latest_count": 1039
-    },
-    {
-      "name": "Criminal damage and arson",
-      "latest_count": 1036
-    },
-    {
-      "name": "Public order",
-      "latest_count": 902
-    },
-    {
-      "name": "Other theft",
-      "latest_count": 763
-    },
-    {
-      "name": "Burglary",
-      "latest_count": 577
-    },
-    {
-      "name": "Drugs",
-      "latest_count": 436
-    },
-    {
-      "name": "Anti-social behaviour",
-      "latest_count": 394
-    },
-    {
-      "name": "Possession of weapons",
-      "latest_count": 376
-    },
-    {
-      "name": "Robbery",
-      "latest_count": 327
-    },
-    {
-      "name": "Other crime",
-      "latest_count": 196
-    },
-    {
-      "name": "Theft from the person",
-      "latest_count": 171
-    },
-    {
-      "name": "Bicycle theft",
-      "latest_count": 66
-    }
   ],
   "city": {
     "monthly_totals": {
@@ -1159,96 +1155,62 @@
     },
     "latest_total": 13074
   },
-  "sources": [
+  "categories": [
     {
-      "id": "crimeObservatory",
-      "label": "Recorded crime (street-level)",
-      "publisher": "West Midlands Police · via Birmingham City Observatory",
-      "dataset": "west-midlands-police-crime",
-      "method": "administrative (recorded offences, not modelled)",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2026-05",
-      "catalogueUrl": "https://cityobservatory.birmingham.gov.uk/explore/dataset/west-midlands-police-crime/",
-      "apiUrl": "https://cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/west-midlands-police-crime/records?where=local_authority_code%3D%22E08000025%22&order_by=date%20DESC&limit=100"
+      "name": "Violence and sexual offences",
+      "latest_count": 5742
     },
     {
-      "id": "population",
-      "label": "Ward population (denominator for the rate)",
-      "publisher": "Office for National Statistics",
-      "dataset": "NOMIS NM_2014_1 (SAPE)",
-      "method": "official estimate",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "Mid-2024",
-      "catalogueUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala",
-      "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
-    }
-  ],
-  "source": {
-    "label": "Recorded crime (street-level)",
-    "publisher": "West Midlands Police · via Birmingham City Observatory",
-    "dataset": "west-midlands-police-crime",
-    "method": "administrative (recorded offences, not modelled)",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2026-05",
-    "catalogueUrl": "https://cityobservatory.birmingham.gov.uk/explore/dataset/west-midlands-police-crime/",
-    "apiUrl": "https://cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/west-midlands-police-crime/records?where=local_authority_code%3D%22E08000025%22&order_by=date%20DESC&limit=100"
-  },
-  "validation": {
-    "wards_found": 69,
-    "wards_expected": 69,
-    "complete": true,
-    "wards_with_data_latest": 69,
-    "months_in_series": 36,
-    "series_from": "2023-06",
-    "series_to": "2026-05",
-    "category_checksum_ok": true,
-    "ward_checksum_latest_ok": true,
-    "checksum_drift": [],
-    "latest_total": 13074,
-    "ward_sum_latest": 13074,
-    "highest": {
-      "ward": "Ladywood",
-      "rate": 33.84
+      "name": "Vehicle crime",
+      "latest_count": 1049
     },
-    "lowest": {
-      "ward": "Sutton Mere Green",
-      "rate": 2.78
-    },
-    "min_rate": 2.78,
-    "max_rate": 33.84,
-    "skipped": []
-  },
-  "raw_sample": [
     {
-      "_note": "Aggregates only — raw street-level rows are never shipped to the browser (privacy + payload).",
-      "example_latest_month_category": {
-        "Anti-social behaviour": 394,
-        "Bicycle theft": 66,
-        "Burglary": 577,
-        "Criminal damage and arson": 1036,
-        "Drugs": 436,
-        "Other crime": 196,
-        "Other theft": 763,
-        "Possession of weapons": 376,
-        "Public order": 902,
-        "Robbery": 327,
-        "Shoplifting": 1039,
-        "Theft from the person": 171,
-        "Vehicle crime": 1049,
-        "Violence and sexual offences": 5742
-      },
-      "example_latest_month_outcomes": {
-        "Not yet recorded": 394,
-        "Action to be taken by another organisation": 61,
-        "Awaiting court outcome": 478,
-        "Formal action is not in the public interest": 1,
-        "Further investigation is not in the public interest": 2,
-        "Investigation complete; no suspect identified": 2910,
-        "Local resolution": 222,
-        "Offender given a caution": 18,
-        "Unable to prosecute suspect": 2921,
-        "Under investigation": 6067
-      }
+      "name": "Shoplifting",
+      "latest_count": 1039
+    },
+    {
+      "name": "Criminal damage and arson",
+      "latest_count": 1036
+    },
+    {
+      "name": "Public order",
+      "latest_count": 902
+    },
+    {
+      "name": "Other theft",
+      "latest_count": 763
+    },
+    {
+      "name": "Burglary",
+      "latest_count": 577
+    },
+    {
+      "name": "Drugs",
+      "latest_count": 436
+    },
+    {
+      "name": "Anti-social behaviour",
+      "latest_count": 394
+    },
+    {
+      "name": "Possession of weapons",
+      "latest_count": 376
+    },
+    {
+      "name": "Robbery",
+      "latest_count": 327
+    },
+    {
+      "name": "Other crime",
+      "latest_count": 196
+    },
+    {
+      "name": "Theft from the person",
+      "latest_count": 171
+    },
+    {
+      "name": "Bicycle theft",
+      "latest_count": 66
     }
   ],
   "wards": [
@@ -6395,6 +6357,5 @@
       },
       "rank": 69
     }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.036Z"
+  ]
 }

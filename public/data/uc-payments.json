@@ -1,15 +1,7 @@
 {
-  "id": "uc-payments",
-  "status": "accepted",
-  "title": "UC Payments — household award intensity in Birmingham",
+  "generated": "2026-09-07T16:40:12.143Z",
   "metric": "Households on UC; mean Payment Amount (£); award-size bands; family-type split",
   "unit": "households / £ per household (assessment period)",
-  "geography": "local-authority",
-  "la_code": "E08000025",
-  "la_name": "Birmingham",
-  "generated": "2026-07-18T13:54:58.322Z",
-  "as_of": "February 2026",
-  "year": "February 2026",
   "source": {
     "as_of": "February 2026",
     "label": "Stat-Xplore Households on Universal Credit",
@@ -39,6 +31,26 @@
       "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
     }
   ],
+  "as_of": "February 2026",
+  "geography_level": "local-authority",
+  "la_code": "E08000025",
+  "complete": true,
+  "months_span": 24,
+  "series_from": "March 2024",
+  "series_to": "February 2026",
+  "latest_households": 210687,
+  "latest_mean_payment_gbp": 859.22,
+  "award_bands_count": 28,
+  "award_bands_sum": 210693,
+  "award_bands_drift_pct": 0,
+  "award_bands_checksum_ok": true,
+  "family_types_count": 5,
+  "family_types_sum": 210686,
+  "family_types_drift_pct": 0,
+  "family_types_checksum_ok": true,
+  "wards_found": 0,
+  "note": "LA-level only. Households ≠ people on UC. Mean Payment Amount ≠ annual Benefits Bill UC £. Band/family sums may drift slightly from total due to DWP rounding. No ward-level £ outturn published as accounts.",
+  "geography": "local-authority",
   "months": [
     "March 2024",
     "April 2024",
@@ -64,32 +76,6 @@
     "December 2025",
     "January 2026",
     "February 2026"
-  ],
-  "month_keys": [
-    "202403",
-    "202404",
-    "202405",
-    "202406",
-    "202407",
-    "202408",
-    "202409",
-    "202410",
-    "202411",
-    "202412",
-    "202501",
-    "202502",
-    "202503",
-    "202504",
-    "202505",
-    "202506",
-    "202507",
-    "202508",
-    "202509",
-    "202510",
-    "202511",
-    "202512",
-    "202601",
-    "202602"
   ],
   "city": {
     "series": [
@@ -252,6 +238,40 @@
       "note": "Annual accounting outturn — not the same metric as mean monthly Payment Amount"
     }
   },
+  "year": "February 2026",
+  "method_notes": [
+    "Unit of analysis is the UC household claim, not each adult on the claim.",
+    "Payment Amount is the mean £ paid in the assessment period (monthly-ish), not annual expenditure.",
+    "Benefits Bill UC line (if present) is annual DWP accounting outturn for Birmingham LA — different metric; shown as context only.",
+    "Ward-level mean payment is available in Stat-Xplore but not included until code↔label join is validated — no broken sample shipped.",
+    "Aggregate band \"£1500.01 or over\" dropped when finer £100 bands exist to avoid double-counting."
+  ],
+  "month_keys": [
+    "202403",
+    "202404",
+    "202405",
+    "202406",
+    "202407",
+    "202408",
+    "202409",
+    "202410",
+    "202411",
+    "202412",
+    "202501",
+    "202502",
+    "202503",
+    "202504",
+    "202505",
+    "202506",
+    "202507",
+    "202508",
+    "202509",
+    "202510",
+    "202511",
+    "202512",
+    "202601",
+    "202602"
+  ],
   "award_bands": [
     {
       "band": "No payment",
@@ -393,33 +413,5 @@
       "mean_payment_gbp": 1195.23
     }
   ],
-  "wards": [],
-  "validation": {
-    "geography_level": "local-authority",
-    "la_code": "E08000025",
-    "complete": true,
-    "months_span": 24,
-    "series_from": "March 2024",
-    "series_to": "February 2026",
-    "latest_households": 210687,
-    "latest_mean_payment_gbp": 859.22,
-    "award_bands_count": 28,
-    "award_bands_sum": 210693,
-    "award_bands_drift_pct": 0,
-    "award_bands_checksum_ok": true,
-    "family_types_count": 5,
-    "family_types_sum": 210686,
-    "family_types_drift_pct": 0,
-    "family_types_checksum_ok": true,
-    "wards_found": 0,
-    "note": "LA-level only. Households ≠ people on UC. Mean Payment Amount ≠ annual Benefits Bill UC £. Band/family sums may drift slightly from total due to DWP rounding. No ward-level £ outturn published as accounts."
-  },
-  "method_notes": [
-    "Unit of analysis is the UC household claim, not each adult on the claim.",
-    "Payment Amount is the mean £ paid in the assessment period (monthly-ish), not annual expenditure.",
-    "Benefits Bill UC line (if present) is annual DWP accounting outturn for Birmingham LA — different metric; shown as context only.",
-    "Ward-level mean payment is available in Stat-Xplore but not included until code↔label join is validated — no broken sample shipped.",
-    "Aggregate band \"£1500.01 or over\" dropped when finer £100 bands exist to avoid double-counting."
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.144Z"
+  "wards": []
 }

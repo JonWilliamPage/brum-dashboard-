@@ -1,11 +1,18 @@
 {
-  "id": "housing-benefit",
-  "status": "accepted",
-  "title": "Housing Benefit — % of households in receipt",
+  "generated": "2026-09-07T16:40:12.068Z",
   "metric": "% of households in receipt of Housing Benefit",
   "unit": "% of households",
-  "geography": "local-authority",
-  "generated": "2026-07-05T23:52:35.873Z",
+  "source": {
+    "id": "housingBenefit",
+    "label": "Households in receipt of Housing Benefit (%)",
+    "publisher": "DWP · via Birmingham City Observatory",
+    "dataset": "percentage-households-in-receipt-of-housing-benefits-wmca",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "Feb 2026",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-households-in-receipt-of-housing-benefits-wmca/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?order_by=date%20DESC&limit=100"
+  },
   "sources": [
     {
       "id": "housingBenefit",
@@ -19,29 +26,18 @@
       "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?order_by=date%20DESC&limit=100"
     }
   ],
-  "source": {
-    "id": "housingBenefit",
-    "label": "Households in receipt of Housing Benefit (%)",
-    "publisher": "DWP · via Birmingham City Observatory",
-    "dataset": "percentage-households-in-receipt-of-housing-benefits-wmca",
-    "method": "administrative",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "Feb 2026",
-    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-households-in-receipt-of-housing-benefits-wmca/",
-    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?order_by=date%20DESC&limit=100"
-  },
-  "validation": {
-    "geography_level": "local-authority",
-    "ward_breakdown_available": false,
-    "areas_found": 7,
-    "areas_expected": 7,
-    "complete": true,
-    "skipped": [],
-    "birmingham_value": 12.99,
-    "birmingham_rank": 1,
-    "wmca_benchmark": 6.29,
-    "england_benchmark": 4.64
-  },
+  "as_of": "Feb 2026",
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "areas_found": 7,
+  "areas_expected": 7,
+  "complete": true,
+  "skipped": [],
+  "birmingham_value": 12.99,
+  "birmingham_rank": 1,
+  "wmca_benchmark": 6.29,
+  "england_benchmark": 4.64,
+  "geography": "local-authority",
   "benchmarks": {
     "wmca": 6.29,
     "england": 4.64
@@ -152,47 +148,5 @@
       },
       "rank": 7
     }
-  ],
-  "raw_sample": [
-    {
-      "metrictypeidentifier": "3480",
-      "metrictypelabel": "% of households in receipt of housing benefits",
-      "areaidentifier": "E08000025",
-      "arealabel": "Birmingham",
-      "arealonglabel": "Birmingham (Metropolitan borough)",
-      "date": "2026-02",
-      "periodlabel": "Feb 2026",
-      "periodidentifier": "Month_2026_February",
-      "value": 12.99,
-      "valuetypelabel": "%",
-      "format": "#,##0.00"
-    },
-    {
-      "metrictypeidentifier": "3480",
-      "metrictypelabel": "% of households in receipt of housing benefits",
-      "areaidentifier": "CombinedAuthorities_WestMidlands",
-      "arealabel": "Mean for West Midlands combined authority",
-      "arealonglabel": null,
-      "date": "2026-02",
-      "periodlabel": "Feb 2026",
-      "periodidentifier": "Month_2026_February",
-      "value": 6.29,
-      "valuetypelabel": "%",
-      "format": "#,##0.00"
-    },
-    {
-      "metrictypeidentifier": "3480",
-      "metrictypelabel": "% of households in receipt of housing benefits",
-      "areaidentifier": "AllLaInCountry_England",
-      "arealabel": "Mean for All English authorities",
-      "arealonglabel": null,
-      "date": "2026-02",
-      "periodlabel": "Feb 2026",
-      "periodidentifier": "Month_2026_February",
-      "value": 4.64,
-      "valuetypelabel": "%",
-      "format": "#,##0.00"
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.069Z"
+  ]
 }

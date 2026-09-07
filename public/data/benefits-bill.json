@@ -1,15 +1,67 @@
 {
-  "id": "benefits-bill",
-  "status": "accepted",
-  "title": "The Benefits Bill — DWP expenditure in Birmingham",
+  "generated": "2026-09-07T16:40:11.964Z",
   "metric": "DWP benefit expenditure by benefit, £m nominal",
   "unit": "£ million / year",
-  "geography": "local-authority",
-  "generated": "2026-07-12T15:05:14.316Z",
-  "year": "2024/25",
+  "source": {
+    "id": "benefitsBill",
+    "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
+    "method": "administrative — accounting outturn",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+  },
+  "sources": [
+    {
+      "id": "benefitsBill",
+      "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
+      "method": "administrative — accounting outturn",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+    },
+    {
+      "id": "benefitsBillPage",
+      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Collection page listing all workbooks",
+      "method": "reference",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
+    },
+    {
+      "id": "population",
+      "label": "Population (per-head denominator)",
+      "publisher": "Office for National Statistics",
+      "dataset": "NOMIS NM_2014_1 (SAPE mid-2024)",
+      "method": "official estimate",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "Mid-2024",
+      "catalogueUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala",
+      "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
+    }
+  ],
+  "as_of": "2024/25",
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "lines_found": 15,
+  "components_sum_m": 5414.5,
+  "workbook_total_m": 5414.4,
+  "sum_check_passed": true,
   "total_m": 5414.4,
   "per_head": 4574,
-  "population": 1183618,
+  "history_years": 23,
+  "history_years_with_components": 22,
+  "history_from": "2002/03",
+  "history_to": "2024/25",
+  "geography": "local-authority",
   "lines": [
     {
       "id": "uc",
@@ -564,75 +616,6 @@
       "partial": false
     }
   ],
-  "sources": [
-    {
-      "id": "benefitsBill",
-      "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
-      "method": "administrative — accounting outturn",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
-      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
-    },
-    {
-      "id": "benefitsBillPage",
-      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "Collection page listing all workbooks",
-      "method": "reference",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
-      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
-    },
-    {
-      "id": "population",
-      "label": "Population (per-head denominator)",
-      "publisher": "Office for National Statistics",
-      "dataset": "NOMIS NM_2014_1 (SAPE mid-2024)",
-      "method": "official estimate",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "Mid-2024",
-      "catalogueUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala",
-      "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
-    }
-  ],
-  "source": {
-    "id": "benefitsBill",
-    "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
-    "publisher": "Department for Work & Pensions",
-    "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
-    "method": "administrative — accounting outturn",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2024/25",
-    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
-    "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
-  },
-  "validation": {
-    "geography_level": "local-authority",
-    "ward_breakdown_available": false,
-    "lines_found": 15,
-    "components_sum_m": 5414.5,
-    "workbook_total_m": 5414.4,
-    "sum_check_passed": true,
-    "total_m": 5414.4,
-    "per_head": 4574,
-    "history_years": 23,
-    "history_years_with_components": 22,
-    "history_from": "2002/03",
-    "history_to": "2024/25"
-  },
-  "raw_sample": [
-    {
-      "Attendance Allowance": 124.6124057227544,
-      "Bereavement Support": 6.1599453805546345,
-      "Carer's Allowance": 132.5183158237141,
-      "Disability Living Allowance": 158.8223799962545,
-      "Discretionary Housing Payments": 2.689243,
-      "Employment & Support Allowance": 246.4000937697707
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:11.965Z"
+  "year": "2024/25",
+  "population": 1183618
 }

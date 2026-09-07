@@ -1,10 +1,18 @@
 {
-  "id": "uc-combined",
-  "status": "accepted",
-  "title": "Universal Credit — the full picture by ward",
+  "generated": "2026-09-07T16:40:12.133Z",
   "metric": "UC claimants: total / in work / not in work per ward",
   "unit": "people",
-  "generated": "2026-07-08T19:00:44.782Z",
+  "source": {
+    "id": "universalCredit",
+    "label": "UC claimant count",
+    "publisher": "DWP · via Birmingham City Observatory",
+    "dataset": "number-of-people-on-universal-credit-wmca-wards-2025",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "Jan 2026",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/number-of-people-on-universal-credit-wmca-wards-2025/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/number-of-people-on-universal-credit-wmca-wards-2025/records?order_by=date%20DESC&limit=100"
+  },
   "sources": [
     {
       "id": "universalCredit",
@@ -40,17 +48,14 @@
       "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
     }
   ],
-  "source": {
-    "id": "universalCredit",
-    "label": "UC claimant count",
-    "publisher": "DWP · via Birmingham City Observatory",
-    "dataset": "number-of-people-on-universal-credit-wmca-wards-2025",
-    "method": "administrative",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "Jan 2026",
-    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/number-of-people-on-universal-credit-wmca-wards-2025/",
-    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/number-of-people-on-universal-credit-wmca-wards-2025/records?order_by=date%20DESC&limit=100"
-  },
+  "as_of": "Jan 2026",
+  "wards_found": 69,
+  "wards_expected": 69,
+  "complete": true,
+  "skipped": [],
+  "total_claimants": 247388,
+  "total_in_work": 77286,
+  "total_not_in_work": 170102,
   "city": {
     "total": 247388,
     "in_work": 77286,
@@ -58,62 +63,6 @@
     "pct_pop": 20.9,
     "pct_not_in_work": 68.8
   },
-  "validation": {
-    "wards_found": 69,
-    "wards_expected": 69,
-    "complete": true,
-    "skipped": [],
-    "total_claimants": 247388,
-    "total_in_work": 77286,
-    "total_not_in_work": 170102
-  },
-  "raw_sample": [
-    {
-      "metrictypeidentifier": "13379",
-      "metrictypelabel": "No. of people on Universal Credit",
-      "local_authority_name": "Birmingham",
-      "local_authority_code": "E08000025",
-      "arealabel": "Aston",
-      "areaidentifier": "E05011121",
-      "arealonglabel": "Aston, Birmingham",
-      "date": "2026-01",
-      "periodlabel": "Jan 2026",
-      "periodidentifier": "Month_2026_January",
-      "value": 7157,
-      "valuetypelabel": "Claimants",
-      "format": "#,##0"
-    },
-    {
-      "metrictypeidentifier": "13379",
-      "metrictypelabel": "No. of people on Universal Credit",
-      "local_authority_name": "Birmingham",
-      "local_authority_code": "E08000025",
-      "arealabel": "Garretts Green",
-      "areaidentifier": "E05011137",
-      "arealonglabel": "Garretts Green, Birmingham",
-      "date": "2026-01",
-      "periodlabel": "Jan 2026",
-      "periodidentifier": "Month_2026_January",
-      "value": 2500,
-      "valuetypelabel": "Claimants",
-      "format": "#,##0"
-    },
-    {
-      "metrictypeidentifier": "13379",
-      "metrictypelabel": "No. of people on Universal Credit",
-      "local_authority_name": "Birmingham",
-      "local_authority_code": "E08000025",
-      "arealabel": "Handsworth",
-      "areaidentifier": "E05011142",
-      "arealonglabel": "Handsworth, Birmingham",
-      "date": "2026-01",
-      "periodlabel": "Jan 2026",
-      "periodidentifier": "Month_2026_January",
-      "value": 4106,
-      "valuetypelabel": "Claimants",
-      "format": "#,##0"
-    }
-  ],
   "wards": [
     {
       "ward_code": "E05011153",
@@ -2530,6 +2479,5 @@
         }
       }
     }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.134Z"
+  ]
 }

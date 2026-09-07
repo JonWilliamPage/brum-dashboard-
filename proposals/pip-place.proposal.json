@@ -1,6 +1,6 @@
 {
   "id": "pip-place",
-  "status": "pending",
+  "status": "accepted",
   "title": "PIP Place — city £, ward caseload play, GB conditions, Bham diagnosis mix",
   "metric": "PIP caseload by ward over time; city PIP £m; GB £ by condition; Bham category counts",
   "unit": "cases / £ million",
@@ -4916,5 +4916,6 @@
     "categories_latest": 22,
     "gb_condition_years": 12,
     "honesty": "Ward figures are CASELOAD not £. City £ from LA accounts. Condition £ is GB-only. Category mix is count of cases by reported disability category (admin classification, not a fraud finding)."
-  }
+  },
+  "reviewed_at": "2026-09-07T16:40:12.103Z"
 }

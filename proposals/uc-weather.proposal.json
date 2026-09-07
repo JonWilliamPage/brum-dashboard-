@@ -1,6 +1,6 @@
 {
   "id": "uc-weather",
-  "status": "pending",
+  "status": "accepted",
   "title": "UC Money Weather — claimants by ward over time + city UC £",
   "metric": "People on Universal Credit (count) by ward over months; city UC £m annual",
   "unit": "claimants / £ million",
@@ -10291,5 +10291,6 @@
     "city_latest": 247176,
     "bill_uc_years": 6,
     "note": "Caseload is administrative. City £ is LA accounts. per_1000 is DERIVED (count ÷ ONS pop × 1000). No ward-level £ outturn exists."
-  }
+  },
+  "reviewed_at": "2026-09-07T16:40:12.167Z"
 }

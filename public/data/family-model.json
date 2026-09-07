@@ -1,26 +1,11 @@
 {
-  "id": "family-model",
-  "status": "accepted",
-  "title": "Family Support Model — illustrative rates + Birmingham UC means",
+  "generated": "2026-09-07T16:40:12.048Z",
   "metric": "Statutory monthly entitlement stack + observed UC mean by family type",
   "unit": "£ per month (illustrative) / £ mean payment (observed)",
-  "geography": "rates=national; observed means=Birmingham LA",
-  "generated": "2026-07-18T14:50:51.420Z",
-  "as_of": "February 2026",
-  "rates_year": "2026/27",
   "source": {
     "as_of": "February 2026",
     "label": "DWP/HMRC rates + Stat-Xplore UC households",
     "publisher": "Department for Work & Pensions / HMRC"
-  },
-  "rates_explainer": {
-    "uc_child_element_month": 303.94,
-    "child_benefit_first_week": 27.05,
-    "child_benefit_other_week": 17.9,
-    "two_child_limit": "The two-child limit restricted the UC child element to (usually) two children. It was abolished on 6 April 2026. It never limited Child Benefit.",
-    "derived_means": "“4 × £303.94” is official rate × number of children (arithmetic). The £303.94 figure itself is the published statutory monthly child element — not an estimate.",
-    "benefit_cap_couple_month": 1835,
-    "pip_and_cap": "PIP is not in the list of benefits that count toward the cap. If you, your partner or a child under 18 gets PIP, the household is not affected by the cap."
   },
   "sources": [
     {
@@ -123,119 +108,10 @@
       "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
     }
   ],
-  "framing": {
-    "what_this_is": "An illustrative model of which state payments can accrue to a family, using official rates and Birmingham observed UC means.",
-    "what_this_is_not": "Not a real household. Not linked microdata. Not advice. Not “what every couple with four children gets.”",
-    "key_rule": "A couple has ONE Universal Credit claim — mother and father do not each receive a full separate UC standard allowance."
-  },
-  "observed": {
-    "as_of": "February 2026",
-    "city_mean_payment_gbp": 859.22,
-    "city_households": 210687,
-    "by_family_type": [
-      {
-        "family_type": "Single, no children",
-        "households": 115785,
-        "mean_payment_gbp": 605.53
-      },
-      {
-        "family_type": "Single, with children",
-        "households": 59359,
-        "mean_payment_gbp": 1203.48
-      },
-      {
-        "family_type": "Couple, no children",
-        "households": 7116,
-        "mean_payment_gbp": 818.34
-      },
-      {
-        "family_type": "Couple, with children",
-        "households": 28359,
-        "mean_payment_gbp": 1183.84
-      },
-      {
-        "family_type": "Unknown or missing family type",
-        "households": 67,
-        "mean_payment_gbp": 1195.23
-      }
-    ],
-    "couple_with_children_mean_gbp": 1183.84,
-    "couple_with_children_households": 28359,
-    "source": "Stat-Xplore UC_Households · MEAN Payment Amount · Birmingham LA"
-  },
-  "bill_context": {
-    "year": "2024/25",
-    "lines": [
-      {
-        "id": "uc",
-        "label": "Universal Credit",
-        "amount_m": 1809
-      },
-      {
-        "id": "hb",
-        "label": "Housing Benefit",
-        "amount_m": 634.8
-      },
-      {
-        "id": "pip",
-        "label": "Personal Independence Payment",
-        "amount_m": 619.1
-      },
-      {
-        "id": "esa",
-        "label": "Employment & Support Allowance",
-        "amount_m": 246.4
-      },
-      {
-        "id": "dla",
-        "label": "Disability Living Allowance",
-        "amount_m": 158.8
-      },
-      {
-        "id": "ca",
-        "label": "Carer's Allowance",
-        "amount_m": 132.5
-      }
-    ],
-    "note": "City-wide annual accounts — not per household"
-  },
-  "catalogue": [
-    {
-      "id": "uc",
-      "name": "Universal Credit",
-      "person_or_household": "household",
-      "stacks": "One claim per couple",
-      "bham_data": "Stat-Xplore means + Benefits Bill £"
-    },
-    {
-      "id": "pip",
-      "name": "PIP",
-      "person_or_household": "person",
-      "stacks": "Usually ignored as UC income",
-      "bham_data": "Bill £; caseload by ward; mean awards via Stat-Xplore"
-    },
-    {
-      "id": "ca",
-      "name": "Carer's Allowance",
-      "person_or_household": "person",
-      "stacks": "Interacts with UC carer element",
-      "bham_data": "Benefits Bill £"
-    },
-    {
-      "id": "cb",
-      "name": "Child Benefit",
-      "person_or_household": "household",
-      "stacks": "HMRC separate",
-      "bham_data": "Rates only (not in DWP Bill)"
-    },
-    {
-      "id": "hb",
-      "name": "Housing Benefit / UC housing",
-      "person_or_household": "household",
-      "stacks": "Rent-specific",
-      "bham_data": "Bill HB £; not fixed per family"
-    }
-  ],
+  "as_of": "February 2026",
+  "complete": true,
+  "rates_year": "2026/27",
+  "observed_as_of": "February 2026",
   "scenarios": [
     {
       "id": "observed-couple-children",
@@ -478,18 +354,11 @@
       "cap_exempt_reason": "PIP in the household (also LCWRA / carer element are separate exemption routes)"
     }
   ],
-  "comparisons": {
-    "observed_vs_core_uc": {
-      "formula": "statutory UC-only (core without CB) − observed couple-with-children mean",
-      "observed_mean": 1183.84,
-      "statutory_uc_only": 1882.73,
-      "difference": 698.89,
-      "note": "Core UC-only is for exactly 4 children; observed mean averages all couple-with-children households (1+ children, mixed housing/disability). Not like-for-like."
-    },
-    "high_total": 5073.04,
-    "high_with_naive_ca": 5447.66,
-    "naive_ca_warning": "Adding full Carer’s Allowance on top of UC carer element overstates cash — CA usually reduces UC."
-  },
+  "core_total": 2232.65,
+  "high_total": 5073.04,
+  "observed_couple_children_mean": 1183.84,
+  "note": "Illustrative model. Checksums are arithmetic on published rates, not admin reconciliation of a real claim.",
+  "geography": "rates=national; observed means=Birmingham LA",
   "method_notes": [
     "Weekly benefits converted to monthly as × 52 / 12.",
     "UC child element £303.94/mo is the official published rate; 4× is arithmetic for a 4-child household.",
@@ -501,15 +370,129 @@
     "Carer’s Allowance + UC carer element must not be naively summed as extra cash.",
     "Observed couple-with-children mean is not conditioned on exactly four children."
   ],
-  "validation": {
-    "complete": true,
-    "rates_year": "2026/27",
-    "observed_as_of": "February 2026",
-    "scenarios": 3,
-    "core_total": 2232.65,
-    "high_total": 5073.04,
-    "observed_couple_children_mean": 1183.84,
-    "note": "Illustrative model. Checksums are arithmetic on published rates, not admin reconciliation of a real claim."
+  "framing": {
+    "what_this_is": "An illustrative model of which state payments can accrue to a family, using official rates and Birmingham observed UC means.",
+    "what_this_is_not": "Not a real household. Not linked microdata. Not advice. Not “what every couple with four children gets.”",
+    "key_rule": "A couple has ONE Universal Credit claim — mother and father do not each receive a full separate UC standard allowance."
   },
-  "reviewed_at": "2026-09-07T16:40:12.048Z"
+  "observed": {
+    "as_of": "February 2026",
+    "city_mean_payment_gbp": 859.22,
+    "city_households": 210687,
+    "by_family_type": [
+      {
+        "family_type": "Single, no children",
+        "households": 115785,
+        "mean_payment_gbp": 605.53
+      },
+      {
+        "family_type": "Single, with children",
+        "households": 59359,
+        "mean_payment_gbp": 1203.48
+      },
+      {
+        "family_type": "Couple, no children",
+        "households": 7116,
+        "mean_payment_gbp": 818.34
+      },
+      {
+        "family_type": "Couple, with children",
+        "households": 28359,
+        "mean_payment_gbp": 1183.84
+      },
+      {
+        "family_type": "Unknown or missing family type",
+        "households": 67,
+        "mean_payment_gbp": 1195.23
+      }
+    ],
+    "couple_with_children_mean_gbp": 1183.84,
+    "couple_with_children_households": 28359,
+    "source": "Stat-Xplore UC_Households · MEAN Payment Amount · Birmingham LA"
+  },
+  "bill_context": {
+    "year": "2024/25",
+    "lines": [
+      {
+        "id": "uc",
+        "label": "Universal Credit",
+        "amount_m": 1809
+      },
+      {
+        "id": "hb",
+        "label": "Housing Benefit",
+        "amount_m": 634.8
+      },
+      {
+        "id": "pip",
+        "label": "Personal Independence Payment",
+        "amount_m": 619.1
+      },
+      {
+        "id": "esa",
+        "label": "Employment & Support Allowance",
+        "amount_m": 246.4
+      },
+      {
+        "id": "dla",
+        "label": "Disability Living Allowance",
+        "amount_m": 158.8
+      },
+      {
+        "id": "ca",
+        "label": "Carer's Allowance",
+        "amount_m": 132.5
+      }
+    ],
+    "note": "City-wide annual accounts — not per household"
+  },
+  "catalogue": [
+    {
+      "id": "uc",
+      "name": "Universal Credit",
+      "person_or_household": "household",
+      "stacks": "One claim per couple",
+      "bham_data": "Stat-Xplore means + Benefits Bill £"
+    },
+    {
+      "id": "pip",
+      "name": "PIP",
+      "person_or_household": "person",
+      "stacks": "Usually ignored as UC income",
+      "bham_data": "Bill £; caseload by ward; mean awards via Stat-Xplore"
+    },
+    {
+      "id": "ca",
+      "name": "Carer's Allowance",
+      "person_or_household": "person",
+      "stacks": "Interacts with UC carer element",
+      "bham_data": "Benefits Bill £"
+    },
+    {
+      "id": "cb",
+      "name": "Child Benefit",
+      "person_or_household": "household",
+      "stacks": "HMRC separate",
+      "bham_data": "Rates only (not in DWP Bill)"
+    },
+    {
+      "id": "hb",
+      "name": "Housing Benefit / UC housing",
+      "person_or_household": "household",
+      "stacks": "Rent-specific",
+      "bham_data": "Bill HB £; not fixed per family"
+    }
+  ],
+  "comparisons": {
+    "observed_vs_core_uc": {
+      "formula": "statutory UC-only (core without CB) − observed couple-with-children mean",
+      "observed_mean": 1183.84,
+      "statutory_uc_only": 1882.73,
+      "difference": 698.89,
+      "note": "Core UC-only is for exactly 4 children; observed mean averages all couple-with-children households (1+ children, mixed housing/disability). Not like-for-like."
+    },
+    "high_total": 5073.04,
+    "high_with_naive_ca": 5447.66,
+    "naive_ca_warning": "Adding full Carer’s Allowance on top of UC carer element overstates cash — CA usually reduces UC."
+  }
 }

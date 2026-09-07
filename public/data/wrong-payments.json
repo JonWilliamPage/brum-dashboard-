@@ -1,13 +1,7 @@
 {
-  "id": "wrong-payments",
-  "status": "accepted",
-  "title": "Wrong Payments — fraud & error on Birmingham's benefits bill",
+  "generated": "2026-09-07T16:40:12.180Z",
   "metric": "Illustrative overpayments: Birmingham DWP spend × national fraud/error rates",
   "unit": "£ million / year (illustrative)",
-  "geography": "local-authority (rates are Great Britain)",
-  "generated": "2026-07-16T18:49:14.038Z",
-  "year": "2024/25",
-  "as_of": "2024/25 spend × FYE 2025 rates",
   "source": {
     "as_of": "2024/25 spend × FYE 2025 rates",
     "label": "DWP Fraud & Error FYE 2025 × Birmingham LA expenditure",
@@ -48,58 +42,24 @@
       "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
     }
   ],
-  "national": {
-    "year": "FYE 2025",
-    "expenditure_bn": 292.2,
-    "overpaid_bn": 9.5,
-    "overpaid_rate_pct": 3.3,
-    "fraud_bn": 6.5,
-    "fraud_rate_pct": 2.2,
-    "claimant_error_bn": 1.9,
-    "claimant_error_rate_pct": 0.7,
-    "official_error_bn": 1,
-    "official_error_rate_pct": 0.4,
-    "underpaid_bn": 1.2,
-    "underpaid_rate_pct": 0.4,
-    "net_loss_bn": 8.4,
-    "net_loss_rate_pct": 2.9,
-    "recovered_bn": 1.1,
-    "prior": {
-      "year": "FYE 2024",
-      "overpaid_bn": 9.7,
-      "overpaid_rate_pct": 3.6,
-      "uc_overpaid_rate_pct": 12.4
-    },
-    "uc_overpaid_rate_pct": 9.7,
-    "uc_reasons": [
-      {
-        "id": "earnings",
-        "label": "Under-declared earnings / employment",
-        "rate_pct": 2.2,
-        "note": "Largest fraud reason on UC"
-      },
-      {
-        "id": "together",
-        "label": "Living together (undeclared partner)",
-        "rate_pct": 1.7,
-        "note": "Second-largest fraud reason"
-      },
-      {
-        "id": "capital",
-        "label": "Under-declared financial assets (capital)",
-        "rate_pct": 1.3,
-        "note": "Third-largest fraud reason"
-      },
-      {
-        "id": "engage",
-        "label": "Failure to provide evidence / engage",
-        "rate_pct": 0.9,
-        "note": "Down from 2.2% in FYE 2024"
-      }
-    ],
-    "source_url": "https://www.gov.uk/government/statistics/fraud-and-error-in-the-benefit-system-financial-year-2024-to-2025-estimates/fraud-and-error-in-the-benefit-system-financial-year-ending-fye-2025",
-    "tables_url": "https://www.gov.uk/government/statistics/fraud-and-error-in-the-benefit-system-financial-year-2024-to-2025-estimates"
-  },
+  "as_of": "2024/25 spend × FYE 2025 rates",
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "rates_are_national": true,
+  "derivation": "Birmingham_spend_£m × (national_overpayment_rate_% / 100)",
+  "bill_m": 5414.4,
+  "overpaid_m": 264.21,
+  "implied_rate_pct": 4.88,
+  "one_in": 20,
+  "lines_found": 15,
+  "measured_lines": 9,
+  "unmeasured_lines": 6,
+  "sum_spend_check": true,
+  "sum_overpaid_check": true,
+  "national_overpaid_bn": 9.5,
+  "national_rate_pct": 3.3,
+  "honesty_banner": "Illustrative only — national rates applied to city spend. Not a Birmingham audit.",
+  "geography": "local-authority (rates are Great Britain)",
   "city": {
     "bill_m": 5414.4,
     "population": 1183618,
@@ -122,42 +82,6 @@
     "top_leak_id": "uc",
     "top_leak_label": "Universal Credit",
     "top_leak_m": 175.47
-  },
-  "uc_reasons": [
-    {
-      "id": "earnings",
-      "label": "Under-declared earnings / employment",
-      "rate_pct": 2.2,
-      "note": "Largest fraud reason on UC",
-      "bham_illustrative_m": 39.8
-    },
-    {
-      "id": "together",
-      "label": "Living together (undeclared partner)",
-      "rate_pct": 1.7,
-      "note": "Second-largest fraud reason",
-      "bham_illustrative_m": 30.75
-    },
-    {
-      "id": "capital",
-      "label": "Under-declared financial assets (capital)",
-      "rate_pct": 1.3,
-      "note": "Third-largest fraud reason",
-      "bham_illustrative_m": 23.52
-    },
-    {
-      "id": "engage",
-      "label": "Failure to provide evidence / engage",
-      "rate_pct": 0.9,
-      "note": "Down from 2.2% in FYE 2024",
-      "bham_illustrative_m": 16.28
-    }
-  ],
-  "error_composition": {
-    "fraud_m": 186.79,
-    "claimant_error_m": 52.38,
-    "official_error_m": 25.84,
-    "untyped_m": 0
   },
   "lines": [
     {
@@ -441,23 +365,94 @@
       "share_of_leak_pct": 0
     }
   ],
-  "validation": {
-    "geography_level": "local-authority",
-    "ward_breakdown_available": false,
-    "rates_are_national": true,
-    "derivation": "Birmingham_spend_£m × (national_overpayment_rate_% / 100)",
-    "bill_m": 5414.4,
-    "overpaid_m": 264.21,
-    "implied_rate_pct": 4.88,
-    "one_in": 20,
-    "lines_found": 15,
-    "measured_lines": 9,
-    "unmeasured_lines": 6,
-    "sum_spend_check": true,
-    "sum_overpaid_check": true,
-    "national_overpaid_bn": 9.5,
-    "national_rate_pct": 3.3,
-    "honesty_banner": "Illustrative only — national rates applied to city spend. Not a Birmingham audit."
+  "year": "2024/25",
+  "national": {
+    "year": "FYE 2025",
+    "expenditure_bn": 292.2,
+    "overpaid_bn": 9.5,
+    "overpaid_rate_pct": 3.3,
+    "fraud_bn": 6.5,
+    "fraud_rate_pct": 2.2,
+    "claimant_error_bn": 1.9,
+    "claimant_error_rate_pct": 0.7,
+    "official_error_bn": 1,
+    "official_error_rate_pct": 0.4,
+    "underpaid_bn": 1.2,
+    "underpaid_rate_pct": 0.4,
+    "net_loss_bn": 8.4,
+    "net_loss_rate_pct": 2.9,
+    "recovered_bn": 1.1,
+    "prior": {
+      "year": "FYE 2024",
+      "overpaid_bn": 9.7,
+      "overpaid_rate_pct": 3.6,
+      "uc_overpaid_rate_pct": 12.4
+    },
+    "uc_overpaid_rate_pct": 9.7,
+    "uc_reasons": [
+      {
+        "id": "earnings",
+        "label": "Under-declared earnings / employment",
+        "rate_pct": 2.2,
+        "note": "Largest fraud reason on UC"
+      },
+      {
+        "id": "together",
+        "label": "Living together (undeclared partner)",
+        "rate_pct": 1.7,
+        "note": "Second-largest fraud reason"
+      },
+      {
+        "id": "capital",
+        "label": "Under-declared financial assets (capital)",
+        "rate_pct": 1.3,
+        "note": "Third-largest fraud reason"
+      },
+      {
+        "id": "engage",
+        "label": "Failure to provide evidence / engage",
+        "rate_pct": 0.9,
+        "note": "Down from 2.2% in FYE 2024"
+      }
+    ],
+    "source_url": "https://www.gov.uk/government/statistics/fraud-and-error-in-the-benefit-system-financial-year-2024-to-2025-estimates/fraud-and-error-in-the-benefit-system-financial-year-ending-fye-2025",
+    "tables_url": "https://www.gov.uk/government/statistics/fraud-and-error-in-the-benefit-system-financial-year-2024-to-2025-estimates"
+  },
+  "uc_reasons": [
+    {
+      "id": "earnings",
+      "label": "Under-declared earnings / employment",
+      "rate_pct": 2.2,
+      "note": "Largest fraud reason on UC",
+      "bham_illustrative_m": 39.8
+    },
+    {
+      "id": "together",
+      "label": "Living together (undeclared partner)",
+      "rate_pct": 1.7,
+      "note": "Second-largest fraud reason",
+      "bham_illustrative_m": 30.75
+    },
+    {
+      "id": "capital",
+      "label": "Under-declared financial assets (capital)",
+      "rate_pct": 1.3,
+      "note": "Third-largest fraud reason",
+      "bham_illustrative_m": 23.52
+    },
+    {
+      "id": "engage",
+      "label": "Failure to provide evidence / engage",
+      "rate_pct": 0.9,
+      "note": "Down from 2.2% in FYE 2024",
+      "bham_illustrative_m": 16.28
+    }
+  ],
+  "error_composition": {
+    "fraud_m": 186.79,
+    "claimant_error_m": 52.38,
+    "official_error_m": 25.84,
+    "untyped_m": 0
   },
   "method_notes": [
     "Overpaid £ figures are DERIVED: each Birmingham benefit line × the matching national overpayment rate from DWP Fraud & Error FYE 2025.",
@@ -466,6 +461,5 @@
     "Fraud / claimant error / official error splits use benefit-specific rates where published; residual on unmeasured lines is untyped.",
     "Net national loss deducts recoveries (£1.1bn recovered of £9.5bn overpaid in FYE 2025). Recovery is not apportioned to Birmingham.",
     "Underpayments (£1.2bn nationally, 0.4%) are people paid too little — shown as context, not as \"waste\"."
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.181Z"
+  ]
 }

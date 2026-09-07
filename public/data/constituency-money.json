@@ -1,37 +1,53 @@
 {
-  "id": "constituency-money",
-  "status": "accepted",
-  "title": "The Constituency Money Map — DWP £ by constituency",
+  "generated": "2026-09-07T16:40:12.024Z",
   "metric": "DWP benefit expenditure by benefit per constituency, £m nominal",
   "unit": "£ million / year",
-  "geography": "constituency",
-  "generated": "2026-07-12T15:56:29.653Z",
-  "year": "2024/25",
-  "benefit_labels": {
-    "uc": "Universal Credit",
-    "sp": "State Pension",
-    "hb": "Housing Benefit",
-    "pip": "Personal Independence Payment",
-    "esa": "Employment & Support Allowance",
-    "dla": "Disability Living Allowance",
-    "jsa": "Jobseeker's Allowance",
-    "is": "Income Support",
-    "pc": "Pension Credit",
-    "ca": "Carer's Allowance",
-    "aa": "Attendance Allowance",
-    "wfp": "Winter Fuel Payments",
-    "bb": "Bereavement Support",
-    "dhp": "Discretionary Housing Payments",
-    "sda": "Severe Disablement Allowance"
+  "source": {
+    "id": "constituencyMoney",
+    "label": "Benefit expenditure by parliamentary constituency workbook (ODS) — sheet \"2024-25\" + \"UC_(PC24)\", 2024 boundaries",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
+    "method": "administrative — accounting outturn",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods"
   },
-  "uc_years": [
-    "2019/20",
-    "2020/21",
-    "2021/22",
-    "2022/23",
-    "2023/24",
-    "2024/25"
+  "sources": [
+    {
+      "id": "constituencyMoney",
+      "label": "Benefit expenditure by parliamentary constituency workbook (ODS) — sheet \"2024-25\" + \"UC_(PC24)\", 2024 boundaries",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
+      "method": "administrative — accounting outturn",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods"
+    },
+    {
+      "id": "constituencyMoneyPage",
+      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Collection page",
+      "method": "reference",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
+    }
   ],
+  "as_of": "2024/25",
+  "geography_level": "parliamentary-constituency",
+  "ward_breakdown_available": false,
+  "constituencies_found": 9,
+  "constituencies_expected": 9,
+  "complete": true,
+  "per_row_checksums_passed": 9,
+  "city_sum_m": 5145.7,
+  "la_cross_check_drift_pct": 5,
+  "uc_trend_years": 6,
+  "geography": "constituency",
   "city": {
     "sum_m": 5145.7,
     "la_total_m": 5414.4,
@@ -300,70 +316,30 @@
       ]
     }
   ],
-  "sources": [
-    {
-      "id": "constituencyMoney",
-      "label": "Benefit expenditure by parliamentary constituency workbook (ODS) — sheet \"2024-25\" + \"UC_(PC24)\", 2024 boundaries",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
-      "method": "administrative — accounting outturn",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
-      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods"
-    },
-    {
-      "id": "constituencyMoneyPage",
-      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
-      "publisher": "Department for Work & Pensions",
-      "dataset": "Collection page",
-      "method": "reference",
-      "licence": "Open Government Licence v3.0",
-      "as_of": "2024/25",
-      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
-      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
-    }
-  ],
-  "source": {
-    "id": "constituencyMoney",
-    "label": "Benefit expenditure by parliamentary constituency workbook (ODS) — sheet \"2024-25\" + \"UC_(PC24)\", 2024 boundaries",
-    "publisher": "Department for Work & Pensions",
-    "dataset": "benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
-    "method": "administrative — accounting outturn",
-    "licence": "Open Government Licence v3.0",
-    "as_of": "2024/25",
-    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods",
-    "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffc50c72b0f8ccf33d788/benefit-expenditure-by-parliamentary-constituency-2024-25.ods"
+  "year": "2024/25",
+  "benefit_labels": {
+    "uc": "Universal Credit",
+    "sp": "State Pension",
+    "hb": "Housing Benefit",
+    "pip": "Personal Independence Payment",
+    "esa": "Employment & Support Allowance",
+    "dla": "Disability Living Allowance",
+    "jsa": "Jobseeker's Allowance",
+    "is": "Income Support",
+    "pc": "Pension Credit",
+    "ca": "Carer's Allowance",
+    "aa": "Attendance Allowance",
+    "wfp": "Winter Fuel Payments",
+    "bb": "Bereavement Support",
+    "dhp": "Discretionary Housing Payments",
+    "sda": "Severe Disablement Allowance"
   },
-  "validation": {
-    "geography_level": "parliamentary-constituency",
-    "ward_breakdown_available": false,
-    "constituencies_found": 9,
-    "constituencies_expected": 9,
-    "complete": true,
-    "per_row_checksums_passed": 9,
-    "city_sum_m": 5145.7,
-    "la_cross_check_drift_pct": 5,
-    "uc_trend_years": 6
-  },
-  "raw_sample": [
-    {
-      "sheet": "2024-25",
-      "header_first_cells": [
-        "PC Code",
-        "NEW 2024 PARLIAMENTARY CONSTITUENCIES",
-        "Total",
-        "Attendance Allowance",
-        "Bereavement Benefit/Widow's Benefit",
-        "Carer's Allowance",
-        "Disability Living Allowance",
-        "of which children",
-        "of which working age",
-        "of which pensioners",
-        "Employment And Support Allowance",
-        "Housing Benefit"
-      ]
-    }
-  ],
-  "reviewed_at": "2026-09-07T16:40:12.025Z"
+  "uc_years": [
+    "2019/20",
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25"
+  ]
 }
