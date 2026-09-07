@@ -24,6 +24,39 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   one.
 
 ### Fixed
+- **2026-09-07** — Fixed the 3D "stage" dashboards (Ozzy Stage, UC Stage 3D,
+  PIP Stage 3D) — all three crashed on load with `TypeError: Cannot read
+  properties of undefined (reading 'ReactCurrentOwner')` the moment
+  `WardExtrusionStage.tsx` imported `@react-three/fiber`. Confirmed via
+  research (Next.js's own team, `vercel/next.js#71836`) this is a known
+  upstream incompatibility: Next.js 15+ (so also our Next 16) bundles its
+  own React runtime internals, which `@react-three/fiber` v8 accesses
+  through a secret API path that no longer resolves the same way. Not
+  fixable via Turbopack/Webpack toggle or config — the only real fix is
+  upgrading `@react-three/fiber` to v9, which in turn requires React 19
+  (`@react-three/fiber@9` hard-requires `react@^19`, confirmed by checking
+  its published peer dependencies directly rather than assuming).
+  - Upgraded `react`/`react-dom` 18 → 19, `@types/react`/`@types/react-dom`
+    to match, `@react-three/fiber` 8 → 9, `@react-three/drei` 9 → 10 (drei's
+    major version tracks fiber's). `chart.js` and `leaflet` are used
+    directly (not through React wrapper packages), so they were unaffected
+    and needed no changes.
+  - `npm install` needed `--legacy-peer-deps` — an expected, safe resolution
+    aid during a multi-package major-version transition like this, not a
+    workaround for anything broken. Two new transitive vulnerabilities
+    appeared as a side effect (`fflate` DoS via malformed ZIP64 parsing,
+    `postcss-selector-parser` DoS via AST recursion) — both had non-breaking
+    fixes via `npm audit fix --legacy-peer-deps`; back to 0 vulnerabilities.
+  - No application code needed changing — `git diff` after the dependency
+    bump touched only `package.json`/`package-lock.json`.
+  - Verified with a clean build, `tsc --noEmit` (same pre-existing,
+    unrelated `FlyTippingView.tsx` error only), a full HTTP route sweep, and
+    — critically, since this bug is a **client-side** crash that no HTTP
+    status check would ever catch — an actual browser session (via the
+    claude-in-chrome tool) navigating into all three stage views. All three
+    render their real 3D extrusion scenes with live data (e.g. UC Stage
+    showing 247,176 caseload, PIP Stage showing 91,674), zero console
+    errors on a fresh page load.
 - **2026-08-28** — Resolved 3 of 8 high-severity `npm audit` vulnerabilities via
   `npm audit fix` (non-breaking, transitive dependency bumps only):
   - `brace-expansion` — DoS via exponential/unbounded expansion of `{}` patterns
