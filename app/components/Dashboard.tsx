@@ -439,16 +439,15 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
 
   const emptyBull = (
     <div className="r-empty">
-      <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+      <BullAscii
+        textColor="#15181e"
+        cols={40}
+        rows={26}
+        minAlpha={0.5}
+        displayWidth={110}
+        style={{ margin: 0 }}
+      />
       <p>Select any ward to see a detailed breakdown.</p>
-      <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
     </div>
   );
 
@@ -913,16 +912,15 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
               ) : (
                 <>
                   <div className="r-empty">
-                    <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+                    <BullAscii
+                      textColor="#15181e"
+                      cols={40}
+                      rows={26}
+                      minAlpha={0.5}
+                      displayWidth={110}
+                      style={{ margin: 0 }}
+                    />
                     <p>Select any ward to see its full qualification breakdown.</p>
-                    <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
                   </div>
                   {/* Data sources — visible in right panel when no ward selected */}
                   <div style={{ margin: '0 18px', borderTop: '1px solid var(--border)' }}>

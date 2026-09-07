@@ -9,6 +9,7 @@ import CpTable from './CpTable';
 import CpStrip from './CpStrip';
 import CpDumbbells from './CpDumbbells';
 import CpDetailPanel from './CpDetailPanel';
+import BullAscii from '../../components/BullAscii';
 
 const CpMap = dynamic(() => import('./CpMap'), { ssr: false });
 
@@ -17,16 +18,15 @@ type Sub = 'table' | 'strip' | 'change' | 'map';
 
 const emptyBull = (
   <div className="r-empty">
-    <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+    <BullAscii
+      textColor="#15181e"
+      cols={40}
+      rows={26}
+      minAlpha={0.5}
+      displayWidth={110}
+      style={{ margin: 0 }}
+    />
     <p>Select any ward for its ten-year child-poverty path.</p>
-    <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
   </div>
 );
 

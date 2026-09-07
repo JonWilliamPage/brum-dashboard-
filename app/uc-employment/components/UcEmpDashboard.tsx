@@ -7,6 +7,7 @@ import { RAMP } from '@/lib/constants';
 import ScoringNote from '../../components/brand/ScoringNote';
 import UcEmpTable from './UcEmpTable';
 import UcEmpDetailPanel from './UcEmpDetailPanel';
+import BullAscii from '../../components/BullAscii';
 
 const UcEmpMap = dynamic(() => import('./UcEmpMap'), { ssr: false });
 
@@ -16,16 +17,15 @@ type Sub = 'table' | 'map';
 
 const emptyBull = (
   <div className="r-empty">
-    <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+    <BullAscii
+      textColor="#15181e"
+      cols={40}
+      rows={26}
+      minAlpha={0.5}
+      displayWidth={110}
+      style={{ margin: 0 }}
+    />
     <p>Select any ward to see its in-work breakdown.</p>
-    <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
   </div>
 );
 

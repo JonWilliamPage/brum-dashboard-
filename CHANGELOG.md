@@ -10,6 +10,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 - **2026-09-07** — Standardised current project descriptions as “Ozzy — civic intelligence prototype” across the README, contributor and AI guidance, playbooks, overview diagram, About page and site metadata. Clarified selected-data coverage, the role of visualisation and supporting analysis, and future database, reuse and agentic ambitions. Removed comprehensive-data claims from the commentary introduction.
+- **2026-09-07** — Replaced the crude hand-drawn ASCII-art cow face (a
+  literal text-character cow face, not an image file) shown in every
+  dashboard's "no ward selected" detail-panel placeholder, and dropped the
+  "THE BULL OF BIRMINGHAM" caption underneath it. Flagged by the user as a
+  design hangover. Swapped in the proper `BullAscii` component (the same
+  density-mapped ASCII rendering used everywhere else on the site) across
+  all 9 occurrences — `Dashboard.tsx` (×2, the shared Employment/Benefits
+  panel and the Education tab), `CrimeObsView.tsx`, `EducationDashboard.tsx`,
+  `BenefitsDashboard.tsx`, `ClaimantDashboard.tsx`,
+  `ChildPovertyDashboard.tsx`, `UcEmpDashboard.tsx`,
+  `UcCombinedDashboard.tsx`. Kept the "Select any ward..." instruction text
+  in every case, only removed the cow face and caption. Also removed the
+  now-dead `.r-empty .ascii-ward` CSS rule (globals.css) that styled the old
+  text art and no longer matches anything.
+  Verified with a clean build/tsc and, since this is a purely visual
+  change, a real browser check (via claude-in-chrome) confirming the new
+  ASCII bull renders correctly in the empty-state panel.
 - **2026-09-07** — Accepted all 18 pending data proposals through `/review`,
   so the dashboard suite shows its full dataset instead of sitting behind
   the review wall (the goal: show off the full Ozzy dataset without the
