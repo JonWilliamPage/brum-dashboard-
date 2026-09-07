@@ -1,24 +1,24 @@
-# Ask Ozzy — Civic Intelligence Prototype
+# Ozzy — Civic Intelligence Prototype
 
 **New to GitHub, Node.js or localhost? Start with the [For N00bs guide](docs/for-n00b.md).**
 
 **Visualise selected public data. See patterns. Explore what they might mean.**
 
-**Ask Ozzy** is an independent, open-source civic intelligence prototype for Birmingham. It demonstrates how selected public datasets can become visualisations, comparisons and starting points for asking “so what?” — what is happening, why might it matter, and what evidence would help explain it?
+**Ozzy** is an independent, open-source civic intelligence prototype for Birmingham. It demonstrates how selected public datasets can become visualisations, comparisons and starting points for asking “so what?” — what is happening, why might it matter, and what evidence would help explain it?
 
 Today’s prototype has limited data coverage. Its charts and supporting analysis help people explore questions; they do not establish causes. Broader database integration, easier adaptation to other councils and an agentic investigation loop are development ambitions.
 
 The repository also contains reusable playbooks for people building with AI. These support the prototype; they do not mean an autonomous analyst is operating inside it.
 
 <p align="center">
-  <img src="assets/diagram-mental-model.svg" alt="Ask Ozzy prototype, supporting playbooks and planned reuse in other places" width="720" />
+  <img src="assets/diagram-mental-model.svg" alt="Ozzy prototype, supporting playbooks and planned reuse in other places" width="720" />
 </p>
 
 | You are… | You use… | You get… |
 |----------|----------|----------|
 | Insight / intelligence team | Skills + optional app | Evidence packs, peer charts, briefings |
 | Builder (incl. with AI) | Skills in this repo | Playbooks to test and adapt to local sources |
-| Resident / journalist | [Ask Ozzy](#ozzy) | Visualisations and questions grounded in selected public data |
+| Resident / journalist | [Ozzy](#ozzy) | Visualisations and questions grounded in selected public data |
 
 ---
 
@@ -31,7 +31,7 @@ Official data  →  validate  →  proposal  →  human Accept  →  live views
 ```
 
 1. **Agent skills** teach a coding agent the jobs of a local insight analyst.  
-2. **Ask Ozzy** is the prototype that shows selected data and supporting analysis.
+2. **Ozzy** is the prototype that shows selected data and supporting analysis.
 3. **Hard rule:** no invented numbers. Missing stays missing. Provenance on every metric.
 
 <p align="center">
@@ -119,6 +119,6 @@ Full agent rules: [AGENTS.md](AGENTS.md)
 
 Email [westmidlands@lookingforgrowth.uk](mailto:westmidlands@lookingforgrowth.uk) · [GitHub](https://github.com/willspensley/brum-dashboard-)
 
-Repo path remains `brum-dashboard-`; project name: **Ask Ozzy** · descriptor: **civic intelligence prototype**.
+Repo path remains `brum-dashboard-`; project name: **Ozzy** · descriptor: **civic intelligence prototype**.
 
 <p align="center"><em>Selected public data. Clear visualisations. Better questions about Birmingham.</em></p>

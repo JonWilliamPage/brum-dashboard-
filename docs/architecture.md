@@ -2,7 +2,7 @@
 
 ## One sentence
 
-**Ask Ozzy is a civic intelligence prototype** that visualises selected public data and supports questions about what it means. Reusable **skills** guide people and coding agents through data preparation, visualisation and analysis; adapting the approach to **other places** is a development direction.
+**Ozzy is a civic intelligence prototype** that visualises selected public data and supports questions about what it means. Reusable **skills** guide people and coding agents through data preparation, visualisation and analysis; adapting the approach to **other places** is a development direction.
 
 The playbook workflow below is distinct from an autonomous agent running inside the website. Broader database integration and an agent harness for multi-step investigation are future work.
 

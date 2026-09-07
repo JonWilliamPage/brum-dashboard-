@@ -1,6 +1,6 @@
-# AGENTS.md — Ask Ozzy civic intelligence prototype
+# AGENTS.md — Ozzy civic intelligence prototype
 
-This repository contains **Ask Ozzy**, an independent, open-source civic intelligence prototype for Birmingham, and supporting development and analysis playbooks. It visualises selected public data and helps people explore patterns, context and “so what?” questions.
+This repository contains **Ozzy**, an independent, open-source civic intelligence prototype for Birmingham, and supporting development and analysis playbooks. It visualises selected public data and helps people explore patterns, context and “so what?” questions.
 
 Describe the project consistently as a **civic intelligence prototype**. Treat **`skills/` as reusable playbooks** and **`app/` as the Birmingham prototype**. Distinguish coding agents that use the playbooks from planned AI capabilities inside the app. Broader data coverage, database integration and autonomous investigation are ambitions, not established current capabilities.
 

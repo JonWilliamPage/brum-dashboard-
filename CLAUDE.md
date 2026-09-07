@@ -1,7 +1,7 @@
 # Project context — Birmingham Ozzy
 
 ## What this is
-**Ask Ozzy** — an independent, open-source civic intelligence prototype for Birmingham. It visualises selected public datasets, demonstrates patterns and comparisons, and helps people explore “so what?” — what is happening, why it might matter and what evidence could explain it.
+**Ozzy** — an independent, open-source civic intelligence prototype for Birmingham. It visualises selected public datasets, demonstrates patterns and comparisons, and helps people explore “so what?” — what is happening, why it might matter and what evidence could explain it.
 
 Keep this descriptor consistent in public copy and contributor guidance. Data coverage is limited. Reusable playbooks support people building and analysing with AI; broader database integration and an agentic investigation loop are future ambitions. Do not describe the prototype as chat-first or claim it reads all council data.
 
@@ -35,8 +35,8 @@ Audience: residents, councillors, council staff and potential contributors. Use 
 - Print: landscape A4, ranked table view only (currently).
 
 ## Brand
-- Ask Ozzy is independent of Birmingham City Council. Credit council data as a source without implying ownership, affiliation or endorsement.
-- Preserve the sanitised Ask Ozzy identity. Do not reintroduce council badges, coat of arms or ownership claims.
+- Ozzy is independent of Birmingham City Council. Credit council data as a source without implying ownership, affiliation or endorsement.
+- Preserve the sanitised Ozzy identity. Do not reintroduce council badges, coat of arms or ownership claims.
 
 ## Stack hints
 If porting to a framework, recommendation is Next.js 14 (App Router) + Tailwind. Chart.js and Leaflet should stay — they're tuned. See `README.md` in `design_handoff_birmingham_dashboard/` for the full porting plan.

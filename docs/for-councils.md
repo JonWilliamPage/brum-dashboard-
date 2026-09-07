@@ -4,7 +4,7 @@
 
 People who already do (or should do) **insight / intelligence / performance** work: turning official statistics into evidence for members, cabinet, partners, and the public.
 
-**Ask Ozzy is an independent civic intelligence prototype.** It visualises selected public data and helps people explore what is happening, why it might matter and what further evidence is needed. Its purpose is to support understanding and questions; democratic judgment remains with people.
+**Ozzy is an independent civic intelligence prototype.** It visualises selected public data and helps people explore what is happening, why it might matter and what further evidence is needed. Its purpose is to support understanding and questions; democratic judgment remains with people.
 
 ## What you can explore
 
@@ -21,7 +21,7 @@ People who already do (or should do) **insight / intelligence / performance** wo
 
 ## Suggested first experiment
 
-1. Run Ask Ozzy locally or try an available hosted version; check its selected data and limitations.
+1. Run Ozzy locally or try an available hosted version; check its selected data and limitations.
 2. Pick **one** metric your members already ask about (e.g. claimants, crime, child poverty).  
 3. With a builder, run the **dataset-dashboard** skill against *your* open data portal.  
 4. Review the proposal together; Accept only if sources and geography are right.  

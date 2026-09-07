@@ -1,6 +1,6 @@
-# Skills — Ask Ozzy civic intelligence prototype
+# Skills — Ozzy civic intelligence prototype
 
-Reusable playbooks supporting **Ask Ozzy, a civic intelligence prototype**: prepare selected official data, visualise it and investigate what it might mean. They guide people and coding agents; they are not an autonomous service inside the app. Birmingham provides the current examples, with adaptation to other places intended.
+Reusable playbooks supporting **Ozzy, a civic intelligence prototype**: prepare selected official data, visualise it and investigate what it might mean. They guide people and coding agents; they are not an autonomous service inside the app. Birmingham provides the current examples, with adaptation to other places intended.
 
 | Skill | Job | File |
 |-------|-----|------|

@@ -2,7 +2,7 @@
 
 ## Goal
 
-Extend **Ask Ozzy, a civic intelligence prototype**, or explore adapting it to another place using its reusable playbooks. Visualise selected official data, explain what it shows and identify questions for further investigation. Keep sources and human review intact.
+Extend **Ozzy, a civic intelligence prototype**, or explore adapting it to another place using its reusable playbooks. Visualise selected official data, explain what it shows and identify questions for further investigation. Keep sources and human review intact.
 
 ## Quick start
 

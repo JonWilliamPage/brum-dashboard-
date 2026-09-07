@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Ask Ozzy civic intelligence prototype: supporting playbooks and planned local reuse">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-label="Ozzy civic intelligence prototype: supporting playbooks and planned local reuse">
   <rect width="900" height="520" fill="#f5f3ee"/>
   <text x="40" y="42" font-family="Georgia, serif" font-size="24" fill="#0e0f11">How it fits together</text>
-  <text x="40" y="68" font-family="system-ui,sans-serif" font-size="13" fill="#5c5a54">Ask Ozzy visualises selected public data and helps people ask what it means.</text>
+  <text x="40" y="68" font-family="system-ui,sans-serif" font-size="13" fill="#5c5a54">Ozzy visualises selected public data and helps people ask what it means.</text>
 
   <!-- Agent box -->
   <rect x="40" y="100" width="820" height="130" fill="#0e1f4a"/>
   <text x="60" y="136" font-family="system-ui,sans-serif" font-size="12" fill="#efb700" letter-spacing="2">CIVIC INTELLIGENCE PROTOTYPE</text>
-  <text x="60" y="168" font-family="Georgia, serif" font-size="20" fill="#f5f3ee">Ask Ozzy + reusable playbooks + source tracking</text>
+  <text x="60" y="168" font-family="Georgia, serif" font-size="20" fill="#f5f3ee">Ozzy + reusable playbooks + source tracking</text>
   <text x="60" y="196" font-family="system-ui,sans-serif" font-size="13" fill="rgba(245,243,238,.75)">dataset-dashboard · dataviz · provenance · (more coming)</text>
   <text x="60" y="218" font-family="system-ui,sans-serif" font-size="12" fill="rgba(245,243,238,.55)">Official sources only · human Accept wall · no fabricated numbers</text>
 

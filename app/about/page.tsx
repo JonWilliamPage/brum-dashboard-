@@ -140,10 +140,10 @@ export default function AboutPage() {
             Ozzy is an independent, open-source project — not operated by, affiliated with, or endorsed by Birmingham City Council. It uses their publicly published data, credited in full on our <a href="/sources" style={{ color: 'var(--herald-navy)' }}>Sources page</a>.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-            Ask Ozzy visualises selected public datasets about Birmingham, showing patterns and comparisons that help people ask: so what? What is happening, why might it matter, and what evidence would help explain it? The prototype demonstrates that approach with limited data coverage; it does not read every council dataset or establish what caused a particular outcome.
+            Ozzy visualises selected public datasets about Birmingham, showing patterns and comparisons that help people ask: so what? What is happening, why might it matter, and what evidence would help explain it? The prototype demonstrates that approach with limited data coverage; it does not read every council dataset or establish what caused a particular outcome.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-            Public information can be difficult to find, compare and interpret. Ask Ozzy brings selected figures into accessible visualisations and supporting analysis, with sources and limitations that readers can check. Broader database integration, easier reuse by other councils and an agentic investigation loop are future ambitions.
+            Public information can be difficult to find, compare and interpret. Ozzy brings selected figures into accessible visualisations and supporting analysis, with sources and limitations that readers can check. Broader database integration, easier reuse by other councils and an agentic investigation loop are future ambitions.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
             And it&apos;s built in the open, with AI, by people who care about this city. The more Brummies who bring datasets, questions and build effort, the more Ozzy can see. This is a tool for the whole city to build together.
