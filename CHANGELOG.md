@@ -8,6 +8,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- **2026-09-07** — Added an intro video to the `/about` page, in a new
+  section between the hero and "What is Ozzy?". Autoplays muted and loops
+  (`public/ozzy-intro.mp4`), framed with the site's editorial gold top
+  border. Two overlay controls: a small pause/play toggle (bottom-right)
+  and a large, high-contrast mute/unmute button (bottom-left) that reads
+  "Muted — tap for sound" while muted so it's obvious there's audio
+  waiting, switching to a quieter "Sound on" style once unmuted.
+
 ### Changed
 - **2026-09-07** — Standardised current project descriptions as “Ozzy — civic intelligence prototype” across the README, contributor and AI guidance, playbooks, overview diagram, About page and site metadata. Clarified selected-data coverage, the role of visualisation and supporting analysis, and future database, reuse and agentic ambitions. Removed comprehensive-data claims from the commentary introduction.
 - **2026-09-07** — Replaced the crude hand-drawn ASCII-art cow face (a

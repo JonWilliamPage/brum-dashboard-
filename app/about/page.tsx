@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BullAscii from '@/app/components/BullAscii';
 import DashboardCards from '@/app/components/DashboardCards';
 import SiteFooter from '@/app/components/SiteFooter';
@@ -37,11 +37,33 @@ const STATS: Stat[] = [
 
 export default function AboutPage() {
   const [ready, setReady] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(true);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 350);
     return () => clearTimeout(t);
   }, []);
+
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setVideoPlaying(true);
+    } else {
+      v.pause();
+      setVideoPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setVideoMuted(v.muted);
+  };
 
   const fade = (delay: number): React.CSSProperties => ({
     opacity: ready ? 1 : 0,
@@ -123,6 +145,68 @@ export default function AboutPage() {
                 )}
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* INTRO VIDEO */}
+      <section style={{ background: 'var(--paper)', padding: '64px 32px 0' }}>
+        <div style={{ maxWidth: 920, margin: '0 auto' }}>
+          <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 18, textAlign: 'center' }}>
+            See Ozzy in action
+          </div>
+          <div style={{
+            position: 'relative',
+            borderTop: '3px solid var(--herald-gold)',
+            border: '1px solid var(--border-solid)',
+            borderTopWidth: 3,
+            borderTopColor: 'var(--herald-gold)',
+            background: '#000',
+            lineHeight: 0,
+          }}>
+            <video
+              ref={videoRef}
+              src="/ozzy-intro.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ display: 'block', width: '100%', height: 'auto' }}
+            />
+            <button
+              onClick={toggleVideo}
+              aria-label={videoPlaying ? 'Pause video' : 'Play video'}
+              style={{
+                position: 'absolute', bottom: 14, right: 14,
+                width: 40, height: 40,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(15,17,20,.72)', border: '1px solid rgba(245,243,238,.4)',
+                color: '#f5f3ee', fontFamily: 'var(--mono)', fontSize: 14,
+                cursor: 'pointer', padding: 0,
+              }}
+            >
+              {videoPlaying ? '❚❚' : '▶'}
+            </button>
+            <button
+              onClick={toggleMute}
+              aria-label={videoMuted ? 'Unmute video' : 'Mute video'}
+              style={{
+                position: 'absolute', bottom: 14, left: 14,
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 20px',
+                background: videoMuted ? 'var(--herald-gold)' : 'rgba(15,17,20,.72)',
+                border: videoMuted ? 'none' : '1px solid rgba(245,243,238,.4)',
+                color: videoMuted ? 'var(--herald-navy)' : '#f5f3ee',
+                fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 700,
+                letterSpacing: '.04em', textTransform: 'uppercase',
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>
+                {videoMuted ? '⊘' : '♪'}
+              </span>
+              {videoMuted ? 'Muted — tap for sound' : 'Sound on'}
+            </button>
           </div>
         </div>
       </section>
