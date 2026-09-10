@@ -1,6 +1,6 @@
 {
   "id": "fly-tipping",
-  "status": "pending",
+  "status": "accepted",
   "title": "Fly-tipping — incidents per 1,000 people",
   "metric": "Fly-tipping incidents per 1,000 people",
   "unit": "incidents per 1,000 residents",
@@ -332,5 +332,6 @@
       "date": "2025",
       "periodlabel": "2024/25"
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.058Z"
 }

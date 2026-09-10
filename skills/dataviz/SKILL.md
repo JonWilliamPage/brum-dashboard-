@@ -1,13 +1,13 @@
 ---
 name: dataviz
 description: >-
-  Choose and build the right visualisation for official place data in a local
-  government insight agent: form-selection table (data job → chart), honest
+  Choose and build the right visualisation for official place data in a civic
+  intelligence prototype: form-selection table (data job → chart), honest
   colour, gaps, geography banners, checksums. Use before any new dashboard,
   chart, or view. Birmingham/Ozzy components are the reference clones.
 ---
 
-# Honest visualisation (insight agent)
+# Honest visualisation (civic intelligence prototype)
 
 Work like an **insight analyst**: probe the data first, pick the form from the data's job, colour last, state the truth on-face.
 

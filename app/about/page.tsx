@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import BullAscii from '@/app/components/BullAscii';
 import DashboardCards from '@/app/components/DashboardCards';
 import SiteFooter from '@/app/components/SiteFooter';
@@ -9,7 +9,7 @@ const ROADMAP = [
   { status: 'live',    label: 'Employment & claimants',   detail: 'IMD employment domain, claimant count and Universal Credit by ward' },
   { status: 'live',    label: 'Crime by ward',            detail: 'West Midlands Police recorded offences — rates, trends and category mix' },
   { status: 'live',    label: 'Education & skills',       detail: 'Census 2021 qualifications + IMD education domain' },
-  { status: 'live',    label: 'Youth & NEET risk',        detail: 'Composite picture of the 16–24 cohort across 69 wards' },
+  { status: 'live',    label: 'Youth & NEET risk',        detail: 'Composite picture of the 16–24 cohort across 68 wards' },
   { status: 'live',    label: 'Economic matrix',          detail: 'GVA per head against deprivation — the city in four quadrants' },
   { status: 'live',    label: 'The Benefits Bill',        detail: 'DWP expenditure in Birmingham — history, composition and per head' },
   { status: 'live',    label: 'Money Map & PIP',          detail: 'DWP £ by constituency, PIP place and condition, child poverty and more' },
@@ -37,11 +37,33 @@ const STATS: Stat[] = [
 
 export default function AboutPage() {
   const [ready, setReady] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(true);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setReady(true), 350);
     return () => clearTimeout(t);
   }, []);
+
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setVideoPlaying(true);
+    } else {
+      v.pause();
+      setVideoPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setVideoMuted(v.muted);
+  };
 
   const fade = (delay: number): React.CSSProperties => ({
     opacity: ready ? 1 : 0,
@@ -61,14 +83,11 @@ export default function AboutPage() {
         overflow: 'hidden',
         borderBottom: '3px solid var(--herald-gold)',
       }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/birmingham-coat-of-arms.png"
-          alt=""
-          aria-hidden="true"
+        <BullAscii
+          displayWidth={460}
           style={{
-            position: 'absolute', bottom: -20, right: -64,
-            width: 460, opacity: 0.06, pointerEvents: 'none',
+            position: 'absolute', bottom: -20, right: -64, margin: 0,
+            opacity: 0.06, pointerEvents: 'none',
           }}
         />
 
@@ -82,7 +101,7 @@ export default function AboutPage() {
           </div>
 
           <div style={{ ...fade(200), fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 600, letterSpacing: '.24em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginTop: 14 }}>
-            Birmingham&apos;s AI agent
+            An open-source civic intelligence prototype for Birmingham
           </div>
 
           <div style={{ ...fade(360), marginTop: 40, display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap' }}>
@@ -130,6 +149,68 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* INTRO VIDEO */}
+      <section style={{ background: 'var(--paper)', padding: '64px 32px 0' }}>
+        <div style={{ maxWidth: 920, margin: '0 auto' }}>
+          <div style={{ fontFamily: 'var(--sans)', fontSize: 10, fontWeight: 700, letterSpacing: '.18em', color: 'var(--herald-gold)', textTransform: 'uppercase', marginBottom: 18, textAlign: 'center' }}>
+            See Ozzy in action
+          </div>
+          <div style={{
+            position: 'relative',
+            borderTop: '3px solid var(--herald-gold)',
+            border: '1px solid var(--border-solid)',
+            borderTopWidth: 3,
+            borderTopColor: 'var(--herald-gold)',
+            background: '#000',
+            lineHeight: 0,
+          }}>
+            <video
+              ref={videoRef}
+              src="/ozzy-intro.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              style={{ display: 'block', width: '100%', height: 'auto' }}
+            />
+            <button
+              onClick={toggleVideo}
+              aria-label={videoPlaying ? 'Pause video' : 'Play video'}
+              style={{
+                position: 'absolute', bottom: 14, right: 14,
+                width: 40, height: 40,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(15,17,20,.72)', border: '1px solid rgba(245,243,238,.4)',
+                color: '#f5f3ee', fontFamily: 'var(--mono)', fontSize: 14,
+                cursor: 'pointer', padding: 0,
+              }}
+            >
+              {videoPlaying ? '❚❚' : '▶'}
+            </button>
+            <button
+              onClick={toggleMute}
+              aria-label={videoMuted ? 'Unmute video' : 'Mute video'}
+              style={{
+                position: 'absolute', bottom: 14, left: 14,
+                display: 'flex', alignItems: 'center', gap: 10,
+                padding: '12px 20px',
+                background: videoMuted ? 'var(--herald-gold)' : 'rgba(15,17,20,.72)',
+                border: videoMuted ? 'none' : '1px solid rgba(245,243,238,.4)',
+                color: videoMuted ? 'var(--herald-navy)' : '#f5f3ee',
+                fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 700,
+                letterSpacing: '.04em', textTransform: 'uppercase',
+                cursor: 'pointer',
+              }}
+            >
+              <span style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>
+                {videoMuted ? '⊘' : '♪'}
+              </span>
+              {videoMuted ? 'Muted — tap for sound' : 'Sound on'}
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* WHAT IS OZZY — full width */}
       <section style={{ background: 'var(--paper)', padding: '88px 32px 72px' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
@@ -137,13 +218,16 @@ export default function AboutPage() {
             What is Ozzy?
           </div>
           <h2 style={{ fontFamily: 'var(--serif)', fontSize: 50, color: 'var(--ink)', lineHeight: 1.12, margin: '0 0 24px', fontWeight: 400, letterSpacing: '-.01em' }}>
-            An AI agent that wants to save Birmingham.
+            Ozzy is an open-source civic intelligence prototype for Birmingham.
           </h2>
-          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-            Ozzy is an open-source project with one purpose: to read every publicly available dataset about Birmingham and tell the city the truth about itself. Birmingham City Council releases and the City Observatory, the Office for National Statistics, the Department for Work and Pensions — including Stat-Xplore and published expenditure tables — HM Revenue and Customs, West Midlands Police, and the Home Office&apos;s data.police.uk. He reads them all. He cross-references them. And then he presents what they actually say.
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 13, color: 'var(--muted)', lineHeight: 1.65, margin: '0 0 22px', fontStyle: 'italic' }}>
+            Ozzy is an independent, open-source project — not operated by, affiliated with, or endorsed by Birmingham City Council. It uses their publicly published data, credited in full on our <a href="/sources" style={{ color: 'var(--herald-navy)' }}>Sources page</a>.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-            There are <strong style={{ color: 'var(--ink)' }}>thousands of data points</strong> about this city in the public domain. Some are quietly published. Some are released in a way that obscures the reality. Some are buried under jargon. Ozzy&apos;s job is to cut through all that and make the truth easy to see.
+            Ozzy visualises selected public datasets about Birmingham, showing patterns and comparisons that help people ask: so what? What is happening, why might it matter, and what evidence would help explain it? The prototype demonstrates that approach with limited data coverage; it does not read every council dataset or establish what caused a particular outcome.
+          </p>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
+            Public information can be difficult to find, compare and interpret. Ozzy brings selected figures into accessible visualisations and supporting analysis, with sources and limitations that readers can check. Broader database integration, easier reuse by other councils and an agentic investigation loop are future ambitions.
           </p>
           <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
             And it&apos;s built in the open, with AI, by people who care about this city. The more Brummies who bring datasets, questions and build effort, the more Ozzy can see. This is a tool for the whole city to build together.
@@ -209,11 +293,14 @@ export default function AboutPage() {
         borderTop: '1px solid var(--border)',
         borderBottom: '3px solid var(--herald-gold)',
       }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/birmingham-coat-of-arms.png" alt="" aria-hidden="true" style={{
-          position: 'absolute', top: '50%', right: -60, transform: 'translateY(-50%)',
-          width: 380, opacity: 0.04, pointerEvents: 'none',
-        }} />
+        <BullAscii
+          textColor="#15181e"
+          displayWidth={380}
+          style={{
+            position: 'absolute', top: '50%', right: -60, transform: 'translateY(-50%)', margin: 0,
+            opacity: 0.04, pointerEvents: 'none',
+          }}
+        />
         <div style={{ maxWidth: 1080, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 64, alignItems: 'start' }} className="about-two-col">
             <div>
@@ -224,7 +311,7 @@ export default function AboutPage() {
                 Every line of code. Every dataset. Every methodology. <em>Public.</em>
               </h2>
               <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 18px' }}>
-                Ozzy is built in the open. The code is on GitHub. The data sources are listed. The way Ozzy reaches every conclusion is traceable, end to end.
+                Ozzy is built in the open. The code is on GitHub. The data sources are listed. Readers should be able to check the source behind a figure and distinguish an observation from a possible explanation.
               </p>
               <p style={{ fontFamily: 'var(--sans)', fontSize: 15, color: 'var(--muted)', lineHeight: 1.75, margin: '0 0 24px' }}>
                 We need <strong style={{ color: 'var(--ink)' }}>Brummies</strong> to help build this. You don&apos;t need a traditional coding background. You just need to know the city, know a dataset, or be willing to build with AI.

@@ -1,6 +1,6 @@
 {
   "id": "constituency-money",
-  "status": "pending",
+  "status": "accepted",
   "title": "The Constituency Money Map — DWP £ by constituency",
   "metric": "DWP benefit expenditure by benefit per constituency, £m nominal",
   "unit": "£ million / year",
@@ -364,5 +364,6 @@
         "Housing Benefit"
       ]
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.025Z"
 }

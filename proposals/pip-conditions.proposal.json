@@ -1,6 +1,6 @@
 {
   "id": "pip-conditions",
-  "status": "pending",
+  "status": "accepted",
   "title": "PIP: where the money goes — by medical condition (GB)",
   "metric": "PIP expenditure by condition category, £m",
   "unit": "£ million / year",
@@ -1777,5 +1777,6 @@
       "name": "Other Conditions",
       "real_latest": 2562.22
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.092Z"
 }

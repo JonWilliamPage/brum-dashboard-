@@ -1,6 +1,6 @@
 {
   "id": "benefits-bill",
-  "status": "pending",
+  "status": "accepted",
   "title": "The Benefits Bill — DWP expenditure in Birmingham",
   "metric": "DWP benefit expenditure by benefit, £m nominal",
   "unit": "£ million / year",
@@ -633,5 +633,6 @@
       "Discretionary Housing Payments": 2.689243,
       "Employment & Support Allowance": 246.4000937697707
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:11.965Z"
 }

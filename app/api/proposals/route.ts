@@ -18,6 +18,20 @@ const ROOT = process.cwd();
 const PROPOSALS_DIR = join(ROOT, 'proposals');
 const PUBLISHED_DIR = join(ROOT, 'public', 'data');
 
+// This endpoint reads and writes the published dashboard data with no other
+// gate in front of it — anyone who finds the URL could otherwise list, accept
+// or reject proposals anonymously. Require a shared token (set REVIEW_ADMIN_TOKEN
+// in the environment; see .env.example) and fail closed if it isn't configured.
+function authorised(req: Request): boolean {
+  const expected = process.env.REVIEW_ADMIN_TOKEN;
+  if (!expected) return false;
+  return req.headers.get('x-review-token') === expected;
+}
+
+function unauthorised() {
+  return Response.json({ error: 'Unauthorised — missing or invalid review token' }, { status: 401 });
+}
+
 interface Proposal {
   id: string;
   status: 'pending' | 'accepted' | 'rejected';
@@ -42,11 +56,13 @@ function proposalPath(id: string): string {
   return join(PROPOSALS_DIR, `${id}.proposal.json`);
 }
 
-export async function GET() {
+export async function GET(req: Request) {
+  if (!authorised(req)) return unauthorised();
   return Response.json({ proposals: readProposals() });
 }
 
 export async function POST(req: Request) {
+  if (!authorised(req)) return unauthorised();
   const body = (await req.json()) as { id?: string; action?: string; reason?: string };
   const { id, action, reason } = body;
   if (!id || !action) return Response.json({ error: 'id and action required' }, { status: 400 });

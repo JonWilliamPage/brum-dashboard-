@@ -1,0 +1,621 @@
+{
+  "generated": "2026-09-07T16:40:11.964Z",
+  "metric": "DWP benefit expenditure by benefit, £m nominal",
+  "unit": "£ million / year",
+  "source": {
+    "id": "benefitsBill",
+    "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
+    "method": "administrative — accounting outturn",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+  },
+  "sources": [
+    {
+      "id": "benefitsBill",
+      "label": "Benefit expenditure by local authority workbook (ODS) — sheets \"2002-03\"…\"2024-25\", Birmingham row E08000025",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "benefit-expenditure-by-local-authority-2024-25.ods",
+      "method": "administrative — accounting outturn",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/693ffb536a12691d48491fb3/benefit-expenditure-by-local-authority-2024-25.ods"
+    },
+    {
+      "id": "benefitsBillPage",
+      "label": "DWP publication page (Benefit expenditure and caseload tables 2025)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "Collection page listing all workbooks",
+      "method": "reference",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025",
+      "apiUrl": "https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2025"
+    },
+    {
+      "id": "population",
+      "label": "Population (per-head denominator)",
+      "publisher": "Office for National Statistics",
+      "dataset": "NOMIS NM_2014_1 (SAPE mid-2024)",
+      "method": "official estimate",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "Mid-2024",
+      "catalogueUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala",
+      "apiUrl": "https://www.nomisweb.co.uk/datasets/pestsyoala"
+    }
+  ],
+  "as_of": "2024/25",
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "lines_found": 15,
+  "components_sum_m": 5414.5,
+  "workbook_total_m": 5414.4,
+  "sum_check_passed": true,
+  "total_m": 5414.4,
+  "per_head": 4574,
+  "history_years": 23,
+  "history_years_with_components": 22,
+  "history_from": "2002/03",
+  "history_to": "2024/25",
+  "geography": "local-authority",
+  "lines": [
+    {
+      "id": "uc",
+      "label": "Universal Credit",
+      "group": "working-age",
+      "note": "Includes housing (rent), child, disability (LCWRA), carer and childcare elements",
+      "amount_m": 1809
+    },
+    {
+      "id": "sp",
+      "label": "State Pension",
+      "group": "pensioner",
+      "amount_m": 1513
+    },
+    {
+      "id": "hb",
+      "label": "Housing Benefit",
+      "group": "mixed",
+      "note": "Rent — now mostly pensioners + supported/temporary housing",
+      "amount_m": 634.8
+    },
+    {
+      "id": "pip",
+      "label": "Personal Independence Payment",
+      "group": "working-age",
+      "note": "Disability living costs — mobility component can fund a Motability vehicle",
+      "amount_m": 619.1
+    },
+    {
+      "id": "esa",
+      "label": "Employment & Support Allowance",
+      "group": "working-age",
+      "note": "Legacy incapacity benefit",
+      "amount_m": 246.4
+    },
+    {
+      "id": "dla",
+      "label": "Disability Living Allowance",
+      "group": "mixed",
+      "note": "Mostly children (legacy for adults)",
+      "amount_m": 158.8
+    },
+    {
+      "id": "pc",
+      "label": "Pension Credit",
+      "group": "pensioner",
+      "note": "Pensioner income top-up",
+      "amount_m": 142.8
+    },
+    {
+      "id": "ca",
+      "label": "Carer's Allowance",
+      "group": "working-age",
+      "note": "Full-time carers (35+ hrs/week)",
+      "amount_m": 132.5
+    },
+    {
+      "id": "aa",
+      "label": "Attendance Allowance",
+      "group": "pensioner",
+      "note": "Disability costs, state-pension age",
+      "amount_m": 124.6
+    },
+    {
+      "id": "jsa",
+      "label": "Jobseeker's Allowance",
+      "group": "working-age",
+      "note": "Legacy unemployment benefit",
+      "amount_m": 9.1
+    },
+    {
+      "id": "is",
+      "label": "Income Support",
+      "group": "working-age",
+      "note": "Legacy",
+      "amount_m": 8.1
+    },
+    {
+      "id": "wfp",
+      "label": "Winter Fuel Payments",
+      "group": "pensioner",
+      "amount_m": 7
+    },
+    {
+      "id": "bb",
+      "label": "Bereavement Support",
+      "group": "mixed",
+      "amount_m": 6.2
+    },
+    {
+      "id": "dhp",
+      "label": "Discretionary Housing Payments",
+      "group": "working-age",
+      "amount_m": 2.7
+    },
+    {
+      "id": "sda",
+      "label": "Severe Disablement Allowance",
+      "group": "working-age",
+      "amount_m": 0.4
+    }
+  ],
+  "history": [
+    {
+      "year": "2002/03",
+      "total_m": 1887.2,
+      "gb_total_m": 97592,
+      "share_pct": 1.9,
+      "components": {
+        "aa": 68.6,
+        "dla": 140.9,
+        "hb": 280.9,
+        "is": 408.1,
+        "jsa": 95.3,
+        "sp": 633.3,
+        "wfp": 27
+      },
+      "partial": false
+    },
+    {
+      "year": "2003/04",
+      "total_m": 1912.3,
+      "gb_total_m": 100221,
+      "share_pct": 1.9,
+      "components": {
+        "aa": 70.7,
+        "ca": 26.9,
+        "dla": 149.8,
+        "hb": 278,
+        "is": 369.7,
+        "jsa": 99.4,
+        "sp": 652.2,
+        "wfp": 30
+      },
+      "partial": false
+    },
+    {
+      "year": "2004/05",
+      "total_m": 2031.2,
+      "gb_total_m": 107578,
+      "share_pct": 1.9,
+      "components": {
+        "aa": 72.5,
+        "ca": 27.8,
+        "dla": 158.6,
+        "hb": 292.1,
+        "is": 289.9,
+        "jsa": 89.3,
+        "pc": 159.6,
+        "sp": 672.8,
+        "wfp": 37.9
+      },
+      "partial": false
+    },
+    {
+      "year": "2005/06",
+      "total_m": 1918.3,
+      "gb_total_m": 112260,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 75.5,
+        "ca": 29.2,
+        "dla": 168.4,
+        "hb": 297.4,
+        "is": 261.9,
+        "jsa": 97.7,
+        "sp": 695.9,
+        "wfp": 45.2
+      },
+      "partial": false,
+      "anomalies": [
+        "Pension Credit withheld — DWP's sheet duplicates Severe Disablement Allowance's value into its cell (workbook defect)"
+      ]
+    },
+    {
+      "year": "2006/07",
+      "total_m": 2115.1,
+      "gb_total_m": 115379,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 79.3,
+        "ca": 30.3,
+        "dla": 178.8,
+        "hb": 324,
+        "is": 249.7,
+        "jsa": 101.6,
+        "pc": 175.8,
+        "sp": 712.4,
+        "wfp": 30.1
+      },
+      "partial": false
+    },
+    {
+      "year": "2007/08",
+      "total_m": 2197.7,
+      "gb_total_m": 121962,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 84.5,
+        "ca": 33.4,
+        "dla": 192.6,
+        "hb": 338.3,
+        "is": 251.9,
+        "jsa": 97.1,
+        "pc": 184.6,
+        "sp": 751.9,
+        "wfp": 30.3
+      },
+      "partial": false
+    },
+    {
+      "year": "2008/09",
+      "total_m": 2306.1,
+      "gb_total_m": 129717,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 88,
+        "ca": 35.9,
+        "dla": 205.5,
+        "esa": 2.6,
+        "hb": 371.1,
+        "is": 240.4,
+        "jsa": 108.1,
+        "pc": 190.8,
+        "sp": 791.7,
+        "wfp": 39.2
+      },
+      "partial": false
+    },
+    {
+      "year": "2009/10",
+      "total_m": 2525.2,
+      "gb_total_m": 142518,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 92.6,
+        "ca": 39.8,
+        "dla": 223.1,
+        "esa": 27.4,
+        "hb": 427.8,
+        "is": 230.7,
+        "jsa": 159.8,
+        "pc": 198.6,
+        "sp": 848.7,
+        "wfp": 39
+      },
+      "partial": false
+    },
+    {
+      "year": "2010/11",
+      "total_m": 2589.4,
+      "gb_total_m": 147506,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 93.4,
+        "ca": 42.1,
+        "dla": 231.2,
+        "esa": 46.6,
+        "hb": 469.3,
+        "is": 214.4,
+        "jsa": 153.4,
+        "pc": 198.6,
+        "sp": 875.1,
+        "wfp": 38.6
+      },
+      "partial": false
+    },
+    {
+      "year": "2011/12",
+      "total_m": 2683.1,
+      "gb_total_m": 153646,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 94.7,
+        "ca": 46.5,
+        "dla": 245.4,
+        "esa": 76.5,
+        "hb": 503.1,
+        "is": 189.7,
+        "jsa": 168.2,
+        "pc": 193.2,
+        "sp": 919.3,
+        "wfp": 30.2
+      },
+      "partial": false
+    },
+    {
+      "year": "2012/13",
+      "total_m": 2801.9,
+      "gb_total_m": 161179,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 96.3,
+        "ca": 51.9,
+        "dla": 262.5,
+        "esa": 145.9,
+        "hb": 549.4,
+        "is": 145.7,
+        "jsa": 173.4,
+        "pc": 181.7,
+        "sp": 976.5,
+        "wfp": 29.8
+      },
+      "partial": false
+    },
+    {
+      "year": "2013/14",
+      "total_m": 2703.3,
+      "gb_total_m": 158996,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 93,
+        "ca": 56.3,
+        "dla": 270.1,
+        "esa": 222.6,
+        "hb": 543.4,
+        "is": 101.1,
+        "jsa": 155.6,
+        "pc": 170.3,
+        "pip": 1.8,
+        "sp": 1006.4,
+        "wfp": 29.5
+      },
+      "partial": false
+    },
+    {
+      "year": "2014/15",
+      "total_m": 2762.4,
+      "gb_total_m": 163165,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 92.1,
+        "ca": 62.6,
+        "dla": 267.2,
+        "esa": 280.8,
+        "hb": 553.6,
+        "is": 82.4,
+        "jsa": 120.5,
+        "pc": 159.5,
+        "pip": 43.5,
+        "sp": 1036.8,
+        "wfp": 29
+      },
+      "partial": false
+    },
+    {
+      "year": "2015/16",
+      "total_m": 2795.9,
+      "gb_total_m": 166426,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 91.8,
+        "ca": 68.8,
+        "dla": 241.8,
+        "esa": 310,
+        "hb": 565.5,
+        "is": 76,
+        "jsa": 94.5,
+        "pc": 148.8,
+        "pip": 81,
+        "sp": 1062.6,
+        "wfp": 28.4
+      },
+      "partial": false
+    },
+    {
+      "year": "2016/17",
+      "total_m": 2792.3,
+      "gb_total_m": 167487,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 90.8,
+        "ca": 71.8,
+        "dla": 211.4,
+        "esa": 319.5,
+        "hb": 561.8,
+        "is": 68.4,
+        "jsa": 86.5,
+        "pc": 140.3,
+        "pip": 114.2,
+        "sp": 1079.7,
+        "wfp": 27.8
+      },
+      "partial": false
+    },
+    {
+      "year": "2017/18",
+      "total_m": 2834.4,
+      "gb_total_m": 169822,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 90.2,
+        "ca": 75.4,
+        "dla": 159.5,
+        "esa": 337.2,
+        "hb": 554.7,
+        "is": 66.2,
+        "jsa": 82.5,
+        "pc": 132.9,
+        "pip": 195.6,
+        "sp": 1096.9,
+        "wfp": 27.2
+      },
+      "partial": false
+    },
+    {
+      "year": "2018/19",
+      "total_m": 2952.2,
+      "gb_total_m": 174829,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 91.3,
+        "ca": 81.3,
+        "dla": 126.5,
+        "esa": 313.9,
+        "hb": 522.7,
+        "is": 52.9,
+        "jsa": 52.3,
+        "pc": 127,
+        "pip": 246.3,
+        "sp": 1079.7,
+        "wfp": 26.6
+      },
+      "partial": true,
+      "unlisted_m": 216.9
+    },
+    {
+      "year": "2019/20",
+      "total_m": 3253.6,
+      "gb_total_m": 187856,
+      "share_pct": 1.7,
+      "components": {
+        "aa": 94.1,
+        "ca": 87.4,
+        "dla": 113.4,
+        "esa": 281.8,
+        "hb": 507.6,
+        "is": 40.3,
+        "jsa": 31.5,
+        "pc": 125.2,
+        "pip": 281.4,
+        "sp": 1135.2,
+        "uc": 514.3,
+        "wfp": 26.2
+      },
+      "partial": false
+    },
+    {
+      "year": "2020/21",
+      "total_m": 3814.7,
+      "gb_total_m": 208754,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 92.1,
+        "ca": 90.6,
+        "dla": 112.4,
+        "esa": 271.3,
+        "hb": 540.5,
+        "is": 31.7,
+        "jsa": 33.1,
+        "pc": 124.8,
+        "pip": 332.7,
+        "sp": 1158.8,
+        "uc": 985.6,
+        "wfp": 25.7
+      },
+      "partial": false,
+      "uc_excluded_from_printed_total": true
+    },
+    {
+      "year": "2021/22",
+      "total_m": 3903.5,
+      "gb_total_m": 211984,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 89.9,
+        "ca": 92,
+        "dla": 112,
+        "esa": 257.5,
+        "hb": 543.8,
+        "is": 22.7,
+        "jsa": 20.6,
+        "pc": 118.6,
+        "pip": 373.6,
+        "sp": 1179.2,
+        "uc": 1057,
+        "wfp": 25.6
+      },
+      "partial": false
+    },
+    {
+      "year": "2022/23",
+      "total_m": 4092.4,
+      "gb_total_m": 223921,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 94.7,
+        "ca": 98.7,
+        "dla": 119.2,
+        "esa": 245.5,
+        "hb": 546.2,
+        "is": 25.5,
+        "jsa": 14.4,
+        "pc": 119.7,
+        "pip": 436.3,
+        "sp": 1233.4,
+        "uc": 1089.7,
+        "wfp": 58.3
+      },
+      "partial": false
+    },
+    {
+      "year": "2023/24",
+      "total_m": 4688.4,
+      "gb_total_m": 254900,
+      "share_pct": 1.8,
+      "components": {
+        "aa": 109.2,
+        "ca": 114.9,
+        "dla": 139.7,
+        "esa": 250.5,
+        "hb": 591.7,
+        "is": 18.9,
+        "jsa": 11.6,
+        "pc": 130.8,
+        "pip": 525,
+        "sp": 1377.3,
+        "uc": 1350.8,
+        "wfp": 59.2
+      },
+      "partial": false
+    },
+    {
+      "year": "2024/25",
+      "total_m": 5414.4,
+      "gb_total_m": 284137,
+      "share_pct": 1.9,
+      "components": {
+        "aa": 124.6,
+        "ca": 132.5,
+        "dla": 158.8,
+        "esa": 246.4,
+        "hb": 634.8,
+        "is": 8.1,
+        "jsa": 9.1,
+        "pc": 142.8,
+        "pip": 619.1,
+        "sp": 1513,
+        "uc": 1809,
+        "wfp": 7
+      },
+      "partial": false
+    }
+  ],
+  "year": "2024/25",
+  "population": 1183618
+}

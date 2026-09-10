@@ -1,0 +1,152 @@
+{
+  "generated": "2026-09-07T16:40:12.068Z",
+  "metric": "% of households in receipt of Housing Benefit",
+  "unit": "% of households",
+  "source": {
+    "id": "housingBenefit",
+    "label": "Households in receipt of Housing Benefit (%)",
+    "publisher": "DWP · via Birmingham City Observatory",
+    "dataset": "percentage-households-in-receipt-of-housing-benefits-wmca",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "Feb 2026",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-households-in-receipt-of-housing-benefits-wmca/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?order_by=date%20DESC&limit=100"
+  },
+  "sources": [
+    {
+      "id": "housingBenefit",
+      "label": "Households in receipt of Housing Benefit (%)",
+      "publisher": "DWP · via Birmingham City Observatory",
+      "dataset": "percentage-households-in-receipt-of-housing-benefits-wmca",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "Feb 2026",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-households-in-receipt-of-housing-benefits-wmca/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?order_by=date%20DESC&limit=100"
+    }
+  ],
+  "as_of": "Feb 2026",
+  "geography_level": "local-authority",
+  "ward_breakdown_available": false,
+  "areas_found": 7,
+  "areas_expected": 7,
+  "complete": true,
+  "skipped": [],
+  "birmingham_value": 12.99,
+  "birmingham_rank": 1,
+  "wmca_benchmark": 6.29,
+  "england_benchmark": 4.64,
+  "geography": "local-authority",
+  "benchmarks": {
+    "wmca": 6.29,
+    "england": 4.64
+  },
+  "areas": [
+    {
+      "area_code": "E08000025",
+      "area_name": "Birmingham",
+      "value": 12.99,
+      "is_birmingham": true,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000025%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 1
+    },
+    {
+      "area_code": "E08000028",
+      "area_name": "Sandwell",
+      "value": 5.97,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000028%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 2
+    },
+    {
+      "area_code": "E08000031",
+      "area_name": "Wolverhampton",
+      "value": 5.81,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000031%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 3
+    },
+    {
+      "area_code": "E08000026",
+      "area_name": "Coventry",
+      "value": 5.62,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000026%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 4
+    },
+    {
+      "area_code": "E08000030",
+      "area_name": "Walsall",
+      "value": 5.47,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000030%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 5
+    },
+    {
+      "area_code": "E08000027",
+      "area_name": "Dudley",
+      "value": 4.14,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000027%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 6
+    },
+    {
+      "area_code": "E08000029",
+      "area_name": "Solihull",
+      "value": 4.02,
+      "is_birmingham": false,
+      "period": "Feb 2026",
+      "provenance": {
+        "value": {
+          "source": "DWP · via Birmingham City Observatory",
+          "method": "administrative",
+          "url": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-households-in-receipt-of-housing-benefits-wmca/records?where=areaidentifier%3D%22E08000029%22&order_by=date%20DESC&limit=1"
+        }
+      },
+      "rank": 7
+    }
+  ]
+}

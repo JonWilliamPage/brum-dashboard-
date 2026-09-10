@@ -10,6 +10,7 @@ import CrimeObsTrend from './CrimeObsTrend';
 import CrimeObsMix from './CrimeObsMix';
 import CrimeObsOutcomes from './CrimeObsOutcomes';
 import CrimeObsDetailPanel from './CrimeObsDetailPanel';
+import BullAscii from '../../components/BullAscii';
 
 const CrimeObsMap = dynamic(() => import('./CrimeObsMap'), { ssr: false });
 
@@ -21,16 +22,15 @@ type Sub = 'table' | 'trend' | 'mix' | 'outcomes' | 'map';
 
 const emptyBull = (
   <div className="r-empty">
-    <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+    <BullAscii
+      textColor="#15181e"
+      cols={40}
+      rows={26}
+      minAlpha={0.5}
+      displayWidth={110}
+      style={{ margin: 0 }}
+    />
     <p>Select any ward to see its crime breakdown, 36-month trend and outcomes.</p>
-    <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
   </div>
 );
 

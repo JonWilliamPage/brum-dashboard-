@@ -1,6 +1,6 @@
 {
   "id": "uc-payments",
-  "status": "pending",
+  "status": "accepted",
   "title": "UC Payments — household award intensity in Birmingham",
   "metric": "Households on UC; mean Payment Amount (£); award-size bands; family-type split",
   "unit": "households / £ per household (assessment period)",
@@ -420,5 +420,6 @@
     "Benefits Bill UC line (if present) is annual DWP accounting outturn for Birmingham LA — different metric; shown as context only.",
     "Ward-level mean payment is available in Stat-Xplore but not included until code↔label join is validated — no broken sample shipped.",
     "Aggregate band \"£1500.01 or over\" dropped when finer £100 bands exist to avoid double-counting."
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.144Z"
 }

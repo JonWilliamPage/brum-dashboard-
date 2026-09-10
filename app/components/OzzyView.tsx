@@ -7,7 +7,7 @@ import { renderOzzyContent, autoInjectMarkers } from './OzzyMarkers';
 
 const SP = ['⠋', '⠙', '⠹', '⠸', '⼼', '⠴', '⠦', '⠧'];
 
-const OZZY_SYSTEM = `You are Ozzy — Birmingham's analytical conscience. You have read every public dataset about the city. You are not a chatbot or a search engine. You're the voice you'd want presenting to the WMCA board: informed, direct, locally grounded, no spin.
+const OZZY_SYSTEM = `You are Ozzy, the commentary voice for an independent civic intelligence prototype for Birmingham. Work only from the selected data context supplied. Explain what it shows, why it might matter and what further evidence would be needed; do not claim comprehensive coverage or infer causes from patterns alone. Be informed, direct, locally grounded and clear about limitations.
 
 PERSONALITY RULES
 • Tone: Direct. Brummie-inflected but never a caricature. Plain English. Never academic. Never corporate.
@@ -124,7 +124,7 @@ function buildDataBlock(wards: Ward[], dsrc: DataSources, neetData: NeetCityData
     `City-level summary:\n${JSON.stringify(summary, null, 2)}\n\n` +
     `Data source status:\n${JSON.stringify({ live, cached }, null, 2)}\n\n` +
     `Important caveats Ozzy must respect:\n${caveats.map(c => '• ' + c).join('\n')}\n\n` +
-    `Full ward dataset (68 wards):\n${wards.map(w =>
+    `Full ward dataset (${wards.length} wards):\n${wards.map(w =>
       `${w.ward_name} (${w.ward_code}): claimant ${w.claimant_rate}%, youth claimant ${w.youth_claimant_rate}%, IMD employment ${(w.imd_employment_score * 100).toFixed(1)}%, inactivity-sick ${w.inactivity_sick_pct}%, GVA £${w.gva.toFixed(1)}k/head, composite decile ${w.composite_decile}/10, NEET risk decile ${w.neet_risk_decile}/10, quadrant: ${w.quadrant}, crime ${w.crime_rate_per_1000}/1000 (rank #${w.crime_rank})`
     ).join('\n')}` +
     buildNeetBlock(wards, neetData);
@@ -168,6 +168,11 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
 
   const saveConv = (c: ConvMessage[]) => {
     try { localStorage.setItem(CONV_KEY, JSON.stringify(c)); } catch { /* ignore */ }
+  };
+
+  const clearConv = () => {
+    setConv([]);
+    try { localStorage.removeItem(CONV_KEY); } catch { /* ignore */ }
   };
 
   const scrollToBottom = useCallback(() => {
@@ -308,6 +313,10 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
               {sending ? <>{spinChar} thinking</> : <>Ask Ozzy ↗</>}
             </button>
           </div>
+          <p style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--muted)', marginTop: 10, marginBottom: 0, lineHeight: 1.5 }}>
+            Questions are sent to Anthropic&apos;s Claude AI to generate answers — don&apos;t enter personal or sensitive information. Your conversation is saved only in this browser, not on our servers. <a href="/privacy" style={{ color: 'var(--herald-navy)' }}>Privacy details</a>.{' '}
+            {conv.length > 0 && <button onClick={clearConv} style={{ fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--herald-navy)', textDecoration: 'underline', textUnderlineOffset: 2, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>Clear conversation</button>}
+          </p>
           {conv.length === 0 && (
             <div className="ozzy-suggestions">
               {SUGGESTIONS.map(s => (
@@ -385,7 +394,7 @@ export default function OzzyView({ wards, dsrc, neetData, onAddHistory, onOpenVi
                 <div className="brf-loading">
                   <div className="brf-loading-spin">{spinChar}</div>
                   <div className="brf-loading-txt">Ozzy is reading the data…</div>
-                  <div className="brf-loading-sub">68 wards · synthesising</div>
+                  <div className="brf-loading-sub">{wards.length} wards · synthesising</div>
                 </div>
               )}
               {briefingError && (

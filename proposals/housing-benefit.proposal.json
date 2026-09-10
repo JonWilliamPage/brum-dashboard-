@@ -1,6 +1,6 @@
 {
   "id": "housing-benefit",
-  "status": "pending",
+  "status": "accepted",
   "title": "Housing Benefit — % of households in receipt",
   "metric": "% of households in receipt of Housing Benefit",
   "unit": "% of households",
@@ -193,5 +193,6 @@
       "valuetypelabel": "%",
       "format": "#,##0.00"
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.069Z"
 }

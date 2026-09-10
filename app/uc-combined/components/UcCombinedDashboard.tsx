@@ -8,6 +8,7 @@ import ScoringNote from '../../components/brand/ScoringNote';
 import UcCombinedTable from './UcCombinedTable';
 import UcCombinedComposition from './UcCombinedComposition';
 import UcCombinedDetailPanel from './UcCombinedDetailPanel';
+import BullAscii from '../../components/BullAscii';
 
 const UcCombinedMap = dynamic(() => import('./UcCombinedMap'), { ssr: false });
 
@@ -16,16 +17,15 @@ type Sub = 'table' | 'composition' | 'map';
 
 const emptyBull = (
   <div className="r-empty">
-    <div className="ascii-ward">{`┌─────────────────────┐
- │  (\\/)  (\\/)         │
- │   \\  \\/  /          │
- │ .--\\----/--.        │
- │/  ( o)(o)  \\        │
- │|    (---)   |       │
- │ \\___________/       │
- └─────────────────────┘`}</div>
+    <BullAscii
+      textColor="#15181e"
+      cols={40}
+      rows={26}
+      minAlpha={0.5}
+      displayWidth={110}
+      style={{ margin: 0 }}
+    />
     <p>Select any ward for its full UC composition.</p>
-    <p style={{ fontFamily: 'var(--mono)', fontSize: 9, fontStyle: 'normal', color: 'rgba(14,15,17,.18)', letterSpacing: '.18em' }}>THE BULL OF BIRMINGHAM</p>
   </div>
 );
 

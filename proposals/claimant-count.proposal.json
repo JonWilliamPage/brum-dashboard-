@@ -1,6 +1,6 @@
 {
   "id": "claimant-count",
-  "status": "pending",
+  "status": "accepted",
   "title": "Claimant count by ward",
   "metric": "% of residents aged 16-64 claiming unemployment-related benefits",
   "unit": "% of 16-64 residents",
@@ -6358,5 +6358,6 @@
         }
       }
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.014Z"
 }

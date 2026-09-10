@@ -307,16 +307,30 @@ const REGISTRY: Record<string, { label: string; summary: (p: Proposal) => string
   },
 };
 
+const TOKEN_KEY = 'ozzy_review_token';
+
 export default function ReviewPage() {
   const [proposals, setProposals] = useState<Proposal[]>([]);
   const [selId, setSelId] = useState<string | null>(null);
-  const [state, setState] = useState<'loading' | 'ready' | 'empty'>('loading');
+  const [state, setState] = useState<'loading' | 'ready' | 'empty' | 'unauthorised'>('loading');
   const [busy, setBusy] = useState(false);
   const [rejecting, setRejecting] = useState(false);
   const [reason, setReason] = useState('');
+  const [token, setToken] = useState<string | null>(null);
+  const [tokenInput, setTokenInput] = useState('');
 
-  const load = useCallback(async () => {
-    const r = await fetch('/api/proposals', { cache: 'no-store' });
+  useEffect(() => {
+    setToken(sessionStorage.getItem(TOKEN_KEY));
+  }, []);
+
+  const load = useCallback(async (tok: string) => {
+    const r = await fetch('/api/proposals', { cache: 'no-store', headers: { 'x-review-token': tok } });
+    if (r.status === 401) {
+      sessionStorage.removeItem(TOKEN_KEY);
+      setToken(null);
+      setState('unauthorised');
+      return;
+    }
     const j = await r.json();
     const ps: Proposal[] = (j.proposals ?? []).filter((p: Proposal) => REGISTRY[p.id]);
     if (!ps.length) { setState('empty'); return; }
@@ -325,17 +339,52 @@ export default function ReviewPage() {
     setState('ready');
   }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { if (token) load(token); }, [token, load]);
 
   const proposal = proposals.find(p => p.id === selId) ?? null;
 
   const act = async (action: 'accept' | 'reject') => {
-    if (!proposal) return;
+    if (!proposal || !token) return;
     setBusy(true);
-    await fetch('/api/proposals', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ id: proposal.id, action, reason }) });
-    await load();
+    await fetch('/api/proposals', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-review-token': token },
+      body: JSON.stringify({ id: proposal.id, action, reason }),
+    });
+    await load(token);
     setBusy(false); setRejecting(false); setReason('');
   };
+
+  const submitToken = () => {
+    const t = tokenInput.trim();
+    if (!t) return;
+    sessionStorage.setItem(TOKEN_KEY, t);
+    setState('loading');
+    setToken(t);
+  };
+
+  if (!token) {
+    return (
+      <Frame sub="review token required">
+        <div style={{ padding: 40, maxWidth: 360 }}>
+          <p style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--muted)', marginBottom: 14 }}>
+            {state === 'unauthorised' ? 'That token was rejected. ' : ''}
+            This is an internal review tool — enter the review token to continue.
+          </p>
+          <input
+            type="password"
+            value={tokenInput}
+            onChange={e => setTokenInput(e.target.value)}
+            onKeyDown={e => { if (e.key === 'Enter') submitToken(); }}
+            placeholder="Review token"
+            autoComplete="off"
+            style={{ width: '100%', padding: '10px 12px', fontFamily: 'var(--mono)', fontSize: 13, border: '1px solid var(--border-solid)', marginBottom: 10 }}
+          />
+          <button className="refresh-btn" onClick={submitToken}>Continue →</button>
+        </div>
+      </Frame>
+    );
+  }
 
   if (state === 'loading') return <Frame sub="loading…"><div style={{ padding: 40, fontFamily: 'var(--mono)', fontSize: 12, color: 'var(--muted)' }}>⠋ loading proposals…</div></Frame>;
   if (state === 'empty' || !proposal) return <Frame sub="no proposals"><div style={{ padding: 40, fontFamily: 'var(--serif)', fontStyle: 'italic', color: 'var(--muted)' }}>No proposals staged. Run a <code style={{ fontFamily: 'var(--mono)' }}>scripts/fetch-*.mjs</code> tool.</div></Frame>;

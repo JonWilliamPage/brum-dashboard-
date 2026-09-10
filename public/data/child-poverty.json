@@ -1,0 +1,2032 @@
+{
+  "generated": "2026-09-07T16:40:12.001Z",
+  "metric": "% of children aged 0-15 in absolute low-income families",
+  "unit": "% of children",
+  "source": {
+    "id": "childPoverty",
+    "label": "Children in absolute low income families (0-15), %",
+    "publisher": "DWP/HMRC · via Birmingham City Observatory",
+    "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
+    "method": "administrative",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "2024/25",
+    "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
+    "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
+  },
+  "sources": [
+    {
+      "id": "childPoverty",
+      "label": "Children in absolute low income families (0-15), %",
+      "publisher": "DWP/HMRC · via Birmingham City Observatory",
+      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-birmingham-wards/exports/json"
+    },
+    {
+      "id": "childPovertyLA",
+      "label": "LA/England benchmark series",
+      "publisher": "DWP/HMRC · via Birmingham City Observatory",
+      "dataset": "percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca",
+      "method": "administrative",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "2024/25",
+      "catalogueUrl": "https://www.cityobservatory.birmingham.gov.uk/explore/dataset/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/",
+      "apiUrl": "https://www.cityobservatory.birmingham.gov.uk/api/explore/v2.1/catalog/datasets/percentage-of-children-in-absolute-low-income-families-aged-0-15-wmca/exports/json"
+    }
+  ],
+  "as_of": "2024/25",
+  "wards_found": 69,
+  "wards_expected": 69,
+  "complete": true,
+  "skipped": [],
+  "years_span": 10,
+  "series_from": "2015/16",
+  "series_to": "2024/25",
+  "highest": {
+    "ward": "Heartlands",
+    "pct": 66.7
+  },
+  "lowest": {
+    "ward": "Sutton Roughley",
+    "pct": 6
+  },
+  "city_latest": 39.5,
+  "england_latest": 18,
+  "years": [
+    "2015/16",
+    "2016/17",
+    "2017/18",
+    "2018/19",
+    "2019/20",
+    "2020/21",
+    "2021/22",
+    "2022/23",
+    "2023/24",
+    "2024/25"
+  ],
+  "city": {
+    "city_series": [
+      27.6,
+      26.4,
+      30.8,
+      31.1,
+      31.5,
+      29.8,
+      39.2,
+      42.7,
+      40.7,
+      39.5
+    ],
+    "england_series": [
+      13.4,
+      12.4,
+      14.4,
+      14,
+      14.5,
+      13.6,
+      17.9,
+      19.9,
+      19.2,
+      18
+    ],
+    "city_latest": 39.5,
+    "england_latest": 18
+  },
+  "wards": [
+    {
+      "ward_code": "E05011145",
+      "ward_name": "Heartlands",
+      "latest_pct": 66.7,
+      "first_pct": 30.6,
+      "delta_pp": 36.1,
+      "series": [
+        30.6,
+        40.9,
+        41.5,
+        43.2,
+        47.8,
+        50,
+        57.5,
+        61.9,
+        70.2,
+        66.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011127",
+      "ward_name": "Bordesley Green",
+      "latest_pct": 64.8,
+      "first_pct": 31.5,
+      "delta_pp": 33.3,
+      "series": [
+        31.5,
+        49.4,
+        48.8,
+        48.5,
+        53,
+        50.9,
+        52.7,
+        54.4,
+        68,
+        64.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011167",
+      "ward_name": "Small Heath",
+      "latest_pct": 62,
+      "first_pct": 32.7,
+      "delta_pp": 29.3,
+      "series": [
+        32.7,
+        47.1,
+        48.9,
+        48,
+        51.6,
+        51.1,
+        51.3,
+        54.3,
+        65.3,
+        62
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011183",
+      "ward_name": "Ward End",
+      "latest_pct": 60.4,
+      "first_pct": 31.8,
+      "delta_pp": 28.6,
+      "series": [
+        31.8,
+        45.6,
+        44.9,
+        46.9,
+        50.5,
+        51.1,
+        54.3,
+        56.4,
+        61.8,
+        60.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011120",
+      "ward_name": "Alum Rock",
+      "latest_pct": 59.8,
+      "first_pct": 32.7,
+      "delta_pp": 27.1,
+      "series": [
+        32.7,
+        49.9,
+        50.3,
+        50.4,
+        52.8,
+        53.8,
+        54.1,
+        56.7,
+        60.9,
+        59.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011182",
+      "ward_name": "Tyseley & Hay Mills",
+      "latest_pct": 59.7,
+      "first_pct": 23,
+      "delta_pp": 36.7,
+      "series": [
+        23,
+        35.7,
+        35.7,
+        36.4,
+        44.5,
+        43.3,
+        43.2,
+        48.1,
+        59.5,
+        59.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011153",
+      "ward_name": "Lozells",
+      "latest_pct": 59,
+      "first_pct": 31.2,
+      "delta_pp": 27.8,
+      "series": [
+        31.2,
+        44.1,
+        46,
+        46.4,
+        49,
+        46.4,
+        39.6,
+        40.4,
+        61.8,
+        59
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011170",
+      "ward_name": "Sparkbrook & Balsall Heath East",
+      "latest_pct": 58.9,
+      "first_pct": 30.1,
+      "delta_pp": 28.8,
+      "series": [
+        30.1,
+        44,
+        46,
+        46,
+        50.9,
+        48.5,
+        49.7,
+        51.7,
+        61.3,
+        58.9
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011155",
+      "ward_name": "Nechells",
+      "latest_pct": 58.4,
+      "first_pct": 22.7,
+      "delta_pp": 35.7,
+      "series": [
+        22.7,
+        32.9,
+        36.2,
+        42,
+        44.9,
+        43,
+        46,
+        45.7,
+        60.8,
+        58.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011156",
+      "ward_name": "Newtown",
+      "latest_pct": 58.2,
+      "first_pct": 27.5,
+      "delta_pp": 30.7,
+      "series": [
+        27.5,
+        37,
+        44,
+        44.3,
+        49.4,
+        46.9,
+        48.5,
+        48,
+        58.5,
+        58.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011126",
+      "ward_name": "Bordesley & Highgate",
+      "latest_pct": 55.8,
+      "first_pct": 24.5,
+      "delta_pp": 31.3,
+      "series": [
+        24.5,
+        33.7,
+        37.5,
+        39.4,
+        41.8,
+        39.5,
+        47.3,
+        48.4,
+        58.1,
+        55.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011122",
+      "ward_name": "Balsall Heath West",
+      "latest_pct": 55.7,
+      "first_pct": 21.8,
+      "delta_pp": 33.9,
+      "series": [
+        21.8,
+        32.3,
+        34.1,
+        34.3,
+        38.5,
+        38.7,
+        40.6,
+        40.1,
+        53,
+        55.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011147",
+      "ward_name": "Holyhead",
+      "latest_pct": 55.6,
+      "first_pct": 22.8,
+      "delta_pp": 32.8,
+      "series": [
+        22.8,
+        33,
+        34.3,
+        34.9,
+        38.4,
+        37.2,
+        42.6,
+        45.9,
+        57,
+        55.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011142",
+      "ward_name": "Handsworth",
+      "latest_pct": 54.8,
+      "first_pct": 25,
+      "delta_pp": 29.8,
+      "series": [
+        25,
+        37.9,
+        36.9,
+        36.9,
+        40.8,
+        37.8,
+        45.1,
+        43.6,
+        57.4,
+        54.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011121",
+      "ward_name": "Aston",
+      "latest_pct": 54.4,
+      "first_pct": 32.1,
+      "delta_pp": 22.3,
+      "series": [
+        32.1,
+        46.8,
+        47.7,
+        49.3,
+        52.2,
+        49,
+        49.2,
+        53.7,
+        56.2,
+        54.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011171",
+      "ward_name": "Sparkhill",
+      "latest_pct": 53.1,
+      "first_pct": 30.5,
+      "delta_pp": 22.6,
+      "series": [
+        30.5,
+        46.1,
+        47,
+        47.2,
+        50.7,
+        51.7,
+        51,
+        54,
+        55.7,
+        53.1
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011186",
+      "ward_name": "Yardley West & Stechford",
+      "latest_pct": 52.7,
+      "first_pct": 22.6,
+      "delta_pp": 30.1,
+      "series": [
+        22.6,
+        32.5,
+        33.1,
+        37,
+        42.6,
+        40.4,
+        39.9,
+        40.9,
+        53,
+        52.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011138",
+      "ward_name": "Glebe Farm & Tile Cross",
+      "latest_pct": 51.4,
+      "first_pct": 18.5,
+      "delta_pp": 32.9,
+      "series": [
+        18.5,
+        27.6,
+        30.3,
+        30.6,
+        35.9,
+        32.5,
+        37.2,
+        38.5,
+        54.8,
+        51.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011125",
+      "ward_name": "Birchfield",
+      "latest_pct": 49,
+      "first_pct": 26.3,
+      "delta_pp": 22.7,
+      "series": [
+        26.3,
+        37,
+        39.1,
+        40.4,
+        42.8,
+        39.1,
+        43.2,
+        45.5,
+        51.6,
+        49
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011131",
+      "ward_name": "Bromford & Hodge Hill",
+      "latest_pct": 48.4,
+      "first_pct": 22.9,
+      "delta_pp": 25.5,
+      "series": [
+        22.9,
+        34,
+        35.9,
+        36.7,
+        40.4,
+        37.9,
+        39.2,
+        39,
+        47.5,
+        48.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011168",
+      "ward_name": "Soho & Jewellery Quarter",
+      "latest_pct": 47.7,
+      "first_pct": 22.8,
+      "delta_pp": 24.9,
+      "series": [
+        22.8,
+        32.5,
+        33.4,
+        34.5,
+        37.4,
+        32.5,
+        39.7,
+        40.4,
+        50,
+        47.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011157",
+      "ward_name": "North Edgbaston",
+      "latest_pct": 44.7,
+      "first_pct": 19.5,
+      "delta_pp": 25.2,
+      "series": [
+        19.5,
+        27.9,
+        29.8,
+        29.3,
+        30.3,
+        29.1,
+        35.4,
+        36.2,
+        42,
+        44.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011173",
+      "ward_name": "Stockland Green",
+      "latest_pct": 43.9,
+      "first_pct": 16.7,
+      "delta_pp": 27.2,
+      "series": [
+        16.7,
+        23.3,
+        25.7,
+        25.7,
+        29.1,
+        27.5,
+        31.3,
+        32.7,
+        44.5,
+        43.9
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011118",
+      "ward_name": "Acocks Green",
+      "latest_pct": 42.8,
+      "first_pct": 17.3,
+      "delta_pp": 25.5,
+      "series": [
+        17.3,
+        25.4,
+        25.5,
+        27.8,
+        30,
+        30.6,
+        31.7,
+        31.8,
+        44.2,
+        42.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011150",
+      "ward_name": "Kingstanding",
+      "latest_pct": 41.6,
+      "first_pct": 15.8,
+      "delta_pp": 25.8,
+      "series": [
+        15.8,
+        22.8,
+        23.2,
+        23.9,
+        26.8,
+        23.4,
+        26.8,
+        26.6,
+        41.7,
+        41.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011139",
+      "ward_name": "Gravelly Hill",
+      "latest_pct": 41.6,
+      "first_pct": 20,
+      "delta_pp": 21.6,
+      "series": [
+        20,
+        30.5,
+        32.5,
+        32.3,
+        34.4,
+        34.4,
+        34.2,
+        35.7,
+        40.4,
+        41.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011185",
+      "ward_name": "Yardley East",
+      "latest_pct": 40.9,
+      "first_pct": 16.6,
+      "delta_pp": 24.3,
+      "series": [
+        16.6,
+        22.2,
+        23.9,
+        26.1,
+        28.1,
+        28.7,
+        29.5,
+        28.1,
+        39.5,
+        40.9
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011140",
+      "ward_name": "Hall Green North",
+      "latest_pct": 40.2,
+      "first_pct": 19,
+      "delta_pp": 21.2,
+      "series": [
+        19,
+        29.7,
+        29.6,
+        31.9,
+        31.4,
+        32.9,
+        31.9,
+        32.2,
+        40.9,
+        40.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011132",
+      "ward_name": "Castle Vale",
+      "latest_pct": 36.7,
+      "first_pct": 11.5,
+      "delta_pp": 25.2,
+      "series": [
+        11.5,
+        19,
+        19.8,
+        19.8,
+        22.6,
+        22.9,
+        27,
+        27.2,
+        37.1,
+        36.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011160",
+      "ward_name": "Perry Barr",
+      "latest_pct": 36.7,
+      "first_pct": 15.5,
+      "delta_pp": 21.2,
+      "series": [
+        15.5,
+        22.3,
+        23.2,
+        23.8,
+        25.8,
+        26.3,
+        26.7,
+        28.1,
+        38.5,
+        36.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011161",
+      "ward_name": "Perry Common",
+      "latest_pct": 36.2,
+      "first_pct": 14.6,
+      "delta_pp": 21.6,
+      "series": [
+        14.6,
+        21.3,
+        20.8,
+        22.2,
+        23.4,
+        22.2,
+        25.1,
+        26.4,
+        36.7,
+        36.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011137",
+      "ward_name": "Garretts Green",
+      "latest_pct": 36,
+      "first_pct": 16.8,
+      "delta_pp": 19.2,
+      "series": [
+        16.8,
+        25.2,
+        29.8,
+        26.6,
+        30,
+        30.3,
+        31.7,
+        33.2,
+        37,
+        36
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011154",
+      "ward_name": "Moseley",
+      "latest_pct": 35.6,
+      "first_pct": 16.7,
+      "delta_pp": 18.9,
+      "series": [
+        16.7,
+        24.2,
+        24.1,
+        22.9,
+        26.3,
+        25.6,
+        25,
+        25.9,
+        36.6,
+        35.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011151",
+      "ward_name": "Ladywood",
+      "latest_pct": 35.5,
+      "first_pct": 15,
+      "delta_pp": 20.5,
+      "series": [
+        15,
+        24.4,
+        25.9,
+        24.9,
+        29.8,
+        25.9,
+        32.4,
+        31.4,
+        36.7,
+        35.5
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011124",
+      "ward_name": "Billesley",
+      "latest_pct": 34.9,
+      "first_pct": 16.3,
+      "delta_pp": 18.6,
+      "series": [
+        16.3,
+        22.1,
+        22.1,
+        22.8,
+        25.9,
+        24.8,
+        25.6,
+        25.9,
+        35.2,
+        34.9
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011166",
+      "ward_name": "Sheldon",
+      "latest_pct": 34.6,
+      "first_pct": 11.9,
+      "delta_pp": 22.7,
+      "series": [
+        11.9,
+        17.6,
+        16.3,
+        17.9,
+        20.7,
+        20.8,
+        21.8,
+        22.2,
+        33.3,
+        34.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011165",
+      "ward_name": "Shard End",
+      "latest_pct": 33.1,
+      "first_pct": 13.2,
+      "delta_pp": 19.9,
+      "series": [
+        13.2,
+        19.1,
+        18.3,
+        20.8,
+        23.9,
+        24,
+        25,
+        29.4,
+        35.7,
+        33.1
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011136",
+      "ward_name": "Frankley Great Park",
+      "latest_pct": 32.4,
+      "first_pct": 13.2,
+      "delta_pp": 19.2,
+      "series": [
+        13.2,
+        17.6,
+        17.2,
+        19.4,
+        20.3,
+        21.1,
+        21.2,
+        21.7,
+        33.3,
+        32.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011143",
+      "ward_name": "Handsworth Wood",
+      "latest_pct": 32.3,
+      "first_pct": 17,
+      "delta_pp": 15.3,
+      "series": [
+        17,
+        23.2,
+        24.6,
+        24.8,
+        25.6,
+        27,
+        28.4,
+        29.4,
+        32.5,
+        32.3
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011123",
+      "ward_name": "Bartley Green",
+      "latest_pct": 31.4,
+      "first_pct": 12.2,
+      "delta_pp": 19.2,
+      "series": [
+        12.2,
+        18.4,
+        19.4,
+        20.3,
+        21.5,
+        21.3,
+        22.6,
+        23,
+        33,
+        31.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011133",
+      "ward_name": "Druids Heath & Monyhull",
+      "latest_pct": 31.1,
+      "first_pct": 13.5,
+      "delta_pp": 17.6,
+      "series": [
+        13.5,
+        20,
+        20.2,
+        21.9,
+        23.5,
+        23.6,
+        25,
+        25,
+        32.3,
+        31.1
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011149",
+      "ward_name": "King's Norton South",
+      "latest_pct": 30.8,
+      "first_pct": 13.6,
+      "delta_pp": 17.2,
+      "series": [
+        13.6,
+        21.2,
+        22.9,
+        21.8,
+        23.5,
+        20.9,
+        23.4,
+        23.1,
+        34,
+        30.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011162",
+      "ward_name": "Pype Hayes",
+      "latest_pct": 29.6,
+      "first_pct": 11.5,
+      "delta_pp": 18.1,
+      "series": [
+        11.5,
+        17,
+        19.4,
+        18.1,
+        21.9,
+        21.4,
+        23,
+        22.7,
+        30.9,
+        29.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011169",
+      "ward_name": "South Yardley",
+      "latest_pct": 29.2,
+      "first_pct": 12.7,
+      "delta_pp": 16.5,
+      "series": [
+        12.7,
+        19.1,
+        22.2,
+        21.6,
+        26.1,
+        25.9,
+        27.9,
+        27.8,
+        29.3,
+        29.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011135",
+      "ward_name": "Erdington",
+      "latest_pct": 29,
+      "first_pct": 12.1,
+      "delta_pp": 16.9,
+      "series": [
+        12.1,
+        17.1,
+        17.7,
+        18.2,
+        20,
+        19.7,
+        20.5,
+        20.9,
+        29.8,
+        29
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011146",
+      "ward_name": "Highter's Heath",
+      "latest_pct": 28.8,
+      "first_pct": 12.5,
+      "delta_pp": 16.3,
+      "series": [
+        12.5,
+        16.6,
+        17.1,
+        18,
+        22.2,
+        18.6,
+        21.9,
+        21.4,
+        28,
+        28.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011159",
+      "ward_name": "Oscott",
+      "latest_pct": 28,
+      "first_pct": 11.1,
+      "delta_pp": 16.9,
+      "series": [
+        11.1,
+        15.3,
+        16.7,
+        17.6,
+        20.1,
+        18.6,
+        20.5,
+        21.2,
+        29.3,
+        28
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011184",
+      "ward_name": "Weoley & Selly Oak",
+      "latest_pct": 27.6,
+      "first_pct": 13.1,
+      "delta_pp": 14.5,
+      "series": [
+        13.1,
+        18,
+        17.7,
+        19.2,
+        21.1,
+        20.4,
+        22.1,
+        23.3,
+        31.1,
+        27.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011163",
+      "ward_name": "Quinton",
+      "latest_pct": 27.1,
+      "first_pct": 10.8,
+      "delta_pp": 16.3,
+      "series": [
+        10.8,
+        16.3,
+        16.1,
+        16.4,
+        20.6,
+        19.1,
+        20.2,
+        19.7,
+        27.1,
+        27.1
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011164",
+      "ward_name": "Rubery & Rednal",
+      "latest_pct": 26.5,
+      "first_pct": 13,
+      "delta_pp": 13.5,
+      "series": [
+        13,
+        17.2,
+        20.8,
+        21.2,
+        20.6,
+        18.8,
+        21.8,
+        23,
+        28.1,
+        26.5
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011152",
+      "ward_name": "Longbridge & West Heath",
+      "latest_pct": 26.1,
+      "first_pct": 11.7,
+      "delta_pp": 14.4,
+      "series": [
+        11.7,
+        16.5,
+        16.1,
+        17.8,
+        19.8,
+        20.2,
+        20.5,
+        19.6,
+        27.4,
+        26.1
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011119",
+      "ward_name": "Allens Cross",
+      "latest_pct": 25.6,
+      "first_pct": 12.8,
+      "delta_pp": 12.8,
+      "series": [
+        12.8,
+        18.7,
+        17.7,
+        18.3,
+        20.8,
+        19.8,
+        22.4,
+        21.3,
+        29.5,
+        25.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011158",
+      "ward_name": "Northfield",
+      "latest_pct": 25,
+      "first_pct": 7.2,
+      "delta_pp": 17.8,
+      "series": [
+        7.2,
+        11,
+        9.5,
+        9.9,
+        11.4,
+        11.2,
+        11.3,
+        11.4,
+        21.4,
+        25
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011148",
+      "ward_name": "King's Norton North",
+      "latest_pct": 23.8,
+      "first_pct": 9.9,
+      "delta_pp": 13.9,
+      "series": [
+        9.9,
+        13.1,
+        17,
+        16,
+        16.4,
+        16.1,
+        18.4,
+        18.1,
+        26.1,
+        23.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011172",
+      "ward_name": "Stirchley",
+      "latest_pct": 23.8,
+      "first_pct": 10.6,
+      "delta_pp": 13.2,
+      "series": [
+        10.6,
+        17.5,
+        16.2,
+        16.4,
+        20.1,
+        19.9,
+        22.4,
+        22.7,
+        25.4,
+        23.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011130",
+      "ward_name": "Brandwood & King's Heath",
+      "latest_pct": 23.2,
+      "first_pct": 10.3,
+      "delta_pp": 12.9,
+      "series": [
+        10.3,
+        17.4,
+        16.3,
+        16,
+        17.6,
+        16.2,
+        17.7,
+        18.3,
+        25.4,
+        23.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011144",
+      "ward_name": "Harborne",
+      "latest_pct": 22.8,
+      "first_pct": 9.1,
+      "delta_pp": 13.7,
+      "series": [
+        9.1,
+        13,
+        14.9,
+        14.1,
+        14.3,
+        14.2,
+        17.9,
+        17.3,
+        25.3,
+        22.8
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011129",
+      "ward_name": "Bournville & Cotteridge",
+      "latest_pct": 20.5,
+      "first_pct": 7.5,
+      "delta_pp": 13,
+      "series": [
+        7.5,
+        12.7,
+        10.4,
+        11.7,
+        13.1,
+        11.4,
+        12.1,
+        12.5,
+        19.7,
+        20.5
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011128",
+      "ward_name": "Bournbrook & Selly Park",
+      "latest_pct": 20,
+      "first_pct": 10.1,
+      "delta_pp": 9.9,
+      "series": [
+        10.1,
+        16.6,
+        15.2,
+        14.3,
+        16.3,
+        16.2,
+        15.3,
+        16.9,
+        19.2,
+        20
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011141",
+      "ward_name": "Hall Green South",
+      "latest_pct": 18.4,
+      "first_pct": 9.7,
+      "delta_pp": 8.7,
+      "series": [
+        9.7,
+        13.7,
+        13.6,
+        16.1,
+        18.1,
+        18.4,
+        16,
+        14.6,
+        17.5,
+        18.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011176",
+      "ward_name": "Sutton Reddicap",
+      "latest_pct": 16.3,
+      "first_pct": 8.4,
+      "delta_pp": 7.9,
+      "series": [
+        8.4,
+        11.9,
+        11.3,
+        12.4,
+        13.3,
+        11.1,
+        12.2,
+        12.8,
+        18.4,
+        16.3
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011134",
+      "ward_name": "Edgbaston",
+      "latest_pct": 15.2,
+      "first_pct": 7.4,
+      "delta_pp": 7.8,
+      "series": [
+        7.4,
+        11.9,
+        12.5,
+        12.9,
+        13.8,
+        15.9,
+        19.2,
+        18.6,
+        15.2,
+        15.2
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011179",
+      "ward_name": "Sutton Vesey",
+      "latest_pct": 10.7,
+      "first_pct": 5.5,
+      "delta_pp": 5.2,
+      "series": [
+        5.5,
+        8.9,
+        8.1,
+        7.3,
+        8.1,
+        7.7,
+        8.1,
+        8.6,
+        10.4,
+        10.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011180",
+      "ward_name": "Sutton Walmley & Minworth",
+      "latest_pct": 10.6,
+      "first_pct": 5,
+      "delta_pp": 5.6,
+      "series": [
+        5,
+        6.2,
+        6.2,
+        6.4,
+        7.4,
+        7.3,
+        8.5,
+        8.2,
+        10.6,
+        10.6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011178",
+      "ward_name": "Sutton Trinity",
+      "latest_pct": 8.5,
+      "first_pct": 4,
+      "delta_pp": 4.5,
+      "series": [
+        4,
+        5.5,
+        4.4,
+        5.2,
+        5.6,
+        5.1,
+        6.4,
+        5.8,
+        8.2,
+        8.5
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011174",
+      "ward_name": "Sutton Four Oaks",
+      "latest_pct": 8.4,
+      "first_pct": 3.4,
+      "delta_pp": 5,
+      "series": [
+        3.4,
+        4.8,
+        4.4,
+        3,
+        4.5,
+        5.5,
+        4.2,
+        5.9,
+        9.6,
+        8.4
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011175",
+      "ward_name": "Sutton Mere Green",
+      "latest_pct": 7.9,
+      "first_pct": 5.1,
+      "delta_pp": 2.8,
+      "series": [
+        5.1,
+        7.2,
+        6.9,
+        5.6,
+        6.8,
+        6.7,
+        6,
+        6.2,
+        6.8,
+        7.9
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011181",
+      "ward_name": "Sutton Wylde Green",
+      "latest_pct": 6.7,
+      "first_pct": 4.2,
+      "delta_pp": 2.5,
+      "series": [
+        4.2,
+        4.4,
+        5.7,
+        4.9,
+        4.8,
+        4.6,
+        4.5,
+        6.1,
+        7.4,
+        6.7
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    },
+    {
+      "ward_code": "E05011177",
+      "ward_name": "Sutton Roughley",
+      "latest_pct": 6,
+      "first_pct": 3.9,
+      "delta_pp": 2.1,
+      "series": [
+        3.9,
+        6,
+        6,
+        5.6,
+        6.7,
+        5.3,
+        6.3,
+        5.2,
+        6.1,
+        6
+      ],
+      "provenance": {
+        "pct": {
+          "source": "DWP/HMRC · Children in low income families · City Observatory",
+          "method": "administrative — native %"
+        },
+        "delta": {
+          "method": "derived — latest − first year, percentage points"
+        }
+      }
+    }
+  ]
+}

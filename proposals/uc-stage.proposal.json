@@ -1,6 +1,6 @@
 {
   "id": "uc-stage",
-  "status": "pending",
+  "status": "accepted",
   "title": "UC Stage — 3D extruded ward caseload over time",
   "metric": "People on Universal Credit (count) by ward over months; city UC £m annual · Three.js extrusion stage",
   "unit": "claimants / £ million",
@@ -10305,5 +10305,6 @@
     "presentation": "three-js-extruded-wards",
     "parent_proposal": "uc-weather"
   },
-  "presentation": "three-extrusion"
+  "presentation": "three-extrusion",
+  "reviewed_at": "2026-09-07T16:40:12.156Z"
 }

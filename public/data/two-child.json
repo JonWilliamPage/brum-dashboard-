@@ -1,0 +1,114 @@
+{
+  "generated": "2026-09-07T16:40:12.123Z",
+  "metric": "households/children affected + derived £ gain",
+  "unit": "households · children · £m/year (derived)",
+  "source": {
+    "id": "twoChild",
+    "label": "Two-child limit statistics, April 2026 (final release)",
+    "publisher": "Department for Work & Pensions",
+    "dataset": "UC statistics on the two child limit policy",
+    "method": "administrative — UC admin data",
+    "licence": "Open Government Licence v3.0",
+    "as_of": "April 2026",
+    "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
+    "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
+  },
+  "sources": [
+    {
+      "id": "twoChild",
+      "label": "Two-child limit statistics, April 2026 (final release)",
+      "publisher": "Department for Work & Pensions",
+      "dataset": "UC statistics on the two child limit policy",
+      "method": "administrative — UC admin data",
+      "licence": "Open Government Licence v3.0",
+      "as_of": "April 2026",
+      "catalogueUrl": "https://www.gov.uk/government/statistics/universal-credit-claimants-statistics-on-the-two-child-limit-policy-april-2026",
+      "apiUrl": "https://assets.publishing.service.gov.uk/media/6a4cb35a4889d85e75ab40df/data-tables-universal-credit-statistics-two-child-limit-april-2026.ods"
+    }
+  ],
+  "as_of": "April 2026",
+  "geography_level": "parliamentary-constituency",
+  "ward_breakdown_available": false,
+  "constituencies_found": 9,
+  "constituencies_expected": 9,
+  "complete": true,
+  "la_cross_check_drift_pct": 0.3,
+  "households_affected": 24090,
+  "children_affected": 25080,
+  "derived_annual_gain_m": 88.1,
+  "geography": "constituency",
+  "city": {
+    "households_affected": 24090,
+    "children_in_households": 67850,
+    "children_affected": 25080,
+    "households_gaining": 16070,
+    "children_in_gaining": 58490,
+    "derived_annual_gain_m": 88.1
+  },
+  "constituencies": [
+    {
+      "name": "Birmingham Ladywood",
+      "households_affected": 4250,
+      "children_affected": 4570,
+      "households_gaining": 2800,
+      "derived_annual_gain_m": 16.1
+    },
+    {
+      "name": "Birmingham Hodge Hill and Solihull North",
+      "households_affected": 3570,
+      "children_affected": 3700,
+      "households_gaining": 2370,
+      "derived_annual_gain_m": 13
+    },
+    {
+      "name": "Birmingham Yardley",
+      "households_affected": 2920,
+      "children_affected": 3000,
+      "households_gaining": 1960,
+      "derived_annual_gain_m": 10.5
+    },
+    {
+      "name": "Birmingham Perry Barr",
+      "households_affected": 2910,
+      "children_affected": 3000,
+      "households_gaining": 1930,
+      "derived_annual_gain_m": 10.5
+    },
+    {
+      "name": "Birmingham Erdington",
+      "households_affected": 2680,
+      "children_affected": 2830,
+      "households_gaining": 1780,
+      "derived_annual_gain_m": 9.9
+    },
+    {
+      "name": "Birmingham Hall Green and Moseley",
+      "households_affected": 2590,
+      "children_affected": 2640,
+      "households_gaining": 1740,
+      "derived_annual_gain_m": 9.3
+    },
+    {
+      "name": "Birmingham Northfield",
+      "households_affected": 2110,
+      "children_affected": 2160,
+      "households_gaining": 1410,
+      "derived_annual_gain_m": 7.6
+    },
+    {
+      "name": "Birmingham Edgbaston",
+      "households_affected": 1630,
+      "children_affected": 1740,
+      "households_gaining": 1110,
+      "derived_annual_gain_m": 6.1
+    },
+    {
+      "name": "Birmingham Selly Oak",
+      "households_affected": 1360,
+      "children_affected": 1410,
+      "households_gaining": 930,
+      "derived_annual_gain_m": 5
+    }
+  ],
+  "child_element_month": 292.81
+}

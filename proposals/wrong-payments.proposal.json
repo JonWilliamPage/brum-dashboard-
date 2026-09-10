@@ -1,6 +1,6 @@
 {
   "id": "wrong-payments",
-  "status": "pending",
+  "status": "accepted",
   "title": "Wrong Payments — fraud & error on Birmingham's benefits bill",
   "metric": "Illustrative overpayments: Birmingham DWP spend × national fraud/error rates",
   "unit": "£ million / year (illustrative)",
@@ -466,5 +466,6 @@
     "Fraud / claimant error / official error splits use benefit-specific rates where published; residual on unmeasured lines is untyped.",
     "Net national loss deducts recoveries (£1.1bn recovered of £9.5bn overpaid in FYE 2025). Recovery is not apportioned to Birmingham.",
     "Underpayments (£1.2bn nationally, 0.4%) are people paid too little — shown as context, not as \"waste\"."
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.181Z"
 }

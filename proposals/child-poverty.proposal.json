@@ -1,6 +1,6 @@
 {
   "id": "child-poverty",
-  "status": "pending",
+  "status": "accepted",
   "title": "Children in low-income families by ward",
   "metric": "% of children aged 0-15 in absolute low-income families",
   "unit": "% of children",
@@ -2058,5 +2058,6 @@
         }
       }
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.003Z"
 }

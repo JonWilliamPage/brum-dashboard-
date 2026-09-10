@@ -1,3 +1,6 @@
+import BullAscii from './BullAscii';
+import { WARD_COUNT } from '@/lib/wards';
+
 export default function SiteFooter() {
   return (
     <footer className="site-foot">
@@ -7,15 +10,22 @@ export default function SiteFooter() {
         <div className="site-foot-cols">
           <div className="site-foot-col">
             <div className="site-foot-brand">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/birmingham-coat-of-arms.png" alt="Birmingham crest" />
+              <BullAscii
+                textColor="#15181e"
+                cols={40}
+                rows={26}
+                minAlpha={0.5}
+                displayWidth={36}
+                displayHeight={44}
+                style={{ margin: 0, flexShrink: 0 }}
+              />
               <div>
                 <div className="site-foot-brand-name">Ozzy</div>
-                <div className="site-foot-brand-sub">Birmingham · AI Intelligence</div>
+                <div className="site-foot-brand-sub">Civic intelligence prototype</div>
               </div>
             </div>
             <p className="site-foot-blurb">
-              Open-source civic intelligence for Birmingham. Every line of code, every dataset, every methodology — public.
+              Ozzy is an open-source civic intelligence prototype for Birmingham. Every line of code, every dataset, every methodology — public.
             </p>
           </div>
 
@@ -25,6 +35,7 @@ export default function SiteFooter() {
             <a href="/ozzy">Ask Ozzy</a>
             <a href="/dashboard">Dashboards</a>
             <a href="/sources">Data Sources</a>
+            <a href="/privacy">Privacy</a>
           </div>
 
           <div className="site-foot-col">
@@ -46,9 +57,9 @@ export default function SiteFooter() {
         </div>
 
         <div className="site-foot-bottom">
-          <div>© Birmingham City Council · {new Date().getFullYear()} · Built on public data</div>
+          <div>© Ask Ozzy contributors · {new Date().getFullYear()} · Independent project — uses public Birmingham data. Not affiliated with Birmingham City Council.</div>
           <div className="site-foot-bottom-meta">
-            Base geography: <strong>E08000025</strong> · 68 wards (Dec 2022) · Data: NOMIS · IMD 2025 · Census 2021 · WMP · City Observatory
+            Base geography: <strong>E08000025</strong> · {WARD_COUNT} wards (Dec 2022) · Data: NOMIS · IMD 2025 · Census 2021 · WMP · City Observatory
           </div>
         </div>
 

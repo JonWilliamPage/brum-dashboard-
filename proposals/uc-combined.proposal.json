@@ -1,6 +1,6 @@
 {
   "id": "uc-combined",
-  "status": "pending",
+  "status": "accepted",
   "title": "Universal Credit — the full picture by ward",
   "metric": "UC claimants: total / in work / not in work per ward",
   "unit": "people",
@@ -2530,5 +2530,6 @@
         }
       }
     }
-  ]
+  ],
+  "reviewed_at": "2026-09-07T16:40:12.134Z"
 }

@@ -1,6 +1,6 @@
 {
   "id": "family-model",
-  "status": "pending",
+  "status": "accepted",
   "title": "Family Support Model — illustrative rates + Birmingham UC means",
   "metric": "Statutory monthly entitlement stack + observed UC mean by family type",
   "unit": "£ per month (illustrative) / £ mean payment (observed)",
@@ -510,5 +510,6 @@
     "high_total": 5073.04,
     "observed_couple_children_mean": 1183.84,
     "note": "Illustrative model. Checksums are arithmetic on published rates, not admin reconciliation of a real claim."
-  }
+  },
+  "reviewed_at": "2026-09-07T16:40:12.048Z"
 }
