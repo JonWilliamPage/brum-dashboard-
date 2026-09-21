@@ -267,6 +267,48 @@ body:has(.dash-shell) .site-main{overflow:hidden;}
 .dbar-cell{display:flex;align-items:center;gap:6px;}
 .dbar{height:14px;min-width:3px;transition:width .3s;}
 .dbar-txt{font-family:var(--mono);font-size:10px;color:var(--muted);}
+/* The ward table's six columns were sized for desktop and had no narrow-screen
+   treatment: 274px of fixed tracks plus 40px of gaps overflows a phone before
+   the ward name gets a pixel. Condense rather than drop anything — every column
+   still renders, so no figure is hidden on mobile.
+   Three separate causes of the spill, all needed:
+   - the numeric tracks and gutters are simply too wide, so tighten them;
+   - .wnm sits in a 1fr track, and a 1fr floors at min-content unless
+     min-width:0 lets it shrink — without it the row forces itself wider than
+     the card no matter how small the other columns get;
+   - .dbar is drawn at an inline pixel width (up to composite*58+3 = 61px) and
+     sits beside its label, so its column has to clear ~87px of content. Sizing
+     the Score track to fit keeps the decile colour bar intact; capping the bar
+     instead would squash long bars toward short ones and misstate the data. */
+@media(max-width:640px){
+  .ward-row{grid-template-columns:14px 1fr 44px 44px 44px 88px;gap:4px;padding:8px;font-size:11px;}
+  .ward-row.hr{padding:7px 8px;font-size:8px;letter-spacing:.04em;}
+  .wnm,.dbar-cell{min-width:0;}
+  .mcell{font-size:10px;}
+}
+
+/* ── Nested-scroll release for narrow screens ─────────────────────────────────
+   A scroll box inside the page is fine with a mouse and a trap under a thumb:
+   the gesture scrolls the box, so the page only moves if you happen to start
+   the swipe outside it — you end up scrolling *around* a panel rather than
+   over it. On narrow screens these panes give up their own scrolling and ride
+   the whole-page scroll instead, the same treatment .rcol and .compare-pick-list
+   already get above.
+
+   !important is load-bearing here, not decoration. Every element these classes
+   are applied to sets its height/overflow inline from JSX, and an inline
+   declaration beats a normal stylesheet rule — a plain rule would be silently
+   dead. */
+@media(max-width:640px){
+  .scroll-release{overflow:visible!important;max-height:none!important;height:auto!important;flex:none!important;}
+  /* Wide data tables still need to scroll sideways on a phone, and overflow-x
+     cannot be paired with overflow-y:visible — per spec, a non-visible value on
+     one axis computes the other from visible to auto, so the vertical trap
+     comes straight back. Release the HEIGHT instead: at natural height there is
+     nothing to scroll vertically, so the vertical gesture falls through to the
+     page while sideways scrolling keeps working. */
+  .scroll-release-x{max-height:none!important;height:auto!important;flex:none!important;}
+}
 
 /* SCATTER / MATRIX */
 .scatter-wrap,.matrix-chart-wrap{height:380px;padding:14px;position:relative;background:var(--surface);}
@@ -1025,8 +1067,24 @@ body:has(.stage-focus-page) .site-main{flex:1;min-height:0;overflow:hidden;displ
 /* Tell the browser a vertical swipe over the 3D canvas is a page scroll, not a
    gesture for the canvas to claim. Pairs with OrbitControls' touches config
    (one finger = scroll, two = rotate/zoom) in WardExtrusionStage. Without this
-   the browser still hands the whole gesture to the canvas and the page sticks. */
-.stage-viewport,.stage-root,.stage-root canvas{touch-action:pan-y;}
+   the browser still hands the whole gesture to the canvas and the page sticks.
+
+   Two things make this rule fussier than it looks, and both are load-bearing.
+
+   First, !important. three-stdlib's OrbitControls writes
+   `domElement.style.touchAction = "none"` inline when it connects (`connect()`
+   in controls/OrbitControls.js), and an inline declaration beats a normal
+   stylesheet rule.
+
+   Second, the descendant selector. It is NOT the canvas that gets that inline
+   style. R3F's <Canvas> renders div > div > canvas and connects its event
+   system to the OUTER div (`events.connect(divRef.current)`), and drei's
+   OrbitControls hands `events.connected` to controls.connect() — so the outer
+   div is the element pinned to `none`. touch-action resolves as the
+   intersection along the ancestor chain, so that div alone blocks the page pan
+   however permissive .stage-root and the canvas are. Targeting the canvas only
+   looks correct and does nothing. */
+.stage-viewport,.stage-root,.stage-root div,.stage-root canvas{touch-action:pan-y !important;}
 /* Show the gesture hint that matches the device's actual input, rather than
    telling a phone user to "drag to orbit" when one finger now scrolls. */
 .stage-hud-touch{display:none;}

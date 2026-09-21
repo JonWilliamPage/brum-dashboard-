@@ -120,8 +120,11 @@ export default function FlyTippingView({ data }: { data: FlyTipData }) {
         )}
 
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
+          {/* Only the outlier view opts into the narrow-screen scroll release.
+              The map branch sets height:100% deliberately and would collapse if
+              that height were released, so it is deliberately left out. */}
           <div
-            className="panel-body"
+            className={`panel-body${sub === 'outlier' ? ' scroll-release' : ''}`}
             style={
               sub === 'map'
                 ? { padding: 0, height: '100%' }
@@ -891,7 +894,7 @@ function PeerTable({
   england: number | null;
 }) {
   return (
-    <div style={{ overflow: 'auto', padding: 4 }}>
+    <div className="scroll-release-x" style={{ overflow: 'auto', padding: 4 }}>
       <table className="data-table">
         <thead>
           <tr>

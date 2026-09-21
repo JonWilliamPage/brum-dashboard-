@@ -52,7 +52,7 @@ export default function YouthDashboard({ wards, selected, onSelect }: Props) {
       </div>
 
       {/* Grid / table — selection flows up to the shared right-side detail panel */}
-      <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
+      <div className="scroll-release" style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
         {sub === 'grid' && (
           <FocusableChart title="Youth &amp; NEET Grid">
             <NeetGrid wards={wards} selected={selected} onSelect={onSelect} />

@@ -60,6 +60,10 @@ Each of these shipped clean through `tsc` and rendered wrong.
 | Header text spills into the banner below | Fixed `height` on a container holding text that wraps at narrow widths | Grep `height:\d+px` and check if the element holds text |
 | Chart renders ~80px tall in a full-screen box | The sizing CSS targets `div`; the chart is a bare `<svg>` with a fixed height | Grep wrapped children for a direct `<svg>` |
 | Map renders squashed after resize | Leaflet measures its container once at init and never notices later resizes | Grep for `L.map(` without a `ResizeObserver` in the same file |
+| A correct mobile rule has no effect at all | The property is also written **inline** — by JSX `style={{…}}`, or by a library assigning `el.style.x` at runtime. An inline declaration beats any normal stylesheet rule, so the media query is silently dead | Grep `style={{` for the property being overridden, and grep `node_modules` for `.style.<prop> =` in any library that touches the element |
+| The right fix on the wrong element | The element a library actually binds to is not the one you assume. R3F connects events to its **wrapper div**, not the `<canvas>`, so drei/OrbitControls writes `touch-action:none` one level up from where you're looking | Read the library's `connect()`/event-target resolution before writing the selector; don't infer the node from the JSX |
+| A panel scrolls instead of the page | A nested scroll box (`overflow:auto` + a bounded height). Fine with a mouse, a trap under a thumb: the gesture scrolls the box, so the page only moves if the swipe starts outside it | Grep for inline `overflow`/`overflowY`/`maxHeight` and for `.panel-body`-style classes with no `@media` release |
+| Releasing `overflow-y` re-traps a sideways-scrolling table | Per spec a non-`visible` value on one axis computes the other from `visible` to `auto`, so `overflow-x:auto` + `overflow-y:visible` is impossible | Release the **height** instead (`max-height:none`, `flex:none`): at natural height there is nothing to scroll vertically and the gesture falls through |
 
 **Rule of thumb that prevents most of these:** a fixed pixel `height` is only safe
 when the content cannot reflow — an image, a canvas, a decorative band. Anything
@@ -95,8 +99,29 @@ If the goal is "more rows on screen", shorten the label instead.
   (`touches.ONE` undefined → `STATE.NONE`), two fingers rotate/zoom, plus
   `touch-action:pan-y` on the container. Mouse input is a separate code path, so
   desktop is unaffected.
+  - **`touch-action:pan-y` as a plain rule is not enough, and the failure is
+    silent.** OrbitControls writes `domElement.style.touchAction = "none"`
+    inline in `connect()`, which beats the stylesheet — so the gesture is freed
+    from the canvas but the browser is still forbidden to scroll, and *nothing
+    moves at all*. That reads as "the fix didn't work" rather than pointing at
+    the cause. Needs `!important`, **and** the selector has to cover R3F's
+    wrapper `div` (the element drei actually connects to) rather than the
+    `<canvas>`. `touch-action` resolves as the intersection down the ancestor
+    chain, so a single node pinned at `none` blocks the pan however permissive
+    its parent and child are.
+- **Two-finger rotation is less responsive than it looks.** It tracks the
+  *midpoint* of the pair, which travels less than either finger, on top of a
+  smaller screen. The stock `rotateSpeed: 1` runs out of screen before the model
+  turns far; `1.8` on coarse pointers only, leaving desktop feel untouched.
 - **DevTools emulation is single-touch.** Two-finger gestures cannot be verified
   there — they need a real device. Plan for that before promising a deadline.
+- **Budget for the device test being blocked by tooling, not by code.** Next 16
+  blocks cross-origin requests to `/_next/*` dev resources by default, so a phone
+  hitting `http://<lan-ip>:3000` gets the server-rendered HTML and none of the
+  JS, CSS, fonts or HMR — a bare unstyled title that looks like a catastrophic
+  app failure and is actually a dev-server default. Fix is `allowedDevOrigins`
+  in `next.config.mjs` plus a restart. Check this *before* concluding anything
+  about the build; nothing observed in that state means anything.
 
 ---
 
@@ -127,3 +152,19 @@ job — see `VIZ-EXECUTION-PLAN.md`), and the visual confirmation itself.
   inventory undercounted — it missed hand-rolled `div` bar charts entirely, because
   they contain no `<canvas>` or `<svg>`. Searching by *markup* misses charts built
   from styled divs; search by containing view as well.
+- **Expected:** compile-verified touch fixes would mostly hold up on a device.
+  **Actual:** of the items tested on a real phone, the headline one was wholly
+  non-functional while reading as "done" — correct mechanism, correct property,
+  wrong element. Two fingers, tap-to-select and the detail-panel wraps all passed
+  first time, which is the trap: a mostly-passing list makes the failing item look
+  like an outlier rather than a reason to doubt the method.
+- **The cascade is the recurring theme, not 3D.** Three separate bugs in this
+  session reduced to the same sentence — *an inline style beat the rule meant to
+  fix it*. Once on the stage canvas, once on the Fiscal panel (where a correct
+  `@media` rule had been sitting dead in `globals.css` all along), and once in
+  the chart-wrapper work logged earlier. When a mobile rule appears to do
+  nothing, check for an inline declaration before rewriting the rule.
+- **A device test needs its own written script.** "Test it on your phone" spread
+  across a working session produced partial, ambiguous answers ("looks good")
+  that were easy to over-read as a full pass. A numbered list of gestures, each
+  with the expected outcome, is worth more than the fix that prompted it.

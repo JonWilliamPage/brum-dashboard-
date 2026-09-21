@@ -130,8 +130,13 @@ export default function FiscalDashboard({ wards: fiscalWards, selected, onSelect
   const totalPop = fiscalWards.reduce((s, w) => s + w.population, 0);
   const avgNet   = totalPop > 0 ? fiscalWards.reduce((s, w) => s + w.net * w.population, 0) / totalPop : 0;
 
+  // No inline overflowY on the wrapper below: .panel-body already sets
+  // overflow-y:auto for desktop, and globals.css drops it to overflow:visible on
+  // narrow screens so the panel rides the page scroll instead of trapping a
+  // thumb in its own scroll box. An inline style beats that media query, which
+  // is what made this the one view you had to scroll around rather than over.
   return (
-    <div className="panel-body bw-fiscal" style={{ display: 'flex', flexDirection: 'column', gap: 0, overflowY: 'auto' }}>
+    <div className="panel-body bw-fiscal" style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
       <style>{`
         .bw-fiscal .bw-bar { transition: width 480ms cubic-bezier(.22,.61,.36,1), left 480ms cubic-bezier(.22,.61,.36,1); }
         @media (prefers-reduced-motion: reduce) { .bw-fiscal .bw-bar { transition: none !important; } }
@@ -183,7 +188,7 @@ export default function FiscalDashboard({ wards: fiscalWards, selected, onSelect
             <span style={{ color: COL.surplus, fontWeight: 700 }}>● In the black</span> = net contributor · click a ward for its full breakdown
           </p>
           <FocusableChart title="Ward Net Fiscal Balance">
-            <div style={{ maxHeight: 760, overflowY: 'auto' }}>
+            <div className="scroll-release" style={{ maxHeight: 760, overflowY: 'auto' }}>
               <BalanceBars data={sorted} selected={selected} onSelect={onSelect} />
             </div>
           </FocusableChart>

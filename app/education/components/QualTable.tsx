@@ -44,7 +44,7 @@ export default function QualTable({ wards, selected, onSelect }: Props) {
   });
 
   return (
-    <div style={{ overflowX: 'auto', overflowY: 'auto', flex: 1 }}>
+    <div className="scroll-release-x" style={{ overflowX: 'auto', overflowY: 'auto', flex: 1 }}>
       <table className="data-table" style={{ minWidth: 720 }}>
         <thead>
           <tr>

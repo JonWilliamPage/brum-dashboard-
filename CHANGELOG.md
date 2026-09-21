@@ -9,6 +9,15 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **2026-09-21 (device-tested session)** — **`allowedDevOrigins` in
+  `next.config.mjs`**, so the dev server can be reached from a phone on the same
+  WiFi for real-device testing. Next 16 blocks cross-origin requests to
+  `/_next/*` dev resources by default: a phone hitting `http://<lan-ip>:3000`
+  receives the server-rendered HTML and **none** of the JS, CSS, fonts or HMR
+  socket, rendering as a bare unstyled title that looks like a catastrophic app
+  failure and is purely a dev-server default. Dev-only — no effect on a
+  production build or on Vercel. Reads `DEV_ORIGIN` if set, defaulting to the
+  machine used for this session's testing.
 - **2026-09-21** — **`docs/RESPONSIVE-RETROFIT-PLAYBOOK.md`** — the method behind
   the mobile work below, written up so it can be repeated or automated rather
   than rediscovered. Records the prove-one-then-batch protocol, a table of the
@@ -138,7 +147,69 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   one.
 
 ### Fixed
+- **2026-09-21 (device-tested session)** — **The 3D stage scroll fix below was
+  half-dead in practice; one-finger swipe did nothing at all.** Confirmed on a
+  real phone, and now confirmed fixed on the same phone. The `touches.ONE`
+  half was correct, but the `touch-action:pan-y` half never applied: three-stdlib
+  writes `domElement.style.touchAction = "none"` **inline** in `connect()`, and
+  an inline declaration beats a normal stylesheet rule. So the canvas stopped
+  claiming the gesture *and* the browser was still forbidden to scroll — the
+  swipe moved nothing, which presents as "no fix" rather than as a cascade
+  problem. Two changes were needed: `!important` on the rule, and widening the
+  selector to R3F's wrapper `div`. The element drei hands to `controls.connect()`
+  is `events.connected` — R3F's outer wrapper — **not** the `<canvas>` the
+  original selector targeted, so the `!important` initially landed on an element
+  that never had the inline style. `touch-action` resolves as the intersection
+  down the ancestor chain, so one node at `none` blocks the pan regardless of
+  its parent or child.
+- **2026-09-21 (device-tested session)** — **Two-finger orbit ran out of screen
+  before the city turned far.** Raised `rotateSpeed` to `1.8` on coarse pointers
+  only (new `useCoarsePointer` hook in `WardExtrusionStage.tsx`, matching the
+  `(hover:none) and (pointer:coarse)` query already used for the HUD hint, and
+  starting `false` so SSR and first client render agree). Two-finger rotation
+  tracks the *midpoint* of the pair, which travels less than either finger, so
+  the stock speed of `1` is meaningfully worse on touch than on a mouse. Desktop
+  orbit feel is unchanged — confirmed on device.
+- **2026-09-21 (device-tested session)** — **The Employment ward table overflowed
+  its card on a phone.** `.ward-row` was a desktop-only grid
+  (`24px 1fr 60px 60px 60px 70px`, `gap:8px`) with no narrow-screen treatment —
+  274px of fixed tracks plus 40px of gaps before the ward name got a pixel.
+  Three separate causes, all needed: the numeric tracks were simply too wide;
+  `.wnm` sits in a `1fr` track, which floors at `min-content` unless
+  `min-width:0` lets it shrink; and `.dbar-cell` was a 70px column holding a bar
+  drawn at an inline width of up to 61px *beside* its label, ~87px of content.
+  Condensed to `14px 1fr 44px 44px 44px 88px` under 640px. **No column is
+  dropped and the decile colour bar is kept** — capping the bar's width instead
+  would have squashed long bars toward short ones and misstated the data.
+  Confirmed on device.
+- **2026-09-21 (device-tested session)** — **Six nested scroll boxes trapped the
+  thumb, so you had to scroll *around* a panel rather than over it.** Reported on
+  Fiscal Balance and found to be a class, not a one-off. A scroll box inside the
+  page is fine with a mouse and a trap on touch: the gesture scrolls the box, and
+  the page only moves if the swipe happens to start outside it. Two new
+  narrow-screen classes in `globals.css`, both `!important` because every one of
+  these elements sets its height/overflow inline from JSX:
+  - `.scroll-release` — gives up the box's own scrolling entirely. Applied to
+    the Fiscal ranked-bars box, Housing Affordability, Youth & NEET, and the
+    Fly-tipping outlier view (conditionally — the map branch sets `height:100%`
+    deliberately and would collapse).
+  - `.scroll-release-x` — for wide tables that must still scroll sideways.
+    `overflow-x:auto` cannot be paired with `overflow-y:visible` (per spec a
+    non-`visible` value on one axis computes the other from `visible` to `auto`),
+    so this releases the **height** instead: at natural height there is nothing
+    to scroll vertically and the gesture falls through to the page. Applied to
+    the Education quals table and the Fly-tipping data table.
+  - The Fiscal panel itself needed no new rule at all — `globals.css` already
+    had `.panel,.panel-body{overflow:visible}` in its mobile block, sitting dead
+    because `FiscalDashboard.tsx` re-set `overflowY:'auto'` inline. Removing that
+    inline is the whole fix, and it was redundant on desktop anyway since
+    `.panel-body` already sets `overflow-y:auto`.
+  - Deliberately **not** changed: `ConMoneyDashboard.tsx:130` and the Fiscal
+    provenance wrapper are `overflowX` only, and a horizontal box does not
+    capture vertical gestures.
 - **2026-09-21** — **The 3D stages trapped page scroll on touch devices.**
+  *(Superseded — see the device-tested correction above: the `touch-action` half
+  of this fix never applied.)*
   OrbitControls claims one-finger drag for rotation by default. The stage canvas
   fills most of a phone screen, so a thumb swipe spun the city and the page never
   moved — there was no way to scroll past a stage on mobile. One finger is now
@@ -501,10 +572,24 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   wraps, and the four Family Model wraps under `/review`. A static audit of all
   92 wraps was run in place of a visual pass and found three real bugs (logged
   above), so the remaining unviewed ones are plausible but unproven.
-- **The 3D stage touch fix needs a real device.** DevTools touch emulation is
-  single-touch, so the two-finger rotate/zoom path cannot be exercised there.
-  Test on a phone: a one-finger swipe over a stage should scroll the page, two
-  fingers should orbit and pinch-zoom, and a tap should still select a ward.
+- **~~The 3D stage touch fix needs a real device.~~ Done — tested on a phone
+  2026-09-21.** Confirmed working by the maintainer, on device: one-finger swipe
+  over a stage scrolls the page (only after the correction logged under "Fixed"
+  — it did nothing on first test), two fingers orbit, tap still selects a ward,
+  two-finger orbit sensitivity at `rotateSpeed:1.8`, the detail-panel
+  expand-full-screen buttons, and the Employment ward table.
+- **The nested-scroll release is not yet device-verified.** The six
+  `.scroll-release` / `.scroll-release-x` call sites were applied as a batch
+  after the Fiscal Balance trap was reported, and `tsc` passes and every route
+  compiles — but **none of the six has been looked at on a phone**, including
+  the Fiscal Balance one that prompted it. `.scroll-release-x` is a *different
+  mechanism* from `.scroll-release` (it releases height rather than overflow),
+  so a pass on one says nothing about the other; the Education quals table and
+  Fly-tipping data table need checking specifically for sideways scrolling still
+  working while a vertical swipe moves the page.
+- **The `allowedDevOrigins` default hardcodes a LAN IP.** Fine for this fork;
+  wants deciding before any upstream PR — either drop the default so it is
+  `DEV_ORIGIN`-only, or leave it documented as an example.
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
   pins `eslint@^8`; `npm audit fix --force` installed past this peer-dependency
   conflict. Doesn't affect `next dev`/`next build`, but `npm run lint` may
