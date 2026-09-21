@@ -229,6 +229,36 @@ body:has(.dash-shell) .site-main{overflow:hidden;}
 /* PANEL CHROME */
 .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;min-height:0;}
 .panel-body{flex:1;overflow-y:auto;min-height:0;}
+
+/* ── Whole-page scrolling for the dashboard, at every width ───────────────────
+   The dashboard was built as a fixed 100vh app shell: html, body, .site-main,
+   .dash-shell, .wrap, .body, .lcol and .panel were all locked with
+   overflow:hidden, leaving .panel-body as the single scrolling region. Mobile
+   already unwound that below 900px, because a swipe expects to move the page
+   rather than land inside whichever nested region happens to own a scrollbar.
+   The same objection holds with a mouse — a scroll box inside a page is a box
+   the reader has to find, and the wheel does nothing until the pointer is over
+   it — so the unwind now applies at all widths. The <=900px block further down
+   keeps only the genuinely mobile-specific parts (the sidebar drawer and so on)
+   and is now partly redundant with this; it is left in place deliberately
+   rather than merged, so the mobile behaviour that was device-verified is not
+   disturbed by this change.
+
+   The 3D stage layouts are the deliberate exception: they size a WebGL canvas
+   to the viewport and need a definite height to do it, so anything containing a
+   .stage-layout keeps the fixed shell. Excluding them with :not(:has(...))
+   rather than a media query means desktop and mobile stay consistent — mobile
+   stages page-scroll today (device-verified) and must keep doing so. */
+html:has(.dash-shell):not(:has(.stage-layout)),
+body:has(.dash-shell):not(:has(.stage-layout)){height:auto;overflow-x:hidden;overflow-y:auto;}
+body:has(.dash-shell):not(:has(.stage-layout)) .site-main{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)){height:auto;overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .wrap{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .body{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .lcol{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .panel{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .panel-body{overflow:visible;}
+.dash-shell:not(:has(.stage-layout)) .rcol{overflow-y:visible;}
 .panel-hdr{padding:11px 15px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--paper2);}
 .panel-ttl{font-family:var(--serif);font-size:15px;font-weight:400;}
 .panel-hint{font-size:10px;color:var(--muted);font-family:var(--mono);}

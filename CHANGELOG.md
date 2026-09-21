@@ -147,6 +147,21 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   one.
 
 ### Fixed
+- **2026-09-21 (device-tested session)** — **The dashboard scrolled inside a box
+  instead of scrolling as a page, on desktop.** Mobile already unwound the fixed
+  100vh app shell below 900px; the same objection applies with a mouse, where a
+  nested scroll region is a box the reader has to find and the wheel does
+  nothing until the pointer is over it. `html`, `body`, `.site-main`,
+  `.dash-shell`, `.wrap`, `.body`, `.lcol`, `.panel`, `.panel-body` and `.rcol`
+  now release their `overflow` locks at **all** widths, so the whole page
+  scrolls. The `<=900px` block is left in place unmerged so the mobile
+  behaviour verified earlier in the session is not disturbed.
+  **The 3D stage layouts are a deliberate exception** — they size a WebGL canvas
+  to the viewport and need a definite height, so anything containing a
+  `.stage-layout` keeps the fixed shell. Excluded via
+  `:not(:has(.stage-layout))` rather than a media query, so desktop and mobile
+  stay consistent and mobile stages keep the page-scrolling that was
+  device-verified. Confirmed on desktop by the maintainer.
 - **2026-09-21 (device-tested session)** — **The 3D stage scroll fix below was
   half-dead in practice; one-finger swipe did nothing at all.** Confirmed on a
   real phone, and now confirmed fixed on the same phone. The `touches.ONE`
@@ -621,9 +636,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   rather than reproducing the 3D stage's one-finger/two-finger split, and that
   split needs a plugin dependency. The maps are small enough in practice to
   scroll around. Revisit only if a larger map lands on a mobile-heavy view.
-- **The `allowedDevOrigins` default hardcodes a LAN IP.** Fine for this fork;
-  wants deciding before any upstream PR — either drop the default so it is
-  `DEV_ORIGIN`-only, or leave it documented as an example.
+- **The `allowedDevOrigins` default hardcodes a LAN IP — decided 2026-09-21:
+  keep it as a worked example for now.** A private RFC1918 address, dev-only,
+  with `DEV_ORIGIN` available for anyone testing from a different machine.
+  Isolated in its own commit (`d2840c5`) so it stays a one-line revert if a
+  future upstream PR would rather it were `DEV_ORIGIN`-only.
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
   pins `eslint@^8`; `npm audit fix --force` installed past this peer-dependency
   conflict. Doesn't affect `next dev`/`next build`, but `npm run lint` may
