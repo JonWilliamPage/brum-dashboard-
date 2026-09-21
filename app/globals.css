@@ -312,6 +312,18 @@ body:has(.dash-shell) .site-main{overflow:hidden;}
 .focusable-chart.is-focused .chart-canvas-wrap,
 .focusable-chart.is-focused .d-chart-wrap,
 .focusable-chart.is-focused .stage-ward-spark{flex:1!important;height:auto!important;min-height:0!important;}
+/* A lone composition bar (the detail-panel "in work / not in work" split) is a
+   horizontal flex row. The generic only-child rule above would flip it to a
+   column — stacking the two segments vertically instead of side by side — and
+   leave it 26px tall in a full-screen box. Only matches a bar that is a DIRECT
+   child of the focus body, so the many-row composition lists (where .comp-track
+   sits inside .comp-row) keep their own bar heights. */
+.focusable-chart.is-focused .focusable-chart-body > .comp-track{
+  flex:0 0 auto!important;
+  flex-direction:row!important;
+  height:48px!important;
+  margin-top:12px!important;
+}
 /* Economic Matrix wraps a controls row + the chart together — the generic
    "> div" rule above would otherwise stretch the controls row to flex:1 and
    flip it to a column, breaking its own wrapped-button-row layout. Pin it

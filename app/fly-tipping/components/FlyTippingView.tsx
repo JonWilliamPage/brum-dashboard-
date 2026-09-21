@@ -46,7 +46,7 @@ export default function FlyTippingView({ data }: { data: FlyTipData }) {
 
   const wolv = useMemo(() => areas.find(isWolv) ?? null, [areas]);
   const fell = useMemo(() => fallingAreas(areas), [areas]);
-  const onlyWolvFell = fell.length === 1 && wolv && isWolv(fell[0]);
+  const onlyWolvFell = fell.length === 1 && !!wolv && isWolv(fell[0]);
 
   const maxPeer = Math.max(...areas.map(a => a.value), wmca ?? 0, england ?? 0, 1);
   const scale = Math.ceil(maxPeer / 5) * 5 || 40;

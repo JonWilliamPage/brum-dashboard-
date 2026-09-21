@@ -64,7 +64,8 @@ export default function ConMoneyDetailPanel({ constituency: c, data, onClose }: 
         <div className="d-sec">
           <div className="d-sec-ttl">Universal Credit, {data.uc_years[0]} → {data.uc_years.at(-1)}</div>
           <FocusableChart title={`${c.name} — Universal Credit trend`}>
-          <svg width="100%" height="74" viewBox="0 0 252 74" style={{ display: 'block' }}>
+          <div className="chart-canvas-wrap" style={{ height: 74 }}>
+          <svg width="100%" height="100%" viewBox="0 0 252 74" style={{ display: 'block' }}>
             {(() => {
               const max = Math.max(...t, 1);
               const x = (i: number) => 2 + (i / (t.length - 1)) * 200;
@@ -78,6 +79,7 @@ export default function ConMoneyDetailPanel({ constituency: c, data, onClose }: 
               );
             })()}
           </svg>
+          </div>
           </FocusableChart>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 8.5, color: 'var(--muted2)' }}>
             <span>{data.uc_years[0]} £{Math.round(t[0])}m</span>

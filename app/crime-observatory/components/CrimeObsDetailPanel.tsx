@@ -27,7 +27,8 @@ function TrendLine({ ward, data }: { ward: CrimeObsWard; data: CrimeObsData }) {
   const cPts = citySeries.map((v, i) => ({ v, i })).filter((p): p is { v: number; i: number } => p.v != null);
 
   return (
-    <svg width="100%" height={H + 16} viewBox={`0 0 ${W} ${H + 16}`} style={{ display: 'block' }} role="img"
+    <div className="chart-canvas-wrap" style={{ height: H + 16 }}>
+    <svg width="100%" height="100%" viewBox={`0 0 ${W} ${H + 16}`} style={{ display: 'block' }} role="img"
       aria-label={`${ward.ward_name} monthly offences over 36 months`}>
       {cPts.length > 1 && (
         <polyline points={cPts.map(p => `${x(p.i).toFixed(1)},${cy(p.v).toFixed(1)}`).join(' ')}
@@ -43,6 +44,7 @@ function TrendLine({ ward, data }: { ward: CrimeObsWard; data: CrimeObsData }) {
       <text x={0} y={H + 12} fontSize="8.5" fontFamily="IBM Plex Mono" fill="#8a8f99">{data.months[0]}</text>
       <text x={W - 8} y={H + 12} textAnchor="end" fontSize="8.5" fontFamily="IBM Plex Mono" fill="#8a8f99">{data.as_of}</text>
     </svg>
+    </div>
   );
 }
 

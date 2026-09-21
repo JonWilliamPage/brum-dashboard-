@@ -26,7 +26,7 @@ function EmphasisLine({ ward, data }: { ward: ChildPovertyWard; data: ChildPover
 
   return (
     <div>
-      <svg width="100%" height={H + 16} viewBox={`0 0 ${W} ${H + 16}`} style={{ display: 'block' }}>
+      <svg className="chart-canvas-wrap" width="100%" height={H + 16} viewBox={`0 0 ${W} ${H + 16}`} style={{ display: 'block' }}>
         {seriesList.map(({ s, color, w: sw, label }) => {
           const pts = s.map((v, i) => ({ v, i })).filter((p): p is { v: number; i: number } => p.v != null);
           if (pts.length < 2) return null;
