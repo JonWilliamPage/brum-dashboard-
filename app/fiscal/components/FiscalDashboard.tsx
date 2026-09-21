@@ -187,11 +187,15 @@ export default function FiscalDashboard({ wards: fiscalWards, selected, onSelect
             <span style={{ color: COL.deficit, fontWeight: 700 }}>● In the red</span> = net recipient ·{' '}
             <span style={{ color: COL.surplus, fontWeight: 700 }}>● In the black</span> = net contributor · click a ward for its full breakdown
           </p>
-          <FocusableChart title="Ward Net Fiscal Balance">
-            <div className="scroll-release" style={{ maxHeight: 760, overflowY: 'auto' }}>
-              <BalanceBars data={sorted} selected={selected} onSelect={onSelect} />
-            </div>
-          </FocusableChart>
+          {/* Deliberately NOT wrapped in FocusableChart, and with no maxHeight or
+              overflow of its own. All 69 wards render at natural height and the
+              page does the scrolling. Expanding this list full screen added
+              nothing a reader wants: the rows are identical either way, and a
+              fixed overlay has to scroll for 69 rows, so the only thing "expand"
+              bought was a second scroll context inside a page that already
+              scrolls. Charts and maps still get the expand button — they gain
+              real legibility from it; a bar list does not. */}
+          <BalanceBars data={sorted} selected={selected} onSelect={onSelect} />
           <p style={{ fontSize: 10.5, color: 'var(--muted)', marginTop: 12, lineHeight: 1.5, paddingTop: 10, borderTop: `1px solid ${COL.line}` }}>
             Population-weighted city average: <strong style={{ color: avgNet >= 0 ? COL.surplus : COL.deficit, fontFamily: 'var(--mono)' }}>{gbp(avgNet)}</strong>/head.
             In the full model this ties to the published ONS West Midlands figure. Figures are modelled estimates.

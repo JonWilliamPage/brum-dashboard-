@@ -164,6 +164,19 @@ job — see `VIZ-EXECUTION-PLAN.md`), and the visual confirmation itself.
   `@media` rule had been sitting dead in `globals.css` all along), and once in
   the chart-wrapper work logged earlier. When a mobile rule appears to do
   nothing, check for an inline declaration before rewriting the rule.
+- **Expected:** emulation covers everything except multi-touch, so a device pass
+  is a formality for two-finger gestures. **Actual:** the two-finger gesture
+  passed first time, and four issues surfaced only on real hardware — a dead
+  `touch-action` rule (single-finger), a nested scroll trap, a table overflowing
+  its card, and a redundant inner scroller. All four were reproducible in
+  principle in emulation and none had been caught there. Treat the device pass
+  as the test, not the sign-off.
+- **"Expand full screen" is not universally useful.** It earns its place for a
+  chart or a map, which gain real legibility from the space. For a long list it
+  adds nothing — the rows are identical either way — and because focus mode is a
+  `position:fixed` overlay, a 69-row list still has to scroll inside it. That is
+  the nested-scroll complaint one level up, dressed as a feature. Ask what the
+  reader gains from the extra pixels before wrapping something.
 - **A device test needs its own written script.** "Test it on your phone" spread
   across a working session produced partial, ambiguous answers ("looks good")
   that were easy to over-read as a full pass. A numbered list of gestures, each

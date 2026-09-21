@@ -190,9 +190,22 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   narrow-screen classes in `globals.css`, both `!important` because every one of
   these elements sets its height/overflow inline from JSX:
   - `.scroll-release` — gives up the box's own scrolling entirely. Applied to
-    the Fiscal ranked-bars box, Housing Affordability, Youth & NEET, and the
-    Fly-tipping outlier view (conditionally — the map branch sets `height:100%`
-    deliberately and would collapse).
+    Housing Affordability, Youth & NEET, and the Fly-tipping outlier view
+    (conditionally — the map branch sets `height:100%` deliberately and would
+    collapse).
+  - **The Fiscal "All wards · ranked" list lost its inner scroller outright**,
+    on desktop as well as mobile, rather than being released only under 640px.
+    It was `maxHeight:760` + `overflowY:auto`, a second scroller inside an
+    already-scrolling page for a single 69-row list. All 69 wards now render at
+    natural height and the page does the scrolling.
+  - **…and lost its expand-full-screen button too.** Removing the inner scroller
+    was not enough: focus mode is a `position:fixed` overlay, so 69 rows still
+    had to scroll *inside* it, which is the same complaint one level up. Unlike
+    a chart or a map, a bar list gains no legibility from being blown up — the
+    rows are identical either way — so the only thing "expand" bought here was a
+    second scroll context inside a page that already scrolls. `BalanceBars` now
+    renders unwrapped. The other 91 `FocusableChart` wraps are untouched; the
+    Fiscal provenance table keeps its own.
   - `.scroll-release-x` — for wide tables that must still scroll sideways.
     `overflow-x:auto` cannot be paired with `overflow-y:visible` (per spec a
     non-`visible` value on one axis computes the other from `visible` to `auto`),
@@ -578,15 +591,37 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   — it did nothing on first test), two fingers orbit, tap still selects a ward,
   two-finger orbit sensitivity at `rotateSpeed:1.8`, the detail-panel
   expand-full-screen buttons, and the Employment ward table.
-- **The nested-scroll release is not yet device-verified.** The six
-  `.scroll-release` / `.scroll-release-x` call sites were applied as a batch
-  after the Fiscal Balance trap was reported, and `tsc` passes and every route
-  compiles — but **none of the six has been looked at on a phone**, including
-  the Fiscal Balance one that prompted it. `.scroll-release-x` is a *different
-  mechanism* from `.scroll-release` (it releases height rather than overflow),
-  so a pass on one says nothing about the other; the Education quals table and
-  Fly-tipping data table need checking specifically for sideways scrolling still
-  working while a vertical swipe moves the page.
+- **Verification status of the 2026-09-21 device session.** Confirmed by the
+  maintainer on a physical phone: one-finger scroll over a 3D stage, two-finger
+  orbit, orbit sensitivity at `rotateSpeed:1.8`, tap-to-select, the
+  detail-panel expand buttons, the condensed Employment ward table, the Fiscal
+  Balance panel, the Fiscal ranked-bars inner scroller, Housing Affordability,
+  Youth & NEET, Fly-tipping "Why Wolverhampton?", and both `.scroll-release-x`
+  tables (Education quals, Fly-tipping data) including sideways scrolling.
+  **Not seen by anyone:** removing the expand button from the Fiscal ranked-bars
+  list — the change was made in response to the maintainer reporting a scroll
+  still present in the expanded view, and it removes the expanded view rather
+  than altering it, but the result has not been looked at. One-line revert
+  (re-wrap `BalanceBars` in `FocusableChart`) if it is not wanted.
+- **Emulation did not substitute for a device, and the gap was not only
+  two-finger gestures.** Going into this session the expectation was that
+  DevTools emulation had covered everything except two-finger rotate. In the
+  event, two-finger rotate passed first time and *four* other issues were found
+  only on real hardware — the dead `touch-action` rule (a single-finger
+  gesture), the Fiscal scroll trap, the Employment table overflow, and the
+  redundant inner scroller. Budget for a device pass on future mobile work
+  rather than treating it as a formality for multi-touch alone.
+- **All 14 Leaflet maps claim one-finger drag on touch — accepted, not fixed.**
+  Noticed on device (UC Claimants in Work map, 2026-09-21): a swipe starting on
+  a map pans the map, so the page only scrolls if the swipe starts beside it.
+  This is *not* the nested-scroll-box class fixed above — an `overflow:auto` div
+  has no reason to claim a gesture, whereas drag-to-pan is a map working as
+  intended. Deliberately left alone because the cheap fix is not cheap in
+  effect: Leaflet has no native two-finger-pan mode, so
+  `dragging: !L.Browser.mobile` would remove map panning on phones entirely
+  rather than reproducing the 3D stage's one-finger/two-finger split, and that
+  split needs a plugin dependency. The maps are small enough in practice to
+  scroll around. Revisit only if a larger map lands on a mobile-heavy view.
 - **The `allowedDevOrigins` default hardcodes a LAN IP.** Fine for this fork;
   wants deciding before any upstream PR — either drop the default so it is
   `DEV_ORIGIN`-only, or leave it documented as an example.
