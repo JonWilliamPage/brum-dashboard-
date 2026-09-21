@@ -598,11 +598,10 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Balance panel, the Fiscal ranked-bars inner scroller, Housing Affordability,
   Youth & NEET, Fly-tipping "Why Wolverhampton?", and both `.scroll-release-x`
   tables (Education quals, Fly-tipping data) including sideways scrolling.
-  **Not seen by anyone:** removing the expand button from the Fiscal ranked-bars
-  list — the change was made in response to the maintainer reporting a scroll
-  still present in the expanded view, and it removes the expanded view rather
-  than altering it, but the result has not been looked at. One-line revert
-  (re-wrap `BalanceBars` in `FocusableChart`) if it is not wanted.
+  Also confirmed: removing the expand button from the Fiscal ranked-bars list.
+  **Every change made during the 2026-09-21 device session has now been seen on
+  a physical phone by the maintainer.** (One-line revert for the expand removal
+  — re-wrap `BalanceBars` in `FocusableChart` — should it ever be wanted back.)
 - **Emulation did not substitute for a device, and the gap was not only
   two-finger gestures.** Going into this session the expectation was that
   DevTools emulation had covered everything except two-finger rotate. In the
