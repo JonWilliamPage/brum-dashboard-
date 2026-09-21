@@ -9,6 +9,36 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **2026-09-21** — Added a "Focus view" pop-out to the three 3D stage
+  dashboards (UC Stage 3D, PIP Stage 3D, Ozzy Stage). A prominent gold
+  button next to the "What you're looking at" explainer opens the same
+  stage in a real, separate browser window (`window.open` with explicit
+  size/position, centred on screen) at a dedicated route — `/uc-stage/focus`,
+  `/pip-stage/focus`, `/ozzy-stage/focus`. Each focus route fetches its own
+  data independently (same `/data/*.json` files the main dashboard uses), so
+  it works standalone even if the main dashboard tab is closed. The
+  pop-out shows only the explainer, the play/scrub/metric toolbar and the
+  3D viewport — no dashboard sidebar, no site nav, no right-hand
+  stats/ward panel. Implemented via a new `focusMode` prop on
+  `UcStageView`/`PipStageView`/`OzzyStageView` (skips rendering `.rcol`,
+  switches the layout grid to one column via a new `.stage-focus-solo`
+  modifier) and a new `focusHref` prop on `StageExplainer` that renders the
+  button and owns the `window.open` call. New CSS (`globals.css`) hides
+  `TopNav` and gives the pop-out page full-viewport height via `:has()`,
+  mirroring the existing `.dash-shell` pattern. Desktop-only for now —
+  mobile behaviour (where a "separate window" isn't meaningful) is a
+  deliberately deferred follow-up.
+- **2026-09-21** — Changed the `/about` intro video from a plain
+  muted-and-looping autoplay into a two-stage playback: it still autoplays
+  muted on first load (browsers block unmuted autoplay outright, so this
+  can't change), but now plays through only **once** rather than looping
+  immediately. When it ends, a centred "▶ Watch again — with sound"
+  overlay appears; clicking it replays from the start unmuted (allowed
+  because the click is a genuine user gesture) and from that point on the
+  video loops normally. Implemented with a `videoEnded` state flag driven
+  by the video's `onEnded` event (which only fires while `loop` is unset)
+  and a `watchAgain()` handler that sets `loop = true`, unmutes and
+  restarts playback.
 - **2026-09-07** — Added an intro video to the `/about` page, in a new
   section between the hero and "What is Ozzy?". Autoplays muted and loops
   (`public/ozzy-intro.mp4`), framed with the site's editorial gold top

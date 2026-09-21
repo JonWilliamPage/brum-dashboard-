@@ -19,7 +19,7 @@ function fmtM(m: number) {
   return `£${m.toFixed(m < 10 ? 1 : 0)}m`;
 }
 
-export default function PipStageView({ data }: { data: PipPlaceData }) {
+export default function PipStageView({ data, focusMode }: { data: PipPlaceData; focusMode?: boolean }) {
   const [ti, setTi] = useState(Math.max(0, data.months.length - 1));
   const [playing, setPlaying] = useState(false);
   const [sel, setSel] = useState<string | null>(null);
@@ -68,12 +68,13 @@ export default function PipStageView({ data }: { data: PipPlaceData }) {
   }, [selected, data.wards, ti]);
 
   return (
-    <div className="body stage-layout">
+    <div className={`body stage-layout${focusMode ? ' stage-focus-solo' : ''}`}>
       <div className="lcol stage-lcol">
         <StageExplainer
           title="What you’re looking at"
           body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people with a PIP award that quarter. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) from 2019 onward; drag to orbit · scroll to zoom."
           metricNote="Heights are Stat-Xplore case counts, not £ by ward. City PIP £ and Great Britain condition £ are on the right — condition money has no LA split."
+          focusHref={focusMode ? undefined : '/pip-stage/focus'}
         />
 
         <div className="wx-toolbar stage-toolbar">
@@ -124,6 +125,7 @@ export default function PipStageView({ data }: { data: PipPlaceData }) {
         </div>
       </div>
 
+      {!focusMode && (
       <div className="rcol">
         <div className="hb-headline">
           <div className="hb-big" style={{ color: '#b01225' }}>
@@ -216,6 +218,7 @@ export default function PipStageView({ data }: { data: PipPlaceData }) {
           </div>
         </div>
       </div>
+      )}
     </div>
   );
 }

@@ -39,6 +39,7 @@ export default function AboutPage() {
   const [ready, setReady] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(true);
   const [videoMuted, setVideoMuted] = useState(true);
+  const [videoEnded, setVideoEnded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -63,6 +64,25 @@ export default function AboutPage() {
     if (!v) return;
     v.muted = !v.muted;
     setVideoMuted(v.muted);
+  };
+
+  const handleVideoEnded = () => {
+    // First run-through only — once looping kicks in (after a replay), the
+    // video never fires 'ended', it just seeks back to 0.
+    setVideoEnded(true);
+    setVideoPlaying(false);
+  };
+
+  const watchAgain = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.loop = true;
+    v.muted = false;
+    v.currentTime = 0;
+    v.play();
+    setVideoMuted(false);
+    setVideoPlaying(true);
+    setVideoEnded(false);
   };
 
   const fade = (delay: number): React.CSSProperties => ({
@@ -169,44 +189,78 @@ export default function AboutPage() {
               src="/ozzy-intro.mp4"
               autoPlay
               muted
-              loop
               playsInline
-              style={{ display: 'block', width: '100%', height: 'auto' }}
+              onEnded={handleVideoEnded}
+              style={{ display: 'block', width: '100%', height: 'auto', opacity: videoEnded ? 0.35 : 1 }}
             />
-            <button
-              onClick={toggleVideo}
-              aria-label={videoPlaying ? 'Pause video' : 'Play video'}
-              style={{
-                position: 'absolute', bottom: 14, right: 14,
-                width: 40, height: 40,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: 'rgba(15,17,20,.72)', border: '1px solid rgba(245,243,238,.4)',
-                color: '#f5f3ee', fontFamily: 'var(--mono)', fontSize: 14,
-                cursor: 'pointer', padding: 0,
-              }}
-            >
-              {videoPlaying ? '❚❚' : '▶'}
-            </button>
-            <button
-              onClick={toggleMute}
-              aria-label={videoMuted ? 'Unmute video' : 'Mute video'}
-              style={{
-                position: 'absolute', bottom: 14, left: 14,
-                display: 'flex', alignItems: 'center', gap: 10,
-                padding: '12px 20px',
-                background: videoMuted ? 'var(--herald-gold)' : 'rgba(15,17,20,.72)',
-                border: videoMuted ? 'none' : '1px solid rgba(245,243,238,.4)',
-                color: videoMuted ? 'var(--herald-navy)' : '#f5f3ee',
-                fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 700,
-                letterSpacing: '.04em', textTransform: 'uppercase',
-                cursor: 'pointer',
-              }}
-            >
-              <span style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>
-                {videoMuted ? '⊘' : '♪'}
-              </span>
-              {videoMuted ? 'Muted — tap for sound' : 'Sound on'}
-            </button>
+
+            {videoEnded && (
+              <button
+                onClick={watchAgain}
+                aria-label="Watch again with sound"
+                style={{
+                  position: 'absolute', inset: 0,
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14,
+                  width: '100%', height: '100%',
+                  background: 'rgba(15,17,20,.35)', border: 'none',
+                  cursor: 'pointer', padding: 0,
+                }}
+              >
+                <span style={{
+                  width: 64, height: 64, borderRadius: '50%',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  background: 'var(--herald-gold)', color: 'var(--herald-navy)',
+                  fontFamily: 'var(--mono)', fontSize: 22,
+                }}>
+                  ▶
+                </span>
+                <span style={{
+                  fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 700,
+                  letterSpacing: '.06em', textTransform: 'uppercase', color: '#f5f3ee',
+                }}>
+                  Watch again — with sound
+                </span>
+              </button>
+            )}
+
+            {!videoEnded && (
+              <>
+                <button
+                  onClick={toggleVideo}
+                  aria-label={videoPlaying ? 'Pause video' : 'Play video'}
+                  style={{
+                    position: 'absolute', bottom: 14, right: 14,
+                    width: 40, height: 40,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    background: 'rgba(15,17,20,.72)', border: '1px solid rgba(245,243,238,.4)',
+                    color: '#f5f3ee', fontFamily: 'var(--mono)', fontSize: 14,
+                    cursor: 'pointer', padding: 0,
+                  }}
+                >
+                  {videoPlaying ? '❚❚' : '▶'}
+                </button>
+                <button
+                  onClick={toggleMute}
+                  aria-label={videoMuted ? 'Unmute video' : 'Mute video'}
+                  style={{
+                    position: 'absolute', bottom: 14, left: 14,
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    padding: '12px 20px',
+                    background: videoMuted ? 'var(--herald-gold)' : 'rgba(15,17,20,.72)',
+                    border: videoMuted ? 'none' : '1px solid rgba(245,243,238,.4)',
+                    color: videoMuted ? 'var(--herald-navy)' : '#f5f3ee',
+                    fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 700,
+                    letterSpacing: '.04em', textTransform: 'uppercase',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>
+                    {videoMuted ? '⊘' : '♪'}
+                  </span>
+                  {videoMuted ? 'Muted — tap for sound' : 'Sound on'}
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>
