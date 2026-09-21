@@ -625,6 +625,44 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   gesture), the Fiscal scroll trap, the Employment table overflow, and the
   redundant inner scroller. Budget for a device pass on future mobile work
   rather than treating it as a formality for multi-touch alone.
+- **Synthesised values still render indistinguishably from sourced ones.
+  Scoped 2026-09-21; attempted and reverted the same night — bigger than a
+  data-layer change.** Recorded here so the next attempt starts from facts.
+
+  *Always fabricated, with no live path at all:* `earnings`
+  (`data.ts` — `w.earnings = synthEarnings(w)`, unconditional), `crime_yoy_pct`,
+  `crime_categories` and `crime_trend_12m` (all three overwritten by `synth*`
+  for every ward after crime rank is set, regardless of whether the real
+  data.police.uk figures loaded). Earnings *is* consistently labelled `(est)`
+  in the UI with a tooltip naming ASHE; the three crime fields are not labelled
+  anywhere.
+
+  *Silent fallbacks — real when the source answers, hash-derived when it does
+  not, rendered identically either way:* `gva`, `population`,
+  `crime_rate_per_1000`, `youth_claimant_rate`. This is the case CLAUDE.md's
+  "a fallback must never be a synthesised stand-in" is aimed at, and it is
+  invisible to the reader *and* to the maintainer — the Economic Matrix prints
+  `GVA/head £12.4k` and assigns quadrants off it whichever it is.
+
+  *Why the obvious fix is not a small change.* Switching the three fallbacks
+  from `synthGva(w)` etc. to `null` is four lines and produces **72 type errors
+  across 16 files**. Most are mechanical, but one is not: `assignQuadrants()`
+  classifies every ward by GVA, so with GVA absent each unsourced ward falls
+  through to `'disadvantage'` — a *fabricated classification*, which is worse
+  than the fabricated number it replaced. Doing it properly needs an `'unknown'`
+  quadrant (36 usages of `quadrant` across the app), a decision about what the
+  Economic Matrix plots for unclassified wards, and a decision about what the
+  Crime dashboard shows once categories and the 12-month trend are empty.
+
+  *The trap to avoid.* `?? 0` satisfies the compiler and silently reintroduces
+  fabrication — a zero is as invented as a hash, and it would corrupt averages
+  and rankings rather than just one cell. Every one of the 72 sites needs a
+  real decision: skip the ward in the aggregate, render `—`, or drop the point
+  from the chart.
+
+  *Not a regression from this fork* — all of it predates it and is Will's code,
+  so the `'unknown'`-quadrant design question is worth raising upstream rather
+  than deciding unilaterally.
 - **All 14 Leaflet maps claim one-finger drag on touch — accepted, not fixed.**
   Noticed on device (UC Claimants in Work map, 2026-09-21): a swipe starting on
   a map pans the map, so the page only scrolls if the swipe starts beside it.
