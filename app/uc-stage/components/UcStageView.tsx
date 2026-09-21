@@ -94,7 +94,7 @@ export default function UcStageView({ data, focusMode }: { data: UcWeatherData; 
         {!focusMode && (
           <StageExplainer
             title="What you’re looking at"
-            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people on Universal Credit that month. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) walks through time; drag to orbit · scroll to zoom."
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people on Universal Credit that month. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) walks through time; drag to orbit (two fingers on touch) · scroll or pinch to zoom."
             metricNote="Block height = Stat-Xplore caseload, not £ spent in the ward. City UC spend on the right is the official LA figure."
             focusHref="/uc-stage/focus"
           />

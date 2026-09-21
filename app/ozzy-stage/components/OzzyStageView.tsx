@@ -115,7 +115,7 @@ export default function OzzyStageView({ data, focusMode }: { data: OzzyStageData
         {!focusMode && (
           <StageExplainer
             title="What you’re looking at"
-            body="Birmingham’s 69 wards as solid 3D blocks. Taller and darker = more people on Universal Credit or with a PIP award that month (switch tabs). Hover a ward for its name and count; click for a full breakdown; ▶ Play walks through time; drag to orbit · scroll to zoom."
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller and darker = more people on Universal Credit or with a PIP award that month (switch tabs). Hover a ward for its name and count; click for a full breakdown; ▶ Play walks through time; drag to orbit (two fingers on touch) · scroll or pinch to zoom."
             metricNote="Heights are Stat-Xplore caseload counts — not £ per ward (that isn’t published). Official city UC/PIP spend sits on the right from DWP local-authority accounts."
             focusHref="/ozzy-stage/focus"
           />

@@ -74,7 +74,7 @@ export default function PipStageView({ data, focusMode }: { data: PipPlaceData; 
         {!focusMode && (
           <StageExplainer
             title="What you’re looking at"
-            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people with a PIP award that quarter. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) from 2019 onward; drag to orbit · scroll to zoom."
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people with a PIP award that quarter. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) from 2019 onward; drag to orbit (two fingers on touch) · scroll or pinch to zoom."
             metricNote="Heights are Stat-Xplore case counts, not £ by ward. City PIP £ and Great Britain condition £ are on the right — condition money has no LA split."
             focusHref="/pip-stage/focus"
           />

@@ -381,6 +381,13 @@ function CityScene({
         minPolarAngle={0.25}
         maxPolarAngle={Math.PI / 2.25}
         target={[0, maxHeight * 0.25, 0]}
+        // Touch: one finger is left to the browser so a swipe over the stage
+        // scrolls the page. By default OrbitControls claims one-finger drag for
+        // rotation, which on a phone traps the scroll — the canvas fills most of
+        // the screen, so a thumb swipe just spun the city and the page never
+        // moved. Two fingers rotate and pinch-zoom. Mouse input is unaffected,
+        // so desktop drag-to-orbit still works exactly as before.
+        touches={{ ONE: undefined, TWO: THREE.TOUCH.DOLLY_ROTATE }}
       />
     </>
   );
@@ -469,7 +476,10 @@ export default function WardExtrusionStage({
       </Canvas>
       <div className="stage-hud">
         <span className="stage-hud-tag">BIRMINGHAM · 69 WARDS</span>
-        <span className="stage-hud-msg">Hover a ward · drag to orbit · Play walks the years</span>
+        {/* Two messages, one per input type — the desktop wording ("drag to
+            orbit") is wrong on touch, where one finger now scrolls the page. */}
+        <span className="stage-hud-msg stage-hud-pointer">Hover a ward · drag to orbit · Play walks the years</span>
+        <span className="stage-hud-msg stage-hud-touch">Tap a ward · two fingers to orbit &amp; zoom · Play walks the years</span>
       </div>
       {focusHud && (
         <div className="stage-hover-hud" data-testid="stage-hover-hud">
