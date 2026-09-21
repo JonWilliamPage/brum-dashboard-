@@ -9,6 +9,14 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **2026-09-21** — **`docs/RESPONSIVE-RETROFIT-PLAYBOOK.md`** — the method behind
+  the mobile work below, written up so it can be repeated or automated rather
+  than rediscovered. Records the prove-one-then-batch protocol, a table of the
+  seven failure classes hit (six of which `tsc` and the dev-server compile could
+  not see) each paired with a grep that *would* catch it statically, the cases
+  where a chart needed re-*forming* rather than resizing, and what to automate
+  first. Also notes where the initial inventory undercounted — searching by
+  markup (`<canvas>`/`<svg>`) misses charts built from styled `div`s.
 - **2026-09-21** — **Expand-to-full-screen on every data view.** New shared
   `FocusableChart` wrapper (`app/components/FocusableChart.tsx`) puts an
   "⤢ Expand full screen" button on every chart, map, table, grid, heatmap and
@@ -130,6 +138,35 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   one.
 
 ### Fixed
+- **2026-09-21** — **The 3D stages trapped page scroll on touch devices.**
+  OrbitControls claims one-finger drag for rotation by default. The stage canvas
+  fills most of a phone screen, so a thumb swipe spun the city and the page never
+  moved — there was no way to scroll past a stage on mobile. One finger is now
+  left to the browser and two fingers rotate / pinch-zoom (verified against
+  three-stdlib's source: an undefined `touches.ONE` falls to
+  `default: state = STATE.NONE`, disabling the gesture rather than throwing).
+  Added `touch-action:pan-y` on the viewport and canvas, without which the
+  browser still hands the whole gesture to the canvas. The HUD hint now swaps by
+  input type — "drag to orbit" is wrong advice on a phone — and all three stage
+  explainers note the two-finger gesture. Mouse input is a separate code path, so
+  desktop drag-to-orbit is unchanged. **Not yet verified on a real device:**
+  DevTools touch emulation is single-touch and cannot reproduce the two-finger
+  path.
+- **2026-09-21** — **Three detail-panel charts would have rendered ~80px tall in
+  a full-screen box.** Found by a static audit of all 92 expand-view wraps
+  against the failure patterns seen during testing, rather than by looking:
+  - Crime Deep Dive, Child Poverty and Money Map each wrapped a bare `<svg>`
+    with a fixed pixel height. The focus-mode CSS targets `div` elements, so it
+    could not reach them. Same fix already applied to `CityLine`/`CitySpark`: a
+    `chart-canvas-wrap` container the CSS can size.
+  - The lone composition bar in the Benefits UC detail panel is a horizontal
+    flex row, but the generic only-child rule flipped it to a column, stacking
+    its two segments vertically instead of side by side. Now scoped to a direct
+    child so the many-row composition lists keep their own bar heights.
+- **2026-09-21** — Fixed a pre-existing type error in `FlyTippingView`:
+  `onlyWolvFell` was `boolean | null` because `wolv` is nullable, while
+  `OutlierCallout` requires `boolean`. The same file already coerced it
+  correctly at its other call site. `tsc` now passes with zero errors.
 - **2026-09-21** — **The dashboard could not scroll at all on a phone.** Two
   separate layout bugs, both invisible to a type-check:
   - Every flex/grid item in the chain `.site-main → .dash-shell → .wrap →
@@ -454,6 +491,20 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   "AI agent" text on the About page.
 
 ### Known issues / deferred
+- **The 2026-09-21 mobile work is compile-verified, not fully device-verified.**
+  `tsc` passes clean and every route compiles and returns 200, but the session
+  that wrote it had no working browser connection, so visual confirmation came
+  from the maintainer spot-checking in DevTools emulation. Confirmed by eye:
+  the maps, Labour Scatter, Economic Matrix, the pie conversions, Benefits Bill
+  and UC Payments charts, the composition bars and the Fiscal provenance table.
+  **Not yet seen by anyone:** most of the ~14 table wraps, the six detail-panel
+  wraps, and the four Family Model wraps under `/review`. A static audit of all
+  92 wraps was run in place of a visual pass and found three real bugs (logged
+  above), so the remaining unviewed ones are plausible but unproven.
+- **The 3D stage touch fix needs a real device.** DevTools touch emulation is
+  single-touch, so the two-finger rotate/zoom path cannot be exercised there.
+  Test on a phone: a one-finger swipe over a stage should scroll the page, two
+  fingers should orbit and pinch-zoom, and a tap should still select a ward.
 - `eslint-config-next@16.3.3` requires `eslint@>=9`, but the project still
   pins `eslint@^8`; `npm audit fix --force` installed past this peer-dependency
   conflict. Doesn't affect `next dev`/`next build`, but `npm run lint` may
