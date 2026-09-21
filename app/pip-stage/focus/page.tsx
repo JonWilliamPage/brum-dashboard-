@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { PipPlaceData } from '@/lib/types';
 import PipStageView from '../components/PipStageView';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 export default function PipStageFocusPage() {
   const [data, setData] = useState<PipPlaceData | null>(null);
@@ -36,7 +37,10 @@ export default function PipStageFocusPage() {
       {data ? (
         <PipStageView data={data} focusMode />
       ) : (
-        <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        <>
+          <FocusCloseButton />
+          <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        </>
       )}
     </div>
   );

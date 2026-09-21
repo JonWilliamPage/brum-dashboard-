@@ -3,6 +3,7 @@
 import type { CrimeObsData, CrimeObsWard } from '@/lib/types';
 import { CRIME_RAMP, crimeObsLabel, crimeObsColor } from '@/lib/constants';
 import Tip from '../../components/Tip';
+import FocusableChart from '../../components/FocusableChart';
 
 interface Props {
   ward: CrimeObsWard;
@@ -101,7 +102,9 @@ export default function CrimeObsDetailPanel({ ward: w, data, onClose }: Props) {
 
       <div className="d-sec">
         <div className="d-sec-ttl">36-month trend (raw monthly offences)</div>
-        <TrendLine ward={w} data={data} />
+        <FocusableChart title={`${w.ward_name} — 36-month trend`}>
+          <TrendLine ward={w} data={data} />
+        </FocusableChart>
         <div style={{ fontFamily: 'var(--mono)', fontSize: 8.5, color: 'var(--muted2)', marginTop: 2 }}>
           Ward in red · city monthly total in gray (own scale). Counts are raw and seasonal — no smoothing.
         </div>

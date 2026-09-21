@@ -7,6 +7,7 @@ import { RAMP } from '@/lib/constants';
 import GridView from './tabs/GridView';
 import TableView from './tabs/TableView';
 import LabourScatter from './tabs/LabourScatter';
+import FocusableChart from './FocusableChart';
 import EconomicMatrix from './tabs/EconomicMatrix';
 import Compare from './tabs/Compare';
 import DetailPanel from './detail/DetailPanel';
@@ -368,6 +369,11 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
       if (lev2) setEduSub(lev2);
       const sc = localStorage.getItem('sidebarCollapsed');
       if (sc === '1') setSidebarCollapsed(true);
+      else if (sc === null && window.matchMedia('(max-width: 900px)').matches) {
+        // First visit, no saved preference yet: default the sidebar to closed
+        // on phone/tablet widths so it doesn't cover the whole screen on load.
+        setSidebarCollapsed(true);
+      }
     } catch { /* ignore */ }
   }, []);
 
@@ -377,6 +383,19 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
       try { localStorage.setItem('sidebarCollapsed', next ? '1' : '0'); } catch { /* ignore */ }
       return next;
     });
+  };
+
+  const collapseSidebar = () => {
+    setSidebarCollapsed(true);
+    try { localStorage.setItem('sidebarCollapsed', '1'); } catch { /* ignore */ }
+  };
+
+  // On phone/tablet widths the sidebar is an overlay drawer — close it once a
+  // nav item is picked so the chosen dashboard is immediately visible.
+  const handleSidebarNavClick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = (e.target as HTMLElement).closest('.dash-nav-btn');
+    if (!target) return;
+    if (window.matchMedia('(max-width: 900px)').matches) collapseSidebar();
   };
 
   useEffect(() => {
@@ -389,8 +408,7 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
     setPinnedWards(prev => {
       const idx = prev.indexOf(code);
       if (idx >= 0) return prev.filter(c => c !== code);
-      if (prev.length < 2) return [...prev, code];
-      return [prev[1], code];
+      return [...prev, code];
     });
   };
 
@@ -475,8 +493,8 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
       {/* Treatment A — permanent sidebar + main column */}
       <div className={`dash-shell${sidebarCollapsed ? ' collapsed' : ''}`} style={{ display: ready ? 'grid' : 'none' }}>
 
-        {/* Permanent sidebar */}
-        <aside className="dash-sidebar">
+        {/* Permanent sidebar — becomes an overlay drawer on phone/tablet widths */}
+        <aside className="dash-sidebar" onClick={handleSidebarNavClick}>
           {/* Brand */}
           <div className="dash-brand">
             <BullAscii
@@ -649,6 +667,15 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
             </svg>
           </div>
         </aside>
+
+        {!sidebarCollapsed && (
+          <button
+            type="button"
+            className="dash-backdrop"
+            aria-label="Close menu"
+            onClick={collapseSidebar}
+          />
+        )}
 
         {/* Main column */}
         <div className="wrap">
@@ -867,26 +894,66 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
             <div className="panel" style={{ flex: 1, position: 'relative' }}>
               <div className="panel-body">
                 {/* Employment sub-views */}
-                {view === 'employment' && empSub === 'grid'    && <GridView wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
-                {view === 'employment' && empSub === 'list'    && <TableView wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
-                {view === 'employment' && empSub === 'scatter' && <LabourScatter wards={wards} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
-                {view === 'employment' && empSub === 'matrix'  && <EconomicMatrix wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
-                {view === 'employment' && empSub === 'map'     && <MapView wards={wards} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
-                {view === 'employment' && empSub === 'compare' && <Compare wards={wards} pinnedWards={pinnedWards} onUnpin={togglePin} />}
+                {view === 'employment' && empSub === 'grid' && (
+                  <FocusableChart title="Employment Grid">
+                    <GridView wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
+                {view === 'employment' && empSub === 'list' && (
+                  <FocusableChart title="Employment Table">
+                    <TableView wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
+                {view === 'employment' && empSub === 'scatter' && (
+                  <FocusableChart title="Labour Scatter">
+                    <LabourScatter wards={wards} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
+                {view === 'employment' && empSub === 'matrix' && <EconomicMatrix wards={wards} selected={selected} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />}
+                {view === 'employment' && empSub === 'map' && (
+                  <FocusableChart title="Employment Map">
+                    <MapView wards={wards} onSelect={code => setSelected(wards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
+                {view === 'employment' && empSub === 'compare' && <Compare wards={wards} pinnedWards={pinnedWards} onTogglePin={togglePin} />}
                 {/* Crime sub-views */}
-                {isCrime && crimeSub === 'crime-table' && <CrimeTable wards={crimeWards} selected={selectedCrimeWard} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />}
-                {isCrime && crimeSub === 'crime-grid'  && <CrimeGrid  wards={crimeWards} selected={selectedCrimeWard} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />}
-                {isCrime && crimeSub === 'crime-map'   && <CrimeMap   wards={crimeWards} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />}
+                {isCrime && crimeSub === 'crime-table' && (
+                  <FocusableChart title="Crime Table">
+                    <CrimeTable wards={crimeWards} selected={selectedCrimeWard} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />
+                  </FocusableChart>
+                )}
+                {isCrime && crimeSub === 'crime-grid' && (
+                  <FocusableChart title="Crime Grid">
+                    <CrimeGrid wards={crimeWards} selected={selectedCrimeWard} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />
+                  </FocusableChart>
+                )}
+                {isCrime && crimeSub === 'crime-map' && (
+                  <FocusableChart title="Crime Map">
+                    <CrimeMap wards={crimeWards} onSelect={code => setSelectedCrime(prev => prev === code ? null : code)} />
+                  </FocusableChart>
+                )}
                 {/* Education sub-views */}
-                {isEdu && eduSub === 'edu-grid'  && <QualGrid  wards={eduWards} selected={selectedEdu} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />}
-                {isEdu && eduSub === 'edu-table' && <QualTable wards={eduWards} selected={selectedEdu} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />}
+                {isEdu && eduSub === 'edu-grid' && (
+                  <FocusableChart title="Education Grid">
+                    <QualGrid wards={eduWards} selected={selectedEdu} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
+                {isEdu && eduSub === 'edu-table' && (
+                  <FocusableChart title="Education Table">
+                    <QualTable wards={eduWards} selected={selectedEdu} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
+                )}
                 {isEdu && eduSub === 'edu-chart' && (
                   <div style={{ padding: '18px 18px 0' }}>
-                    <QualBars wards={eduWards} selected={selectedEdu} />
+                    <FocusableChart title="Qualification Distribution">
+                      <QualBars wards={eduWards} selected={selectedEdu} />
+                    </FocusableChart>
                   </div>
                 )}
                 {isEdu && eduSub === 'edu-map' && (
-                  <EduMap wards={eduWards} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />
+                  <FocusableChart title="Education Map">
+                    <EduMap wards={eduWards} onSelect={code => setSelectedEdu(eduWards.find(w => w.ward_code === code) ?? null)} />
+                  </FocusableChart>
                 )}
                 {/* Youth & NEET risk */}
                 {isYouth && <YouthDashboard wards={wards} selected={selectedYouth} onSelect={code => setSelectedYouth(prev => prev?.ward_code === code ? null : (wards.find(w => w.ward_code === code) ?? null))} />}

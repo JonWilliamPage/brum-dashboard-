@@ -4,6 +4,7 @@ import { useState } from 'react';
 import type { PipData } from '@/lib/types';
 import PipStream from './PipStream';
 import PipBump from './PipBump';
+import FocusableChart from '../../components/FocusableChart';
 
 // THE shared dashboard body — rendered identically in /review and Dashboards.
 // GB-level deep dive into what PIP pays for, by diagnosis. Views per the research:
@@ -77,12 +78,21 @@ export default function PipDashboard({ data }: { data: PipData }) {
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body" style={{ padding: '14px 16px' }}>
 
-            {sub === 'river' && <PipStream data={data} mode={mode} />}
-            {sub === 'league' && <PipBump data={data} />}
+            {sub === 'river' && (
+              <FocusableChart title="PIP Spend River">
+                <PipStream data={data} mode={mode} />
+              </FocusableChart>
+            )}
+            {sub === 'league' && (
+              <FocusableChart title="PIP League Table">
+                <PipBump data={data} />
+              </FocusableChart>
+            )}
 
             {sub === 'mix' && (
               <>
                 <div className="bill-sec-ttl">Each category&apos;s share of all PIP money — {years[BASE]} ○ → ● {years[last]} (real terms)</div>
+                <FocusableChart title="PIP Mix Shift">
                 {mixRows.map(r => {
                   const rose = r.s1 > r.s0;
                   const conn = rose ? '#b01225' : '#1a3a2a';
@@ -103,6 +113,7 @@ export default function PipDashboard({ data }: { data: PipData }) {
                     </div>
                   );
                 })}
+                </FocusableChart>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginTop: 8, lineHeight: 1.6 }}>
                   Share controls for PIP&apos;s overall growth — red = a rising slice of the pot, green = shrinking.
                   Base year {years[BASE]} (after the 2013–16 launch ramp, when every category grew from near zero).
@@ -117,6 +128,7 @@ export default function PipDashboard({ data }: { data: PipData }) {
                   <span><i style={{ background: '#16306f' }} /> working age</span>
                   <span><i style={{ background: '#7d4e36' }} /> pension age</span>
                 </div>
+                <FocusableChart title="PIP by Age Group">
                 {whoRows.map(r => (
                   <div key={r.name} className="hb-row" style={{ padding: '5px 0' }}>
                     <div className="hb-name" style={{ fontSize: 12.5 }}>{r.name}</div>
@@ -132,6 +144,7 @@ export default function PipDashboard({ data }: { data: PipData }) {
                     </div>
                   </div>
                 ))}
+                </FocusableChart>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginTop: 8 }}>
                   Pension-age PIP is claimants who reached pension age while on the benefit (new claims are working-age).
                 </div>
@@ -139,6 +152,7 @@ export default function PipDashboard({ data }: { data: PipData }) {
             )}
 
             {sub === 'conditions' && (
+              <FocusableChart title="PIP Conditions Table">
               <div className="crime-table-wrap" style={{ margin: '-14px -16px' }}>
                 <table className="data-table">
                   <thead>
@@ -162,6 +176,7 @@ export default function PipDashboard({ data }: { data: PipData }) {
                   </tbody>
                 </table>
               </div>
+              </FocusableChart>
             )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>

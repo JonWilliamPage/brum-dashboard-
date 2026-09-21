@@ -1,6 +1,7 @@
 import type { ChildPovertyWard, ChildPovertyData, UcSource } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import Tip from '../../components/Tip';
+import FocusableChart from '../../components/FocusableChart';
 
 // Ward detail — the emphasis form: this ward's 10-year path in herald red against
 // the REAL Birmingham-LA series in gray and the England mean in light gray.
@@ -99,7 +100,9 @@ export default function CpDetailPanel({ ward: w, data, sources, onClose }: Props
 
       <div className="d-sec">
         <div className="d-sec-ttl">Ten-year path vs city &amp; England</div>
-        <EmphasisLine ward={w} data={data} />
+        <FocusableChart title={`${w.ward_name} — Ten-year path`}>
+          <EmphasisLine ward={w} data={data} />
+        </FocusableChart>
       </div>
 
       <div className="d-sec" style={{ borderBottom: 'none' }}>

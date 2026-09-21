@@ -30,6 +30,7 @@ export default function PlayableWardMap({ wards, max: maxProp, unitLabel = '', o
   // Init map once
   useEffect(() => {
     let cancelled = false;
+    let ro: ResizeObserver | null = null;
     const container = containerRef.current;
     if (!container) return;
 
@@ -64,6 +65,11 @@ export default function PlayableWardMap({ wards, max: maxProp, unitLabel = '', o
         layerRef.current = layer;
         map.invalidateSize();
         setStatus('ready');
+
+        // Leaflet doesn't notice later container resizes (Focus view,
+        // sidebar toggle, phone rotation) on its own — re-measure on change.
+        ro = new ResizeObserver(() => map.invalidateSize());
+        ro.observe(container);
       } catch {
         if (!cancelled) setStatus('error');
       }
@@ -71,6 +77,7 @@ export default function PlayableWardMap({ wards, max: maxProp, unitLabel = '', o
 
     return () => {
       cancelled = true;
+      if (ro) { ro.disconnect(); ro = null; }
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;

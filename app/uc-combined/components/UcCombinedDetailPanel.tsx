@@ -1,6 +1,7 @@
 import type { UcCombinedWard, UcSource } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import Tip from '../../components/Tip';
+import FocusableChart from '../../components/FocusableChart';
 
 // Ward detail: the full UC composition, rank, and provenance.
 interface Props {
@@ -66,10 +67,12 @@ export default function UcCombinedDetailPanel({ ward: w, wards, sources, onClose
 
       <div className="d-sec">
         <div className="d-sec-ttl">Claimant composition</div>
-        <div className="comp-track" style={{ height: 26 }}>
-          <div className="comp-seg" style={{ width: `${w.uc_claimants ? (inW / w.uc_claimants) * 100 : 0}%`, background: '#16306f' }} />
-          <div className="comp-seg" style={{ width: `${w.uc_claimants ? (notW / w.uc_claimants) * 100 : 0}%`, background: '#b01225' }} />
-        </div>
+        <FocusableChart title={`${w.ward_name} — Claimant composition`}>
+          <div className="comp-track" style={{ height: 26 }}>
+            <div className="comp-seg" style={{ width: `${w.uc_claimants ? (inW / w.uc_claimants) * 100 : 0}%`, background: '#16306f' }} />
+            <div className="comp-seg" style={{ width: `${w.uc_claimants ? (notW / w.uc_claimants) * 100 : 0}%`, background: '#b01225' }} />
+          </div>
+        </FocusableChart>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted)', marginTop: 4 }}>
           <span>in work {inW.toLocaleString()}</span>
           <span>not in work {notW.toLocaleString()}</span>

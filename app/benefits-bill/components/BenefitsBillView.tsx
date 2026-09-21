@@ -8,6 +8,8 @@ import BillShareLine from './BillShareLine';
 import BillStoryStrip from './BillStoryStrip';
 import BillYearScrubber from './BillYearScrubber';
 import BillMixShift from './BillMixShift';
+import FocusableChart from '../../components/FocusableChart';
+import PieChart from '../../components/PieChart';
 
 // The Benefits Bill — where DWP money actually goes in Birmingham.
 // Story-first: history as the front door, then composition, path, and GB share.
@@ -65,23 +67,15 @@ function linesForYear(h: BillYear, fallback: BenefitLine[]): BenefitLine[] {
 
 function Mosaic({ lines, total }: { lines: BenefitLine[]; total: number }) {
   if (total <= 0) return null;
+  const slices = lines
+    .filter(l => l.amount_m / total > 0.004)
+    .map(l => ({ label: l.label, value: l.amount_m, color: GROUP_COLOR[l.group] }));
   return (
     <>
       <div className="bill-sec-ttl">Where the money goes — share of {fmt(total)}</div>
-      <div className="bill-mosaic">
-        {lines.filter(l => l.amount_m / total > 0.004).map(l => (
-          <div
-            key={l.id}
-            className="bill-block"
-            style={{ flexGrow: l.amount_m, background: GROUP_COLOR[l.group] }}
-            title={`${l.label}: ${fmt(l.amount_m)} (${((l.amount_m / total) * 100).toFixed(1)}%)`}
-          >
-            {l.amount_m / total > 0.045 && (
-              <span className="bill-block-lbl">{l.label}<em>{((l.amount_m / total) * 100).toFixed(0)}%</em></span>
-            )}
-          </div>
-        ))}
-      </div>
+      <FocusableChart title="Where the Money Goes">
+        <PieChart slices={slices} />
+      </FocusableChart>
       <div className="comp-legend" style={{ marginTop: 8 }}>
         {(['working-age', 'pensioner', 'mixed'] as const).map(g => {
           const amount = lines.filter(l => l.group === g).reduce((s, l) => s + l.amount_m, 0);
@@ -175,7 +169,9 @@ export default function BenefitsBillView({ data }: { data: BenefitsBillData }) {
                 <BillStoryStrip data={data} first={first} last={last} scrubYear={scrub} />
                 <BillYearScrubber history={history} year={scrub.year} onChange={setScrubYear} />
                 <div style={{ marginTop: 16 }}>
-                  <BillHistoryChart history={history} highlightYear={scrub.year} mode={histMode} />
+                  <FocusableChart title="Benefits Bill History">
+                    <BillHistoryChart history={history} highlightYear={scrub.year} mode={histMode} />
+                  </FocusableChart>
                 </div>
 
                 <div style={{ marginTop: 20 }}>
@@ -198,7 +194,9 @@ export default function BenefitsBillView({ data }: { data: BenefitsBillData }) {
                 <BillMixShift history={history} />
 
                 <div style={{ marginTop: 8 }}>
-                  <BillSmallMultiples history={history} />
+                  <FocusableChart title="Each Benefit's Own Path">
+                    <BillSmallMultiples history={history} />
+                  </FocusableChart>
                 </div>
               </>
             )}
@@ -208,25 +206,27 @@ export default function BenefitsBillView({ data }: { data: BenefitsBillData }) {
               <>
                 <Mosaic lines={latestLines} total={total} />
                 <div className="bill-sec-ttl" style={{ marginTop: 22 }}>By benefit, {data.year} (£ million, nominal)</div>
-                {latestLines.map(l => (
-                  <div key={l.id} className="hb-row" style={{ padding: '5px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 13.5 }}>
-                      {l.label}
-                      {l.note && (
-                        <span className="hb-you" style={{ color: 'var(--muted2)', textTransform: 'none', letterSpacing: 0 }}>
-                          {l.note}
-                        </span>
-                      )}
+                <FocusableChart title="Benefits Bill by Benefit">
+                  {latestLines.map(l => (
+                    <div key={l.id} className="hb-row" style={{ padding: '5px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 13.5 }}>
+                        {l.label}
+                        {l.note && (
+                          <span className="hb-you" style={{ color: 'var(--muted2)', textTransform: 'none', letterSpacing: 0 }}>
+                            {l.note}
+                          </span>
+                        )}
+                      </div>
+                      <div className="hb-track" style={{ height: 18 }}>
+                        <div
+                          className="hb-bar"
+                          style={{ height: 18, width: `${(l.amount_m / maxLine) * 100}%`, background: GROUP_COLOR[l.group] }}
+                        />
+                        <span className="hb-val">{fmt(l.amount_m)}</span>
+                      </div>
                     </div>
-                    <div className="hb-track" style={{ height: 18 }}>
-                      <div
-                        className="hb-bar"
-                        style={{ height: 18, width: `${(l.amount_m / maxLine) * 100}%`, background: GROUP_COLOR[l.group] }}
-                      />
-                      <span className="hb-val">{fmt(l.amount_m)}</span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
               </>
             )}
 
@@ -235,20 +235,26 @@ export default function BenefitsBillView({ data }: { data: BenefitsBillData }) {
               <>
                 <BillYearScrubber history={history} year={scrub.year} onChange={setScrubYear} />
                 <div style={{ marginTop: 12 }}>
-                  <BillHistoryChart history={history} highlightYear={scrub.year} mode={histMode} />
+                  <FocusableChart title="Benefits Bill History">
+                    <BillHistoryChart history={history} highlightYear={scrub.year} mode={histMode} />
+                  </FocusableChart>
                 </div>
                 <div className="comp-legend" style={{ marginTop: 10 }}>
                   {BILL_SERIES.map(s => (
                     <span key={s.id}><i style={{ background: s.color }} /> {s.label}</span>
                   ))}
                 </div>
-                <BillSmallMultiples history={history} />
+                <FocusableChart title="Each Benefit's Own Path">
+                  <BillSmallMultiples history={history} />
+                </FocusableChart>
               </>
             )}
 
             {/* ── VS BRITAIN ────────────────────────────────────────────── */}
             {sub === 'britain' && hasHistory && (
-              <BillShareLine history={history} />
+              <FocusableChart title="Birmingham vs Great Britain">
+                <BillShareLine history={history} />
+              </FocusableChart>
             )}
 
           </div>

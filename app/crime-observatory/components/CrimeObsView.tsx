@@ -11,6 +11,7 @@ import CrimeObsMix from './CrimeObsMix';
 import CrimeObsOutcomes from './CrimeObsOutcomes';
 import CrimeObsDetailPanel from './CrimeObsDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const CrimeObsMap = dynamic(() => import('./CrimeObsMap'), { ssr: false });
 
@@ -67,11 +68,23 @@ export default function CrimeObsView({ data }: { data: CrimeObsData }) {
 
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
-            {sub === 'table' && <CrimeObsTable data={data} selected={selected} onSelect={pick} />}
-            {sub === 'trend' && <CrimeObsTrend data={data} selected={selected} />}
+            {sub === 'table' && (
+              <FocusableChart title="Crime Deep Dive Table">
+                <CrimeObsTable data={data} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'trend' && (
+              <FocusableChart title="Crime Trend">
+                <CrimeObsTrend data={data} selected={selected} />
+              </FocusableChart>
+            )}
             {sub === 'mix' && <CrimeObsMix data={data} onSelect={pick} />}
             {sub === 'outcomes' && <CrimeObsOutcomes data={data} />}
-            {sub === 'map' && <CrimeObsMap wards={data.wards} onSelect={pick} />}
+            {sub === 'map' && (
+              <FocusableChart title="Crime Deep Dive Map">
+                <CrimeObsMap wards={data.wards} onSelect={pick} />
+              </FocusableChart>
+            )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

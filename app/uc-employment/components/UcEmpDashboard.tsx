@@ -8,6 +8,7 @@ import ScoringNote from '../../components/brand/ScoringNote';
 import UcEmpTable from './UcEmpTable';
 import UcEmpDetailPanel from './UcEmpDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const UcEmpMap = dynamic(() => import('./UcEmpMap'), { ssr: false });
 
@@ -60,8 +61,16 @@ export default function UcEmpDashboard({ data }: { data: UcEmpData }) {
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
             {sub === 'table'
-              ? <UcEmpTable wards={data.wards} selected={selected} onSelect={pick} />
-              : <UcEmpMap wards={data.wards} onSelect={pick} />}
+              ? (
+                <FocusableChart title="UC Claimants in Work Table">
+                  <UcEmpTable wards={data.wards} selected={selected} onSelect={pick} />
+                </FocusableChart>
+              )
+              : (
+                <FocusableChart title="UC Claimants in Work Map">
+                  <UcEmpMap wards={data.wards} onSelect={pick} />
+                </FocusableChart>
+              )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

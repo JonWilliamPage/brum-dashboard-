@@ -19,6 +19,7 @@ export default function MapView({ wards, onSelect }: Props) {
     let cancelled = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let mapInstance: any = null;
+    let ro: ResizeObserver | null = null;
     const container = containerRef.current;
     if (!container) return;
 
@@ -73,6 +74,13 @@ export default function MapView({ wards, onSelect }: Props) {
         // once more in case a parent layout shift changed its dimensions.
         map.invalidateSize();
         setStatus('ready');
+
+        // Leaflet doesn't notice later container resizes on its own (e.g.
+        // opening Focus view, toggling the sidebar, rotating the phone) —
+        // it just keeps rendering at its original size. Watch the container
+        // and re-measure whenever it actually changes.
+        ro = new ResizeObserver(() => map.invalidateSize());
+        ro.observe(container);
       } catch (e) {
         if (cancelled) return;
         setErrMsg(e instanceof Error ? e.message : String(e));
@@ -82,6 +90,7 @@ export default function MapView({ wards, onSelect }: Props) {
 
     return () => {
       cancelled = true;
+      if (ro) { ro.disconnect(); ro = null; }
       if (mapInstance) {
         try { mapInstance.remove(); } catch { /* already gone */ }
         mapInstance = null;

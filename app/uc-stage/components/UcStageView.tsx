@@ -6,6 +6,7 @@ import type { UcWeatherData } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import StageExplainer from '../../components/stage/StageExplainer';
 import StageWardPanel from '../../components/stage/StageWardPanel';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 const WardExtrusionStage = dynamic(() => import('../../components/stage/WardExtrusionStage'), {
   ssr: false,
@@ -90,12 +91,14 @@ export default function UcStageView({ data, focusMode }: { data: UcWeatherData; 
   return (
     <div className={`body stage-layout${focusMode ? ' stage-focus-solo' : ''}`}>
       <div className="lcol stage-lcol">
-        <StageExplainer
-          title="What you’re looking at"
-          body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people on Universal Credit that month. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) walks through time; drag to orbit · scroll to zoom."
-          metricNote="Block height = Stat-Xplore caseload, not £ spent in the ward. City UC spend on the right is the official LA figure."
-          focusHref={focusMode ? undefined : '/uc-stage/focus'}
-        />
+        {!focusMode && (
+          <StageExplainer
+            title="What you’re looking at"
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people on Universal Credit that month. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) walks through time; drag to orbit · scroll to zoom."
+            metricNote="Block height = Stat-Xplore caseload, not £ spent in the ward. City UC spend on the right is the official LA figure."
+            focusHref="/uc-stage/focus"
+          />
+        )}
 
         <div className="wx-toolbar stage-toolbar">
           <button className="refresh-btn" type="button" onClick={() => setPlaying((p) => !p)}>
@@ -144,6 +147,7 @@ export default function UcStageView({ data, focusMode }: { data: UcWeatherData; 
           >
             spin
           </button>
+          {focusMode && <FocusCloseButton />}
         </div>
 
         <div className="stage-viewport">

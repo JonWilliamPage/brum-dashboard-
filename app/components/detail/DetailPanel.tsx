@@ -3,6 +3,7 @@ import { dc, Q_COLORS, rankOf, quadrantSummary } from '@/lib/constants';
 import { extras } from '@/lib/synth';
 import TrendChart from './TrendChart';
 import Tip from '../Tip';
+import FocusableChart from '../FocusableChart';
 
 interface Props {
   ward: Ward;
@@ -94,9 +95,11 @@ export default function DetailPanel({ ward: w, wards, dsrc, isPinned, onPin, onC
             <button className={`tt-btn${trendMode === 'pandemic' ? ' active' : ''}`} onClick={() => onTrendMode('pandemic')}>2019–NOW</button>
           </div>
         </div>
-        <div className="d-chart-wrap">
-          <TrendChart ward={w} wards={wards} trendMode={trendMode} />
-        </div>
+        <FocusableChart title={`${w.ward_name} — Claimant count trend`}>
+          <div className="d-chart-wrap">
+            <TrendChart ward={w} wards={wards} trendMode={trendMode} />
+          </div>
+        </FocusableChart>
       </div>
 
       <div className="d-sec">

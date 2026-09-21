@@ -73,7 +73,7 @@ export default function BillShareLine({ history }: Props) {
   return (
     <div>
       <div className="bill-sec-ttl">Birmingham&apos;s slice of Great Britain&apos;s entire benefits bill</div>
-      <div style={{ height: 280, position: 'relative' }}>
+      <div className="chart-canvas-wrap" style={{ height: 280, position: 'relative' }}>
         <canvas ref={canvasRef} />
       </div>
       <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginTop: 6, lineHeight: 1.7 }}>

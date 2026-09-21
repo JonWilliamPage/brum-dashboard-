@@ -1,6 +1,8 @@
 'use client';
 
 import type { CrimeObsData } from '@/lib/types';
+import FocusableChart from '../../components/FocusableChart';
+import PieChart from '../../components/PieChart';
 
 // Outcomes — how the latest month's recorded cases were disposed. This is the
 // "evidence brief" panel: it reads like an annotated finding rather than a counter,
@@ -51,16 +53,10 @@ export default function CrimeObsOutcomes({ data }: Props) {
         <strong>{(formal * 100).toFixed(1)}%</strong> resulted in a charge, caution or penalty.
       </div>
 
-      {/* 100% stacked outcome bar */}
-      <div style={{ display: 'flex', height: 34, border: '1px solid var(--border)', overflow: 'hidden', marginBottom: 18 }}>
-        {used.map(b => (
-          <div
-            key={b.label}
-            title={`${b.label} — ${b.n.toLocaleString()} (${((b.n / total) * 100).toFixed(1)}%)`}
-            style={{ width: `${(b.n / total) * 100}%`, background: b.color, height: '100%' }}
-          />
-        ))}
-      </div>
+      <FocusableChart title="Case Outcomes">
+        <PieChart slices={used.map(b => ({ label: b.label, value: b.n, color: b.color }))} />
+      </FocusableChart>
+      <div style={{ height: 12 }} />
 
       {/* Ranked outcome rows */}
       <div className="crime-cats">

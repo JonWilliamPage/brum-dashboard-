@@ -9,6 +9,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 ### Added
+- **2026-09-21** — **Expand-to-full-screen on every data view.** New shared
+  `FocusableChart` wrapper (`app/components/FocusableChart.tsx`) puts an
+  "⤢ Expand full screen" button on every chart, map, table, grid, heatmap and
+  detail-panel sparkline across the site — 92 instances across 30 files. The
+  point is mobile: on a phone a 69-ward table or a choropleth is unreadable
+  inline, so any visual can be blown up to fill the screen and dismissed with
+  a "× Close" button. Works identically on desktop (no pop-up window needed —
+  it re-styles in place, so Chart.js/Leaflet instances keep their state and
+  simply resize).
+  - Leaflet maps (14) each also gained a `ResizeObserver`. Leaflet only
+    measures its container once at init and never notices later resizes, so
+    without this a focused map rendered squashed at its old size. Side
+    benefit: it also fixes sizing on sidebar toggle and device rotation,
+    neither of which was handled before.
+  - Charts whose wrapper height is set inline (a prop, e.g. `height={200}`)
+    got a shared `chart-canvas-wrap` class, since inline styles beat ordinary
+    CSS and the focus-mode override could not otherwise reach them.
 - **2026-09-21** — Added a "Focus view" pop-out to the three 3D stage
   dashboards (UC Stage 3D, PIP Stage 3D, Ozzy Stage). A prominent gold
   button next to the "What you're looking at" explainer opens the same
@@ -48,6 +65,39 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   waiting, switching to a quieter "Sound on" style once unmuted.
 
 ### Changed
+- **2026-09-21** — **Mobile responsiveness pass on the dashboard shell.**
+  - The fixed 252px sidebar is now an off-canvas drawer under 900px: it slides
+    in over the content with a dark backdrop instead of squeezing the layout,
+    closes on nav-item tap or backdrop tap, and defaults to closed for
+    first-time phone visitors (a saved preference still wins). Its z-index sits
+    above Leaflet's internal panes, which reach 1000 and were floating the map
+    over the open drawer.
+  - The sub-tab strips (21 views) now wrap into centred rows on a phone rather
+    than scrolling horizontally, so tabs past the third are no longer
+    off-screen with no cue they exist. UC Payments' five tabs land 3-over-2.
+  - Touch targets raised to the ~44px guideline on the drawer toggle, sub-tabs,
+    the ward-compare checklist and the focus/close buttons.
+- **2026-09-21** — **Charts re-formed for legibility, not just resized.**
+  - Education "Distribution", Crime Deep Dive "Mix" and "Outcomes", and the
+    Benefits Bill mosaic became pie charts (shared `PieChart` component) — the
+    part-to-whole read a stacked bar could not carry on a narrow screen. Each
+    slice's value *and* percentage print as plain text in the legend rather
+    than hiding behind a hover, which does not exist on touch.
+  - PIP Place "Conditions" became a real Chart.js bar chart with the £ value
+    drawn on each bar and the 2013/14 starting figure under each condition
+    name, replacing a div/CSS list that read as a column of numbers.
+  - UC Weather "Growth" dropped its bar entirely and leads with percentage
+    change. Deltas there span 41 → 8,978, so a linear bar rendered the smallest
+    wards as an invisible sliver next to the largest — the percentage is the
+    honest comparison.
+  - UC Payments award bands shortened from "£0.01 to £100.00" to "£0–100" /
+    "£2,500+". The .01/.00 boundaries exist only so bands do not overlap and
+    carry nothing a reader needs; the shorter label fits far more of the 28
+    bands on screen. No underlying value changed.
+  - Composition bar rows (Money Map, Benefits UC) stack the name above a
+    full-width bar on a phone instead of a fixed name column, roughly doubling
+    the bar's width. A stray inline `gridTemplateColumns` on Money Map was
+    overriding the existing responsive rule and is removed.
 - **2026-09-07** — Standardised current project descriptions as “Ozzy — civic intelligence prototype” across the README, contributor and AI guidance, playbooks, overview diagram, About page and site metadata. Clarified selected-data coverage, the role of visualisation and supporting analysis, and future database, reuse and agentic ambitions. Removed comprehensive-data claims from the commentary introduction.
 - **2026-09-07** — Replaced the crude hand-drawn ASCII-art cow face (a
   literal text-character cow face, not an image file) shown in every
@@ -80,6 +130,50 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   one.
 
 ### Fixed
+- **2026-09-21** — **The dashboard could not scroll at all on a phone.** Two
+  separate layout bugs, both invisible to a type-check:
+  - Every flex/grid item in the chain `.site-main → .dash-shell → .wrap →
+    .body → .lcol/.rcol` defaults to `min-width:auto`, so none would shrink
+    below its widest child (a chart, an SVG, a table). The whole dashboard
+    ballooned past the screen instead of reflowing to it. Fixed with
+    `min-width:0` down the chain.
+  - Desktop runs a fixed 100vh app shell — `html`/`body` locked with
+    `overflow:hidden`, individual panels scrolling internally. That lock is
+    written with `:has()`, whose specificity beat the mobile overrides trying
+    to undo it, so nothing on the page scrolled anywhere. The mobile rules now
+    repeat the `:has()` selectors to win, and the page scrolls normally
+    top-to-bottom rather than relying on small nested scroll regions (a swipe
+    landing outside the one scrollable div did nothing).
+- **2026-09-21** — Fixed three focus-mode layout bugs found while testing:
+  - **Every bar rendered the same length** in a focused ranked list. The rule
+    stretching a focused chart into a flex column matched *every* row of a
+    `.map()`-rendered list, not just a single chart root, overriding each
+    row's own `display:grid` so all bar tracks stretched equally regardless of
+    value. Now scoped to `:only-child`.
+  - **First character of every row clipped** in three focused tables (Money
+    Map, PIP Deep Dive Conditions, Two-Child). Those wrappers use a negative
+    margin to bleed past `.panel-body`'s padding; focus mode has no such
+    padding, so the margin simply dragged content off the left edge.
+  - **Header text spilling into the gold dancetty banner** on phones. `.hdr`
+    had a fixed 52px height sized for one short subtitle line; longer ones
+    ("68 wards · net fiscal balance per head · modelled") wrap to two or three
+    and overflowed. Now `min-height` with padding. A sweep for the same
+    pattern — fixed `height` on a container holding wrapping text — found two
+    more (`.wp-stack`, `.bill-mosaic` on Wrong Payments) where labels were
+    being silently clipped by `overflow:hidden`; both now grow on mobile.
+- **2026-09-21** — Employment → Compare was a dead end: it asked you to pin
+  wards "from the detail panel" with no way to do so from that tab. It now
+  opens a searchable ward checklist with an explicit Compare button, and
+  supports any number of wards rather than exactly two (best/worst per metric
+  are highlighted across the whole selection instead of pairwise).
+- **2026-09-21** — UC Payments showed a redundant "£1,500+" award band
+  mid-list, between £1,400–1,500 and £1,500–1,600. It is the open-ended
+  Stat-Xplore aggregate the fetch script is meant to drop once finer £100
+  bands cover the same range. Now filtered at display time by the general rule
+  (drop an aggregate a finer band already covers), keeping the genuine
+  "£2,500+" top band. It carried 0 households, so Σ bands and the checksum are
+  unchanged at 210,693 — and removing it also puts the list back in numerical
+  order.
 - **2026-09-07** — Fixed the 3D "stage" dashboards (Ozzy Stage, UC Stage 3D,
   PIP Stage 3D) — all three crashed on load with `TypeError: Cannot read
   properties of undefined (reading 'ReactCurrentOwner')` the moment

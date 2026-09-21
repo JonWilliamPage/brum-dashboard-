@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Ward } from '@/lib/types';
 import { Q_COLORS, Q_LABELS, MUTED } from '@/lib/constants';
+import FocusableChart from '../FocusableChart';
 
 function median(arr: number[]) {
   const s = [...arr].sort((a, b) => a - b);
@@ -121,23 +122,26 @@ export default function EconomicMatrix({ wards, selected, onSelect }: Props) {
 
   return (
     <div>
-      <div className="matrix-controls">
-        {Object.entries(Q_LABELS).map(([k, v]) => {
-          const count = wards.filter(w => w.quadrant === k).length;
-          return (
-            <button key={k} className={`q-chip${activeQuadrant === k ? ' active' : ''}`} onClick={() => setActiveQuadrant(q => q === k ? null : k)}>
-              <span className="qsw" style={{ background: Q_COLORS[k] }} />
-              {v} <span style={{ opacity: 0.6 }}>· {count}</span>
-            </button>
-          );
-        })}
-        <div className="matrix-axes">
-          <span>X <b>GVA/head £k</b></span>
-          <span>Y <b>IMD score</b></span>
-          <span>Size <b>population</b></span>
+      <FocusableChart title="Economic Matrix">
+        <div className="matrix-controls">
+          {Object.entries(Q_LABELS).map(([k, v]) => {
+            const count = wards.filter(w => w.quadrant === k).length;
+            return (
+              <button key={k} className={`q-chip${activeQuadrant === k ? ' active' : ''}`} onClick={() => setActiveQuadrant(q => q === k ? null : k)}>
+                <span className="qsw" style={{ background: Q_COLORS[k] }} />
+                {v} <span style={{ opacity: 0.6 }}>· {count}</span>
+              </button>
+            );
+          })}
+          <div className="matrix-axes">
+            <span>X <b>GVA/head £k</b></span>
+            <span>Y <b>IMD score</b></span>
+            <span>Size <b>population</b></span>
+          </div>
         </div>
-      </div>
-      <div className="matrix-chart-wrap"><canvas ref={canvasRef} /></div>
+        <div className="matrix-chart-wrap"><canvas ref={canvasRef} /></div>
+      </FocusableChart>
+      <FocusableChart title="Economic Matrix Table">
       <div className="matrix-table">
         <div className="matrix-row hr">
           <span>#</span>
@@ -160,6 +164,7 @@ export default function EconomicMatrix({ wards, selected, onSelect }: Props) {
           </div>
         ))}
       </div>
+      </FocusableChart>
     </div>
   );
 }

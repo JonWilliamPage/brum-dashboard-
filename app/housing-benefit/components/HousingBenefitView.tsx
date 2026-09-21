@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { HousingBenefitData } from '@/lib/types';
 import ScoringNote from '../../components/brand/ScoringNote';
 import { RAMP } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
 
 const HbMap = dynamic(() => import('./HbMap'), { ssr: false });
 
@@ -72,8 +73,11 @@ export default function HousingBenefitView({ data }: { data: HousingBenefitData 
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
             {sub === 'map' ? (
-              <HbMap areas={areas} />
+              <FocusableChart title="Housing Benefit Map">
+                <HbMap areas={areas} />
+              </FocusableChart>
             ) : (
+            <FocusableChart title="Housing Benefit Comparison">
             <div className="hb-chart">
               {areas.map(a => (
                 <div key={a.area_code} className={`hb-row${a.is_birmingham ? ' is-bham' : ''}`}>
@@ -112,6 +116,7 @@ export default function HousingBenefitView({ data }: { data: HousingBenefitData 
                 <span>{scale.toFixed(0)}%</span>
               </div>
             </div>
+            </FocusableChart>
             )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>

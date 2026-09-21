@@ -10,6 +10,7 @@ import CpStrip from './CpStrip';
 import CpDumbbells from './CpDumbbells';
 import CpDetailPanel from './CpDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const CpMap = dynamic(() => import('./CpMap'), { ssr: false });
 
@@ -63,10 +64,26 @@ export default function ChildPovertyDashboard({ data }: { data: ChildPovertyData
 
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
-            {sub === 'table' && <CpTable data={data} selected={selected} onSelect={pick} />}
-            {sub === 'strip' && <CpStrip data={data} selected={selected} onSelect={pick} />}
-            {sub === 'change' && <CpDumbbells data={data} selected={selected} onSelect={pick} />}
-            {sub === 'map' && <CpMap wards={data.wards} onSelect={pick} />}
+            {sub === 'table' && (
+              <FocusableChart title="Child Poverty Table">
+                <CpTable data={data} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'strip' && (
+              <FocusableChart title="Child Poverty Distribution">
+                <CpStrip data={data} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'change' && (
+              <FocusableChart title="Child Poverty Change">
+                <CpDumbbells data={data} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'map' && (
+              <FocusableChart title="Child Poverty Map">
+                <CpMap wards={data.wards} onSelect={pick} />
+              </FocusableChart>
+            )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

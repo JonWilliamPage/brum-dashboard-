@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { PipPlaceData } from '@/lib/types';
 import StageExplainer from '../../components/stage/StageExplainer';
 import StageWardPanel from '../../components/stage/StageWardPanel';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 const WardExtrusionStage = dynamic(() => import('../../components/stage/WardExtrusionStage'), {
   ssr: false,
@@ -70,12 +71,14 @@ export default function PipStageView({ data, focusMode }: { data: PipPlaceData; 
   return (
     <div className={`body stage-layout${focusMode ? ' stage-focus-solo' : ''}`}>
       <div className="lcol stage-lcol">
-        <StageExplainer
-          title="What you’re looking at"
-          body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people with a PIP award that quarter. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) from 2019 onward; drag to orbit · scroll to zoom."
-          metricNote="Heights are Stat-Xplore case counts, not £ by ward. City PIP £ and Great Britain condition £ are on the right — condition money has no LA split."
-          focusHref={focusMode ? undefined : '/pip-stage/focus'}
-        />
+        {!focusMode && (
+          <StageExplainer
+            title="What you’re looking at"
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller / darker = more people with a PIP award that quarter. Hover for name and count; click for a ward breakdown; ▶ Play (or scrub) from 2019 onward; drag to orbit · scroll to zoom."
+            metricNote="Heights are Stat-Xplore case counts, not £ by ward. City PIP £ and Great Britain condition £ are on the right — condition money has no LA split."
+            focusHref="/pip-stage/focus"
+          />
+        )}
 
         <div className="wx-toolbar stage-toolbar">
           <button className="refresh-btn" type="button" onClick={() => setPlaying((p) => !p)}>
@@ -110,6 +113,7 @@ export default function PipStageView({ data, focusMode }: { data: PipPlaceData; 
           >
             spin
           </button>
+          {focusMode && <FocusCloseButton />}
         </div>
 
         <div className="stage-viewport">

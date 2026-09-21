@@ -40,6 +40,7 @@ boot.log
 boot.err.log
 d3.log
 .devserver.log
+dev-server.log
 _analyze*.js
 # ignore Claude session files, but keep the project skills (they're project knowledge)
 .claude/*

@@ -65,6 +65,7 @@ export default function EduMap({ wards, onSelect }: Props) {
     let cancelled = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let mapInstance: any = null;
+    let ro: ResizeObserver | null = null;
     const container = containerRef.current;
     if (!container) return;
 
@@ -111,6 +112,11 @@ export default function EduMap({ wards, onSelect }: Props) {
         layerRef.current = layer;
         map.invalidateSize();
         setStatus('ready');
+
+        // Leaflet doesn't notice later container resizes (Focus view,
+        // sidebar toggle, phone rotation) on its own — re-measure on change.
+        ro = new ResizeObserver(() => map.invalidateSize());
+        ro.observe(container);
       } catch (e) {
         if (cancelled) return;
         setErrMsg(e instanceof Error ? e.message : String(e));
@@ -120,6 +126,7 @@ export default function EduMap({ wards, onSelect }: Props) {
 
     return () => {
       cancelled = true;
+      if (ro) { ro.disconnect(); ro = null; }
       if (mapInstance) {
         try { mapInstance.remove(); } catch { /* already gone */ }
         mapInstance = null;

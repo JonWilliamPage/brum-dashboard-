@@ -8,6 +8,7 @@ import ScoringNote from '../../components/brand/ScoringNote';
 import ClaimantTable from './ClaimantTable';
 import ClaimantDetailPanel from './ClaimantDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const ClaimantMap = dynamic(() => import('./ClaimantMap'), { ssr: false });
 
@@ -62,8 +63,16 @@ export default function ClaimantDashboard({ data }: { data: ClaimantData }) {
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
             {sub === 'table'
-              ? <ClaimantTable wards={data.wards} selected={selected} onSelect={pick} />
-              : <ClaimantMap wards={data.wards} onSelect={pick} />}
+              ? (
+                <FocusableChart title="Claimant Count Table">
+                  <ClaimantTable wards={data.wards} selected={selected} onSelect={pick} />
+                </FocusableChart>
+              )
+              : (
+                <FocusableChart title="Claimant Count Map">
+                  <ClaimantMap wards={data.wards} onSelect={pick} />
+                </FocusableChart>
+              )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

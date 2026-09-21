@@ -1,5 +1,7 @@
 'use client';
 
+import FocusableChart from '../FocusableChart';
+
 /** Tile-style ward breakdown shown when a stage ward is selected. */
 
 function fmt(n: number | null | undefined) {
@@ -154,7 +156,9 @@ export default function StageWardPanel({
       {series && series.some((v) => v != null) && (
         <div className="stage-ward-spark-wrap">
           <span className="stage-ward-tile-k">Trend</span>
-          <Spark series={series} accent={accent} />
+          <FocusableChart title={`${wardName} — Trend`}>
+            <Spark series={series} accent={accent} />
+          </FocusableChart>
         </div>
       )}
     </div>

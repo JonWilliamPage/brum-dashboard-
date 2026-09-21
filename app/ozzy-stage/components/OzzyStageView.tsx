@@ -6,6 +6,7 @@ import type { OzzyStageData } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import StageExplainer from '../../components/stage/StageExplainer';
 import StageWardPanel from '../../components/stage/StageWardPanel';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 const WardExtrusionStage = dynamic(() => import('../../components/stage/WardExtrusionStage'), {
   ssr: false,
@@ -111,12 +112,14 @@ export default function OzzyStageView({ data, focusMode }: { data: OzzyStageData
   return (
     <div className={`body stage-layout ozzy-stage-body${focusMode ? ' stage-focus-solo' : ''}`}>
       <div className="lcol stage-lcol">
-        <StageExplainer
-          title="What you’re looking at"
-          body="Birmingham’s 69 wards as solid 3D blocks. Taller and darker = more people on Universal Credit or with a PIP award that month (switch tabs). Hover a ward for its name and count; click for a full breakdown; ▶ Play walks through time; drag to orbit · scroll to zoom."
-          metricNote="Heights are Stat-Xplore caseload counts — not £ per ward (that isn’t published). Official city UC/PIP spend sits on the right from DWP local-authority accounts."
-          focusHref={focusMode ? undefined : '/ozzy-stage/focus'}
-        />
+        {!focusMode && (
+          <StageExplainer
+            title="What you’re looking at"
+            body="Birmingham’s 69 wards as solid 3D blocks. Taller and darker = more people on Universal Credit or with a PIP award that month (switch tabs). Hover a ward for its name and count; click for a full breakdown; ▶ Play walks through time; drag to orbit · scroll to zoom."
+            metricNote="Heights are Stat-Xplore caseload counts — not £ per ward (that isn’t published). Official city UC/PIP spend sits on the right from DWP local-authority accounts."
+            focusHref="/ozzy-stage/focus"
+          />
+        )}
 
         <div className="wx-toolbar stage-toolbar">
           <button
@@ -167,6 +170,7 @@ export default function OzzyStageView({ data, focusMode }: { data: OzzyStageData
           >
             spin
           </button>
+          {focusMode && <FocusCloseButton />}
         </div>
 
         <div className="stage-viewport">

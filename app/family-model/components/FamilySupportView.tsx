@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
+import FocusableChart from '../../components/FocusableChart';
 
 /**
  * Family Support Model — ILLUSTRATIVE.
@@ -492,6 +493,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                   </div>
                 )}
 
+                <FocusableChart title="Family Support Stack">
                 {included.map((l) => (
                   <div key={l.id} className="fm-line">
                     <div className="fm-line-top">
@@ -544,6 +546,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                       </div>
                     </div>
                   ))}
+                </FocusableChart>
 
                 <Calc
                   title="How the total is built"
@@ -625,6 +628,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                   Couples make one joint claim. PIP and Carer&apos;s Allowance are person-level and can
                   stack under rules; housing is rent-specific.
                 </p>
+                <FocusableChart title="Payments Catalogue">
                 <div className="ucp-data-scroll">
                   <table className="ucp-table">
                     <thead>
@@ -647,6 +651,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                     </tbody>
                   </table>
                 </div>
+                </FocusableChart>
 
                 {data.bill_context && (
                   <>
@@ -654,6 +659,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                       City context — Birmingham annual accounts ({data.bill_context.year})
                     </div>
                     <p style={{ fontSize: 12, color: 'var(--muted)' }}>{data.bill_context.note}</p>
+                    <FocusableChart title="City Context — Annual Accounts">
                     {data.bill_context.lines.map((l) => (
                       <div key={l.id} className="hb-row" style={{ padding: '4px 0' }}>
                         <div className="hb-name" style={{ fontSize: 13 }}>{l.label}</div>
@@ -670,6 +676,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                         </div>
                       </div>
                     ))}
+                    </FocusableChart>
                   </>
                 )}
               </>
@@ -725,6 +732,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                     <div className="bill-sec-ttl" style={{ color: 'var(--ink)' }}>
                       {sc.title} · total {fmtGbp(sc.monthly_total ?? sc.total_monthly)}
                     </div>
+                    <FocusableChart title={`${sc.title} — workings`}>
                     <div className="ucp-data-scroll">
                       <table className="ucp-table">
                         <thead>
@@ -747,6 +755,7 @@ export default function FamilySupportView({ data }: { data: FamilyModelData }) {
                         </tbody>
                       </table>
                     </div>
+                    </FocusableChart>
                   </div>
                 ))}
 

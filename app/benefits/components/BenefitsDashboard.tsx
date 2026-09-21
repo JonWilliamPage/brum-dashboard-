@@ -8,6 +8,7 @@ import ScoringNote from '../../components/brand/ScoringNote';
 import BenefitsTable from './BenefitsTable';
 import BenefitsDetailPanel from './BenefitsDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const BenefitsMap = dynamic(() => import('./BenefitsMap'), { ssr: false });
 
@@ -62,8 +63,16 @@ export default function BenefitsDashboard({ data }: { data: BenefitsData }) {
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
             {sub === 'map'
-              ? <BenefitsMap wards={data.wards} onSelect={pick} />
-              : <BenefitsTable wards={data.wards} selected={selected} onSelect={pick} />}
+              ? (
+                <FocusableChart title="Benefits Map">
+                  <BenefitsMap wards={data.wards} onSelect={pick} />
+                </FocusableChart>
+              )
+              : (
+                <FocusableChart title="Benefits Table">
+                  <BenefitsTable wards={data.wards} selected={selected} onSelect={pick} />
+                </FocusableChart>
+              )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

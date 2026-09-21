@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { UcWeatherData } from '@/lib/types';
 import UcStageView from '../components/UcStageView';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 export default function UcStageFocusPage() {
   const [data, setData] = useState<UcWeatherData | null>(null);
@@ -34,7 +35,10 @@ export default function UcStageFocusPage() {
       {data ? (
         <UcStageView data={data} focusMode />
       ) : (
-        <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        <>
+          <FocusCloseButton />
+          <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        </>
       )}
     </div>
   );

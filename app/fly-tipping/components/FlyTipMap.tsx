@@ -20,6 +20,7 @@ export default function FlyTipMap({ areas, asOf }: Props) {
     let cancelled = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let mapInstance: any = null;
+    let ro: ResizeObserver | null = null;
     const container = containerRef.current;
     if (!container) return;
 
@@ -74,6 +75,11 @@ export default function FlyTipMap({ areas, asOf }: Props) {
         try { map.fitBounds(layer.getBounds(), { padding: [12, 12] }); } catch { /* keep default */ }
         map.invalidateSize();
         setStatus('ready');
+
+        // Leaflet doesn't notice later container resizes (Focus view,
+        // sidebar toggle, phone rotation) on its own — re-measure on change.
+        ro = new ResizeObserver(() => map.invalidateSize());
+        ro.observe(container);
       } catch (e) {
         if (cancelled) return;
         setErrMsg(e instanceof Error ? e.message : String(e));
@@ -83,6 +89,7 @@ export default function FlyTipMap({ areas, asOf }: Props) {
 
     return () => {
       cancelled = true;
+      if (ro) { ro.disconnect(); ro = null; }
       if (mapInstance) mapInstance.remove();
     };
   }, [areas, asOf]);

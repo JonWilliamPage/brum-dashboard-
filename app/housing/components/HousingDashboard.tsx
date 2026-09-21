@@ -3,6 +3,7 @@ import { useState } from 'react';
 import type { HousingWard } from '@/lib/types';
 import HousingGrid from './HousingGrid';
 import HousingTable from './HousingTable';
+import FocusableChart from '../../components/FocusableChart';
 
 type Tab = 'grid' | 'table';
 
@@ -34,8 +35,16 @@ export default function HousingDashboard({ wards, selected, onSelect }: Props) {
 
       {/* Grid / table — selection flows up to the shared right-side detail panel */}
       <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
-        {tab === 'grid' && <HousingGrid wards={wards} selected={selected} onSelect={onSelect} />}
-        {tab === 'table' && <HousingTable wards={wards} selected={selected} onSelect={onSelect} />}
+        {tab === 'grid' && (
+          <FocusableChart title="Housing Grid">
+            <HousingGrid wards={wards} selected={selected} onSelect={onSelect} />
+          </FocusableChart>
+        )}
+        {tab === 'table' && (
+          <FocusableChart title="Housing Table">
+            <HousingTable wards={wards} selected={selected} onSelect={onSelect} />
+          </FocusableChart>
+        )}
       </div>
 
     </div>

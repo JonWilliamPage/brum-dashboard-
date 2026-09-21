@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import type { WrongPaymentsData, WrongPaymentLine } from '@/lib/types';
 import ScoringNote from '../../components/brand/ScoringNote';
+import FocusableChart from '../../components/FocusableChart';
 
 // Wrong Payments — national fraud & error rates × Birmingham's real DWP bill.
 // Every £ overpaid figure is DERIVED and labelled. Same component in /review and Dashboards.
@@ -81,26 +82,36 @@ export default function WrongPaymentsView({ data }: { data: WrongPaymentsData })
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body" style={{ padding: '16px 18px' }}>
             {sub === 'shock' && (
-              <ShockTab data={data} city={city} nat={nat} />
+              <FocusableChart title="Wrong Payments — The Shock">
+                <ShockTab data={data} city={city} nat={nat} />
+              </FocusableChart>
             )}
             {sub === 'leakage' && (
-              <LeakageTab
-                lines={lines}
-                maxOver={maxOver}
-                maxSpend={maxSpend}
-                maxRate={maxRate}
-                selId={selId}
-                onSelect={setSelId}
-              />
+              <FocusableChart title="Leakage by Benefit">
+                <LeakageTab
+                  lines={lines}
+                  maxOver={maxOver}
+                  maxSpend={maxSpend}
+                  maxRate={maxRate}
+                  selId={selId}
+                  onSelect={setSelId}
+                />
+              </FocusableChart>
             )}
             {sub === 'who' && (
-              <WhoTab city={city} typeTotal={typeTotal} nat={nat} />
+              <FocusableChart title="Who Causes Wrong Payments">
+                <WhoTab city={city} typeTotal={typeTotal} nat={nat} />
+              </FocusableChart>
             )}
             {sub === 'uc' && (
-              <UcTab data={data} city={city} nat={nat} />
+              <FocusableChart title="Universal Credit Wrong Payments">
+                <UcTab data={data} city={city} nat={nat} />
+              </FocusableChart>
             )}
             {sub === 'table' && (
-              <TableTab lines={lines} selId={selId} onSelect={setSelId} bill_m={city.bill_m} overpaid_m={city.overpaid_m} />
+              <FocusableChart title="Wrong Payments Table">
+                <TableTab lines={lines} selId={selId} onSelect={setSelId} bill_m={city.bill_m} overpaid_m={city.overpaid_m} />
+              </FocusableChart>
             )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>

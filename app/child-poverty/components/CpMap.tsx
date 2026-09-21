@@ -20,6 +20,7 @@ export default function CpMap({ wards, onSelect }: Props) {
     let cancelled = false;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let mapInstance: any = null;
+    let ro: ResizeObserver | null = null;
     const container = containerRef.current;
     if (!container) return;
 
@@ -62,6 +63,11 @@ export default function CpMap({ wards, onSelect }: Props) {
 
         map.invalidateSize();
         setStatus('ready');
+
+        // Leaflet doesn't notice later container resizes (Focus view,
+        // sidebar toggle, phone rotation) on its own — re-measure on change.
+        ro = new ResizeObserver(() => map.invalidateSize());
+        ro.observe(container);
       } catch (e) {
         if (cancelled) return;
         setErrMsg(e instanceof Error ? e.message : String(e));
@@ -71,6 +77,7 @@ export default function CpMap({ wards, onSelect }: Props) {
 
     return () => {
       cancelled = true;
+      if (ro) { ro.disconnect(); ro = null; }
       if (mapInstance) { try { mapInstance.remove(); } catch { /* gone */ } mapInstance = null; }
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps

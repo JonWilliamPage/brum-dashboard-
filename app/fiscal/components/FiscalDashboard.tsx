@@ -5,6 +5,7 @@ import DashboardHeader from '@/app/components/brand/DashboardHeader';
 import SectionHeader from '@/app/components/brand/SectionHeader';
 import DancettyDivider from '@/app/components/brand/DancettyDivider';
 import CrestWatermark from '@/app/components/brand/CrestWatermark';
+import FocusableChart from '@/app/components/FocusableChart';
 
 const COL = {
   surplus:   '#1a3a2a',
@@ -181,9 +182,11 @@ export default function FiscalDashboard({ wards: fiscalWards, selected, onSelect
             <span style={{ color: COL.deficit, fontWeight: 700 }}>● In the red</span> = net recipient ·{' '}
             <span style={{ color: COL.surplus, fontWeight: 700 }}>● In the black</span> = net contributor · click a ward for its full breakdown
           </p>
-          <div style={{ maxHeight: 760, overflowY: 'auto' }}>
-            <BalanceBars data={sorted} selected={selected} onSelect={onSelect} />
-          </div>
+          <FocusableChart title="Ward Net Fiscal Balance">
+            <div style={{ maxHeight: 760, overflowY: 'auto' }}>
+              <BalanceBars data={sorted} selected={selected} onSelect={onSelect} />
+            </div>
+          </FocusableChart>
           <p style={{ fontSize: 10.5, color: 'var(--muted)', marginTop: 12, lineHeight: 1.5, paddingTop: 10, borderTop: `1px solid ${COL.line}` }}>
             Population-weighted city average: <strong style={{ color: avgNet >= 0 ? COL.surplus : COL.deficit, fontFamily: 'var(--mono)' }}>{gbp(avgNet)}</strong>/head.
             In the full model this ties to the published ONS West Midlands figure. Figures are modelled estimates.
@@ -211,22 +214,24 @@ export default function FiscalDashboard({ wards: fiscalWards, selected, onSelect
             title="Data sources & provenance"
             subtitle="Every layer of the calculation, and whether each input is a live source, a modelled estimate, or still behind a login."
           />
-          <div style={{ minWidth: 600 }}>
-            <div style={{ display: 'flex', gap: 10, padding: '0 0 8px', borderBottom: '2px solid var(--herald-gold)', fontSize: 10, textTransform: 'uppercase', letterSpacing: '.04em', color: 'var(--muted)', fontWeight: 700, fontFamily: 'var(--mono)' }}>
-              <span style={{ width: 160, flexShrink: 0 }}>Layer</span>
-              <span style={{ flex: 1.3 }}>What it provides</span>
-              <span style={{ flex: 1.4 }}>Source</span>
-              <span style={{ width: 160, flexShrink: 0 }}>Status</span>
-            </div>
-            {PROVENANCE.map((p, i) => (
-              <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: '1px solid rgba(14,15,17,0.07)', fontSize: 11.5 }}>
-                <span style={{ width: 160, flexShrink: 0, fontWeight: 600, color: 'var(--ink)' }}>{p.layer}</span>
-                <span style={{ flex: 1.3, color: 'var(--muted)', lineHeight: 1.4 }}>{p.what}</span>
-                <span style={{ flex: 1.4, color: 'var(--muted)', lineHeight: 1.4 }}>{p.source}</span>
-                <span style={{ width: 160, flexShrink: 0 }}><StatusDot status={p.status} /></span>
+          <FocusableChart title="Data sources &amp; provenance">
+            <div className="prov-table">
+              <div className="prov-row prov-head">
+                <span className="prov-layer">Layer</span>
+                <span className="prov-what">What it provides</span>
+                <span className="prov-source">Source</span>
+                <span className="prov-status">Status</span>
               </div>
-            ))}
-          </div>
+              {PROVENANCE.map((p, i) => (
+                <div key={i} className="prov-row">
+                  <span className="prov-layer" data-k="Layer">{p.layer}</span>
+                  <span className="prov-what" data-k="What it provides">{p.what}</span>
+                  <span className="prov-source" data-k="Source">{p.source}</span>
+                  <span className="prov-status" data-k="Status"><StatusDot status={p.status} /></span>
+                </div>
+              ))}
+            </div>
+          </FocusableChart>
         </div>
 
         {/* Footer */}

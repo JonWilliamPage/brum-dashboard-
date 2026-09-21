@@ -9,6 +9,7 @@ import UcCombinedTable from './UcCombinedTable';
 import UcCombinedComposition from './UcCombinedComposition';
 import UcCombinedDetailPanel from './UcCombinedDetailPanel';
 import BullAscii from '../../components/BullAscii';
+import FocusableChart from '../../components/FocusableChart';
 
 const UcCombinedMap = dynamic(() => import('./UcCombinedMap'), { ssr: false });
 
@@ -62,9 +63,21 @@ export default function UcCombinedDashboard({ data }: { data: UcCombinedData }) 
 
         <div className="panel" style={{ flex: 1, position: 'relative' }}>
           <div className="panel-body">
-            {sub === 'table' && <UcCombinedTable wards={data.wards} selected={selected} onSelect={pick} />}
-            {sub === 'composition' && <UcCombinedComposition wards={data.wards} selected={selected} onSelect={pick} />}
-            {sub === 'map' && <UcCombinedMap wards={data.wards} onSelect={pick} />}
+            {sub === 'table' && (
+              <FocusableChart title="Benefits (UC) Table">
+                <UcCombinedTable wards={data.wards} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'composition' && (
+              <FocusableChart title="Benefits (UC) Composition">
+                <UcCombinedComposition wards={data.wards} selected={selected} onSelect={pick} />
+              </FocusableChart>
+            )}
+            {sub === 'map' && (
+              <FocusableChart title="Benefits (UC) Map">
+                <UcCombinedMap wards={data.wards} onSelect={pick} />
+              </FocusableChart>
+            )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { ConMoneyData, ConMoneyConstituency } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import ConMoneyDetailPanel from './ConMoneyDetailPanel';
+import FocusableChart from '../../components/FocusableChart';
 
 const ConMoneyMap = dynamic(() => import('./ConMoneyMap'), { ssr: false });
 
@@ -69,6 +70,7 @@ export default function ConMoneyDashboard({ data }: { data: ConMoneyData }) {
           <div className="panel-body" style={sub === 'map' ? undefined : { padding: '14px 16px' }}>
 
             {sub === 'table' && (
+              <FocusableChart title="Money Map Table">
               <div className="crime-table-wrap" style={{ margin: '-14px -16px' }}>
                 <table className="data-table">
                   <thead>
@@ -96,16 +98,17 @@ export default function ConMoneyDashboard({ data }: { data: ConMoneyData }) {
                   </tbody>
                 </table>
               </div>
+              </FocusableChart>
             )}
 
             {sub === 'composition' && (
-              <>
+              <FocusableChart title="Money Map Composition">
                 <div className="comp-legend">
                   {SERIES.map(s => <span key={s.id}><i style={{ background: s.color }} /> {s.label}</span>)}
                   <span><i style={{ background: '#8a8f99' }} /> everything else</span>
                 </div>
                 {cons.map(c => (
-                  <div key={c.code} className={`comp-row${selected?.code === c.code ? ' selected' : ''}`} onClick={() => pick(c.code)} style={{ gridTemplateColumns: '190px 1fr' }}>
+                  <div key={c.code} className={`comp-row${selected?.code === c.code ? ' selected' : ''}`} onClick={() => pick(c.code)}>
                     <div className="comp-name">{short(c.name)}</div>
                     <div className="comp-track" style={{ height: 20 }}>
                       {SERIES.map(s => (
@@ -119,10 +122,11 @@ export default function ConMoneyDashboard({ data }: { data: ConMoneyData }) {
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginTop: 8 }}>
                   Bar length = total DWP £. Ladywood&apos;s bar is blue (working-age UC); Selly Oak&apos;s is gold (pensions).
                 </div>
-              </>
+              </FocusableChart>
             )}
 
             {sub === 'heatmap' && (
+              <FocusableChart title="Money Map Heatmap">
               <div style={{ overflowX: 'auto' }}>
                 <table className="data-table" style={{ minWidth: 720 }}>
                   <thead>
@@ -152,11 +156,13 @@ export default function ConMoneyDashboard({ data }: { data: ConMoneyData }) {
                   Each column shaded on its own scale (darkest = the constituency receiving most of that benefit). Values £m/yr.
                 </div>
               </div>
+              </FocusableChart>
             )}
 
             {sub === 'uctrend' && (
               <>
                 <div className="bill-sec-ttl">Universal Credit £ per constituency, {data.uc_years[0]} → {data.uc_years.at(-1)} (uniform scale)</div>
+                <FocusableChart title="UC Trend by Constituency">
                 <div className="bill-facets" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
                   {cons.map(c => {
                     const t = c.uc_trend ?? [];
@@ -179,13 +185,18 @@ export default function ConMoneyDashboard({ data }: { data: ConMoneyData }) {
                     );
                   })}
                 </div>
+                </FocusableChart>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginTop: 8 }}>
                   The only benefit DWP recalculated this far back onto 2024 boundaries. The 2020/21 step is COVID.
                 </div>
               </>
             )}
 
-            {sub === 'map' && <ConMoneyMap constituencies={cons} onSelect={pick} />}
+            {sub === 'map' && (
+              <FocusableChart title="Money Map">
+                <ConMoneyMap constituencies={cons} onSelect={pick} />
+              </FocusableChart>
+            )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

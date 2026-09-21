@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { PipPlaceData } from '@/lib/types';
 import ScoringNote from '../../components/brand/ScoringNote';
 import { RAMP } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
 
 const PlayableWardMap = dynamic(() => import('../../components/maps/PlayableWardMap'), { ssr: false });
 
@@ -57,7 +58,6 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
   const gb = data.gb_conditions;
   const gbLast = (gb?.years.length ?? 1) - 1;
   const gbCats = (gb?.categories || []).slice(0, 12);
-  const gbMax = Math.max(...gbCats.map((c) => c.real?.[gbLast] ?? 0), 1);
 
   const mix = data.category_mix?.latest || [];
   const mixMax = Math.max(...mix.map((c) => c.count ?? 0), 1);
@@ -152,15 +152,17 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
                     City: <strong>{fmt(cityNow)}</strong> cases
                   </span>
                 </div>
-                <div style={{ flex: 1, minHeight: 380 }}>
-                  <PlayableWardMap
-                    wards={frameWards}
-                    max={maxCount}
-                    unitLabel="PIP cases"
-                    onSelect={setSel}
-                    selected={sel}
-                  />
-                </div>
+                <FocusableChart title="PIP Place Map">
+                  <div style={{ flex: 1, minHeight: 380 }}>
+                    <PlayableWardMap
+                      wards={frameWards}
+                      max={maxCount}
+                      unitLabel="PIP cases"
+                      onSelect={setSel}
+                      selected={sel}
+                    />
+                  </div>
+                </FocusableChart>
               </>
             )}
 
@@ -173,29 +175,9 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
                   Great Britain accounts only. Sorted by latest real spend. Growth from near-zero launch years
                   is shown as series, not as a single × multiplier from 2013/14.
                 </p>
-                {gbCats.map((c) => {
-                  const latest = c.real?.[gbLast] ?? 0;
-                  const mid = c.real?.[3] ?? c.real?.[0] ?? 0; // ~2016/17 after ramp
-                  return (
-                    <div key={c.name} className="hb-row" style={{ padding: '5px 0' }}>
-                      <div className="hb-name" style={{ fontSize: 12.5 }}>{c.name}</div>
-                      <div className="hb-track" style={{ height: 18 }}>
-                        <div
-                          className="hb-bar"
-                          style={{
-                            height: 18,
-                            width: `${(latest / gbMax) * 100}%`,
-                            background: '#b01225',
-                          }}
-                        />
-                        <span className="hb-val">
-                          {fmtM(latest)}
-                          {mid > 0 ? ` · was ${fmtM(mid)} ~${gb.years[3] || gb.years[0]}` : ''}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
+                <FocusableChart title="GB PIP Expenditure by Condition">
+                  <GbConditionsBars cats={gbCats} gbLastIdx={gbLast} startYear={gb.years[0]} />
+                </FocusableChart>
                 <div className="bill-sec-ttl" style={{ marginTop: 16 }}>
                   GB total latest: {fmtM(gb.gb_total_real_latest)} real · Birmingham PIP (LA):{' '}
                   {billPip.at(-1) ? fmtM(billPip.at(-1)!.pip_m) : '—'}
@@ -212,24 +194,26 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
                   Reported main category on the claim (Stat-Xplore). Psychiatric disorders lead the city
                   caseload — same pattern visible in GB £ composition. Not evidence of intent to defraud.
                 </p>
-                {mix.slice(0, 15).map((c) => (
-                  <div key={c.name} className="hb-row" style={{ padding: '5px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 12.5 }}>{c.name}</div>
-                    <div className="hb-track" style={{ height: 18 }}>
-                      <div
-                        className="hb-bar"
-                        style={{
-                          height: 18,
-                          width: `${((c.count ?? 0) / mixMax) * 100}%`,
-                          background: c.name.toLowerCase().includes('psych') ? '#4a3aa7' : '#b01225',
-                        }}
-                      />
-                      <span className="hb-val">
-                        {fmt(c.count)} · {(((c.count ?? 0) / mixTotal) * 100).toFixed(1)}%
-                      </span>
+                <FocusableChart title="PIP Caseload by Category">
+                  {mix.slice(0, 15).map((c) => (
+                    <div key={c.name} className="hb-row" style={{ padding: '5px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 12.5 }}>{c.name}</div>
+                      <div className="hb-track" style={{ height: 18 }}>
+                        <div
+                          className="hb-bar"
+                          style={{
+                            height: 18,
+                            width: `${((c.count ?? 0) / mixMax) * 100}%`,
+                            background: c.name.toLowerCase().includes('psych') ? '#4a3aa7' : '#b01225',
+                          }}
+                        />
+                        <span className="hb-val">
+                          {fmt(c.count)} · {(((c.count ?? 0) / mixTotal) * 100).toFixed(1)}%
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
                 {data.category_mix?.early?.length > 0 && (
                   <>
                     <div className="bill-sec-ttl" style={{ marginTop: 18 }}>
@@ -254,45 +238,52 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
             {sub === 'city' && (
               <>
                 <div className="bill-sec-ttl">PIP cases in Birmingham (sum of 69 wards, quarterly)</div>
-                <CityLine labels={data.months} series={data.city.series} color="#b01225" />
+                <FocusableChart title="PIP Cases in Birmingham">
+                  <CityLine labels={data.months} series={data.city.series} color="#b01225" />
+                </FocusableChart>
                 <div className="bill-sec-ttl" style={{ marginTop: 20 }}>
                   Real PIP expenditure · Birmingham LA · £m nominal
                 </div>
-                {billPip.map((r) => (
-                  <div key={r.year} className="hb-row" style={{ padding: '5px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 13 }}>{r.year}</div>
-                    <div className="hb-track" style={{ height: 18 }}>
-                      <div
-                        className="hb-bar"
-                        style={{
-                          height: 18,
-                          width: `${(r.pip_m / Math.max(...billPip.map((x) => x.pip_m), 1)) * 100}%`,
-                          background: '#b01225',
-                        }}
-                      />
-                      <span className="hb-val">{fmtM(r.pip_m)}</span>
+                <FocusableChart title="Real PIP Expenditure">
+                  {billPip.map((r) => (
+                    <div key={r.year} className="hb-row" style={{ padding: '5px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 13 }}>{r.year}</div>
+                      <div className="hb-track" style={{ height: 18 }}>
+                        <div
+                          className="hb-bar"
+                          style={{
+                            height: 18,
+                            width: `${(r.pip_m / Math.max(...billPip.map((x) => x.pip_m), 1)) * 100}%`,
+                            background: '#b01225',
+                          }}
+                        />
+                        <span className="hb-val">{fmtM(r.pip_m)}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
                 <div className="bill-sec-ttl" style={{ marginTop: 18 }}>
                   Fastest ward caseload growth
                 </div>
-                {growth.slice(0, 12).map((w, i) => (
-                  <div key={w.ward_code} className="hb-row" style={{ padding: '4px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 12.5 }}>
-                      #{i + 1} {w.ward_name}
+                <FocusableChart title="Fastest Ward Caseload Growth">
+                  {growth.slice(0, 12).map((w, i) => (
+                    <div key={w.ward_code} className="hb-row" style={{ padding: '4px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 12.5 }}>
+                        #{i + 1} {w.ward_name}
+                      </div>
+                      <div className="hb-track">
+                        <span className="hb-val">
+                          +{fmt(w.delta)} · {fmt(w.first)} → {fmt(w.latest)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="hb-track">
-                      <span className="hb-val">
-                        +{fmt(w.delta)} · {fmt(w.first)} → {fmt(w.latest)}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
               </>
             )}
 
             {sub === 'table' && (
+              <FocusableChart title="PIP Place Table">
               <div className="tbl-wrap" style={{ maxHeight: '100%' }}>
                 <table className="data-tbl">
                   <thead>
@@ -323,6 +314,7 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
                   </tbody>
                 </table>
               </div>
+              </FocusableChart>
             )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
@@ -403,6 +395,95 @@ export default function PipPlaceView({ data }: { data: PipPlaceData }) {
   );
 }
 
+// Real Chart.js horizontal bars for GB PIP spend by condition — the hand-rolled
+// div/CSS "bars" read as a plain numbers list rather than an actual chart, and
+// didn't leave room to print each condition's £ value legibly. This draws the
+// value directly at the end of each bar via a small canvas plugin (same
+// lightweight-custom-plugin pattern used elsewhere in this codebase, e.g. the
+// scrub-line plugin on BillHistoryChart) instead of pulling in a labels library.
+function GbConditionsBars({ cats, gbLastIdx, startYear }: { cats: { name: string; real: (number | null)[] }[]; gbLastIdx: number; startYear: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const chartRef = useRef<{ destroy: () => void } | null>(null);
+  const values = cats.map(c => c.real?.[gbLastIdx] ?? 0);
+  const startValues = cats.map(c => c.real?.[0] ?? null);
+
+  useEffect(() => {
+    let ch: { destroy: () => void } | null = null;
+
+    async function init() {
+      const { Chart } = await import('chart.js/auto');
+      if (!canvasRef.current) return;
+      if (chartRef.current) chartRef.current.destroy();
+
+      const valueLabelPlugin = {
+        id: 'gbConditionValueLabel',
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        afterDatasetsDraw(chart: any) {
+          const { ctx } = chart;
+          const meta = chart.getDatasetMeta(0);
+          ctx.save();
+          ctx.font = '600 10px IBM Plex Mono, monospace';
+          ctx.fillStyle = '#15181e';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          meta.data.forEach((bar: any, i: number) => {
+            ctx.fillText(fmtM(values[i]), bar.x + 6, bar.y);
+          });
+          ctx.restore();
+        },
+      };
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ch = new Chart(canvasRef.current, {
+        type: 'bar',
+        data: {
+          // Chart.js renders an array label as multiple lines per tick — name on
+          // top, starting-point £ underneath, so the growth context sits right
+          // next to the condition rather than needing a hover to find it.
+          labels: cats.map((c, i) => [
+            c.name,
+            startValues[i] != null ? `from ${fmtM(startValues[i]!)} in ${startYear}` : `no ${startYear} baseline`,
+          ]),
+          datasets: [{ data: values, backgroundColor: '#b01225', borderWidth: 0, barThickness: 16 }],
+        },
+        plugins: [valueLabelPlugin],
+        options: {
+          indexAxis: 'y' as const,
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { right: 70 } },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#0e0f11', titleColor: '#fff', bodyColor: '#e5e3df', borderWidth: 0, padding: 8,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              callbacks: { label: (c: any) => ` ${fmtM(c.parsed.x)}` },
+            },
+          },
+          scales: {
+            x: { display: false },
+            y: { grid: { display: false }, ticks: { color: '#15181e', font: { size: 10.5, family: 'Public Sans, sans-serif' } } },
+          },
+        },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+      chartRef.current = ch;
+    }
+
+    init();
+    return () => { if (ch) ch.destroy(); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cats, gbLastIdx, startYear]);
+
+  const h = Math.max(280, cats.length * 38);
+  return (
+    <div className="chart-canvas-wrap" style={{ height: h, position: 'relative' }}>
+      <canvas ref={canvasRef} />
+    </div>
+  );
+}
+
 function CityLine({
   labels,
   series,
@@ -426,11 +507,13 @@ function CityLine({
     })
     .join(' ');
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H}>
-      <path d={path} fill="none" stroke={color} strokeWidth="2" />
-      <text x="4" y={H - 4} fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
-        {labels[0]} → {labels.at(-1)} · {fmt(min)}–{fmt(max)} cases
-      </text>
-    </svg>
+    <div className="chart-canvas-wrap" style={{ height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%">
+        <path d={path} fill="none" stroke={color} strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        <text x="4" y={H - 4} fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
+          {labels[0]} → {labels.at(-1)} · {fmt(min)}–{fmt(max)} cases
+        </text>
+      </svg>
+    </div>
   );
 }

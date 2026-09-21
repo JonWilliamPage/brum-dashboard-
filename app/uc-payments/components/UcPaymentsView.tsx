@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { UcPaymentsData, UcPaymentMonth, UcPaymentFamily, UcPaymentBand } from '@/lib/types';
+import FocusableChart from '../../components/FocusableChart';
 
 // UC Payments story — Birmingham LA household award intensity (Stat-Xplore UC_Households).
 // Every chart lists the raw inputs and the exact arithmetic used. No dual axes.
@@ -29,6 +30,23 @@ function fmtPct(n: number | null | undefined) {
 }
 function fmtM(m: number) {
   return m >= 1000 ? `£${(m / 1000).toFixed(2)}bn` : `£${m.toFixed(m < 10 ? 1 : 0)}m`;
+}
+
+/**
+ * Stat-Xplore band labels arrive verbose — "£0.01 to £100.00" — which forces a
+ * wide column and makes 28 rows hard to scan. The .01/.00 boundaries carry no
+ * information a reader needs (they only exist so bands don't overlap), so show
+ * the round edges instead: "£0–100", "£2,500+". Shorter label = narrower column
+ * = more rows readable at once, without changing any underlying value.
+ */
+function fmtBand(band: string): string {
+  if (/^no payment$/i.test(band)) return 'No payment';
+  const round = (s: string) => Math.round(parseFloat(s.replace(/[£,]/g, ''))).toLocaleString('en-GB');
+  const range = band.match(/£([\d,.]+)\s*to\s*£([\d,.]+)/i);
+  if (range) return `£${round(range[1])}–${round(range[2])}`;
+  const over = band.match(/£([\d,.]+)\s*or over/i);
+  if (over) return `£${round(over[1])}+`;
+  return band;
 }
 
 /** Tiny calc block under each chart — shows formula + inputs. */
@@ -74,6 +92,7 @@ function DataTable({
   return (
     <div className="ucp-data">
       <div className="bill-sec-ttl">{caption}</div>
+      <FocusableChart title={caption}>
       <div className="ucp-data-scroll">
         <table className="ucp-table">
           <thead>
@@ -94,6 +113,7 @@ function DataTable({
           </tbody>
         </table>
       </div>
+      </FocusableChart>
     </div>
   );
 }
@@ -203,7 +223,7 @@ function LineChart({
   }, [labels, values, color, yPrefix, ySuffix]);
 
   return (
-    <div style={{ height, position: 'relative' }}>
+    <div className="chart-canvas-wrap" style={{ height, position: 'relative' }}>
       <canvas ref={canvasRef} />
     </div>
   );
@@ -213,7 +233,30 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
   const [sub, setSub] = useState<Sub>('story');
   const city = data.city;
   const series = city.series ?? [];
-  const bands = (data.award_bands ?? []).filter((b) => b.households != null);
+  // Stat-Xplore publishes an open-ended "£X or over" aggregate alongside the
+  // finer £100 bands. The fetch script drops it when finer bands already cover
+  // that range (it would otherwise double-count), but the published data still
+  // carries "£1500.01 or over" — superseded by the £1,500–1,600 … £2,500+ bands
+  // that follow it. Drop any aggregate a finer band already covers; the genuine
+  // top band ("£2500.01 or over", which nothing supersedes) is kept. The dropped
+  // band carries 0 households, so Σ bands and the checksum are unchanged.
+  const bands = useMemo(() => {
+    const present = (data.award_bands ?? []).filter((b) => b.households != null);
+    const floorOf = (label: string) => {
+      const m = label.match(/£([\d,.]+)/);
+      return m ? parseFloat(m[1].replace(/,/g, '')) : null;
+    };
+    const finerFloors = present
+      .filter((b) => /to £/i.test(b.band))
+      .map((b) => floorOf(b.band))
+      .filter((v): v is number => v != null);
+    return present.filter((b) => {
+      if (!/or over/i.test(b.band)) return true;
+      const floor = floorOf(b.band);
+      if (floor == null) return true;
+      return !finerFloors.some((f) => f >= floor);
+    });
+  }, [data.award_bands]);
   const families = (data.family_types ?? []).filter((f) => f.households != null);
 
   const latest = series.at(-1);
@@ -422,7 +465,9 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                 <div className="bill-sec-ttl" style={{ marginTop: sub === 'story' ? 18 : 0 }}>
                   Households on UC over time — raw COUNT each month (not modelled)
                 </div>
-                <LineChart labels={labels} values={hhSeries} color={UC} height={200} />
+                <FocusableChart title="Households on UC over time">
+                  <LineChart labels={labels} values={hhSeries} color={UC} height={200} />
+                </FocusableChart>
                 <CalcNote
                   title="Households chart"
                   formula="Each point = Stat-Xplore COUNT of Households on Universal Credit for Birmingham LA that month"
@@ -448,13 +493,15 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                 <div className="bill-sec-ttl" style={{ marginTop: 18 }}>
                   Mean Payment Amount (£) over time — separate chart (no dual axis)
                 </div>
-                <LineChart
-                  labels={labels}
-                  values={meanSeries}
-                  color="#16306f"
-                  yPrefix="£"
-                  height={200}
-                />
+                <FocusableChart title="Mean Payment Amount over time">
+                  <LineChart
+                    labels={labels}
+                    values={meanSeries}
+                    color="#16306f"
+                    yPrefix="£"
+                    height={200}
+                  />
+                </FocusableChart>
                 <CalcNote
                   title="Mean payment chart"
                   formula="Each point = Stat-Xplore MEAN of measure Payment Amount for households in Birmingham that month"
@@ -485,7 +532,9 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                     <div className="bill-sec-ttl" style={{ marginTop: 22 }}>
                       Who holds the awards — family type ({data.as_of})
                     </div>
-                    <FamilyBars families={families} maxHh={maxFamHh} maxMean={maxFamMean} />
+                    <FocusableChart title="Who holds the awards — family type">
+                      <FamilyBars families={families} maxHh={maxFamHh} maxMean={maxFamMean} />
+                    </FocusableChart>
                     <CalcNote
                       title="Family-type figures"
                       formula="Per row: COUNT of households + MEAN Payment Amount, sliced by Family Type (same month, Birmingham LA)"
@@ -534,22 +583,24 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                   Bands are Stat-Xplore categories (not our bins). Aggregate “£1500.01 or over” was
                   dropped at fetch when finer £100 bands exist, to avoid double-counting.
                 </p>
-                {bands.map((b) => (
-                  <div key={b.band} className="hb-row" style={{ padding: '4px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 12 }}>{b.band}</div>
-                    <div className="hb-track" style={{ height: 16 }}>
-                      <div
-                        className="hb-bar"
-                        style={{
-                          height: 16,
-                          width: `${((b.households ?? 0) / maxBand) * 100}%`,
-                          background: b.band === 'No payment' ? MUTED : UC,
-                        }}
-                      />
-                      <span className="hb-val">{fmtN(b.households)}</span>
+                <FocusableChart title="Monthly award amount bands">
+                  {bands.map((b) => (
+                    <div key={b.band} className="hb-row" style={{ padding: '4px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 12 }}>{fmtBand(b.band)}</div>
+                      <div className="hb-track" style={{ height: 16 }}>
+                        <div
+                          className="hb-bar"
+                          style={{
+                            height: 16,
+                            width: `${((b.households ?? 0) / maxBand) * 100}%`,
+                            background: b.band === 'No payment' ? MUTED : UC,
+                          }}
+                        />
+                        <span className="hb-val">{fmtN(b.households)}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
                 <CalcNote
                   title="Award-band chart"
                   formula="Bar length ∝ households in band · max scale = max(band households)"
@@ -580,7 +631,7 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                   caption="Raw band inputs (linked to chart)"
                   columns={['Band', 'Households', 'Share of city total']}
                   rows={bands.map((b) => [
-                    b.band,
+                    fmtBand(b.band),
                     fmtN(b.households),
                     calc.hh1 > 0 && b.households != null
                       ? `${((b.households / calc.hh1) * 100).toFixed(1)}%`
@@ -596,7 +647,9 @@ export default function UcPaymentsView({ data }: { data: UcPaymentsData }) {
                 <div className="bill-sec-ttl">
                   Family type — count and mean payment ({data.as_of})
                 </div>
-                <FamilyBars families={families} maxHh={maxFamHh} maxMean={maxFamMean} />
+                <FocusableChart title="Family type — count and mean payment">
+                  <FamilyBars families={families} maxHh={maxFamHh} maxMean={maxFamMean} />
+                </FocusableChart>
                 <CalcNote
                   title="Why the city mean is ~£859"
                   formula="City mean is a blend: large low-award group (single, no children) + smaller high-award groups (with children)"

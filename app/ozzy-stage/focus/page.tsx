@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import type { OzzyStageData } from '@/lib/types';
 import OzzyStageView from '../components/OzzyStageView';
+import FocusCloseButton from '../../components/stage/FocusCloseButton';
 
 export default function OzzyStageFocusPage() {
   const [data, setData] = useState<OzzyStageData | null>(null);
@@ -33,7 +34,10 @@ export default function OzzyStageFocusPage() {
       {data ? (
         <OzzyStageView data={data} focusMode />
       ) : (
-        <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        <>
+          <FocusCloseButton />
+          <p className="stage-focus-loading">{failed ? "Couldn't load this view's data." : 'Loading…'}</p>
+        </>
       )}
     </div>
   );

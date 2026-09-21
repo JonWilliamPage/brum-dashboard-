@@ -4,6 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import type { TwoChildData } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
 
 const TwoChildMap = dynamic(() => import('./TwoChildMap'), { ssr: false });
 
@@ -80,6 +81,7 @@ export default function TwoChildView({ data }: { data: TwoChildData }) {
               </>
             )}
             {sub === 'table' && (
+              <FocusableChart title="Two-Child Limit Table">
               <div className="crime-table-wrap" style={{ margin: '-16px -18px' }}>
                 <table className="data-table">
                   <thead>
@@ -110,8 +112,13 @@ export default function TwoChildView({ data }: { data: TwoChildData }) {
                   </tbody>
                 </table>
               </div>
+              </FocusableChart>
             )}
-            {sub === 'map' && <TwoChildMap constituencies={cons} />}
+            {sub === 'map' && (
+              <FocusableChart title="Two-Child Limit Map">
+                <TwoChildMap constituencies={cons} />
+              </FocusableChart>
+            )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
         </div>

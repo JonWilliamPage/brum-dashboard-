@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { FlyTipArea, FlyTipData } from '@/lib/types';
 import ScoringNote from '../../components/brand/ScoringNote';
 import { RAMP } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
 
 const FlyTipMap = dynamic(() => import('./FlyTipMap'), { ssr: false });
 
@@ -175,28 +176,38 @@ export default function FlyTippingView({ data }: { data: FlyTipData }) {
             )}
 
             {sub === 'history' && (
-              <HistoryChart
-                years={years}
-                areas={areas}
-                bhamSeries={data.city?.series ?? []}
-                bench={data.bench_series}
-              />
+              <FocusableChart title="Fly-tipping History">
+                <HistoryChart
+                  years={years}
+                  areas={areas}
+                  bhamSeries={data.city?.series ?? []}
+                  bench={data.bench_series}
+                />
+              </FocusableChart>
             )}
 
             {sub === 'change' && (
-              <DumbbellChange areas={areas} firstYear={firstYear} lastYear={lastYear} />
+              <FocusableChart title="Fly-tipping Change">
+                <DumbbellChange areas={areas} firstYear={firstYear} lastYear={lastYear} />
+              </FocusableChart>
             )}
 
             {sub === 'multiples' && (
-              <SmallMultiples years={years} areas={areas} benchEngland={data.bench_series?.england ?? []} />
+              <FocusableChart title="Fly-tipping Small Multiples">
+                <SmallMultiples years={years} areas={areas} benchEngland={data.bench_series?.england ?? []} />
+              </FocusableChart>
             )}
 
             {sub === 'table' && (
-              <PeerTable areas={areas} years={years} firstYear={firstYear} lastYear={lastYear} wmca={wmca} england={england} />
+              <FocusableChart title="Fly-tipping Peer Table">
+                <PeerTable areas={areas} years={years} firstYear={firstYear} lastYear={lastYear} wmca={wmca} england={england} />
+              </FocusableChart>
             )}
 
             {sub === 'map' && (
-              <FlyTipMap areas={areas} asOf={data.as_of} />
+              <FocusableChart title="Fly-tipping Map">
+                <FlyTipMap areas={areas} asOf={data.as_of} />
+              </FocusableChart>
             )}
 
             {sub === 'outlier' && (
@@ -697,7 +708,7 @@ function HistoryChart({
         <strong style={{ color: GREEN }}>Wolverhampton</strong> in green (performance outlier) ·
         other boroughs light navy · dashed gold = WMCA · dashed grey = England.
       </div>
-      <div style={{ height: 'calc(100% - 36px)', minHeight: 300 }}>
+      <div className="chart-canvas-wrap" style={{ height: 'calc(100% - 36px)', minHeight: 300 }}>
         <canvas ref={canvasRef} />
       </div>
     </div>

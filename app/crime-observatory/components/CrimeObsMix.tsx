@@ -2,9 +2,11 @@
 
 import type { CrimeObsData } from '@/lib/types';
 import { crimeObsLabel, crimeObsColor } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
+import PieChart from '../../components/PieChart';
 
 // Category mix — two honest forms for one moment in time:
-//   1. a single 100% stacked bar of the city's latest-month composition (part-to-whole), and
+//   1. a pie of the city's latest-month composition (part-to-whole), and
 //   2. a ranked bar list of every category with its count and share.
 // Counts are raw recorded offences for the latest month — no weighting, no model.
 interface Props {
@@ -17,31 +19,24 @@ export default function CrimeObsMix({ data }: Props) {
   const total = Math.max(data.city.latest_total, 1);
   const cats = data.categories;
 
-  // Fold the long tail past the top 8 into "Other" for the stacked bar legibility.
+  // Fold the long tail past the top 8 into "Other" for the pie's legibility.
   const top = cats.slice(0, 8);
   const tail = cats.slice(8);
   const tailSum = tail.reduce((s, c) => s + c.latest_count, 0);
-  const barSegs = [
-    ...top.map(c => ({ name: c.name, n: c.latest_count, color: crimeObsColor(c.name) })),
-    ...(tailSum > 0 ? [{ name: 'All other categories', n: tailSum, color: '#8a8f99' }] : []),
+  const pieSlices = [
+    ...top.map(c => ({ label: crimeObsLabel(c.name), value: c.latest_count, color: crimeObsColor(c.name) })),
+    ...(tailSum > 0 ? [{ label: 'All other categories', value: tailSum, color: '#8a8f99' }] : []),
   ];
 
   return (
     <div>
       <div className="bill-sec-ttl">What the {total.toLocaleString()} offences in {latest} were made of</div>
 
-      {/* 100% stacked composition bar */}
-      <div style={{ display: 'flex', height: 34, border: '1px solid var(--border)', overflow: 'hidden', marginBottom: 6 }}>
-        {barSegs.map(s => (
-          <div
-            key={s.name}
-            title={`${crimeObsLabel(s.name)} — ${s.n.toLocaleString()} (${Math.round((s.n / total) * 100)}%)`}
-            style={{ width: `${(s.n / total) * 100}%`, background: s.color, height: '100%' }}
-          />
-        ))}
-      </div>
-      <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', marginBottom: 18 }}>
-        Each segment is that category's share of the month's recorded offences. The 8 largest are named below; the rest fold into gray.
+      <FocusableChart title="Crime Category Mix">
+        <PieChart slices={pieSlices} />
+      </FocusableChart>
+      <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--muted2)', margin: '8px 0 18px' }}>
+        Each slice is that category's share of the month's recorded offences. The 8 largest are named; the rest fold into gray.
       </div>
 
       {/* Ranked category bars */}

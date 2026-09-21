@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { UcWeatherData } from '@/lib/types';
 import ScoringNote from '../../components/brand/ScoringNote';
 import { RAMP } from '@/lib/constants';
+import FocusableChart from '../../components/FocusableChart';
 
 const PlayableWardMap = dynamic(() => import('../../components/maps/PlayableWardMap'), { ssr: false });
 
@@ -151,15 +152,17 @@ export default function UcWeatherView({ data }: { data: UcWeatherData }) {
                     City this month: <strong>{fmt(cityNow)}</strong>
                   </span>
                 </div>
-                <div style={{ flex: 1, minHeight: 380 }}>
-                  <PlayableWardMap
-                    wards={frameWards}
-                    max={metric === 'count' ? maxCount : maxPer}
-                    unitLabel={metric === 'count' ? 'on UC' : 'per 1,000'}
-                    onSelect={setSel}
-                    selected={sel}
-                  />
-                </div>
+                <FocusableChart title="UC Weather Map">
+                  <div style={{ flex: 1, minHeight: 380 }}>
+                    <PlayableWardMap
+                      wards={frameWards}
+                      max={metric === 'count' ? maxCount : maxPer}
+                      unitLabel={metric === 'count' ? 'on UC' : 'per 1,000'}
+                      onSelect={setSel}
+                      selected={sel}
+                    />
+                  </div>
+                </FocusableChart>
               </>
             )}
 
@@ -168,38 +171,44 @@ export default function UcWeatherView({ data }: { data: UcWeatherData }) {
                 <div className="bill-sec-ttl">
                   Biggest caseload increases · {data.months[0]} → {data.months.at(-1)}
                 </div>
-                {growth.slice(0, 20).map((w, i) => (
-                  <button
-                    key={w.ward_code}
-                    type="button"
-                    className={`wp-row${sel === w.ward_code ? ' is-sel' : ''}`}
-                    onClick={() => setSel(w.ward_code)}
-                  >
-                    <div className="wp-row-name">
-                      <span style={{ color: 'var(--muted)', marginRight: 6 }}>#{i + 1}</span>
-                      {w.ward_name}
-                    </div>
-                    <div className="wp-row-track">
-                      <div
-                        className="wp-row-bar"
-                        style={{
-                          width: `${((w.delta ?? 0) / (growth[0]?.delta || 1)) * 100}%`,
-                          background: '#b01225',
-                        }}
-                      />
-                      <span className="wp-row-val">
-                        +{fmt(w.delta)} · {fmt(w.first)} → {fmt(w.latest)}
-                      </span>
-                    </div>
-                  </button>
-                ))}
+                <FocusableChart title="Biggest Caseload Increases">
+                {growth.slice(0, 20).map((w, i) => {
+                  // A linear bar can't show this range honestly — deltas here span from
+                  // low single-figures to several thousand, so the smallest entries would
+                  // render as an invisible sliver next to the largest. Percentage change
+                  // (relative to each ward's own starting point) is what actually reads.
+                  const pct = w.first ? ((w.latest ?? 0) - w.first) / w.first * 100 : null;
+                  const pctStr = pct == null
+                    ? 'new'
+                    : `${pct >= 0 ? '+' : ''}${pct.toLocaleString('en-GB', { maximumFractionDigits: Math.abs(pct) >= 1000 ? 0 : 1 })}%`;
+                  return (
+                    <button
+                      key={w.ward_code}
+                      type="button"
+                      className={`wp-row${sel === w.ward_code ? ' is-sel' : ''}`}
+                      onClick={() => setSel(w.ward_code)}
+                    >
+                      <div className="wp-row-name">
+                        <span style={{ color: 'var(--muted)', marginRight: 6 }}>#{i + 1}</span>
+                        {w.ward_name}
+                      </div>
+                      <div className="wp-row-stats">
+                        <span className="wp-row-pct">{pctStr}</span>
+                        <span className="wp-row-val">{fmt(w.first)} → {fmt(w.latest)} (+{fmt(w.delta)})</span>
+                      </div>
+                    </button>
+                  );
+                })}
+                </FocusableChart>
               </>
             )}
 
             {sub === 'city' && (
               <>
                 <div className="bill-sec-ttl">People on UC in Birmingham (sum of 69 wards)</div>
-                <CitySpark labels={data.months} series={data.city.series} />
+                <FocusableChart title="People on UC in Birmingham">
+                  <CitySpark labels={data.months} series={data.city.series} />
+                </FocusableChart>
                 <div className="bill-sec-ttl" style={{ marginTop: 22 }}>
                   Real UC expenditure in Birmingham (LA accounts, £m nominal)
                 </div>
@@ -207,26 +216,29 @@ export default function UcWeatherView({ data }: { data: UcWeatherData }) {
                   These £ figures are official DWP local-authority outturn — not derived from the ward map.
                   UC begins mid-series in the accounts.
                 </p>
-                {(data.city.bill_uc || []).map((r) => (
-                  <div key={r.year} className="hb-row" style={{ padding: '5px 0' }}>
-                    <div className="hb-name" style={{ fontSize: 13 }}>{r.year}</div>
-                    <div className="hb-track" style={{ height: 18 }}>
-                      <div
-                        className="hb-bar"
-                        style={{
-                          height: 18,
-                          width: `${(r.uc_m / Math.max(...data.city.bill_uc.map((x) => x.uc_m), 1)) * 100}%`,
-                          background: '#2a55bf',
-                        }}
-                      />
-                      <span className="hb-val">{fmtM(r.uc_m)}</span>
+                <FocusableChart title="UC Expenditure by Year">
+                  {(data.city.bill_uc || []).map((r) => (
+                    <div key={r.year} className="hb-row" style={{ padding: '5px 0' }}>
+                      <div className="hb-name" style={{ fontSize: 13 }}>{r.year}</div>
+                      <div className="hb-track" style={{ height: 18 }}>
+                        <div
+                          className="hb-bar"
+                          style={{
+                            height: 18,
+                            width: `${(r.uc_m / Math.max(...data.city.bill_uc.map((x) => x.uc_m), 1)) * 100}%`,
+                            background: '#2a55bf',
+                          }}
+                        />
+                        <span className="hb-val">{fmtM(r.uc_m)}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </FocusableChart>
               </>
             )}
 
             {sub === 'table' && (
+              <FocusableChart title="UC Weather Table">
               <div className="tbl-wrap" style={{ maxHeight: '100%' }}>
                 <table className="data-tbl">
                   <thead>
@@ -259,6 +271,7 @@ export default function UcWeatherView({ data }: { data: UcWeatherData }) {
                   </tbody>
                 </table>
               </div>
+              </FocusableChart>
             )}
           </div>
           <div className="bham-watermark">FORWARD · BIRMINGHAM</div>
@@ -347,15 +360,17 @@ function CitySpark({ labels, series }: { labels: string[]; series: (number | nul
     })
     .join(' ');
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} width="100%" height={H} style={{ display: 'block' }}>
-      <path d={path} fill="none" stroke="#2a55bf" strokeWidth="2" />
-      <text x="4" y="12" fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
-        {fmt(max)}
-      </text>
-      <text x="4" y={H - 4} fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
-        {labels[0]} → {labels.at(-1)} · {fmt(min)}–{fmt(max)}
-      </text>
-    </svg>
+    <div className="chart-canvas-wrap" style={{ height: H }}>
+      <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" style={{ display: 'block' }}>
+        <path d={path} fill="none" stroke="#2a55bf" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+        <text x="4" y="12" fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
+          {fmt(max)}
+        </text>
+        <text x="4" y={H - 4} fontSize="10" fill="#6b6760" fontFamily="var(--mono)">
+          {labels[0]} → {labels.at(-1)} · {fmt(min)}–{fmt(max)}
+        </text>
+      </svg>
+    </div>
   );
 }
 

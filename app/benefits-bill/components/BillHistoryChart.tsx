@@ -205,7 +205,7 @@ export default function BillHistoryChart({ history, highlightYear, mode = 'absol
           ? `Cash index — ${history[0]?.year} = 100 → ${history.at(-1)?.year}${lastIndex != null ? ` = ${lastIndex}` : ''} (not inflation-adjusted)`
           : `The bill, ${history[0]?.year} → ${history.at(-1)?.year} (£ million, nominal — not inflation-adjusted)`}
       </div>
-      <div style={{ height: 320, position: 'relative' }}>
+      <div className="chart-canvas-wrap" style={{ height: 320, position: 'relative' }}>
         <canvas ref={canvasRef} />
       </div>
       {mode === 'absolute' && withheld.length > 0 && (
