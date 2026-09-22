@@ -784,6 +784,28 @@ Child Poverty, Money Map, PIP Deep Dive, Wrong Payments, UC Payments, UC Weather
 PIP Place and the three 3D stages.
 
 ### Known issues / deferred
+- **Verification status of the 2026-09-22 demonstrator work.** Recorded precisely,
+  because most of this session's output has *not* been seen on screen.
+
+  *Confirmed by the maintainer, by eye:* **the maps** after the CARTO → Esri Light
+  Gray Canvas swap. The "API key required" watermark is gone and the maps render
+  correctly. This covers the basemap change across all 14 Leaflet maps.
+
+  *Compile- and route-verified only — nobody has looked at these:* the dashboard
+  nav with the Employment and Youth & NEET buttons gone and Crime as the landing
+  view; the `/about` roadmap rows moved to `soon` and the three removed tiles
+  (10 → 7); the reworded `/sources` in-migration note; the `/privacy` "not enabled
+  in this release" paragraph; the removal of the green nav dots; and the absence
+  of the Housing Affordability and Fiscal Balance dashboards.
+
+  *Machine checks that did pass:* `tsc --noEmit` clean after every change; a full
+  `npm run build` clean (Next 16.3.3, 14 static pages, no errors or warnings); and
+  `/`, `/dashboard`, `/about`, `/sources`, `/privacy`, `/review` all 200 with
+  `/ozzy` returning 307 to `/dashboard` as intended.
+
+  Per `docs/RESPONSIVE-RETROFIT-PLAYBOOK.md` and the 2026-09-21 device session:
+  a clean compile is not a substitute for looking. The items above are plausible
+  but unproven until someone opens them.
 - **The IMD and GVA live fetches have been failing silently — verified against
   the live API 2026-09-22.** Found while scoping per-dashboard source citations:
   before citing a source, check the app can actually reach it. Neither can.
