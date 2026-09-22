@@ -88,9 +88,18 @@ const EDU_SOURCES = [
   },
 ];
 
+// WITHHELD FOR THE DEMONSTRATOR (2026-09-22) — see CHANGELOG, "Withheld pending
+// data fixes". The Employment and Youth & NEET views render `mergeData()`, which is
+// built from the legacy 68-ward FALLBACK array in lib/data.ts. That roster shares 33
+// ward codes with the canonical ONS 69-ward set and *every one of those 33 refers to a
+// different ward*, so any live dataset joined to it by code lands on the wrong ward
+// (e.g. Alum Rock's GVA captioned "Newtown"). Set this to `true` to restore both views
+// — but only once FALLBACK has been retired in favour of lib/wards.ts.
+const LEGACY_ROSTER_VIEWS_ENABLED = false;
+
 export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, eduMeta, neetData, crimeWards, crimeMonth }: Props) {
   const [ready, setReady] = useState(false);
-  const [view, setView] = useState<View>('employment');
+  const [view, setView] = useState<View>(LEGACY_ROSTER_VIEWS_ENABLED ? 'employment' : 'crime');
   const [empSub, setEmpSub] = useState<EmpSub>('grid');
   const [crimeSub, setCrimeSub] = useState<CrimeSub>('crime-table');
   const [eduSub, setEduSub] = useState<EduSub>('edu-grid');
@@ -502,18 +511,22 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
           {/* Dashboards nav */}
           <div className="dash-nav-section">
             <div className="dash-nav-section-ttl">Reporting</div>
-            <button className={`dash-nav-btn${view === 'employment' ? ' active' : ''}`} onClick={() => setView('employment')}>
-              <span className="dash-nav-glyph">▦</span> Employment
-            </button>
+            {LEGACY_ROSTER_VIEWS_ENABLED && (
+              <button className={`dash-nav-btn${view === 'employment' ? ' active' : ''}`} onClick={() => setView('employment')}>
+                <span className="dash-nav-glyph">▦</span> Employment
+              </button>
+            )}
             <button className={`dash-nav-btn${isCrime ? ' active' : ''}`} onClick={() => setView('crime')}>
               <span className="dash-nav-glyph">⚠</span> Crime
             </button>
             <button className={`dash-nav-btn${isEdu ? ' active' : ''}`} onClick={() => setView('education')}>
               <span className="dash-nav-glyph">◈</span> Education &amp; Skills
             </button>
-            <button className={`dash-nav-btn${isYouth ? ' active' : ''}`} onClick={() => setView('youth')}>
-              <span className="dash-nav-glyph">◑</span> Youth &amp; NEET
-            </button>
+            {LEGACY_ROSTER_VIEWS_ENABLED && (
+              <button className={`dash-nav-btn${isYouth ? ' active' : ''}`} onClick={() => setView('youth')}>
+                <span className="dash-nav-glyph">◑</span> Youth &amp; NEET
+              </button>
+            )}
             {benefitsData && (
               <button className={`dash-nav-btn${isBenefits ? ' active' : ''}`} onClick={() => setView('benefits')}>
                 <span className="dash-nav-glyph">▤</span> Benefits (UC)

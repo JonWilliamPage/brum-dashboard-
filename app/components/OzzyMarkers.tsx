@@ -5,6 +5,12 @@ import type { Ward } from '@/lib/types';
 import { CRIME_CATS, CRIME_RAMP, dc, Q_COLORS, Q_LABELS } from '@/lib/constants';
 import { MONTHS } from '@/lib/constants';
 
+// WITHHELD FOR THE DEMONSTRATOR (2026-09-22) — the list / matrix / trend / neet-risk
+// markers below all render `wards`, which is built from the legacy 68-ward FALLBACK
+// roster in lib/data.ts. See Dashboard.tsx LEGACY_ROSTER_VIEWS_ENABLED and the CHANGELOG
+// entry "Withheld pending data fixes". Set to true only once FALLBACK has been retired.
+const LEGACY_ROSTER_MARKERS_ENABLED = false;
+
 // Fuzzy ward match: exact → prefix → substring
 function findWard(wards: Ward[], name: string): Ward | undefined {
   const n = name.toLowerCase().trim();
@@ -243,19 +249,19 @@ export function renderOzzyContent(
     const [type, ...args] = raw.split(':');
 
     try {
-      if (type === 'ward') {
+      if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'ward') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<WardCard key={`ward-${match.index}`} ward={w} wards={wards} />); visualCount++; }
-      } else if (type === 'crime') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'crime') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<CrimeCard key={`crime-${match.index}`} ward={w} wards={wards} />); visualCount++; }
-      } else if (type === 'crime-bars') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'crime-bars') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<CrimeBars key={`cbars-${match.index}`} ward={w} />); visualCount++; }
       } else if (type === 'stat') {
         const [val, lbl] = args.join(':').split('|');
         if (val && lbl) { nodes.push(<StatCard key={`stat-${match.index}`} value={val} label={lbl} />); visualCount++; }
-      } else if (type === 'list') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'list') {
         const [dir, nStr, mode] = args;
         const n = parseInt(nStr ?? '5');
         const byCrime = mode === 'crime';
@@ -265,17 +271,17 @@ export function renderOzzyContent(
           : [...wards].sort((a, b) => (topOrBot ? b : a).composite - (topOrBot ? a : b).composite);
         nodes.push(<RankedList key={`list-${match.index}`} wards={base.slice(0, n)} n={n} byCrime={byCrime} />);
         visualCount++;
-      } else if (type === 'matrix') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'matrix') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<MatrixMarker key={`matrix-${match.index}`} ward={w} wards={wards} />); visualCount++; }
-      } else if (type === 'trend') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'trend') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<TrendMarker key={`trend-${match.index}`} ward={w} />); visualCount++; }
-      } else if (type === 'neet-risk') {
+      } else if (LEGACY_ROSTER_MARKERS_ENABLED && type === 'neet-risk') {
         const w = findWard(wards, args.join(':'));
         if (w) { nodes.push(<NeetRiskCard key={`neet-${match.index}`} ward={w} wards={wards} />); visualCount++; }
       } else if (type === 'open') {
-        const view = args[0] ?? 'employment';
+        const view = args[0] ?? 'crime';
         nodes.push(<OpenCTA key={`open-${match.index}`} view={view} onOpenView={callbacks.onOpenView} />);
         visualCount++;
       }

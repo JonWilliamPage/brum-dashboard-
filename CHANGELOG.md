@@ -659,6 +659,69 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   maintainer has not visually confirmed the dashboard renders correctly with
   both nav buttons gone.
 
+### Withheld pending data fixes
+
+Everything in this section is **hidden from the UI but left in the codebase**, so
+that a working demonstrator could ship on 2026-09-22 without any view that
+cannot be trusted. Each item records what was hidden, how to put it back, and
+what must be true first. Nothing here was deleted.
+
+**The root cause for most of it.** `lib/data.ts` builds every ward from the
+legacy 68-ward `FALLBACK` array. That roster shares **33 ward codes** with the
+canonical ONS 69-ward set in `lib/wards.ts`, and **all 33 refer to a different
+ward** — `E05011118` is "Aston" in `FALLBACK` and "Acocks Green" officially;
+`E05011120` is "Newtown" vs "Alum Rock"; `E05011126` is "Sparkbrook & Balsall
+Heath East" vs "Bordesley & Highgate". Because every live dataset is joined to
+this roster *by code*, 33 wards receive **another ward's real data** and the
+remaining 35 match nothing and fall through to a synthesised value. Verified by
+diffing the two rosters directly, 2026-09-22.
+
+- **Employment & Benefits view (the former default) and Youth & NEET risk view.**
+  Hidden behind `LEGACY_ROSTER_VIEWS_ENABLED` in `app/components/Dashboard.tsx`.
+  The default view moved from `'employment'` to `'crime'`.
+  *To reinstate:* set that constant to `true`. *First:* retire `FALLBACK` in
+  favour of `lib/wards.ts` so ward codes and names agree. This also takes out the
+  Employment sub-tabs (Grid, Table, Labour Scatter, Economic Matrix, Map,
+  Compare), the ward `DetailPanel` and `NeetDetailPanel`, since all of them read
+  `wards`.
+- **All Ozzy inline visual markers except `{{stat:…}}` and `{{open:…}}`.** Hidden
+  behind `LEGACY_ROSTER_MARKERS_ENABLED` in `app/components/OzzyMarkers.tsx`
+  (`ward`, `crime`, `crime-bars`, `list`, `matrix`, `trend`, `neet-risk` — 7
+  guards). Their instructions were removed from the system prompt in
+  `app/components/OzzyView.tsx` so Ozzy cannot emit a marker that renders
+  nothing. *To reinstate:* set the constant to `true` **and** restore the nine
+  prompt lines from git history (`git show HEAD~1:app/components/OzzyView.tsx`).
+  *First:* same roster fix.
+- **`earnings`, and the Employment chip and meter bar that displayed it.** Hidden
+  as a consequence of hiding the Employment view — `earnings` is still generated
+  unconditionally in `lib/data.ts` and is still 100% synthesised. *To reinstate:*
+  nothing to do beyond the roster fix, but it should not come back at all until
+  it is sourced from real ASHE data or removed for good.
+- **GVA per head and the Economic Matrix.** Hidden with the Employment view.
+  Note the fetch is *fixable* — the field names are simply wrong (see the
+  "IMD and GVA live fetches" entry). The live dataset was verified working on
+  2026-09-22: latest year **2023**, **69/69 canonical wards matched**, per-head
+  £4.1k (Hall Green South) → £13.1k median → £298.1k (Ladywood, city-centre
+  workplace GVA), using `WARD_POPULATION_2024` as the denominator. Three
+  aggregate rows must be excluded (`AllLaInCountry_England`,
+  `CombinedAuthorities_WestMidlands`, `E08000025`). **This fix was deliberately
+  not applied**: while the UI renders the `FALLBACK` roster, real GVA joined by
+  code would caption Alum Rock's figure "Newtown", which is worse than a
+  synthesised number. Fix the roster first, then the fetch.
+- **Three roadmap entries on `/about`** moved from `live` to `soon` with honest
+  detail text: "Employment & claimants", "Youth & NEET risk", "Economic matrix".
+- **Three tiles removed from the `/about` dashboard grid** (`DashboardCards.tsx`):
+  `employment`, `youth`, `matrix` — 10 tiles down to 7. *To reinstate:*
+  `git show` this commit's parent for the three objects.
+
+**What is still live and trustworthy**, because each carries its own canonical
+69-ward roster rather than joining to `FALLBACK`: Crime (data.police.uk, verified
+69 wards keyed `E05011118`+), Crime Deep Dive, Education & Skills (Census 2021,
+verified canonical codes `E05011118`–`E05011186`), Universal Credit, UC in Work,
+Claimant Count, Housing Benefit, Fly-tipping, Benefits Bill, Two-Child Limit,
+Child Poverty, Money Map, PIP Deep Dive, Wrong Payments, UC Payments, UC Weather,
+PIP Place and the three 3D stages.
+
 ### Known issues / deferred
 - **The IMD and GVA live fetches have been failing silently — verified against
   the live API 2026-09-22.** Found while scoping per-dashboard source citations:

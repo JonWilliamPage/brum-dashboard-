@@ -2,15 +2,6 @@
 
 const DASHBOARDS = [
   {
-    key: 'employment',
-    name: 'Employment & claimants',
-    sub: 'IMD · claimant count · 68 wards',
-    finding: 'Where worklessness sits — and how wide the gap still is',
-    glyph: '▦',
-    color: 'var(--herald-blue)',
-    pattern: 'lozenge',
-  },
-  {
     key: 'uc',
     name: 'Universal Credit',
     sub: 'DWP · ward caseload · in-work share',
@@ -72,24 +63,6 @@ const DASHBOARDS = [
     glyph: '◈',
     color: '#2a6a4a',
     pattern: 'ermine',
-  },
-  {
-    key: 'youth',
-    name: 'Youth & NEET risk',
-    sub: '16–24 cohort · 68 wards',
-    finding: 'Where young people are most exposed to being left behind',
-    glyph: '◑',
-    color: 'var(--herald-navy)',
-    pattern: 'lozenge',
-  },
-  {
-    key: 'matrix',
-    name: 'Economic matrix',
-    sub: 'GVA per head × deprivation',
-    finding: 'Advantage and disadvantage — the city in four quadrants',
-    glyph: '◆',
-    color: 'var(--accent)',
-    pattern: 'dancetty',
   },
 ];
 
