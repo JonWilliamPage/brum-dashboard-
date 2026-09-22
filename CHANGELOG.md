@@ -660,6 +660,45 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   both nav buttons gone.
 
 ### Known issues / deferred
+- **The IMD and GVA live fetches have been failing silently — verified against
+  the live API 2026-09-22.** Found while scoping per-dashboard source citations:
+  before citing a source, check the app can actually reach it. Neither can.
+
+  *GVA (`lib/fetch-gva.ts`).* The request selects
+  `ward_name,ward_code,gva_total_millions,year`; the dataset's real fields are
+  `areaidentifier`, `arealabel`, `date`, `periodlabel`, `value`. The API returns
+  **400 ODSQLError "Unknown field: ward_name"**. The per-head denominator fetch
+  is worse — dataset `census-2021-age-birmingham-wards` returns **404, does not
+  exist**. So `w.gva = gMap?.[code] != null ? ... : synthGva(w)` has *always*
+  taken the synth branch. **GVA per head is not a silent fallback that sometimes
+  fires — it is fabricated 100% of the time**, and so is every Economic Matrix
+  quadrant assigned from it. The dataset itself is alive and fine (720 records,
+  200) — only the field names are wrong.
+
+  *IMD (`lib/fetch-imd.ts`).* Three separate breaks. The `where` clause filters
+  `lad22cd='E08000025'` → **400 "Unknown field: lad22cd"** (the real field is
+  `local_authority_code_2024`). The record parser looks for `employment_score` /
+  `employment_domain_score` / `emp_score`, but the dataset publishes only
+  `employment_rank` and `employment_decile` — there is **no score field at all**.
+  And it looks for a ward code (`ward22cd`/`ward_code`/`wardcd`/`ward21cd`) in a
+  dataset keyed on `lsoa_code_2021` with **no ward column**, so aggregating it to
+  wards needs an LSOA→ward lookup the codebase does not have. Consequence:
+  `imd_employment_score` always comes from the hardcoded `FALLBACK` array in
+  `lib/data.ts` — i.e. the legacy 68-ward set on the wrong ONS code series.
+
+  *Why it went unnoticed.* Both failures are caught and fall through to a
+  fallback, and `defaultDataSources` already reports `imd: 'cached'` and
+  `gva: 'cached'`, so the app never claimed live. But "cached" for GVA means
+  "hash", not "committed real snapshot" — precisely what CLAUDE.md forbids.
+  The removed nav dots made it worse by asserting live fetches unconditionally.
+
+  *Consequence for the citation work.* Registry entries for IMD and GVA were
+  **not** added: a citation naming MHCLG or City Observatory on a number the app
+  has never fetched is worse than no citation, because it looks rigorous. The
+  22 existing registry entries are unaffected by this finding.
+
+  *Reproduce:* the exact failing URLs are in `lib/fetch-gva.ts:8-9` and
+  `lib/fetch-imd.ts:2,8`; paste them into a browser and read the error bodies.
 - **The 2026-09-21 mobile work is compile-verified, not fully device-verified.**
   `tsc` passes clean and every route compiles and returns 200, but the session
   that wrote it had no working browser connection, so visual confirmation came
