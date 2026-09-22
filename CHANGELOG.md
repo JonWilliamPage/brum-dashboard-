@@ -82,6 +82,32 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   waiting, switching to a quieter "Sound on" style once unmuted.
 
 ### Changed
+- **2026-09-22 — demonstrator branch published: `remove-synthesised-dashboards`.**
+  Pushed to **both** remotes — `origin` (JonWilliamPage/brum-dashboard-, the
+  backstop) and `upstream` (willspensley/brum-dashboard-, where the Vercel build
+  lives). **No pull request opened yet, and `upstream/main` is untouched**, so the
+  live public site is unchanged.
+
+  *What the branch contains:* 19 commits ahead of `upstream/main`. The last 9 are
+  this session's data-integrity pass — the two dashboard deletions, the false
+  "live" nav dots, the three documented fetch failures, the legacy-roster
+  withholding, the chat switch-off plus `docs/FUTURE-DIRECTIONS.md`, the CARTO →
+  Esri basemap swap, the verification record and the live-dashboard audit. The
+  earlier 10 are the 2026-09-21 mobile retrofit, which had never been upstreamed
+  either: the responsiveness pass, the 92 expand-to-full-screen wrappers, the 3D
+  stage touch fixes, the stage focus pop-outs and the About video replay.
+
+  *A drafted PR description exists* covering the roster evidence, what is withheld
+  and why, what remains live, and how to reinstate each piece. Opening the PR is
+  what triggers a Vercel preview URL — that URL, not the branch, is the thing to
+  send people.
+
+  *Verification at the point of publishing:* `tsc --noEmit` clean, a clean
+  `npm run build` (Next 16.3.3, 14 static pages), every route 200 with `/ozzy` 307
+  to `/dashboard`. **Only the maps have been confirmed on screen by the
+  maintainer.** The nav with two views withheld, the `/about` roadmap and tile
+  changes, and the reworded `/sources` and `/privacy` copy are compile-verified
+  only.
 - **2026-09-22** — **Basemap moved from CARTO to Esri Light Gray Canvas on all 14
   Leaflet maps**, because CARTO began watermarking keyless use of
   `basemaps.cartocdn.com` ("API key required") and the watermark was appearing
