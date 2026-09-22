@@ -82,6 +82,32 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   waiting, switching to a quieter "Sound on" style once unmuted.
 
 ### Changed
+- **2026-09-22** — **Basemap moved from CARTO to Esri Light Gray Canvas on all 14
+  Leaflet maps**, because CARTO began watermarking keyless use of
+  `basemaps.cartocdn.com` ("API key required") and the watermark was appearing
+  over every map. 28 tile layers across 14 files.
+
+  *Why Light Gray Canvas rather than OpenStreetMap standard.* A canvas basemap is
+  built to sit under thematic data — it is desaturated so the choropleth owns all
+  the colour, whereas OSM standard's green parks and orange roads compete with
+  the fill ramp and can read as data values. It also ships as a separate base
+  layer and labels layer, which the Employment and Education maps depend on:
+  they draw base → choropleth → labels so ward names stay legible over dark
+  fills. OSM bakes labels into the tile, which would bury them.
+
+  *Faithful swap, not a redesign.* `light_nolabels` → `World_Light_Gray_Base`,
+  `light_only_labels` → `World_Light_Gray_Reference` (the `pane: 'shadowPane'`
+  placement is preserved, so labels stay above the data on those two maps). The
+  twelve single-layer `light_all` maps became base + labels with both below the
+  choropleth, which is what `light_all` already did. Note the Esri tile scheme is
+  `{z}/{y}/{x}` — y before x — not Leaflet's usual order. Attribution updated to
+  "Esri, HERE, Garmin, © OpenStreetMap contributors" everywhere.
+
+  *Open question, deliberately flagged.* Esri's free tile services are intended
+  for use with Esri products and their terms are less clear-cut for third-party
+  apps than OSM's ODbL. Acceptable for a demonstrator circulated for feedback;
+  settle it before anything permanent and public — either a CARTO API key, a
+  Stadia/Maptiler key, or accept OSM standard's busier look.
 - **2026-09-21** — **Mobile responsiveness pass on the dashboard shell.**
   - The fixed 252px sidebar is now an off-canvas drawer under 900px: it slides
     in over the content with a dark backdrop instead of squeezing the layout,

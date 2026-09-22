@@ -86,10 +86,10 @@ export default function EduMap({ wards, onSelect }: Props) {
         mapRef.current = map;
         if (cancelled) { map.remove(); mapRef.current = null; return; }
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-          attribution: '© OpenStreetMap contributors © CARTO', maxZoom: 18,
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Esri, HERE, Garmin, © OpenStreetMap contributors', maxZoom: 18,
         }).addTo(map);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
           maxZoom: 18, pane: 'shadowPane',
         }).addTo(map);
 

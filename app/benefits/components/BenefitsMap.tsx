@@ -5,7 +5,7 @@ import type { UcWard } from '@/lib/types';
 import { RAMP } from '@/lib/constants';
 import { fetchWardBoundaries } from '@/lib/fetch-ward-boundaries';
 
-// Modelled on CrimeMap — same Leaflet setup, CARTO tiles, ink ramp, tooltip.
+// Modelled on CrimeMap — same Leaflet setup, Esri Light Gray Canvas tiles, ink ramp, tooltip.
 interface Props {
   wards: UcWard[];
   onSelect: (code: string) => void;
@@ -47,10 +47,11 @@ export default function BenefitsMap({ wards, onSelect }: Props) {
         mapInstance = map;
         if (cancelled) { map.remove(); return; }
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-          attribution: '© OpenStreetMap contributors © CARTO',
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+          attribution: 'Esri, HERE, Garmin, © OpenStreetMap contributors',
           maxZoom: 18,
         }).addTo(map);
+        L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18 }).addTo(map);
 
         L.geoJSON(geo, {
           style: feat => {
