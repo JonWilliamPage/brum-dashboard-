@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import BullAscii from './BullAscii';
+import { ASK_OZZY_CHAT_ENABLED } from '@/lib/features';
 
 export default function TopNav() {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ export default function TopNav() {
 
   const links = [
     { href: '/about',     label: 'About' },
-    { href: '/ozzy',      label: 'Ask Ozzy' },
+    ...(ASK_OZZY_CHAT_ENABLED ? [{ href: '/ozzy', label: 'Ask Ozzy' }] : []),
     { href: '/dashboard', label: 'Dashboards' },
     { href: '/review',    label: 'Review' },
     { href: '/sources',   label: 'Data Sources' },

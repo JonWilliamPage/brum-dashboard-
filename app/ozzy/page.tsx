@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { redirect } from 'next/navigation';
+import { ASK_OZZY_CHAT_ENABLED } from '@/lib/features';
 import SiteFooter from '@/app/components/SiteFooter';
 import BullAscii from '@/app/components/BullAscii';
 
@@ -147,6 +149,9 @@ function ScrambleBlock({ text, onDone }: { text: string; onDone: () => void }) {
 }
 
 export default function OzzyPage() {
+  // Withheld for the demonstrator — see lib/features.ts for why and how to restore.
+  if (!ASK_OZZY_CHAT_ENABLED) redirect('/dashboard');
+
   const [chatHistory, setChatHistory] = useState<ChatEntry[]>([]);
   const [askedIds, setAskedIds] = useState<Set<number>>(new Set());
   const chatRef = useRef<HTMLDivElement>(null);

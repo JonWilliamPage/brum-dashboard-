@@ -41,6 +41,7 @@ import OzzyStageView from '../ozzy-stage/components/OzzyStageView';
 import CrimeObsView from '../crime-observatory/components/CrimeObsView';
 import ScoringNote from './brand/ScoringNote';
 import BullAscii from './BullAscii';
+import { ASK_OZZY_CHAT_ENABLED } from '@/lib/features';
 
 const EduMap = dynamic(() => import('../education/components/EduMap'), { ssr: false });
 
@@ -622,9 +623,11 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
           {/* Ask Ozzy link */}
           <div className="dash-nav-section">
             <div className="dash-nav-section-ttl">Ozzy</div>
-            <a href="/ozzy" className="dash-nav-btn">
-              <span className="dash-nav-glyph">?</span> Ask Ozzy
-            </a>
+            {ASK_OZZY_CHAT_ENABLED && (
+              <a href="/ozzy" className="dash-nav-btn">
+                <span className="dash-nav-glyph">?</span> Ask Ozzy
+              </a>
+            )}
             <a href="/about" className="dash-nav-btn">
               <span className="dash-nav-glyph">◉</span> About Ozzy
             </a>

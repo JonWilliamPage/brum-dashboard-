@@ -1,5 +1,6 @@
 import BullAscii from './BullAscii';
 import { WARD_COUNT } from '@/lib/wards';
+import { ASK_OZZY_CHAT_ENABLED } from '@/lib/features';
 
 export default function SiteFooter() {
   return (
@@ -32,7 +33,7 @@ export default function SiteFooter() {
           <div className="site-foot-col">
             <div className="site-foot-col-ttl">Explore</div>
             <a href="/about">About Ozzy</a>
-            <a href="/ozzy">Ask Ozzy</a>
+            {ASK_OZZY_CHAT_ENABLED && <a href="/ozzy">Ask Ozzy</a>}
             <a href="/dashboard">Dashboards</a>
             <a href="/sources">Data Sources</a>
             <a href="/privacy">Privacy</a>

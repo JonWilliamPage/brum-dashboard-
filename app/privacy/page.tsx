@@ -31,8 +31,14 @@ export default function PrivacyPage() {
 
           <div>
             <h2 style={{ fontFamily: 'var(--serif)', fontSize: 22, color: 'var(--ink)', margin: '0 0 10px', fontWeight: 400 }}>
-              Ask Ozzy (the chat)
+              Ask Ozzy (the chat) — not enabled in this release
             </h2>
+            <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, margin: '0 0 10px' }}>
+              The conversational layer is <strong style={{ color: 'var(--ink)' }}>switched off</strong> in the current
+              release — Ozzy is a data-presentation prototype for now, and the chat is a later phase. Nothing is sent
+              anywhere when you browse the dashboards. The rest of this section describes how the chat will behave
+              when it is turned on.
+            </p>
             <p style={{ fontFamily: 'var(--sans)', fontSize: 14, color: 'var(--muted)', lineHeight: 1.7, margin: '0 0 10px' }}>
               When you ask Ozzy a question, the text you type is sent to <strong style={{ color: 'var(--ink)' }}>Anthropic</strong> (maker of the Claude AI model) to generate a reply, along with relevant public dataset figures needed to answer it. We don&apos;t log, store, or review your questions on our own servers — the request passes straight through. See Anthropic&apos;s own privacy policy for how they handle API traffic: <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--herald-navy)' }}>anthropic.com/legal/privacy</a>.
             </p>

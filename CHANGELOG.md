@@ -676,6 +676,41 @@ this roster *by code*, 33 wards receive **another ward's real data** and the
 remaining 35 match nothing and fall through to a synthesised value. Verified by
 diffing the two rosters directly, 2026-09-22.
 
+- **Ask Ozzy — the conversational layer — is switched off for the demonstrator,
+  and reframed as a later phase rather than a shipped feature.** Ozzy is a civic
+  intelligence prototype whose job right now is *presenting* real sourced data;
+  the chat comes after. Flag: `ASK_OZZY_CHAT_ENABLED` in the new `lib/features.ts`.
+
+  *Two independent reasons, either sufficient.* `buildDataBlock()` in
+  `app/components/OzzyView.tsx` assembles the model's entire context from
+  `wards` — the legacy 68-ward `FALLBACK` roster — including a
+  `city_avg_gva_per_head_k` computed from synthesised GVA. The model would state
+  those figures in confident prose, which is the most damaging way to be wrong:
+  a chart invites scepticism, a fluent sentence does not. Separately,
+  `app/ozzy/page.tsx` carries hardcoded example answers quoting specific wards
+  and rates from the same legacy roster.
+
+  *Hidden:* the `/ozzy` route (redirects to `/dashboard` while disabled), the
+  `TopNav` entry, the `SiteFooter` link, and the in-dashboard "Ask Ozzy" nav
+  button. The `/about` roadmap already listed "Full agentic chat" as `planned`,
+  which is now accurate rather than aspirational. The `/privacy` chat section now
+  opens by stating the layer is switched off and that nothing is sent anywhere
+  while browsing the dashboards, then describes how it will behave when enabled.
+
+  *To reinstate:* set `ASK_OZZY_CHAT_ENABLED` to `true`, once `FALLBACK` has been
+  retired, the context is rebuilt from the canonical datasets, and the canned
+  answers on `/ozzy` are re-derived from real figures.
+
+  *Also added:* **`docs/FUTURE-DIRECTIONS.md`** — what Ozzy is now, and the
+  direction it is aimed at: federated civic intelligence, where every council
+  runs an instance and the data can be combined to see what is good and bad
+  where, what has *worked*, and — empirically rather than by assertion — what
+  good and bad governance look like. It records the four preconditions that makes
+  real (canonical geography keys, identical metric definitions, provenance
+  carried with the number, honest gaps), and notes that the ward-roster collision
+  found today is the one-city version of exactly the failure federation would hit
+  at national scale.
+
 - **Employment & Benefits view (the former default) and Youth & NEET risk view.**
   Hidden behind `LEGACY_ROSTER_VIEWS_ENABLED` in `app/components/Dashboard.tsx`.
   The default view moved from `'employment'` to `'crime'`.
