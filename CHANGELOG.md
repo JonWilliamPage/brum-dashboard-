@@ -590,6 +590,23 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   "AI agent" text on the About page.
 
 ### Removed
+- **Removed the green `●` "live" dots from the dashboard sidebar nav
+  (2026-09-22).** Noticed by the maintainer as a visual inconsistency: most nav
+  items carried a trailing dot but the top few did not. The inconsistency was
+  real and the dots were worse than untidy — 18 of the 20 were hardcoded
+  `<span className="dash-live-dot">●</span>`, rendered unconditionally and always
+  green regardless of whether that dataset had actually been fetched live, so
+  they asserted a live fetch the app had not verified. Only two were honest
+  (`dsrc.crime === 'live' &&` and `dsrc.neet === 'live' &&`), and Employment and
+  Education & Skills had none at all, which is what made the row look uneven.
+
+  All 20 removed, plus the now-unused `.dash-live-dot` rule from
+  `app/globals.css`. No provenance information is lost: live/cached state is
+  still shown by the honest `LIVE`/`CACHED` badge in the ward DetailPanel, which
+  is conditional on `dsrc.nomis`. `dsrc` is still threaded through to
+  `DetailPanel`, so nothing became unused.
+
+  `tsc --noEmit` clean; `/dashboard` and `/sources` 200. Not yet seen on screen.
 - **Housing Affordability and Ward Net Fiscal Balance dashboards deleted
   (2026-09-22)** — both were synthesised end to end and failed CLAUDE.md's
   "no synthesised/modelled values in the UI" rule, so they were pulled rather

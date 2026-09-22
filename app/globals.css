@@ -158,7 +158,6 @@ body:has(.dash-shell) .site-main{overflow:hidden;}
 .dash-nav-btn.active{background:rgba(28,63,148,.09);color:var(--herald-navy);box-shadow:inset 3px 0 0 var(--herald-gold);}
 .dash-nav-btn.active .dash-nav-glyph{color:var(--herald-gold);}
 .dash-nav-glyph{font-family:var(--mono);font-size:12px;width:18px;text-align:center;color:var(--muted2);flex-shrink:0;}
-.dash-live-dot{color:var(--q-prosp);font-size:9px;margin-left:auto;}
 .dash-history-item{padding:6px 10px;font-size:11px;color:var(--muted);cursor:pointer;font-family:var(--sans);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border:none;background:transparent;text-align:left;width:100%;transition:all .1s;border-radius:var(--radius);}
 .dash-history-item:hover{background:rgba(21,24,30,.06);color:var(--ink);}
 .dash-history-empty{font-family:var(--mono);font-size:10px;color:var(--muted2);padding:4px 10px;font-style:italic;}

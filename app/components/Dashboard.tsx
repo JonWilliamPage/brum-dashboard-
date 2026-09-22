@@ -507,121 +507,101 @@ export default function Dashboard({ wards, dsrc, dsmeta, nomisDate, eduWards, ed
             </button>
             <button className={`dash-nav-btn${isCrime ? ' active' : ''}`} onClick={() => setView('crime')}>
               <span className="dash-nav-glyph">⚠</span> Crime
-              {dsrc.crime === 'live' && <span className="dash-live-dot">●</span>}
             </button>
             <button className={`dash-nav-btn${isEdu ? ' active' : ''}`} onClick={() => setView('education')}>
               <span className="dash-nav-glyph">◈</span> Education &amp; Skills
             </button>
             <button className={`dash-nav-btn${isYouth ? ' active' : ''}`} onClick={() => setView('youth')}>
               <span className="dash-nav-glyph">◑</span> Youth &amp; NEET
-              {dsrc.neet === 'live' && <span className="dash-live-dot">●</span>}
             </button>
             {benefitsData && (
               <button className={`dash-nav-btn${isBenefits ? ' active' : ''}`} onClick={() => setView('benefits')}>
                 <span className="dash-nav-glyph">▤</span> Benefits (UC)
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {ucEmpData && (
               <button className={`dash-nav-btn${isUcEmp ? ' active' : ''}`} onClick={() => setView('ucemp')}>
                 <span className="dash-nav-glyph">◧</span> UC in Work
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {hbData && (
               <button className={`dash-nav-btn${isHBenefit ? ' active' : ''}`} onClick={() => setView('hbenefit')}>
                 <span className="dash-nav-glyph">⌂</span> Housing Benefit
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {flyTipData && (
               <button className={`dash-nav-btn${isFlyTip ? ' active' : ''}`} onClick={() => setView('flytip')}>
                 <span className="dash-nav-glyph">⚠</span> Fly-tipping
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {claimantData && (
               <button className={`dash-nav-btn${isClaimant ? ' active' : ''}`} onClick={() => setView('claimant')}>
                 <span className="dash-nav-glyph">▥</span> Claimant Count
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {billData && (
               <button className={`dash-nav-btn${isBill ? ' active' : ''}`} onClick={() => setView('bill')}>
                 <span className="dash-nav-glyph">£</span> Benefits Bill
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {twoChildData && (
               <button className={`dash-nav-btn${isTwoChild ? ' active' : ''}`} onClick={() => setView('twochild')}>
                 <span className="dash-nav-glyph">◔</span> Two-Child Limit
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {childPovData && (
               <button className={`dash-nav-btn${isChildPov ? ' active' : ''}`} onClick={() => setView('childpov')}>
                 <span className="dash-nav-glyph">◒</span> Child Poverty
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {conMoneyData && (
               <button className={`dash-nav-btn${isConMoney ? ' active' : ''}`} onClick={() => setView('conmoney')}>
                 <span className="dash-nav-glyph">◈</span> Money Map (£)
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {pipData && (
               <button className={`dash-nav-btn${isPip ? ' active' : ''}`} onClick={() => setView('pip')}>
                 <span className="dash-nav-glyph">✚</span> PIP Deep Dive
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {wrongPayData && (
               <button className={`dash-nav-btn${isWrongPay ? ' active' : ''}`} onClick={() => setView('wrongpay')}>
                 <span className="dash-nav-glyph">⚠</span> Wrong Payments
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {ucPaymentsData && (
               <button className={`dash-nav-btn${isUcPayments ? ' active' : ''}`} onClick={() => setView('ucpayments')}>
                 <span className="dash-nav-glyph">£</span> UC Payments
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {ucWeatherData && (
               <button className={`dash-nav-btn${isUcWeather ? ' active' : ''}`} onClick={() => setView('ucweather')}>
                 <span className="dash-nav-glyph">☁</span> UC Weather
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {pipPlaceData && (
               <button className={`dash-nav-btn${isPipPlace ? ' active' : ''}`} onClick={() => setView('pipplace')}>
                 <span className="dash-nav-glyph">✚</span> PIP Place
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {ucStageData && (
               <button className={`dash-nav-btn${isUcStage ? ' active' : ''}`} onClick={() => setView('ucstage')}>
                 <span className="dash-nav-glyph">▣</span> UC Stage 3D
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {pipStageData && (
               <button className={`dash-nav-btn${isPipStage ? ' active' : ''}`} onClick={() => setView('pipstage')}>
                 <span className="dash-nav-glyph">▣</span> PIP Stage 3D
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {ozzyStageData && (
               <button className={`dash-nav-btn${isOzzyStage ? ' active' : ''}`} onClick={() => setView('ozzystage')}>
                 <span className="dash-nav-glyph">◉</span> Ozzy Stage
-                <span className="dash-live-dot">●</span>
               </button>
             )}
             {crimeObsData && (
               <button className={`dash-nav-btn${isCrimeObs ? ' active' : ''}`} onClick={() => setView('crimeobs')}>
                 <span className="dash-nav-glyph">✚</span> Crime Deep Dive
-                <span className="dash-live-dot">●</span>
               </button>
             )}
           </div>
