@@ -784,6 +784,67 @@ Child Poverty, Money Map, PIP Deep Dive, Wrong Payments, UC Payments, UC Weather
 PIP Place and the three 3D stages.
 
 ### Known issues / deferred
+- **Audit of the 20 still-live dashboards (2026-09-22).** Everything withheld so
+  far was found by tripping over it. This was a deliberate sweep of what actually
+  ships, on the principle that it is about to be read by people who will act on it.
+  **Result: the live set is sound.** Details, so the work is not repeated.
+
+  *Synthesised data is fully contained.* Only two files import from `lib/synth`:
+  `app/components/detail/DetailPanel.tsx` (`extras()` — fabricates `youth_unemp`,
+  `uc_pct`, `no_quals`, `vacancies` from the composite plus a hash) and
+  `app/components/detail/TrendChart.tsx` (`hash01`, used by `pandemicTrend()` to
+  fabricate the entire 2019→now claimant series behind the "2019–NOW" toggle).
+  `TrendChart` renders only inside `DetailPanel`, and `DetailPanel` renders only
+  in the Employment view. Both are therefore unreachable. Note `extras` is also a
+  *prop name* on `StageWardPanel` and appears in `OzzyStageView` and
+  `FamilySupportView` — those are unrelated and carry real UC/PIP figures.
+
+  *The legacy roster is fully contained.* All nine consumers of `wards` in
+  `Dashboard.tsx` sit behind `view === 'employment'` or `isYouth`, both
+  unreachable. The `DetailPanel` branch is reached only when `selected` is set,
+  which only the Employment sub-views do.
+
+  *The live dashboards disclose their derived figures properly*, which is why they
+  survive the "real data or nothing" rule. Wrong Payments leads with a banner —
+  "ILLUSTRATIVE · NATIONAL RATES × CITY SPEND · NOT A BIRMINGHAM AUDIT". The
+  Benefits Bill says "split withheld, not estimated" where DWP does not itemise.
+  UC Payments labels its derived monthly outlay and marks the household series
+  "raw COUNT each month (not modelled)". Housing Benefit states "No modelled ward
+  values are invented". These are arithmetic on published figures with the working
+  shown — a different thing from the hash-derived values that were deleted.
+
+  *The Crime landing view checks out.* `public/data/crime-wards.json` is real
+  data.police.uk, 69 wards, keyed on canonical codes with matching names
+  (`E05011118` = "Acocks Green") and real ONS populations.
+
+  *Three more dead fetches found, all feeding withheld views only:*
+  - `lib/fetch-crime.ts` filters City Observatory on `lad_name` → **400 Unknown
+    field**. Feeds `crime_rate_per_1000` on the legacy roster, *not* the Crime
+    dashboard, which reads the JSON above.
+  - `lib/fetch-nomis.ts` (claimant count) returns **200 with `"Query returned no
+    data"`** — the `geography=1946157186TYPE448` ward-type code looks like a stale
+    boundary vintage. Feeds `claimant_rate` on the legacy roster; the Claimant
+    Count dashboard reads its own committed snapshot.
+  - `lib/fetch-neet.ts` **works** (72 records) — an earlier failure was transient.
+
+    That makes **five** of the app's live fetches broken (GVA, IMD, crime, NOMIS)
+    or previously suspect, every one of them failing silently into a fallback.
+    Worth treating as a class: no fetch in this codebase asserts that it got what
+    it expected, so a schema change upstream is invisible until someone checks by
+    hand. A shape assertion per fetch would have caught all four at the first run.
+
+  *Freshness of what ships.* Every dataset carries a real `as_of`. Most were
+  generated 2026-09-07 with as-of dates from Jan–Apr 2026, which is normal lag for
+  official statistics, and each dashboard header prints its own as-of. The
+  exception worth noting: **`crime-wards.json` is the oldest (generated
+  2026-06-24, as of 2026-04) and it is now the landing view.** Regenerating it
+  with `scripts/fetch-crime-wards.mjs` would put a fresher month in front of
+  first-time readers.
+
+  *Not a fault:* `uc-payments.json` carries `wards: []` by design — the DWP data
+  is local-authority level, and the file declares `geography_level`, `la_code` and
+  `wards_found` alongside 28 award bands, 5 family types, 24 months and its own
+  checksum fields.
 - **Verification status of the 2026-09-22 demonstrator work.** Recorded precisely,
   because most of this session's output has *not* been seen on screen.
 
