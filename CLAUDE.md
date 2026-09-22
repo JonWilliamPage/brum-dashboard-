@@ -26,7 +26,7 @@ Audience: residents, councillors, council staff and potential contributors. Use 
 - **Live where possible** — NOMIS, IMD 2025 / GVA / Census via City Observatory, ONS ward boundaries are public, keyed by official ONS ward code (`E05011118–E05011186`). Never join on the legacy `FALLBACK` codes in `lib/data.ts` — they are a wrong vintage.
 - **Fallbacks must themselves be real.** A live fetch may fall back to a committed snapshot **only if that snapshot is real sourced data** (e.g. `lib/education-data.ts` Census 2021, `public/data/crime-wards.json` from data.police.uk). A fallback must never be a synthesised stand-in.
 - **Status drawer** in the header shows live/cached state + as-of date per source — must stay visible the whole session.
-- **Legacy modelled code is being removed.** `lib/synth*.ts`, `extras()`, `buildHousingWards`, `buildFiscalWards`, and `computeNeetRisk` all produce modelled values — they must be re-sourced from real data or pulled from the UI, not shipped.
+- **Legacy modelled code is being removed.** `lib/synth*.ts`, `extras()` and `computeNeetRisk` all produce modelled values — they must be re-sourced from real data or pulled from the UI, not shipped. `buildHousingWards` and `buildFiscalWards` are **done**: the Housing Affordability and Ward Net Fiscal Balance dashboards were synthesised end to end and were deleted rather than re-sourced (2026-09-22). `UC_Plan/birmingham-fiscal-dashboard-BUILD-SPEC.md` is kept as the spec for rebuilding Fiscal on real sources.
 
 ## Hard rules
 - Never put API keys in browser-shipped code. Keyed APIs (DWP Stat-Xplore, ONS API+) must go through server-side API routes / edge functions.

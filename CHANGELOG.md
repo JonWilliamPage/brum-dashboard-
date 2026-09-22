@@ -589,6 +589,59 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   and confirmed the new page `<title>` and copy render, with no leftover
   "AI agent" text on the About page.
 
+### Removed
+- **Housing Affordability and Ward Net Fiscal Balance dashboards deleted
+  (2026-09-22)** — both were synthesised end to end and failed CLAUDE.md's
+  "no synthesised/modelled values in the UI" rule, so they were pulled rather
+  than re-sourced. Decision taken deliberately: Ozzy is aimed at residents,
+  journalists and councillors, so a modelled figure that reads as a real one is
+  a credibility risk, and "real data or nothing" was chosen over
+  honest-by-disclosure labelling.
+
+  *Why they could not be salvaged.* Fiscal's revenue side was driven entirely by
+  `w.earnings`, itself unconditionally synthesised — `incTaxNI = employed *
+  w.earnings * 1000 * 0.28` — so revenue per head and every ward's net
+  contributor / net recipient classification rested on a fabricated input. Its
+  own banner already admitted the figures "show how the model behaves, not a
+  real result". Housing's house prices and private rents were hardcoded
+  per-ward-character bases plus hash noise (`CHAR_PRICE` Sutton £350k, city
+  £200k; floored at £148k), and `housing_pressure_score` took 55% of its weight
+  from the two earnings-derived ratios (rent-to-income 35%, price-to-income
+  20%), so the affordability ranking was a ranking of invented numbers.
+
+  *Also found and removed with them:* the house-price tooltip claimed the figure
+  was "Modelled from Land Registry and Census tenure profiles" when no Land
+  Registry data was involved anywhere in the code path — an active false claim
+  of provenance, worse than an unlabelled estimate.
+
+  *Deleted:* `app/housing/components/` (HousingDashboard, HousingDetailPanel,
+  HousingGrid, HousingTable), `app/fiscal/components/` (FiscalDashboard,
+  FiscalDetailPanel), `lib/synth-housing.ts`, `lib/synth-fiscal.ts`, and the
+  `FiscalBenefits` / `FiscalWard` / `HousingWard` interfaces from `lib/types.ts`.
+  `app/components/Dashboard.tsx` lost 7 imports, 2 `View` union members, 2 state
+  hooks, the `isHousing`/`isFiscal` flags, 2 `useMemo` builders, both nav
+  buttons, the title and subtitle strings, 2 `ScoringNote` blocks, the housing
+  breadcrumb/legend, 2 mount points and 2 detail-panel branches.
+
+  *Not touched:* the **Housing Benefit** view (`app/housing-benefit/`, view id
+  `hbenefit`) is a different dashboard on real DWP data and stays.
+  `UC_Plan/birmingham-fiscal-dashboard-BUILD-SPEC.md` is kept deliberately — it
+  specifies the ONS reconciliation a real Fiscal dashboard would need, so it is
+  the starting point if Fiscal is ever rebuilt properly.
+
+  *Copy reworded as a consequence:* the Sources page in-migration note listed
+  housing and fiscal as "being migrated" and claimed "their figures are withheld
+  rather than modelled", which was false while both dashboards were shipping
+  modelled figures; it now names the two removals and lists only employment and
+  youth as in migration. `CLAUDE.md`'s legacy-modelled-code line no longer names
+  `buildHousingWards` / `buildFiscalWards` as pending.
+
+  *Verification:* `tsc --noEmit` clean, no residual references to any of the
+  removed symbols, and `/dashboard`, `/sources`, `/about`, `/ozzy`, `/review`
+  all return 200 on the dev server. **Not yet seen on screen by anyone** — the
+  maintainer has not visually confirmed the dashboard renders correctly with
+  both nav buttons gone.
+
 ### Known issues / deferred
 - **The 2026-09-21 mobile work is compile-verified, not fully device-verified.**
   `tsc` passes clean and every route compiles and returns 200, but the session
@@ -663,6 +716,17 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   *Not a regression from this fork* — all of it predates it and is Will's code,
   so the `'unknown'`-quadrant design question is worth raising upstream rather
   than deciding unilaterally.
+
+  *Update 2026-09-22 — partly resolved by deletion.* The Fiscal and Housing
+  dashboards were removed outright (see "Removed" above), which takes the whole
+  Fiscal revenue model and the earnings-derived 55% of the housing pressure
+  score with them. `earnings` itself still exists and is still unconditionally
+  synthesised, but its only remaining consumers are the DetailPanel chip and
+  meter bar, one Compare row and one line of Ozzy's disclaimer — a small
+  deletion now rather than a cascade. Still open and untouched: the `gva` /
+  `population` / `crime_rate_per_1000` / `youth_claimant_rate` silent fallbacks,
+  the three unlabelled crime fields, and the `assignQuadrants()` /
+  `'unknown'`-quadrant problem.
 - **All 14 Leaflet maps claim one-finger drag on touch — accepted, not fixed.**
   Noticed on device (UC Claimants in Work map, 2026-09-21): a swipe starting on
   a map pans the map, so the page only scrolls if the swipe starts beside it.

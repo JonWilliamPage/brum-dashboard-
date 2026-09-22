@@ -97,7 +97,7 @@ export default function SourcesPage() {
               Base geography: Birmingham LAD <strong>E08000025</strong> · 69 official wards (codes E05011118–E05011186).
             </div>
             <div>
-              Remaining dashboards (employment, housing, fiscal, youth) are being migrated to this same standard — each will appear here once it is wired to a verified official source. Until then their figures are withheld rather than modelled.
+              Remaining dashboards (employment, youth) are being migrated to this same standard — each will appear here once it is wired to a verified official source. The Housing Affordability and Ward Net Fiscal Balance dashboards have been removed rather than shipped modelled: their figures were synthesised end to end, so they are withheld until real ward-level sources are wired.
             </div>
           </div>
 

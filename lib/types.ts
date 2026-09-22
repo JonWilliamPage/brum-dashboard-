@@ -384,55 +384,6 @@ export interface EduDataMeta {
   vintage: string;
 }
 
-export interface FiscalBenefits {
-  universalCredit: number;
-  statePension: number;
-  disability: number;
-  childBenefit: number;
-  pensionCredit: number;
-  carers: number;
-  councilTaxSupportOther: number;
-}
-
-export interface FiscalWard {
-  ward_code: string;
-  ward_name: string;
-  population: number;
-  age: { children: number; working: number; pension: number };
-  benefits: FiscalBenefits;
-  benefitPerHead: number;
-  revenuePerHead: number;
-  servicePerHead: number;
-  net: number;
-  driver: string;
-  provenance: { benefits: string; revenue: string; population: string };
-}
-
-export interface HousingWard {
-  ward_code: string;
-  ward_name: string;
-  // Affordability — all modelled
-  median_house_price_k: number;    // £k
-  price_to_income: number;          // ratio
-  private_rent_pcm: number;         // £/month
-  rent_income_pct: number;          // % of annual earnings spent on rent
-  // Tenure mix — modelled from Census 2021 profile
-  owner_occupation_pct: number;
-  social_rented_pct: number;
-  private_rented_pct: number;
-  // Conditions
-  overcrowding_pct: number;         // % households overcrowded
-  // Composite
-  housing_pressure_score: number;   // 0-1
-  housing_pressure_decile: number;  // 1-10
-  housing_pressure_rank: number;    // 1 = most pressure
-  // Context from base Ward
-  char: string;
-  earnings: number;
-  claimant_rate: number;
-  imd_employment_score: number;
-}
-
 // Wrong Payments — illustrative fraud & error leakage on Birmingham's DWP bill.
 // National overpayment rates (Fraud & Error FYE 2025) × Birmingham LA spend.
 // Derived figures are labelled; not a Birmingham audit.
